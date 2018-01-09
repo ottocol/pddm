@@ -17,7 +17,7 @@
 
 - Comparten ciertas características con las clases de la POO y otras con las tablas de una base de datos. 
     - De POO: Pueden ser *abstractas* 
-    - De BD: Tienen relaciones con otras entidades (uno-a-uno, uno-a-muchos,…). Se especifica qué hacer cuando uno de los “lados” de la relación se elimina.
+    - De BD: Tienen relaciones con otras entidades (uno-a-uno, uno-a-muchos,…). Tienen reglas de borrado "en cascada" (qué hacer cuando uno de los “lados” de la relación se elimina)
 
 
 ---
