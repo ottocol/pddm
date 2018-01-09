@@ -59,8 +59,8 @@ Si en el modelo hay varias entidades, tratarlas todas como `NSManagedObject` hac
 
 # DEMO: generar subclases de `NSManagedObject`
 
-1. Generar las clases manualmente
-2. Generación automática
+1. Generación automática
+2. Generación manual
 
 ---
 
@@ -77,31 +77,34 @@ Las operaciones más comunes sobre los objetos gestionados son crear, listar, ac
 
 ---
 
-## Creación y asignación de valores
+## Creación de entidades y asignación de atributos
 
 Ya vimos en la sesión anterior cómo crear y guardar un objeto gestionado. Ahora podemos hacer lo mismo usando nuestras propias clases, sin KVC
 
 ```swift
 let miDelegate = UIApplication.shared.delegate as! AppDelegate {
-let miContexto = miDelegate.persistentContainer.viewContext
-let u = NSEntityDescription.insertNewObject(forEntityName: "Usuario", into: miContexto) as! Usuario
-u.login = "Pepe"
-u.password = "123456"
-try! miContexto.save()
+   let miContexto = miDelegate.persistentContainer.viewContext
+   let u = Usuario(contexto:miContexto)
+   //también se podría hacer como antes:
+   //let u = NSEntityDescription.insertNewObject(forEntityName: "Usuario", into: miContexto) as! Usuario
+   u.login = "Pepe"
+   u.password = "123456"
+   try! miContexto.save()
+}
 ```
 
 ---
 
 ## ¡¡Cuidado!!
 
-Esto NO es correcto, como ya se ha dicho Core Data tiene que gestionar el ciclo de vida completo del objeto
+Recordad que **lo siguiente NO es correcto**, como ya se ha dicho Core Data tiene que gestionar el ciclo de vida completo del objeto
 
 ```swift
 var usuario = Usuario()
 usuario.login = "Pepe"
 ```
 
-O creamos el objeto con `insertNewObject` o lo obtenemos de los que ya existen con una *fetch request*
+O creamos el objeto con `init(context:)` o con `insertNewObject` o lo obtenemos de los que ya existen con una *fetch request*
 
 ---
 
@@ -112,9 +115,9 @@ Xcode crea campos que representan en realidad las relaciones
 relaciones *a uno*: para establecer la relación simplemente asignar el valor
 
 ```swift
-let u = NSEntityDescription.insertNewObject(forEntityName: "Usuario", into: miContexto) as! Usuario
+let u = Usuario(context:miContexto)
 u.login = "Pepe"
-let m = NSEntityDescription.insertNewObject(forEntityName: "Mensaje", into: miContexto) as! Mensaje
+let m = Mensaje(context:miContexto)
 m.texto = "Hola, soy Pepe"
 m.usuario = u
 ```
@@ -126,7 +129,7 @@ m.usuario = u
 Cuando establecemos una relación Core Data **actualiza automáticamente la inversa**
 
 ```swift
-let m = NSEntityDescription.insertNewObject(forEntityName: "Mensaje", into:miContexto) as! Mensaje 
+let m = Mensaje(context:miContexto) 
 m.texto = @"hola amigos"
 m.fecha = Date()
 //Supongamos "u" un objeto Usuario gestionado por Core Data
@@ -147,15 +150,16 @@ Xcode crea *accesores*, métodos para añadir/modificar/eliminar elementos de un
 
 ```swift
 let miDelegate = UIApplication.shared.delegate as! AppDelegate {
-let miContexto = miDelegate.persistentContainer.viewContext
-let u = NSEntityDescription.insertNewObject(forEntityName: "Usuario", into: miContexto) as! Usuario
-u.login = "Pepe"
-u.password = "123456"
-let m = NSEntityDescription.insertNewObject(forEntityName: "Mensaje", into: miContexto) as! Mensaje
-m.texto = "hola, soy Pepe"
-m.fecha = Date()
-u.addToMensajes(m)
-try! miContexto.save() 
+    let miContexto = miDelegate.persistentContainer.viewContext
+    let u = Usuario(context:miContexto)
+    u.login = "Pepe"
+    u.password = "123456"
+    let m = Mensaje(context:miContexto)
+    m.texto = "hola, soy Pepe"
+    m.fecha = Date()
+    u.addToMensajes(m)
+    try! miContexto.save() 
+}
 ```
 
 
