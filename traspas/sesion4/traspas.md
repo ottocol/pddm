@@ -82,7 +82,7 @@ Las operaciones más comunes sobre los objetos gestionados son crear, listar, ac
 Ya vimos en la sesión anterior cómo crear y guardar un objeto gestionado. Ahora podemos hacer lo mismo usando nuestras propias clases, sin KVC
 
 ```swift
-let miDelegate = UIApplication.shared.delegate as! AppDelegate {
+if let miDelegate = UIApplication.shared.delegate as? AppDelegate {
    let miContexto = miDelegate.persistentContainer.viewContext
    let u = Usuario(contexto:miContexto)
    //también se podría hacer como antes:
@@ -149,7 +149,7 @@ for mensaje in u.mensajes {
 Xcode crea *accesores*, métodos para añadir/modificar/eliminar elementos de una relación *a muchos*
 
 ```swift
-let miDelegate = UIApplication.shared.delegate as! AppDelegate {
+if let miDelegate = UIApplication.shared.delegate as? AppDelegate {
     let miContexto = miDelegate.persistentContainer.viewContext
     let u = Usuario(context:miContexto)
     u.login = "Pepe"

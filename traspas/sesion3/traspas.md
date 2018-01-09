@@ -63,7 +63,6 @@ Tomado del libro "Pro Core Data for iOS" (2nd ed.), Apress 2011, pág 30
 ## El *stack* de Core Data (1)
 
 - `NSPersistentStore`: se ocupa de gestionar el almacenamiento persistente. Podemos crear nuestros propios almacenes de datos creando subclases de ella.
-
 - `NSPersistentStoreCoordinator`: el núcleo de Core Data. Responsable de gestionar la persistencia (interactúa con el `NSPersistentStore`). 
   + Nuestro código no va a interactuar apenas con esta clase, salvo en su inicialización.
 
@@ -80,7 +79,6 @@ Tomado del libro "Pro Core Data for iOS" (2nd ed.), Apress 2011, pág 30
 ## El *stack* de Core Data (3)
 
 - `NSManagedObjectContext`  es el “contexto de persistencia” (un grafo de objetos, relacionados entre sí, y cuyo ciclo de vida está gestionado - *managed* - por Core Data)
-
 - `NSManagedObject`: los objetos gestionados
   - Podemos usar esta clase o crear descendientes. Así podemos usar nuestras propias clases como objetos persistentes.
 
