@@ -79,13 +79,13 @@ localidad CONTAINS[c] 'san'
 
 ---
 
-## Caracteres de formato
+## Argumentos y caracteres de formato
 
 - Muy similares a los que se usan en C en el `printf`: `%i` es un entero, `%f` un real, `%@` es un objeto (este no existe en C)
 
 ```swift
-let cadena = "iOS"
-NSPredicate(format: "texto CONTAINS %@ AND fecha<%@", argumentArray: ["iOS", Date()])
+let buscado = "iOS"
+NSPredicate(format: "texto CONTAINS %@ AND fecha<%@", argumentArray: [buscado, Date()])
 ```
 
 
@@ -200,10 +200,10 @@ let predicado = NSPredicate(format: "ANY conversaciones.comienzo>%@", argumentAr
 
 ---
 
-## No abusar de las *fetch requests*
+## Consejo: no abusar de las *fetch requests*
 
 
-- Core Data nos permite trabajar directamente con el grafo de objetos, no es necesario ejecutar  *fetch request* constantemente
+- Core Data nos permite trabajar directamente con el grafo de objetos, **no es necesario ejecutar  *fetch request* constantemente**
 - Por ejemplo, si ya tenemos un usuario en memoria y queremos consultar sus conversaciones lo hacemos accediendo directamente a la propiedad `conversaciones`, no haciendo una *fetch request* 
 - Las *fetch request* siempre acceden a la BD y por tanto son mucho más lentas que trabajar con objetos que ya están en el contexto
 
