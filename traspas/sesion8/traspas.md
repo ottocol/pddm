@@ -34,11 +34,11 @@
 ## Gestionar versiones del modelo
 
 - Podemos tener **varias versiones del mismo `.xcdatamodeld`**. Ir a `Editor > Add Model Version...`
-- Físicamente serán distintos archivos, pero Xcode nos los muestra como un *bundle*
+- Físicamente son distintos archivos, pero Xcode nos los muestra como un *bundle*
 
 ![](img/versiones_modelos.png)
 
-- En cada momento indicamos cuál es la **versión actual**
+- En cada momento hay una **versión actual** (cambiar en el panel de *Identity* de la derecha)
 
 ---
 
