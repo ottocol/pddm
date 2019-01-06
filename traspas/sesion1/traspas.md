@@ -1,3 +1,4 @@
+<!-- .slide: class="titulo" -->
 # Sesión 1. Persistencia básica
 ## Persistencia en Dispositivos Móviles (iOS)
 
@@ -132,6 +133,8 @@ Hay *apps* para poder acceder fácilmente al directorio del Mac corespondiente a
 [https://github.com/dsmelov/simsim](https://github.com/dsmelov/simsim)
 
 ![](img/simsim.png)
+
+**LA NECESITAREIS PARA LOS EJERCICIOS**
 
 ---
 
@@ -291,13 +294,13 @@ struct Props : Codable {
 ```
 
 ```swift
-if let plistURL = Bundle.main.url(forResource:"mi_plist", 
-                                  withExtension:"plist") {
-   let data = try Data(contentsOf: plistURL)
-   let decoder = PropertyListDecoder()
-   let misProps = try decoder.decode(Props.self, from: data)
-   print(misProps)
-}
+let urlDocs = FileManager.default.urls(for:.documentDirectory,
+                                       in:.userDomainMask)[0]
+let plistURL = urlDocs.appendingPathComponent("result.plist")
+let data = try Data(contentsOf: plistURL)
+let decoder = PropertyListDecoder()
+let misProps = try decoder.decode(Props.self, from: data)
+print(misProps)
 ```
 
 ---
@@ -307,7 +310,7 @@ if let plistURL = Bundle.main.url(forResource:"mi_plist",
 - Con `PropertyListEncoder`:
 
 ```swift
-var urlDocs = FileManager.default.urls(for:.documentDirectory,
+let urlDocs = FileManager.default.urls(for:.documentDirectory,
                                        in:.userDomainMask)[0]
 let urlPlist = urlDocs.appendingPathComponent("result.plist")
 let encoder = PropertyListEncoder()
