@@ -1,3 +1,4 @@
+<!-- .slide: class="titulo" -->
 # Sesión 2. SQLite
 ## Persistencia en Dispositivos Móviles (iOS)
 
@@ -23,11 +24,12 @@
 
 ## Configurar el proyecto para SQLite
 
-- Añadir **manualmente** la librería
+Añadir **manualmente** la librería
 
-![](img/add_libsqlite.gif)
 
-- Para usar C en un proyecto Swift hay que crear un *bridging header*
+<!-- .element: class="stretch" -->![](img/add_libsqlite.gif)
+
+Para usar C en un proyecto Swift hay que crear un *bridging header*
 
 ```c
 #include <sqlite3.h>
@@ -132,8 +134,9 @@ for p in lista {
 ```swift
 //supongamos que la columna 2 es una fecha en formato timestamp UNIX
 let unix_time = sqlite3_column_int(statement, 2);
-//TimeInterval es equivalente a Double. Hacemos una conversión
-let fecha = Date(timeIntervalSince1970: TimeInterval(valor))
+//Convertimos a tipo fecha de Swift
+//TimeInterval es equivalente a Double, lo necesita este constructor de Date
+let fecha = Date(timeIntervalSince1970: TimeInterval(unix_time))
 //La clase DateFormatter nos permite mostrar una fecha
 let df = DateFormatter()
 //Hay una serie de estilos predefinidos
@@ -176,7 +179,7 @@ let querySQL = @"SELECT * FROM alumnos WHERE fecha_nacimiento < :fecha";
 
 ---
 
-##Puntos a tratar
+## Puntos a tratar
 
 - SQLite en iOS
 - Acceso básico a la BD
@@ -210,7 +213,7 @@ print("Filas afectadas: \(sqlite3_changes(db))";
 
 ---
 
-##Puntos a tratar
+## Puntos a tratar
 
 - SQLite en iOS
 - Acceso básico a la BD
