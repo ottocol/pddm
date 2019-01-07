@@ -52,7 +52,7 @@ Si en el modelo hay varias entidades, tratarlas todas como `NSManagedObject` hac
 
 ## Clases propias como entidades
 
-- Es mejor definir nuestras propias clases Swift/Obj-C: `Usuario`, `Mensaje`, `Conversacion`,... y usarlas como entidades
+- Es mejor definir nuestras propias clases Swift: `Usuario`, `Mensaje`, `Conversacion`,... y usarlas como entidades
 - Xcode nos puede generar el esqueleto de la clase, junto con *getters* y *setters* para propiedades y relaciones.
 
 ---
@@ -84,9 +84,11 @@ Ya vimos en la sesión anterior cómo crear y guardar un objeto gestionado. Ahor
 ```swift
 if let miDelegate = UIApplication.shared.delegate as? AppDelegate {
    let miContexto = miDelegate.persistentContainer.viewContext
-   let u = Usuario(contexto:miContexto)
-   //también se podría hacer como antes:
+   //La sintaxis de creación es mucho más simple que insertNewObject
+   let u = Usuario(context:miContexto)
+   //Si somos masoquistas, también lo podríamos hacer como antes:
    //let u = NSEntityDescription.insertNewObject(forEntityName: "Usuario", into: miContexto) as! Usuario
+   //Al tener una clase propia, podemos usar las propiedades directamente, sin KVC
    u.login = "Pepe"
    u.password = "123456"
    try! miContexto.save()
@@ -130,13 +132,14 @@ Cuando establecemos una relación Core Data **actualiza automáticamente la inve
 
 ```swift
 let m = Mensaje(context:miContexto) 
-m.texto = @"hola amigos"
+m.texto = "hola amigos"
 m.fecha = Date()
 //Supongamos "u" un objeto Usuario gestionado por Core Data
 //Establecemos una relación Mensaje->Usuario
 m.usuario = u;
 //Core Data hace lo propio con Usuario->>Mensaje (1 a N)
 print("Mensajes del usuario \(u.login)")
+//Aquí debería aparecer el mensaje "hola amigos" (y más si los hubiera) 
 for mensaje in u.mensajes {
         print("\(mensaje.fecha) \(mensaje.texto)")
 }
@@ -188,11 +191,12 @@ for usuario in usuarios {
 Nada especial, simplemente cambiar las propiedades y volver a llamar a `save`
 
 ```swift
-//suponemos "usuario" objeto gestionado por Core Data
-//es decir, se ha obtenido con `insertNewObject` o una fetch request
-usuario.login=@"moviles";
-usuario.password=@"123456";
-
+//cambiar el password de todos los usuarios a "123456" :S
+let request : NSFetchRequest<Usuario> = NSFetchRequest(entityName:"Usuario")
+let usuarios = try! miContexto.fetch(request)
+for usuario in usuarios {
+  usuario.password="123456";
+}
 //AHORA es cuando se guardan las modificaciones de modo persistente
 try! miContexto.save() 
 ```
