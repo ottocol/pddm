@@ -1,4 +1,4 @@
-
+<!-- .slide: class="titulo" -->
 # Sesión 3: ¡Hola Core Data!
 ## Persistencia en dispositivos móviles, iOS
 
@@ -39,7 +39,7 @@ Estrictamente hablando, **no es un ORM** ya que no soporta más que SQLite y ade
 
 > For a very simple application it is certainly the case that Core Data adds some overhead [...], however, [...] supports undo and redo, validation, object graph maintenance, and provides the ability to save objects to a persistent store. If you implemented this functionality yourself, it is quite likely that the overhead would exceed that imposed by Core Data.
 
-[Core Data Performance, Apple Developer Docs](https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/CoreData/Articles/cdPerformance.html)
+[Core Data Performance, Apple Developer Docs](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CoreData/Performance.html)
 
 ---
 
