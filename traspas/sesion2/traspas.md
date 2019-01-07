@@ -132,11 +132,14 @@ for p in lista {
 - SQLite no tiene tipo fecha. Podemos representarla con una cadenas o un entero (“UNIX timestamp”). Ejemplo de esto último:
 
 ```swift
+//COMO EXTRAER LA FECHA Y OBTENER UN DATE
 //supongamos que la columna 2 es una fecha en formato timestamp UNIX
 let unix_time = sqlite3_column_int(statement, 2);
 //Convertimos a tipo fecha de Swift
 //TimeInterval es equivalente a Double, lo necesita este constructor de Date
 let fecha = Date(timeIntervalSince1970: TimeInterval(unix_time))
+
+//ESTO ES SOLO PARA IMPRIMIR LA FECHA
 //La clase DateFormatter nos permite mostrar una fecha
 let df = DateFormatter()
 //Hay una serie de estilos predefinidos
