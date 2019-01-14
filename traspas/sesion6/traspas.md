@@ -1,3 +1,4 @@
+<!-- .slide: class="titulo" -->
 
 # Sesión 6: Búsquedas en Core Data
 ## Persistencia en dispositivos móviles, iOS
