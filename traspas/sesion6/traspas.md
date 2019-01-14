@@ -215,7 +215,7 @@ let predicado = NSPredicate(format: "ANY conversaciones.comienzo>%@", argumentAr
 
 - Predicados y *fetch requests*
 - Predicados como cadenas
-- Fetch request templates*
+- *Fetch request templates*
 - Predicados como objetos
 - **Ordenación**
 
