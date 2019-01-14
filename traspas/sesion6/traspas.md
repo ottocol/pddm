@@ -201,6 +201,17 @@ let predicado = NSPredicate(format: "ANY conversaciones.comienzo>%@", argumentAr
 
 ---
 
+Podemos usar *subqueries* para comprobar que *todas* las entidades "al otro lado" de una relación cumplen una condición
+
+```swift
+let haceUnaHora  = Date(timeIntervalSinceNow: -60*60)
+let pred = NSPredicate(format: "(SUBQUERY(conversaciones, $c, 
+                       $c.comienzo>%@).@count==0)", argumentArray:[haceUnaHora])
+
+```
+
+---
+
 ## Consejo: no abusar de las *fetch requests*
 
 
