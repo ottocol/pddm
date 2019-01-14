@@ -1,5 +1,6 @@
+<!-- .slide: class="titulo" -->
 
-# Sesión 5: Más sobre modelos de datos en Core Data
+# Sesión 5: Más sobre modelos de datos
 ## Persistencia en dispositivos móviles, iOS
 
 
@@ -20,15 +21,12 @@
 
 Por defecto, un atributo solo puede tener tipo *date*, *string*, numérico entero (con diversos tamaños) o numérico real. Pero hay otros dos tipos adicionales: *binary data* (`NSData`) y **transformable**
 
-![](img/tipos_datos.png)
-
-
 ---
 
 ## Valores transformables
 
 - **Se serializan** a binario para almacenarse en la BD. Para poder hacer esto, Core Data tiene que saber cómo serializarlos
-- Recordemos de la primera sesión que **en iOS hay un mecanismo estándar de serialización**, el *archiving*, o *coding*. Las clases "serializables" son conformes al protocolo `NSCoding`
+- Recordemos de la primera sesión que **en iOS hay un mecanismo estándar de serialización**, el *archiving*, o *coding*. Las clases "serializables" son conformes al protocolo `Codable` (en versiones anteriores de Swift, `NSCoding`)
 - Si la clase del atributo es conforme a `NSCoding`, el  proceso será automático
 
 ---
@@ -39,37 +37,13 @@ Supongamos una entidad `Figura` con un atributo `color`. En iOS los colores de l
 
 ---
 
-## Pasos a seguir
+## ¿Qué hay que hacer en Xcode?
 
-1. En el editor del modelo de datos, definir el tipo como `transformable`
-2. Generar la clase del modelo, con `Editor > Create NSManagedObject subclass...`
-3. (opcional) Editar el archivo `Figura+CoreDataProperties.swift` y cambiar el tipo del atributo de `NSObject` al que necesitemos
+En el editor del modelo de datos, simplemente definir el tipo como `transformable` y el Custom class como `UIColor`
 
-```swift
-@NSManaged public var color: UIColor?
-```
+![](img/transformable_paso_1.png)
 
-Este paso lo hacemos simplemente para evitar el *cast* con `as` cada vez que metamos/saquemos valores en el atributo
-
----
-
-## Clases propias: hacerlas conformes al protocolo
-
-```swift
-class Alumno : NSObject, NSCoding {
- ...
- 
- required init?(coder aCoder : NSCoder) {
-    self.nombre = aCoder.decodeObject(forKey: "nombre") as? String
-    ...
- }
-
- func encode(with aCoder: NSCoder) {
-    aCoder.encode(nombre, forKey:"nombre")
-    ...
- }
-}
-```
+**En este caso particular**, la clase generada automáticamente por Xcode no tiene el `import UIKit` necesario para que compile, por lo que nos tocaría **usar la generación manual de código**
 
 ---
 
@@ -80,7 +54,7 @@ class Alumno : NSObject, NSCoding {
 
 ---
 
-Ya vimos en la sesión anterior que en el editor del modelo se pueden especificar condiciones de validación, que varían según el tipo de dato:
+En el editor del modelo se pueden especificar condiciones de validación, que varían según el tipo de dato:
 
 ![](img/reglas_validacion.png)
 
@@ -90,7 +64,7 @@ Ya vimos en la sesión anterior que en el editor del modelo se pueden especifica
 
 ```swift
 ...
-let usuario = NSEntityDescription.insertNewObject(forEntityName: "Usuario", into: miContexto) as! Usuario
+let usuario = Usuario(context: miContexto)
 usuario.login = "pepe"
 //Tenemos una regla que dice que la longitud mínima del password es 6
 //Pero esta instrucción no fallaría
@@ -237,7 +211,7 @@ Deshacer una operación de Core Data es tan sencillo como
 //suponiendo que hayamos obtenido el contexto
 let miContexto = ...
 //deshacemos la última operación realizada
-miContexto.undoManager?.undo()
+miContexto.undoManager.undo()
 ```
 
 Por defecto se deshacen todas las operaciones realizadas la última vez que  el sistema “cedió el control” a la aplicación y la app volvió a “pasarle el testigo” al sistema.
