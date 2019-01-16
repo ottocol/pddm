@@ -1,3 +1,4 @@
+<!-- .slide: class="titulo" --> 
 
 # Sesión 7: Tablas en Core Data
 ## Persistencia en dispositivos móviles, iOS
@@ -68,18 +69,18 @@ let consulta = NSFetchRequest<Mensaje>(entityName: "Mensaje")
 
 let sortDescriptors = [NSSortDescriptor(key:"fecha", ascending:false)]
 consulta.sortDescriptors = sortDescriptors
-self.frc = NSFetchedResultsController<Mensaje>(fetchRequest: consulta, managedObjectContext: miContexto, sectionNameKeyPath: nil, cacheName: "miCache")
+let frc = NSFetchedResultsController<Mensaje>(fetchRequest: consulta, managedObjectContext: miContexto, sectionNameKeyPath: nil, cacheName: "miCache")
 
 //ejecutamos el fetch
-try! self.frc.performFetch()
+try! frc.performFetch()
 ```
 
 
 ---
 
-¿Dónde guardamos el *fetched results controller*?
+Podemos guardar el *fetched results controller* en el `ViewController` de la pantalla con la tabla, sup. un `UITableViewController`.
 
-Para simplificar, supondremos que `self` es el `ViewController` de la pantalla donde está la tabla, por ejemplo un `UITableViewController`
+Cambiaríamos la variable `frc` de la traspa anterior por `self.frc`
 
 ```swift
 import UIKit
@@ -217,7 +218,7 @@ Con esto, agrupamos todos los cambios en una sola animación
 
 ## Visualizar los cambios
 
-Cuando se ha modificado algún objeto del contexto bajo la supervisión del *fetched results controller* se llamará a:
+Cuando se ha modificado algún objeto del contexto bajo la supervisión del *fetched results controller* avisará a su delegate llamando a:
 
 ```swift
 func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {

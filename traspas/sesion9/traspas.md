@@ -1,6 +1,6 @@
-
-## iOS, sesión 9: 
-# Contextos múltiples en Core Data
+<!-- .slide: class="titulo" --> 
+ 
+# Concurrencia y contextos múltiples en Core Data
 ## Persistencia en dispositivos móviles
 
 
@@ -55,18 +55,27 @@ background.addOperation() {
 
 ---
 
+- El **contexto principal** es adecuado para pintar en pantalla los datos, recordad que el hilo principal es el único que debe pintar en pantalla
+  + Este es el que veníamos usando hasta ahora todo el tiempo, es el que crea la plantilla de Xcode por defecto
+- Los **contextos secundarios** son apropiados para por ejemplo hacer operaciones costosas, pero no deben pintar en pantalla
+
+
+---
+
 ## Código
 
 En teoría crearíamos tantos contextos como necesitáramos
 
 ```swift
 //Crear un contexto asociado a la cola de operaciones principal
+//ADECUADO PARA PINTAR DATOS EN PANTALLA
 let contexto = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
 //Crear un contexto asociado a una nueva cola de operaciones
+//ADECUADO POR EJEMPLO PARA OPERACIONES COSTOSAS
 let contexto2 = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
 ```
 
-En realidad como veremos no va a hacer falta crear explícitamente el contexto, hay métodos auxiliares
+En realidad no va a hacer falta crear explícitamente los contextos, hay métodos auxiliares **más simples de usar** y por tanto los usaremos
 
 
 ---
@@ -84,11 +93,13 @@ En realidad como veremos no va a hacer falta crear explícitamente el contexto, 
 
 El caso de uso más típico para los múltiples contextos es un contexto adicional asociado a una nueva cola desde el que hacemos las operaciones costosas. Así no bloqueamos la interfaz.
 
-Es tan típico que desde iOS10 el `NSPersistentContainer` tiene un API especial para esto
+Es tan típico que desde iOS10 el `NSPersistentContainer` tiene un API especial para esto: `performBackgroundTask`
 
 ```swift
 let miDelegate = UIApplication.shared.delegate as! AppDelegate
+//creamos un nuevo contexto secundario y ejecutamos en él el siguiente código
 miDelegate.persistentContainer.performBackgroundTask() {
+   //el nuevo contexto
    contextoBG in
     let request = NSFetchRequest<Nota>(entityName: "Nota")  
     let lista = try! contextoBG.fetch(request)
@@ -104,21 +115,12 @@ miDelegate.persistentContainer.performBackgroundTask() {
 ## Múltiples contextos para *background* (II)
 
 
-- También podemos pedirle al *persistent container* explícitamente un nuevo contexto
+- También podemos pedirle al *persistent container* explícitamente un nuevo contexto de *background*, es decir, asociado a un *thread/cola* secundario(a)
 
 ```swift
 let miDelegate = UIApplication.shared.delegate as! AppDelegate
 let contextoBG = miDelegate.persistentContainer.newBackgroundContext()
 ```
-
-- En iOS<10 se tendría que crear el contexto directamente
-
-```swift
-let contextoBG = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
-//Aquí falta conectar el contexto con un "persistent store coordinator"
-//(ver primera sesión de Core Data)
-```
-
 
 ---
 
@@ -159,22 +161,24 @@ Importante: **los objetos gestionados no se deben compartir directamente entre c
 ## Pasar objetos entre contextos con el identificador
 
 - Cada objeto persistente tiene un identificador único (propiedad `objectID`).**El id es único también entre contextos**
-- Es sencillo recuperar un objeto a partir de su id: `objectWithID`
+- Es sencillo recuperar un objeto a partir de su id: método `object(with:)`
 
-Solución: desde el hilo secundario le pasamos al principal un array con los `id` de los objetos, y los "re-materializamos" con `objectWithID` en el hilo principal
+Solución: desde el hilo secundario le pasamos al principal un array con los `id` de los objetos, y los "re-materializamos" con `object` en el hilo principal
 
 ---
 
 ```swift
 let resultados : [NSManagedObject]!
-
-miContexto.performBackgroundTask() {
+let miDelegate = UIApplication.shared.delegate as! AppDelegate
+miDelegate.persistentContainer.performBackgroundTask() {
   contextoBG in
   let request = NSFetchRequest<Nota>()
   let resultadosBG = try! contextoBG.fetch(request)
-  let ids = resultadosBG.map() { $0.objectID }
+  let ids = resultadosBG.map { $0.objectID }
   miContexto.perform() {
-    self.resultados = ids.map() {miContexto.objectWithID}
+    self.resultados = ids.map {miContexto.object(with:$0)}
+    //ahora nos aseguraríamos de que se pintaran los resultados
+    ...
   }
 }
 ```

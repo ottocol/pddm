@@ -1,5 +1,6 @@
+<!-- .slide: class="titulo" --> 
 
-# Sesión 8: Migraciones de datos en Core Data
+# Migraciones de datos en Core Data
 ## Persistencia en dispositivos móviles, iOS
 
 
@@ -38,7 +39,7 @@
 
 ![](img/versiones_modelos.png)
 
-- En cada momento hay una **versión actual** (cambiar en el panel de *Identity* de la derecha)
+- En cada momento hay una **versión actual** (cambiar en el panel de la derecha)
 
 ---
 
@@ -89,7 +90,7 @@
 
 - Cambiar la versión del modelo en Xcode: en el editor del modelo, en el panel de la derecha, seleccionar la versión en el desplegable `Model Version`
 
-- Al arrancar la aplicación, Core Data detecta que el modelo actual no se corresponde con el usado para crear la BD. En iOS10, por defecto intenta hacer la migración automáticamente
+- Al arrancar la aplicación, Core Data detecta que el modelo actual no se corresponde con el usado para crear la BD. Desde iOS10, por defecto intenta hacer la migración automáticamente (antes había que "activarla" manualmente)
 
 ---
 
@@ -99,7 +100,7 @@
 
 ![](img/renaming_id.png)
 
-- En el código debemos renombrar también manualmente
+- Gotcha!: en el código debemos **renombrar manualmente**
 
 
 ---
