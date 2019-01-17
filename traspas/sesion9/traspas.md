@@ -156,6 +156,7 @@ Supongamos una *app* en la que tenemos una búsqueda/recuperación de datos muy 
 
 Importante: **los objetos gestionados no se deben compartir directamente entre contextos**. Cada objeto gestionado está asociado al contexto en que "nació"
 
+<!-- 
 ---
 
 ## Pasar objetos entre contextos con el identificador
@@ -182,8 +183,11 @@ miDelegate.persistentContainer.performBackgroundTask() {
   }
 }
 ```
+-->
+
 
 ---
+
 
 ## Pasar objetos entre contextos sincronizando
 
