@@ -507,7 +507,7 @@ personasRef.removeAllObservers()
 
 
 ```swift
-self.db = Database.database()
+let db = Database.database()
 let personasRef = db.reference(withPath:"personas")
 personasRef.observe(.childAdded) {
    snapshot in
@@ -522,7 +522,7 @@ personasRef.observe(.childAdded) {
 - `observeSingleEvent`: solo nos interesa el estado actual del nodo, no los cambios sucesivos
 
 ```swift
-self.db = Database.database()
+let db = Database.database()
 let personasRef = db.reference(withPath:"personas")
 personasRef.observeSingleEvent(.childAdded) {
    snapshot in
