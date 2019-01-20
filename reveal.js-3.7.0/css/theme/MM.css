@@ -270,7 +270,7 @@ body {
 .reveal section img {
   margin: 15px 0px;
   background: rgba(255, 255, 255, 0.12);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15); }
+}
 
 .reveal section img.plain {
   border: 0;
@@ -349,7 +349,7 @@ img.right_vertical_center {
   
 .column.full { width: 100%; }
 .column.two-thirds { width: 66.7%; }
-.column.half { width: 50%; }
+.column.half { width: 47%; padding-left: 3%}
 .column.third { width: 33.3%; }
 .column.fourth { width: 25%; }
 .column.flow-opposite { float: right; }  
