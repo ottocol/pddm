@@ -201,6 +201,59 @@ Así, tendríamos una clase `UsuarioDTO` y una clase `Usuario` que sería la ent
 
 ---
 
+## Separar el Datasource del ViewController
+
+- [ListaCompraDataSource](https://github.com/ottocol/mvc-refactor-swift/blob/master/ListaCompra/ListaCompraDataSource.swift)
+- [ListaViewController](https://github.com/ottocol/mvc-refactor-swift/blob/master/ListaCompra/ListaViewController.swift)
+
+---
+
+## Separar la celda del DataSource
+
+Siendo puristas, una celda es parte de la *vista*, por lo que aquí estamos mezclando responsabilidades
+
+```swift
+func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let celda = tableView.dequeueReusableCell(withIdentifier: "MiCelda", for: indexPath)
+        if let prioridad = Prioridad(rawValue: indexPath.section),
+            let item = lista.getItem(pos: indexPath.row, prioridad: prioridad) {
+            celda.textLabel?.text = item.nombre
+            if item.comprado {
+                celda.accessoryType = .checkmark
+            }
+            else {
+                celda.accessoryType = .none
+            }
+        }
+        return celda
+}
+```
+
+---
+
+## Encapsular la celda en su propia clase
+
+```swift
+class CeldaItem : UITableViewCell {
+    static let nombre = "MiCelda"
+    
+    var nombre : String? {
+        didSet {
+            self.textLabel?.text = self.nombre
+        }
+    }
+    
+    var comprado : Bool? {
+        didSet {
+            self.accessoryType = self.comprado! ? .checkmark : .none
+        }
+    }
+}
+```
+[CeldaItem.swift](https://github.com/ottocol/mvc-refactor-swift/blob/master/ListaCompra/vista/CeldaItem.swift) <!-- .element: class="caption" -->
+
+---
+
 
 Para más detalles, podéis ver la charla: "*Refactoring tne Mega Controller*", de Andy Matuschak (**¡Muy recomendable!**)
 
