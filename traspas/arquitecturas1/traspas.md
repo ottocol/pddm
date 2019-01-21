@@ -1,4 +1,5 @@
 
+<!-- .slide: class="titulo" -->
 # Arquitecturas de aplicaciones iOS. **Parte I: MVC**
 ## Persistencia en dispositivos móviles
 
