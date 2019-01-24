@@ -72,6 +72,22 @@ let store = Store<AppState>(reducer: appReducer, state: nil)
 
 ---
 
+## Una acción en ReSwift
+
+```swift
+import ReSwift
+
+struct AccionAñadir : Action {
+    let cantidad : Int
+}
+
+struct AccionQuitar : Action {
+    let cantidad : Int
+}
+```
+
+---
+
 ## 2. La acción es procesada por el *middleware*
 
 Funciones que añaden funcionalidades adicionales a las básicas de *redux*. Veremos alguna luego
