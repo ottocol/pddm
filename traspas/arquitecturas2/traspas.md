@@ -1,44 +1,26 @@
-
+<!-- .slide: class="titulo" -->
 # Arquitecturas de *apps* iOS. Parte II: **Alternativas a MVC**
-## Persistencia en dispositivos móviles
-
 
 ---
 
 ## Puntos a tratar
 
-- MVP (Model/View/Presenter)
-- MVVM (Model/View/ViewModel)
+- **MVVM (Model/View/ViewModel)**
 - VIPER
 
 ---
 
-## Por qué otras arquitecturas
+## MVVM (Model/View/ViewModel)
 
-- Código mas "limpio", claro y mantenible
-- Facilitar la división de tareas en el desarrollo
-- Mejorar la *testabilidad*
+![](img/mvvm.png)
 
-
----
-
-## Puntos a tratar
-
-- **MVP (Model/View/Presenter)**
-- MVVM (Model/View/ViewModel)
-- VIPER
+- El *viewmodel* se encarga de la *lógica de presentación*, es decir convertir/modificar/formatear datos (p. ej. fechas, distancias, ...) en el formato adecuado para la vista
+  - El *viewmodel* es independiente de la tecnología de la vista (no hay un `import UIKit`)
+  - Hay ***bindings* automáticos entre las propiedades del *viewmodel* y las de la vista**. Cuando cambia un "lado", el otro lo hace también automáticamente
 
 ---
 
-![](img/mvp.png)
-
-- El *presentador* se encarga de la *lógica de presentación*, es decir convertir/modificar/formatear datos (p. ej. fechas, distancias, ...) en el formato adecuado para la vista
-- Es independiente de la tecnología de la vista (no hay un `import UIKit`)
-
-
----
-
-## ¿Qué es la vista en MVP?
+## ¿Qué es la vista en MVVM?
 
 - Lo mismo que era en MVC, pero...
 - Aunque pueda parecer un poco raro, un "view controller" de iOS también se considera vista
@@ -52,87 +34,6 @@
 - Al estar el ciclo de vida del "view controller" y de los elementos de interfaz tan unidos, es mejor considerarlos a todos como vista
 
 - Además conseguimos que la vista sea el único componente directamente dependiente de la tecnología de presentación, en iOS `UIKit`
-
-
----
-
-## Ejemplo sencillo: UAdivino con MVP
-
-![](img/UAdivino.png)
-
-
----
-
-![](img/mvp_UAdivino.png)
-
-Repo ejemplo en Github: [https://github.com/ottocol/ejemplos-arquitectura-iOS/tree/master/MVP](https://github.com/ottocol/ejemplos-arquitectura-iOS/tree/master/MVP)
-
----
-
-## Ensamblar Vista, Presenter y Modelo
-
-(no coincide exactamente con el código del repo, aquí importa la idea) 
-
-- En el *view controller* (==vista)
-
-```swift
-class UAdivinoView : UIViewController {
-    let presenter = UAdivinoPresenter(vista:self)
-    ...
-}
-```
-
-- En el *presenter*
-
-```swift
-class UAdivinoPresenter {
-    let modelo = UAdivinoModel()
-    ...
-}
-```
-
----
-
-## El *presenter*
-
-1. Es llamado por la vista: `solicitarRespuesta()`
-2. Llama al modelo con `obtenerRespuesta()` y obtiene el resultado como un objeto `Respuesta`.
-3. Lógica de presentación: si el campo `ok` del objeto respuesta es `true` devuelve color verde, en caso contrario rojo
-
-```swift
-enum ColorRespuesta {
-  case verde
-  case rojo
-}
-```
-
-
----
-
-## El *presenter* debe ser independiente de `UIKit`
-
-- Lo más sencillo para representar un color en iOS es usar `UIColor`, pero el *presenter* no debe tener esta dependencia
-- La vista es la que se encarga de traducir este enumerado a `UIColor`
-- Al no depender de `UIKit` es más fácil hacer *testing* de esta clase al estilo "tradicional"
-
-
----
-
-## Puntos a tratar
-
-- Los problemas de MVC
-- MVP (Model/View/Presenter)
-- **MVVM (Model/View/ViewModel)**
-- VIPER
-
----
-
-## MVVM (Model/View/ViewModel)
-
-![](img/mvvm.png)
-
-- El *viewmodel* hace lo mismo que el *presenter*
-- Diferencia: tenemos ***bindings* automáticos entre las propiedades del *viewmodel* y las de la vista**. Cuando cambia un "lado", el otro lo hace también automáticamente
 
 ---
 
@@ -262,8 +163,6 @@ self.viewModel.colorResp
 
 ## Puntos a tratar
 
-- Los problemas de MVC
-- MVP (Model/View/Presenter)
 - MVVM (Model/View/ViewModel)
 - **VIPER**
 
