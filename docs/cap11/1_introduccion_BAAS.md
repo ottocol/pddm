@@ -6,7 +6,7 @@ El problema es que desarrollar un *backend* para una aplicación móvil no es un
 
 Esto ha hecho que surja un mercado de lo que se conoce como “Backend as a Service” (o BaaS), es decir, ofrecer como servicio “listo para usar” las funcionalidades más típicas de los *backends* para aplicaciones móviles: autentificación de usuarios, persistencia de datos “en la nube”, analíticas de tráfico, notificaciones *push* etc. Por supuesto las propias plataformas de desarrollo móvil ya ofrecen algunos de estos servicios (por ejemplo Apple ofrece persistencia “en la nube” con iCloud), pero ha surgido una serie de compañías que ofrecen estos servicios con compatibilidad multiplataforma, de modo que por ejemplo podemos acceder a los mismos datos remotos estemos en la versión iOS, en la versión Android o incluso en la versión web de la aplicación.
 
-En la actualidad existen múltiples plataformas de terceros que ofrecen funcionalidades de Baas. Vamos a centrarnos aquí en Firebase simplemente porque es una de las más conocidas. El resto de plataformas ofrecen funcionalidades similares.
+En la actualidad existen múltiples plataformas de terceros que ofrecen funcionalidades de Baas. Vamos a centrarnos aquí en Firebase simplemente porque es una de las más conocidas y porque es multiplataformas. El resto de plataformas ofrecen funcionalidades similares.
 
 Para usar Firebase lo primero es darse de alta en [la plataforma](https://firebase.google.com/). Una vez dados de alta, podremos crear proyectos en Firebase. Un proyecto es una *app* con un conjunto de usuarios, una base de datos, un espacio para alojar archivos, etc. Esta *app* Firebase puede tener varios clientes: iOS, Android, web, ...
 

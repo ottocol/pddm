@@ -13,11 +13,16 @@ nav:
     - El API de SQLIte: 'cap2/2.2_API_SQLite.md'
     - Frameworks para SQLite: 'cap2/2.3_frameworks.md'
     - Ejercicios: 'cap2/2.4_ejercicios.md'
+  - Persistencia como servicio: 
+    - Backend as a Service: 'cap11/1_introduccion_BAAS.md'
+    - Gestión de usuarios en Firebase: 'cap11/2_gestion_usuarios.md'
+    - Persistencia en Firebase: 'cap11/3_persistencia.md'
+    - Ejercicios: 'cap11/4_ejercicios.md'
   - ¡Hola Core Data!. Una aplicación de ejemplo: 
     - Introducción a Core Data: 'cap3/3.1_intro.md'
-    - El *stack* de Core Data: 'cap3/3.2_stack.md'
+    - Crear el stack de Core Data en iOS: 'cap3/3.2_stack.md'
     - Las entidades. Almacenar datos: 'cap3/3.3_entidades.md'
-    - Recuperar los datos: 'cap3/3.4_recuperar_datos.md'
+    - Recuperar los datos: 'cap3/3.4_recuperar_datos.md'        
   - Modelos de datos en Core Data: 
     - Crear modelos: 'cap4/4.1_crear_modelo.md'
     - Entidades con clases propias: 'cap4/4.2_clases_propias.md'
@@ -51,12 +56,7 @@ nav:
     - Múltiples contextos para trabajos en *background*: 'cap9/1_background.md'
     - Comunicación entre contextos: 'cap9/2_comunicacion.md'
     - Contextos anidados: 'cap9/3_contextos_anidados.md'
-    - Ejercicios: 'cap9/4_ejercicios.md'
-  - Persistencia como servicio: 
-    - Backend as a Service: 'cap11/1_introduccion_BAAS.md'
-    - Gestión de usuarios en Firebase: 'cap11/2_gestion_usuarios.md'
-    - Persistencia en Firebase: 'cap11/3_persistencia.md'
-    - Ejercicios: 'cap11/4_ejercicios.md'    
+    - Ejercicios: 'cap9/4_ejercicios.md' 
   - Arquitecturas de aplicaciones en iOS: 
     - Introducción: 'cap10/intro.md'
     - Model/View/Controller: 'cap10/2_MVC.md'
