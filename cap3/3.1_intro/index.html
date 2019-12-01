@@ -1,0 +1,1205 @@
+
+
+
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copiar al portapapeles">
+      
+        <meta name="lang:clipboard.copied" content="Copiado al portapapeles">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No se encontraron documentos">
+      
+        <meta name="lang:search.result.one" content="1 documento encontrado">
+      
+        <meta name="lang:search.result.other" content="# documentos encontrados">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.3">
+    
+    
+      
+        <title>Introducción a Core Data - PDDM-iOS</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.30686662.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.a8b3c06d.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#009688">
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.74668098.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+    
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#introduccion-a-core-data" tabindex="1" class="md-skip">
+        Saltar a contenido
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../.." title="PDDM-iOS" class="md-header-nav__button md-logo">
+          
+            <img src="../../logo.png" width="24" height="24">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              PDDM-iOS
+            </span>
+            <span class="md-header-nav__topic">
+              
+                Introducción a Core Data
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Teclee para comenzar búsqueda
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="../.." title="PDDM-iOS" class="md-nav__button md-logo">
+      
+        <img src="../../logo.png" width="48" height="48">
+      
+    </a>
+    PDDM-iOS
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1">
+    
+    <label class="md-nav__link" for="nav-1">
+      Persistencia básica
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-1">
+        Persistencia básica
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap1/1.1_sistema_de_archivos/" title="Sistema de archivos" class="md-nav__link">
+      Sistema de archivos
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap1/1.2_serializacion/" title="Serialización" class="md-nav__link">
+      Serialización
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap1/1.3_property_lists/" title="Property lists" class="md-nav__link">
+      Property lists
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap1/1.4_preferencias/" title="Preferencias" class="md-nav__link">
+      Preferencias
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap1/1.5_ejercicios/" title="Ejercicios" class="md-nav__link">
+      Ejercicios
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      SQLite
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        SQLite
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap2/2.1_intro_SQLite/" title="Introducción" class="md-nav__link">
+      Introducción
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap2/2.2_API_SQLite/" title="El API de SQLIte" class="md-nav__link">
+      El API de SQLIte
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap2/2.3_frameworks/" title="Frameworks para SQLite" class="md-nav__link">
+      Frameworks para SQLite
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap2/2.4_ejercicios/" title="Ejercicios" class="md-nav__link">
+      Ejercicios
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Persistencia como servicio
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Persistencia como servicio
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap11/1_introduccion_BAAS/" title="Backend as a Service" class="md-nav__link">
+      Backend as a Service
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap11/2_gestion_usuarios/" title="Gestión de usuarios en Firebase" class="md-nav__link">
+      Gestión de usuarios en Firebase
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap11/3_persistencia/" title="Persistencia en Firebase" class="md-nav__link">
+      Persistencia en Firebase
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap11/4_ejercicios/" title="Ejercicios" class="md-nav__link">
+      Ejercicios
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+    
+    <label class="md-nav__link" for="nav-4">
+      ¡Hola Core Data!. Una aplicación de ejemplo
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        ¡Hola Core Data!. Una aplicación de ejemplo
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Introducción a Core Data
+      </label>
+    
+    <a href="./" title="Introducción a Core Data" class="md-nav__link md-nav__link--active">
+      Introducción a Core Data
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Tabla de contenidos</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduccion-a-core-data" class="md-nav__link">
+    Introducción a Core Data
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#que-es-core-data" class="md-nav__link">
+    ¿Qué es Core Data?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#el-stack-de-core-data" class="md-nav__link">
+    El stack de Core Data
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../3.2_stack/" title="Crear el stack de Core Data en iOS" class="md-nav__link">
+      Crear el stack de Core Data en iOS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../3.3_entidades/" title="Las entidades. Almacenar datos" class="md-nav__link">
+      Las entidades. Almacenar datos
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../3.4_recuperar_datos/" title="Recuperar los datos" class="md-nav__link">
+      Recuperar los datos
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Modelos de datos en Core Data
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Modelos de datos en Core Data
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap4/4.1_crear_modelo/" title="Crear y editar modelos" class="md-nav__link">
+      Crear y editar modelos
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap4/4.2_clases_propias/" title="Modelar las entidades en código Swift" class="md-nav__link">
+      Modelar las entidades en código Swift
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap4/4.3_CRUD/" title="CRUD en Core Data" class="md-nav__link">
+      CRUD en Core Data
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap4/4.4_ejercicios/" title="Ejercicios de modelos de datos" class="md-nav__link">
+      Ejercicios de modelos de datos
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Búsquedas en Core Data
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        Búsquedas en Core Data
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap6/1_predicados/" title="Predicados" class="md-nav__link">
+      Predicados
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap6/2_ordenacion/" title="Ordenación" class="md-nav__link">
+      Ordenación
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap6/3_ejercicios/" title="Ejercicios" class="md-nav__link">
+      Ejercicios
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+    
+    <label class="md-nav__link" for="nav-7">
+      Tablas en Core Data
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        Tablas en Core Data
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap7/1_el_frc/" title="El *fetched results controller*" class="md-nav__link">
+      El *fetched results controller*
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap7/2_configuracion_basica/" title="Inicializar el "fetched results controller"" class="md-nav__link">
+      Inicializar el "fetched results controller"
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap7/3_tabla/" title="Mostrar los datos en la tabla" class="md-nav__link">
+      Mostrar los datos en la tabla
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap7/4_refrescar_tabla/" title="Refrescar la tabla" class="md-nav__link">
+      Refrescar la tabla
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap7/5_secciones/" title="Secciones de tabla automáticas" class="md-nav__link">
+      Secciones de tabla automáticas
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap7/6_ejercicios/" title="Ejercicios" class="md-nav__link">
+      Ejercicios
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
+    
+    <label class="md-nav__link" for="nav-8">
+      Migraciones de datos
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-8">
+        Migraciones de datos
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap8/1_intro/" title="Qué son las migraciones de datos" class="md-nav__link">
+      Qué son las migraciones de datos
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap8/2_versiones/" title="Versiones del modelo de datos" class="md-nav__link">
+      Versiones del modelo de datos
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap8/3_migraciones_ligeras/" title="Migraciones ligeras" class="md-nav__link">
+      Migraciones ligeras
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap8/4_migraciones_pesadas/" title="Migraciones pesadas" class="md-nav__link">
+      Migraciones pesadas
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap8/5_ejercicios/" title="Ejercicios" class="md-nav__link">
+      Ejercicios
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap8/apendice_migraciones_ios9/" title="Apéndice. migraciones en versiones antiguas de iOS" class="md-nav__link">
+      Apéndice. migraciones en versiones antiguas de iOS
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9">
+    
+    <label class="md-nav__link" for="nav-9">
+      Concurrencia. Contextos múltiples
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-9">
+        Concurrencia. Contextos múltiples
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap9/1_background/" title="Múltiples contextos para trabajos en *background*" class="md-nav__link">
+      Múltiples contextos para trabajos en *background*
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap9/2_comunicacion/" title="Comunicación entre contextos" class="md-nav__link">
+      Comunicación entre contextos
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap9/3_contextos_anidados/" title="Contextos anidados" class="md-nav__link">
+      Contextos anidados
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap9/4_ejercicios/" title="Ejercicios" class="md-nav__link">
+      Ejercicios
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-10" type="checkbox" id="nav-10">
+    
+    <label class="md-nav__link" for="nav-10">
+      Arquitecturas de aplicaciones en iOS
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-10">
+        Arquitecturas de aplicaciones en iOS
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap10/intro/" title="Introducción" class="md-nav__link">
+      Introducción
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap10/2_MVC/" title="Model/View/Controller" class="md-nav__link">
+      Model/View/Controller
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap10/3_MVP/" title="Model/View/Presenter" class="md-nav__link">
+      Model/View/Presenter
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap10/4_MVVM/" title="Model/View/ViewModel" class="md-nav__link">
+      Model/View/ViewModel
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap10/5_VIPER/" title="VIPER" class="md-nav__link">
+      VIPER
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap10/6a_ejercicios1/" title="Ejercicios parte I" class="md-nav__link">
+      Ejercicios parte I
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap10/6_ejercicios/" title="Ejercicios parte II" class="md-nav__link">
+      Ejercicios parte II
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap10/6_ejercicios_redux/" title="Ejercicios parte III" class="md-nav__link">
+      Ejercicios parte III
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Tabla de contenidos</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduccion-a-core-data" class="md-nav__link">
+    Introducción a Core Data
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#que-es-core-data" class="md-nav__link">
+    ¿Qué es Core Data?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#el-stack-de-core-data" class="md-nav__link">
+    El stack de Core Data
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  <h1>Introducción a Core Data</h1>
+                
+                <h2 id="introduccion-a-core-data">Introducción a Core Data<a class="headerlink" href="#introduccion-a-core-data" title="Permanent link">&para;</a></h2>
+<h3 id="que-es-core-data">¿Qué es Core Data?<a class="headerlink" href="#que-es-core-data" title="Permanent link">&para;</a></h3>
+<p>Core Data es el principal <em>framework</em> de persistencia de iOS. Nos proporciona un mecanismo para poder almacenar de forma persistente los objetos de nuestra aplicación y luego recuperarlos. Es capaz de guardar automáticamente un grafo entero de objetos con las relaciones (uno a uno, uno a muchos, muchos a muchos) que hay entre ellos. Si bien es un API complejo y tiene una curva de aprendizaje pronunciada, para cualquier aplicación medianamente grande usar Core Data nos va a resultar mucho más sencillo que implementar nosotros la persistencia de manera manual con, digamos, SQLite.</p>
+<p>Core Data se puede considerar en cierto modo como un ORM (<em>object relational mapper</em>). A los desarrolladores que hayan usado un ORM en cualquier lenguaje les va a resultar familiar si no el API sí al menos las ideas básicas y la filosofía de trabajo. Aún más, ciertos términos usados en Core Data (objetos gestionados, contexto, ...) son típicos también de otros ORM como por ejemplo JPA en Java. </p>
+<p>Siendo puristas, Core Data no es un ORM estrictamente hablando, ya que su objetivo no es la persistencia únicamente en bases de datos relacionales. En principio el <em>backend</em> de persistencia podría ser cualquiera. Con la implementación actual Core Data admite como única BD relacional para persistencia SQLite, y también puede almacenar datos en memoria y en XML (esto último solo en OSX).</p>
+<h3 id="el-stack-de-core-data">El <em>stack</em> de Core Data<a class="headerlink" href="#el-stack-de-core-data" title="Permanent link">&para;</a></h3>
+<p><img alt="" src="../img/core_data_stack.png" /></p>
+<p>El <em>stack</em> de Core Data usa un cierto número de clases con una terminología que al principio puede resultar un poco confusa o complicada. La tarea de almacenar de forma persistente un grafo de objetos en realidad <em>es complicada</em>, así que en parte por eso lo es la infraestructura necesaria. Vamos a resumir aquí brevemente el papel de cada componente del <em>stack</em></p>
+<p>Por supuesto,  para poder almacenar información de forma persistente lo primero es disponer de un medio de almacenamiento persistente (una base de datos relacional, un fichero XML, un archivo JSON,…). El <code>NSPersistentStore</code> es la clase que se ocupa de gestionar este almacenamiento persistente. Core Data nos proporciona dos implementaciones de almacenamiento "persistente" en iOS: la BD relacional SQLite, que ya conocemos, y el almacenamiento en memoria. También podemos escribir nuestras propias implementaciones de <code>NSPersistentStore</code>.</p>
+<blockquote>
+<p>Es evidente que el almacenamiento en memoria no es precisamente persistente, pero va a ser muy rápido y es apropiado para manejar datos de solo lectura o que puedan ser fácilmente re-creados. </p>
+</blockquote>
+<p>El <code>NSPersistentStoreCoordinator</code> podría considerarse como el núcleo de Core Data. Es la clase responsable de gestionar la persistencia y por eso tiene que interactuar con el <code>NSPersistentStore</code>. No obstante, por muy importante que sea su papel de modo interno nuestro código no va a interactuar apenas con esta clase, salvo en su inicialización. Para poder hacer su trabajo, el <code>NSPersistentStoreCoordinator</code> necesita de un modelo de datos, o <code>NSManagedObjectModel</code>. Este modelo, que es similar a lo que sería un modelo E-R en una base de datos relacional, define las “clases” que componen nuestro modelo del dominio, especificando sus atributos y las relaciones entre clases. Como veremos, en el proyecto de Xcode un modelo de datos se representa con un archivo <code>.xcdatamodeld</code>. El <code>NSManagedObjectModel</code> sería como la versión compilada y binaria de este archivo. De nuevo solo vamos a usar directamente esta clase en nuestro código en la parte de inicialización (aunque por supuesto crear y editar el archivo <code>.xcdatamodeld</code> nos va a llevar bastante tiempo para cualquier modelo no trivial). </p>
+<p>Llegamos ya a las clases con las que nuestro código va a interactuar más habitualmente:</p>
+<ul>
+<li><code>NSManagedObjectContext</code> es el “contexto de persistencia”. Este contexto es un grafo de objetos, relacionados entre sí, y cuyo ciclo de vida está gestionado por Core Data (de ahí la terminología de <em>managed objects</em>). Esto significa que por ejemplo no creamos los objetos persistentes como habitualmente (con el inicializador) sino que le debemos pedir al  <code>NSManagedObjectContext</code> que los cree por nosotros. Cada vez que necesitemos recuperar un objeto del almacenamiento persistente o guardarlo allí, también tendremos que pedírselo al contexto. Así que no es difícil ver por qué va esta clase va a aparecer tanto en nuestro código.</li>
+<li>Como hemos dicho, los objetos gestionados por el contexto de persistencia son los que representan nuestro modelo del dominio. Estos objetos son de la clase <code>NSManagedObject</code> o de clases descendientes de ella. Conforme vayamos realizando operaciones en la aplicación iremos llenándolos de datos, relacionándolos entre sí, guardándolos, buscándolos, etc.</li>
+</ul>
+<p>Finalmente, si para buscar datos en una base de datos relacional se usa SQL, para recuperar objetos del almacenamiento persistente en Core Data usaremos <code>NSFetchRequest</code>. Al igual que en SQL podemos ejecutar consultas especificando las condiciones que deben cumplir los objetos a recuperar.</p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../../cap11/4_ejercicios/" title="Ejercicios" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Anterior
+                </span>
+                Ejercicios
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../3.2_stack/" title="Crear el stack de Core Data en iOS" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Siguiente
+                </span>
+                Crear el stack de Core Data en iOS
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.ac79c3b0.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      
+    
+  </body>
+</html>

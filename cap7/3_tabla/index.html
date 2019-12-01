@@ -1,0 +1,1195 @@
+
+
+
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copiar al portapapeles">
+      
+        <meta name="lang:clipboard.copied" content="Copiado al portapapeles">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No se encontraron documentos">
+      
+        <meta name="lang:search.result.one" content="1 documento encontrado">
+      
+        <meta name="lang:search.result.other" content="# documentos encontrados">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.3">
+    
+    
+      
+        <title>Mostrar los datos en la tabla - PDDM-iOS</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.30686662.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.a8b3c06d.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#009688">
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.74668098.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+    
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#mostrar-los-datos-en-la-tabla-mostrar_datos" tabindex="1" class="md-skip">
+        Saltar a contenido
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../.." title="PDDM-iOS" class="md-header-nav__button md-logo">
+          
+            <img src="../../logo.png" width="24" height="24">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              PDDM-iOS
+            </span>
+            <span class="md-header-nav__topic">
+              
+                Mostrar los datos en la tabla
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Teclee para comenzar búsqueda
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="../.." title="PDDM-iOS" class="md-nav__button md-logo">
+      
+        <img src="../../logo.png" width="48" height="48">
+      
+    </a>
+    PDDM-iOS
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1">
+    
+    <label class="md-nav__link" for="nav-1">
+      Persistencia básica
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-1">
+        Persistencia básica
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap1/1.1_sistema_de_archivos/" title="Sistema de archivos" class="md-nav__link">
+      Sistema de archivos
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap1/1.2_serializacion/" title="Serialización" class="md-nav__link">
+      Serialización
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap1/1.3_property_lists/" title="Property lists" class="md-nav__link">
+      Property lists
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap1/1.4_preferencias/" title="Preferencias" class="md-nav__link">
+      Preferencias
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap1/1.5_ejercicios/" title="Ejercicios" class="md-nav__link">
+      Ejercicios
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      SQLite
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        SQLite
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap2/2.1_intro_SQLite/" title="Introducción" class="md-nav__link">
+      Introducción
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap2/2.2_API_SQLite/" title="El API de SQLIte" class="md-nav__link">
+      El API de SQLIte
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap2/2.3_frameworks/" title="Frameworks para SQLite" class="md-nav__link">
+      Frameworks para SQLite
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap2/2.4_ejercicios/" title="Ejercicios" class="md-nav__link">
+      Ejercicios
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Persistencia como servicio
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Persistencia como servicio
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap11/1_introduccion_BAAS/" title="Backend as a Service" class="md-nav__link">
+      Backend as a Service
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap11/2_gestion_usuarios/" title="Gestión de usuarios en Firebase" class="md-nav__link">
+      Gestión de usuarios en Firebase
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap11/3_persistencia/" title="Persistencia en Firebase" class="md-nav__link">
+      Persistencia en Firebase
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap11/4_ejercicios/" title="Ejercicios" class="md-nav__link">
+      Ejercicios
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      ¡Hola Core Data!. Una aplicación de ejemplo
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        ¡Hola Core Data!. Una aplicación de ejemplo
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap3/3.1_intro/" title="Introducción a Core Data" class="md-nav__link">
+      Introducción a Core Data
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap3/3.2_stack/" title="Crear el stack de Core Data en iOS" class="md-nav__link">
+      Crear el stack de Core Data en iOS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap3/3.3_entidades/" title="Las entidades. Almacenar datos" class="md-nav__link">
+      Las entidades. Almacenar datos
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap3/3.4_recuperar_datos/" title="Recuperar los datos" class="md-nav__link">
+      Recuperar los datos
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Modelos de datos en Core Data
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Modelos de datos en Core Data
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap4/4.1_crear_modelo/" title="Crear y editar modelos" class="md-nav__link">
+      Crear y editar modelos
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap4/4.2_clases_propias/" title="Modelar las entidades en código Swift" class="md-nav__link">
+      Modelar las entidades en código Swift
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap4/4.3_CRUD/" title="CRUD en Core Data" class="md-nav__link">
+      CRUD en Core Data
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap4/4.4_ejercicios/" title="Ejercicios de modelos de datos" class="md-nav__link">
+      Ejercicios de modelos de datos
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Búsquedas en Core Data
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        Búsquedas en Core Data
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap6/1_predicados/" title="Predicados" class="md-nav__link">
+      Predicados
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap6/2_ordenacion/" title="Ordenación" class="md-nav__link">
+      Ordenación
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap6/3_ejercicios/" title="Ejercicios" class="md-nav__link">
+      Ejercicios
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7" checked>
+    
+    <label class="md-nav__link" for="nav-7">
+      Tablas en Core Data
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        Tablas en Core Data
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../1_el_frc/" title="El *fetched results controller*" class="md-nav__link">
+      El *fetched results controller*
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../2_configuracion_basica/" title="Inicializar el "fetched results controller"" class="md-nav__link">
+      Inicializar el "fetched results controller"
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Mostrar los datos en la tabla
+      </label>
+    
+    <a href="./" title="Mostrar los datos en la tabla" class="md-nav__link md-nav__link--active">
+      Mostrar los datos en la tabla
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Tabla de contenidos</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#mostrar-los-datos-en-la-tabla-mostrar_datos" class="md-nav__link">
+    Mostrar los datos en la tabla {#mostrar_datos }
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../4_refrescar_tabla/" title="Refrescar la tabla" class="md-nav__link">
+      Refrescar la tabla
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../5_secciones/" title="Secciones de tabla automáticas" class="md-nav__link">
+      Secciones de tabla automáticas
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../6_ejercicios/" title="Ejercicios" class="md-nav__link">
+      Ejercicios
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
+    
+    <label class="md-nav__link" for="nav-8">
+      Migraciones de datos
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-8">
+        Migraciones de datos
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap8/1_intro/" title="Qué son las migraciones de datos" class="md-nav__link">
+      Qué son las migraciones de datos
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap8/2_versiones/" title="Versiones del modelo de datos" class="md-nav__link">
+      Versiones del modelo de datos
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap8/3_migraciones_ligeras/" title="Migraciones ligeras" class="md-nav__link">
+      Migraciones ligeras
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap8/4_migraciones_pesadas/" title="Migraciones pesadas" class="md-nav__link">
+      Migraciones pesadas
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap8/5_ejercicios/" title="Ejercicios" class="md-nav__link">
+      Ejercicios
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap8/apendice_migraciones_ios9/" title="Apéndice. migraciones en versiones antiguas de iOS" class="md-nav__link">
+      Apéndice. migraciones en versiones antiguas de iOS
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9">
+    
+    <label class="md-nav__link" for="nav-9">
+      Concurrencia. Contextos múltiples
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-9">
+        Concurrencia. Contextos múltiples
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap9/1_background/" title="Múltiples contextos para trabajos en *background*" class="md-nav__link">
+      Múltiples contextos para trabajos en *background*
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap9/2_comunicacion/" title="Comunicación entre contextos" class="md-nav__link">
+      Comunicación entre contextos
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap9/3_contextos_anidados/" title="Contextos anidados" class="md-nav__link">
+      Contextos anidados
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap9/4_ejercicios/" title="Ejercicios" class="md-nav__link">
+      Ejercicios
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-10" type="checkbox" id="nav-10">
+    
+    <label class="md-nav__link" for="nav-10">
+      Arquitecturas de aplicaciones en iOS
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-10">
+        Arquitecturas de aplicaciones en iOS
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap10/intro/" title="Introducción" class="md-nav__link">
+      Introducción
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap10/2_MVC/" title="Model/View/Controller" class="md-nav__link">
+      Model/View/Controller
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap10/3_MVP/" title="Model/View/Presenter" class="md-nav__link">
+      Model/View/Presenter
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap10/4_MVVM/" title="Model/View/ViewModel" class="md-nav__link">
+      Model/View/ViewModel
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap10/5_VIPER/" title="VIPER" class="md-nav__link">
+      VIPER
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap10/6a_ejercicios1/" title="Ejercicios parte I" class="md-nav__link">
+      Ejercicios parte I
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap10/6_ejercicios/" title="Ejercicios parte II" class="md-nav__link">
+      Ejercicios parte II
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap10/6_ejercicios_redux/" title="Ejercicios parte III" class="md-nav__link">
+      Ejercicios parte III
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Tabla de contenidos</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#mostrar-los-datos-en-la-tabla-mostrar_datos" class="md-nav__link">
+    Mostrar los datos en la tabla {#mostrar_datos }
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  <h1>Mostrar los datos en la tabla</h1>
+                
+                <h2 id="mostrar-los-datos-en-la-tabla-mostrar_datos">Mostrar los datos en la tabla {#mostrar_datos }<a class="headerlink" href="#mostrar-los-datos-en-la-tabla-mostrar_datos" title="Permanent link">&para;</a></h2>
+<p>Recordemos que las tablas toman los datos de su <em>datasource</em>, un objeto que debe implementar una serie de métodos que sirven para devolver el contenido: devolver el número de secciones, devolver el número de filas en una sección y devolver una fila en concreto. El API de <em>fetched results controller</em> tiene métodos para hacer precisamente esto, así que en nuestro código nos limitaremos más o menos a "pasarle la pelota".</p>
+<p>Para simplificar el ejemplo haremos que el <em>datasource</em> de la tabla sea el <em>view controller</em>. Vamos a implementar en él los métodos necesarios.</p>
+<blockquote>
+<p>Si usamos un <code>UITableViewController</code>, Xcode habrá generado para nosotros el esqueleto de estos métodos. Por otro lado, automáticamente el <em>view controller</em> es el <em>datasource</em> de la tabla, conexión que tendríamos que hacer de modo manual si usamos otro tipo de <em>view controller</em>.</p>
+</blockquote>
+<p>Primero vamos a ocuparnos del <strong>número de secciones</strong>. La propiedad <code>sections</code> del <em>fetched results controller</em>, es un array con las secciones de la tabla, así que basta con devolver el tamaño de este array. En realidad por el momento podríamos devolver simplemente <code>1</code>, ya que hemos dicho que no tenemos secciones en la tabla, pero vamos a dejar el código preparado para no tener que modificarlo luego.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kr">override</span> <span class="kd">func</span> <span class="nf">numberOfSections</span><span class="p">(</span><span class="k">in</span> <span class="n">tableView</span><span class="p">:</span> <span class="bp">UITableView</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Int</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">self</span><span class="p">.</span><span class="n">frc</span><span class="p">.</span><span class="n">sections</span><span class="p">!.</span><span class="bp">count</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table>
+
+<p>Recordemos que <code>frc</code> es una propiedad que hemos definido en el <em>view controller</em> y que referencia al <em>fetched results controller</em>.</p>
+<p>El método que devuelve el <strong>número de filas en la sección actual</strong> es solo un poco más complicado</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kr">override</span> <span class="kd">func</span> <span class="nf">tableView</span><span class="p">(</span><span class="kc">_</span> <span class="n">tableView</span><span class="p">:</span> <span class="bp">UITableView</span><span class="p">,</span> <span class="n">numberOfRowsInSection</span> <span class="n">section</span><span class="p">:</span> <span class="nb">Int</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Int</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">self</span><span class="p">.</span><span class="n">frc</span><span class="p">.</span><span class="n">sections</span><span class="p">![</span><span class="n">section</span><span class="p">].</span><span class="n">numberOfObjects</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table>
+
+<p>Simplemente accedemos a la sección en cuestión y devolvemos su propiedad <code>numberOfObjects</code>, que es el número de filas en la sección.</p>
+<p>Ya solo nos falta el método más complicado, el que <strong>devuelve una fila dada su posición</strong> o <em>index path</em>. En realidad es sencillo de implementar, porque el método <code>object(at:)</code> del <em>fetched results controller</em> nos devuelve un dato dado su <em>index path</em>. Solo tenemos que "empaquetar" la información en una celda.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kr">override</span> <span class="kd">func</span> <span class="nf">tableView</span><span class="p">(</span><span class="kc">_</span> <span class="n">tableView</span><span class="p">:</span> <span class="bp">UITableView</span><span class="p">,</span> <span class="n">cellForRowAt</span> <span class="n">indexPath</span><span class="p">:</span> <span class="n">IndexPath</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="bp">UITableViewCell</span> <span class="p">{</span>
+    <span class="c1">//recordar que el prototipo de celda tiene un &quot;reuse identifier&quot;</span>
+    <span class="c1">//que hay que asignar en el storyboard</span>
+    <span class="kd">let</span> <span class="nv">cell</span> <span class="p">=</span> <span class="n">tableView</span><span class="p">.</span><span class="n">dequeueReusableCell</span><span class="p">(</span><span class="n">withIdentifier</span><span class="p">:</span> <span class="s">&quot;miCelda&quot;</span><span class="p">,</span> <span class="k">for</span><span class="p">:</span> <span class="n">indexPath</span><span class="p">)</span>
+
+    <span class="kd">let</span> <span class="nv">mensaje</span> <span class="p">=</span> <span class="kc">self</span><span class="p">.</span><span class="n">frc</span><span class="p">.</span><span class="n">object</span><span class="p">(</span><span class="n">at</span><span class="p">:</span> <span class="n">indexPath</span><span class="p">)</span>
+    <span class="n">cell</span><span class="p">.</span><span class="n">textLabel</span><span class="p">?.</span><span class="n">text</span> <span class="p">=</span> <span class="n">mensaje</span><span class="p">.</span><span class="n">texto</span><span class="p">!</span>
+    <span class="k">return</span> <span class="n">cell</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table>
+
+<p>Nótese que cuando inicializamos el <em>fetched results controller</em> lo hacemos con el tipo <code>Mensaje</code> (como <code>NSFetchedResultsController&lt;Mensaje&gt;</code>). Así que cuando obtenemos un objeto con <code>object(at:)</code> Swift "sabe" que es un <code>Mensaje</code> y no es necesario hacer el <em>cast</em>.</p>
+<p>Con todo esto ya tenemos la misma funcionalidad que teníamos cuando usábamos arrays para almacenar los datos de la tabla, a partir de ahora vamos a ver qué ventajas adicionales nos da el <em>fetched results controller</em> frente a la versión anterior.</p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../2_configuracion_basica/" title="Inicializar el "fetched results controller"" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Anterior
+                </span>
+                Inicializar el "fetched results controller"
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../4_refrescar_tabla/" title="Refrescar la tabla" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Siguiente
+                </span>
+                Refrescar la tabla
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.ac79c3b0.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      
+    
+  </body>
+</html>

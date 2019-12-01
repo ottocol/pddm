@@ -1,0 +1,1246 @@
+
+
+
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copiar al portapapeles">
+      
+        <meta name="lang:clipboard.copied" content="Copiado al portapapeles">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No se encontraron documentos">
+      
+        <meta name="lang:search.result.one" content="1 documento encontrado">
+      
+        <meta name="lang:search.result.other" content="# documentos encontrados">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.3">
+    
+    
+      
+        <title>VIPER - PDDM-iOS</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.30686662.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.a8b3c06d.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#009688">
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.74668098.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+    
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#viper" tabindex="1" class="md-skip">
+        Saltar a contenido
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../.." title="PDDM-iOS" class="md-header-nav__button md-logo">
+          
+            <img src="../../logo.png" width="24" height="24">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              PDDM-iOS
+            </span>
+            <span class="md-header-nav__topic">
+              
+                VIPER
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Teclee para comenzar búsqueda
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="../.." title="PDDM-iOS" class="md-nav__button md-logo">
+      
+        <img src="../../logo.png" width="48" height="48">
+      
+    </a>
+    PDDM-iOS
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1">
+    
+    <label class="md-nav__link" for="nav-1">
+      Persistencia básica
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-1">
+        Persistencia básica
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap1/1.1_sistema_de_archivos/" title="Sistema de archivos" class="md-nav__link">
+      Sistema de archivos
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap1/1.2_serializacion/" title="Serialización" class="md-nav__link">
+      Serialización
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap1/1.3_property_lists/" title="Property lists" class="md-nav__link">
+      Property lists
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap1/1.4_preferencias/" title="Preferencias" class="md-nav__link">
+      Preferencias
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap1/1.5_ejercicios/" title="Ejercicios" class="md-nav__link">
+      Ejercicios
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      SQLite
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        SQLite
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap2/2.1_intro_SQLite/" title="Introducción" class="md-nav__link">
+      Introducción
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap2/2.2_API_SQLite/" title="El API de SQLIte" class="md-nav__link">
+      El API de SQLIte
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap2/2.3_frameworks/" title="Frameworks para SQLite" class="md-nav__link">
+      Frameworks para SQLite
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap2/2.4_ejercicios/" title="Ejercicios" class="md-nav__link">
+      Ejercicios
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Persistencia como servicio
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Persistencia como servicio
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap11/1_introduccion_BAAS/" title="Backend as a Service" class="md-nav__link">
+      Backend as a Service
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap11/2_gestion_usuarios/" title="Gestión de usuarios en Firebase" class="md-nav__link">
+      Gestión de usuarios en Firebase
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap11/3_persistencia/" title="Persistencia en Firebase" class="md-nav__link">
+      Persistencia en Firebase
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap11/4_ejercicios/" title="Ejercicios" class="md-nav__link">
+      Ejercicios
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      ¡Hola Core Data!. Una aplicación de ejemplo
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        ¡Hola Core Data!. Una aplicación de ejemplo
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap3/3.1_intro/" title="Introducción a Core Data" class="md-nav__link">
+      Introducción a Core Data
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap3/3.2_stack/" title="Crear el stack de Core Data en iOS" class="md-nav__link">
+      Crear el stack de Core Data en iOS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap3/3.3_entidades/" title="Las entidades. Almacenar datos" class="md-nav__link">
+      Las entidades. Almacenar datos
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap3/3.4_recuperar_datos/" title="Recuperar los datos" class="md-nav__link">
+      Recuperar los datos
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Modelos de datos en Core Data
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Modelos de datos en Core Data
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap4/4.1_crear_modelo/" title="Crear y editar modelos" class="md-nav__link">
+      Crear y editar modelos
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap4/4.2_clases_propias/" title="Modelar las entidades en código Swift" class="md-nav__link">
+      Modelar las entidades en código Swift
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap4/4.3_CRUD/" title="CRUD en Core Data" class="md-nav__link">
+      CRUD en Core Data
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap4/4.4_ejercicios/" title="Ejercicios de modelos de datos" class="md-nav__link">
+      Ejercicios de modelos de datos
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Búsquedas en Core Data
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        Búsquedas en Core Data
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap6/1_predicados/" title="Predicados" class="md-nav__link">
+      Predicados
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap6/2_ordenacion/" title="Ordenación" class="md-nav__link">
+      Ordenación
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap6/3_ejercicios/" title="Ejercicios" class="md-nav__link">
+      Ejercicios
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+    
+    <label class="md-nav__link" for="nav-7">
+      Tablas en Core Data
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        Tablas en Core Data
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap7/1_el_frc/" title="El *fetched results controller*" class="md-nav__link">
+      El *fetched results controller*
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap7/2_configuracion_basica/" title="Inicializar el "fetched results controller"" class="md-nav__link">
+      Inicializar el "fetched results controller"
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap7/3_tabla/" title="Mostrar los datos en la tabla" class="md-nav__link">
+      Mostrar los datos en la tabla
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap7/4_refrescar_tabla/" title="Refrescar la tabla" class="md-nav__link">
+      Refrescar la tabla
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap7/5_secciones/" title="Secciones de tabla automáticas" class="md-nav__link">
+      Secciones de tabla automáticas
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap7/6_ejercicios/" title="Ejercicios" class="md-nav__link">
+      Ejercicios
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
+    
+    <label class="md-nav__link" for="nav-8">
+      Migraciones de datos
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-8">
+        Migraciones de datos
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap8/1_intro/" title="Qué son las migraciones de datos" class="md-nav__link">
+      Qué son las migraciones de datos
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap8/2_versiones/" title="Versiones del modelo de datos" class="md-nav__link">
+      Versiones del modelo de datos
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap8/3_migraciones_ligeras/" title="Migraciones ligeras" class="md-nav__link">
+      Migraciones ligeras
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap8/4_migraciones_pesadas/" title="Migraciones pesadas" class="md-nav__link">
+      Migraciones pesadas
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap8/5_ejercicios/" title="Ejercicios" class="md-nav__link">
+      Ejercicios
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap8/apendice_migraciones_ios9/" title="Apéndice. migraciones en versiones antiguas de iOS" class="md-nav__link">
+      Apéndice. migraciones en versiones antiguas de iOS
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9">
+    
+    <label class="md-nav__link" for="nav-9">
+      Concurrencia. Contextos múltiples
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-9">
+        Concurrencia. Contextos múltiples
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap9/1_background/" title="Múltiples contextos para trabajos en *background*" class="md-nav__link">
+      Múltiples contextos para trabajos en *background*
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap9/2_comunicacion/" title="Comunicación entre contextos" class="md-nav__link">
+      Comunicación entre contextos
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap9/3_contextos_anidados/" title="Contextos anidados" class="md-nav__link">
+      Contextos anidados
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap9/4_ejercicios/" title="Ejercicios" class="md-nav__link">
+      Ejercicios
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-10" type="checkbox" id="nav-10" checked>
+    
+    <label class="md-nav__link" for="nav-10">
+      Arquitecturas de aplicaciones en iOS
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-10">
+        Arquitecturas de aplicaciones en iOS
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../intro/" title="Introducción" class="md-nav__link">
+      Introducción
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../2_MVC/" title="Model/View/Controller" class="md-nav__link">
+      Model/View/Controller
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../3_MVP/" title="Model/View/Presenter" class="md-nav__link">
+      Model/View/Presenter
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../4_MVVM/" title="Model/View/ViewModel" class="md-nav__link">
+      Model/View/ViewModel
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        VIPER
+      </label>
+    
+    <a href="./" title="VIPER" class="md-nav__link md-nav__link--active">
+      VIPER
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Tabla de contenidos</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#viper" class="md-nav__link">
+    VIPER
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#que-es-viper" class="md-nav__link">
+    Qué es VIPER
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#componentes-de-la-arquitectura" class="md-nav__link">
+    Componentes de la arquitectura
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#principios-basicos-de-viper" class="md-nav__link">
+    Principios básicos de VIPER
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ventajas-e-inconvenientes" class="md-nav__link">
+    Ventajas e inconvenientes
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../6a_ejercicios1/" title="Ejercicios parte I" class="md-nav__link">
+      Ejercicios parte I
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../6_ejercicios/" title="Ejercicios parte II" class="md-nav__link">
+      Ejercicios parte II
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../6_ejercicios_redux/" title="Ejercicios parte III" class="md-nav__link">
+      Ejercicios parte III
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Tabla de contenidos</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#viper" class="md-nav__link">
+    VIPER
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#que-es-viper" class="md-nav__link">
+    Qué es VIPER
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#componentes-de-la-arquitectura" class="md-nav__link">
+    Componentes de la arquitectura
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#principios-basicos-de-viper" class="md-nav__link">
+    Principios básicos de VIPER
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ventajas-e-inconvenientes" class="md-nav__link">
+    Ventajas e inconvenientes
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  <h1>VIPER</h1>
+                
+                <h2 id="viper">VIPER<a class="headerlink" href="#viper" title="Permanent link">&para;</a></h2>
+<p>MVP y MVVM son un paso más en la separación de responsabilidades en los componentes de la aplicación, pero no dejan claro cómo estructurar el modelo. Además algunas cosas quedan fuera de la arquitectura, como es el caso del cambio de pantallas en la aplicación: típicamente habrá un MVVM por cada pantalla, pero ¿quién decide a dónde ir saltando y cómo hacerlo?.</p>
+<p>VIPER (View/Interactor/Presenter/Entity/Router) es una arquitectura que intenta solucionar o al menos abordar estos problemas.</p>
+<h3 id="que-es-viper">Qué es VIPER<a class="headerlink" href="#que-es-viper" title="Permanent link">&para;</a></h3>
+<p>VIPER es una adaptación a iOS de la <em>Clean Architecture</em> propuesta por el "gurú" de la ingeniería del software <a href="http://blog.cleancoder.com/">Robert C. Martin</a>, conocido familiarmente como "Uncle Bob". El <em>tío Bob</em> ha explicado los detalles de su <em>clean architecture</em> en múltiples ocasiones, por ejemplo en <a href="https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html">su blog</a> y en <a href="https://www.youtube.com/watch?v=Nsjsiz2A9mg">algunas charlas</a>. VIPER aparece descrito por primera vez en <a href="https://www.objc.io/issues/13-architecture/viper/">este artículo</a> de 2014.</p>
+<p>Igual que sucedía con los "controladores ligeros" en MVC, una de las ideas básicas de la <em>Clean Architecture</em> y por tanto de VIPER es llevar a la práctica el "Principio de Única Responsabilidad".</p>
+<h2 id="componentes-de-la-arquitectura">Componentes de la arquitectura<a class="headerlink" href="#componentes-de-la-arquitectura" title="Permanent link">&para;</a></h2>
+<p>Como hemos enumerado antes, los componentes son los siguientes:</p>
+<ul>
+<li><em>View</em>: muestra los datos que le pasa el <em>presenter</em>, y le pasa a este las acciones del usuario. Como vemos es el mismo papel que desempeña en MVP o MVVM.</li>
+<li><em>Interactor</em>: es la lógica de negocio, los casos de uso de nuestra aplicación. Típicamente cada módulo VIPER implementará un caso de uso distinto.</li>
+<li><em>Presenter</em>: contiene la lógica de presentación, al igual que en MVP.</li>
+<li><em>Entity</em>: los modelos del dominio. Se podría decir que contienen la lógica de negocio "genérica" mientras que el <em>interactor</em> contiene la lógica propia de nuestra aplicación.</li>
+<li><em>Router</em>: contiene la lógica de navegación, para saber qué pantallas mostrar y cómo cambiar entre ellas. En algunos sitios se conoce también como <em>wireframe</em></li>
+</ul>
+<p>Los componentes se comunican entre sí según se indica en el siguiente diagrama:</p>
+<p><img alt="" src="../img/viper.png" /></p>
+<h2 id="principios-basicos-de-viper">Principios básicos de VIPER<a class="headerlink" href="#principios-basicos-de-viper" title="Permanent link">&para;</a></h2>
+<p>Además de los componentes que lo forman y la forma de comunicarse entre ellos, hay unas cuantas ideas adicionales importantes en VIPER.</p>
+<p>La primera de ellas es que <strong>todos los componentes se comunican entre sí a través de protocolos</strong> (o interfaces, como diríamos en otros lenguajes). Esto hace posible sustituir una implementación de un componente por otra sin afectar al resto del componentes. Es decir, seguimos el principio básico del desarrollo software de <em>programar contra interfaces y no contra implementaciones</em>.</p>
+<p>En la <em>clean architecture</em> original se hablaba de dos tipos de interfaces: <em>input ports</em> y <em>output ports</em>, y en la mayoría de implementaciones de VIPER se ha conservado esta idea y terminología. Para un componente, su <em>input port</em> lo constituyen las operaciones que él implementa, y que serán llamadas desde otros componentes. El <em>output port</em> serán las operaciones que el componente necesita, implementadas por otro componente. Si tenemos dos componentes, A y B, y A necesita de B, el <em>output port</em> de A será el mismo protocolo o interfaz que el <em>input port</em> de B. </p>
+<p>La misión de estos <em>output ports</em> es conseguir lo que se llama <strong>inversión de dependencias</strong>. Veamos qué es esto. Si nos fijamos en el diagrama principal de VIPER veremos que conforme nos movemos de izquierda a derecha vamos yendo de lo más "concreto" y poco reutilizable a lo más "abstracto", reutilizable e independiente de los APIs de iOS. La vista está totalmente atada a <code>UIKit</code>, mientras que en el otro extremo el <code>Interactor</code> debería ser igual para cualquier plataforma, salvo por el hecho de estar escrito en Swift. Si pensamos en los componentes como capas (más internas conforme avanzamos hacia la derecha),  es adecuado que un componente de una capa dependa de los de las capas internas, pero no a la inversa, ya que estaríamos haciéndolo depender de "detalles de implementación" que están por debajo de su nivel de abstracción: un ejemplo: cuando el <em>interactor</em> termina su trabajo y debe devolver los datos al <em>presenter</em> tiene que llamarlo para pasárselos, pero para no introducir dependencias incorrectas debe hacerlo a través de un protocolo. Y además este protocolo debería implementarse en el "paquete" del <em>interactor</em>, para evitar dependencias directas de código de <em>interactor</em> a <em>presenter</em>. Este protocolo sería el <code>InteractorOutput</code>. Y esto se llama <em>inversión de dependencias</em> porque aunque el <em>interactor</em> llama al <em>presenter</em> en código no depende de él.</p>
+<p><img alt="" src="../img/dependency_inversion.png" /></p>
+<p>Otra idea importante es <strong>qué datos se pasan entre los componentes</strong>. Vamos a verlo con un ejemplo. Si estamos haciendo una aplicación de tareas pendientes probablemente tendremos una entidad llamada <code>Tarea</code>. Por ejemplo, cuando listamos las tareas pendientes las recuperará el <em>interactor</em> (quizá usando Core Data), que se las pasará al <em>presenter</em> (que formateará los datos adecuadamente, por ejemplo las fechas), y este a su vez a la <em>vista</em> para que las muestre en pantalla. Probablemente lo más directo sería pasar objetos <code>Tarea</code> de un componente a otro, pero esto tiene el problema de que estamos acoplándolos todos a la entidad, y si cambiamos esta tendremos que cambiar todos los componentes. Por eso en VIPER y en <em>clean architecture</em> se recomienda pasar solamente los datos que se necesiten y además en un formato <em>ad hoc</em>, típicamente <code>structs</code> o tuplas de datos. </p>
+<h2 id="ventajas-e-inconvenientes">Ventajas e inconvenientes<a class="headerlink" href="#ventajas-e-inconvenientes" title="Permanent link">&para;</a></h2>
+<p>Las ventajas de VIPER son las de cualquier arquitectura bien diseñada:</p>
+<ul>
+<li>Facilita la colaboración en el equipo de desarrollo, si cada desarrollador se ocupa de un componente separado o un conjunto de componentes.</li>
+<li>Facilita el mantenimiento de la aplicación.</li>
+<li>Hace posible el <em>testing</em>.</li>
+</ul>
+<p>Como inconveniente principal está la sobrecarga que supone crear un mínimo de 5 componentes por cada módulo. Es una arquitectura que para aplicaciones pequeñas o para aplicaciones implementadas por un solo desarrollador quizá presenta una complicación excesiva.</p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../4_MVVM/" title="Model/View/ViewModel" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Anterior
+                </span>
+                Model/View/ViewModel
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../6a_ejercicios1/" title="Ejercicios parte I" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Siguiente
+                </span>
+                Ejercicios parte I
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.ac79c3b0.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      
+    
+  </body>
+</html>

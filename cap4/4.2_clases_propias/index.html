@@ -1,0 +1,1195 @@
+
+
+
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copiar al portapapeles">
+      
+        <meta name="lang:clipboard.copied" content="Copiado al portapapeles">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No se encontraron documentos">
+      
+        <meta name="lang:search.result.one" content="1 documento encontrado">
+      
+        <meta name="lang:search.result.other" content="# documentos encontrados">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.3">
+    
+    
+      
+        <title>Modelar las entidades en código Swift - PDDM-iOS</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.30686662.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.a8b3c06d.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#009688">
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.74668098.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+    
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../.." title="PDDM-iOS" class="md-header-nav__button md-logo">
+          
+            <img src="../../logo.png" width="24" height="24">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              PDDM-iOS
+            </span>
+            <span class="md-header-nav__topic">
+              
+                Modelar las entidades en código Swift
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Teclee para comenzar búsqueda
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="../.." title="PDDM-iOS" class="md-nav__button md-logo">
+      
+        <img src="../../logo.png" width="48" height="48">
+      
+    </a>
+    PDDM-iOS
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1">
+    
+    <label class="md-nav__link" for="nav-1">
+      Persistencia básica
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-1">
+        Persistencia básica
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap1/1.1_sistema_de_archivos/" title="Sistema de archivos" class="md-nav__link">
+      Sistema de archivos
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap1/1.2_serializacion/" title="Serialización" class="md-nav__link">
+      Serialización
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap1/1.3_property_lists/" title="Property lists" class="md-nav__link">
+      Property lists
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap1/1.4_preferencias/" title="Preferencias" class="md-nav__link">
+      Preferencias
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap1/1.5_ejercicios/" title="Ejercicios" class="md-nav__link">
+      Ejercicios
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      SQLite
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        SQLite
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap2/2.1_intro_SQLite/" title="Introducción" class="md-nav__link">
+      Introducción
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap2/2.2_API_SQLite/" title="El API de SQLIte" class="md-nav__link">
+      El API de SQLIte
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap2/2.3_frameworks/" title="Frameworks para SQLite" class="md-nav__link">
+      Frameworks para SQLite
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap2/2.4_ejercicios/" title="Ejercicios" class="md-nav__link">
+      Ejercicios
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Persistencia como servicio
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Persistencia como servicio
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap11/1_introduccion_BAAS/" title="Backend as a Service" class="md-nav__link">
+      Backend as a Service
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap11/2_gestion_usuarios/" title="Gestión de usuarios en Firebase" class="md-nav__link">
+      Gestión de usuarios en Firebase
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap11/3_persistencia/" title="Persistencia en Firebase" class="md-nav__link">
+      Persistencia en Firebase
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap11/4_ejercicios/" title="Ejercicios" class="md-nav__link">
+      Ejercicios
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      ¡Hola Core Data!. Una aplicación de ejemplo
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        ¡Hola Core Data!. Una aplicación de ejemplo
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap3/3.1_intro/" title="Introducción a Core Data" class="md-nav__link">
+      Introducción a Core Data
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap3/3.2_stack/" title="Crear el stack de Core Data en iOS" class="md-nav__link">
+      Crear el stack de Core Data en iOS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap3/3.3_entidades/" title="Las entidades. Almacenar datos" class="md-nav__link">
+      Las entidades. Almacenar datos
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap3/3.4_recuperar_datos/" title="Recuperar los datos" class="md-nav__link">
+      Recuperar los datos
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
+    
+    <label class="md-nav__link" for="nav-5">
+      Modelos de datos en Core Data
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Modelos de datos en Core Data
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../4.1_crear_modelo/" title="Crear y editar modelos" class="md-nav__link">
+      Crear y editar modelos
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+    <a href="./" title="Modelar las entidades en código Swift" class="md-nav__link md-nav__link--active">
+      Modelar las entidades en código Swift
+    </a>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../4.3_CRUD/" title="CRUD en Core Data" class="md-nav__link">
+      CRUD en Core Data
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../4.4_ejercicios/" title="Ejercicios de modelos de datos" class="md-nav__link">
+      Ejercicios de modelos de datos
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Búsquedas en Core Data
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        Búsquedas en Core Data
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap6/1_predicados/" title="Predicados" class="md-nav__link">
+      Predicados
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap6/2_ordenacion/" title="Ordenación" class="md-nav__link">
+      Ordenación
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap6/3_ejercicios/" title="Ejercicios" class="md-nav__link">
+      Ejercicios
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+    
+    <label class="md-nav__link" for="nav-7">
+      Tablas en Core Data
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        Tablas en Core Data
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap7/1_el_frc/" title="El *fetched results controller*" class="md-nav__link">
+      El *fetched results controller*
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap7/2_configuracion_basica/" title="Inicializar el "fetched results controller"" class="md-nav__link">
+      Inicializar el "fetched results controller"
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap7/3_tabla/" title="Mostrar los datos en la tabla" class="md-nav__link">
+      Mostrar los datos en la tabla
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap7/4_refrescar_tabla/" title="Refrescar la tabla" class="md-nav__link">
+      Refrescar la tabla
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap7/5_secciones/" title="Secciones de tabla automáticas" class="md-nav__link">
+      Secciones de tabla automáticas
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap7/6_ejercicios/" title="Ejercicios" class="md-nav__link">
+      Ejercicios
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
+    
+    <label class="md-nav__link" for="nav-8">
+      Migraciones de datos
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-8">
+        Migraciones de datos
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap8/1_intro/" title="Qué son las migraciones de datos" class="md-nav__link">
+      Qué son las migraciones de datos
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap8/2_versiones/" title="Versiones del modelo de datos" class="md-nav__link">
+      Versiones del modelo de datos
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap8/3_migraciones_ligeras/" title="Migraciones ligeras" class="md-nav__link">
+      Migraciones ligeras
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap8/4_migraciones_pesadas/" title="Migraciones pesadas" class="md-nav__link">
+      Migraciones pesadas
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap8/5_ejercicios/" title="Ejercicios" class="md-nav__link">
+      Ejercicios
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap8/apendice_migraciones_ios9/" title="Apéndice. migraciones en versiones antiguas de iOS" class="md-nav__link">
+      Apéndice. migraciones en versiones antiguas de iOS
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9">
+    
+    <label class="md-nav__link" for="nav-9">
+      Concurrencia. Contextos múltiples
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-9">
+        Concurrencia. Contextos múltiples
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap9/1_background/" title="Múltiples contextos para trabajos en *background*" class="md-nav__link">
+      Múltiples contextos para trabajos en *background*
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap9/2_comunicacion/" title="Comunicación entre contextos" class="md-nav__link">
+      Comunicación entre contextos
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap9/3_contextos_anidados/" title="Contextos anidados" class="md-nav__link">
+      Contextos anidados
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap9/4_ejercicios/" title="Ejercicios" class="md-nav__link">
+      Ejercicios
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-10" type="checkbox" id="nav-10">
+    
+    <label class="md-nav__link" for="nav-10">
+      Arquitecturas de aplicaciones en iOS
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-10">
+        Arquitecturas de aplicaciones en iOS
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap10/intro/" title="Introducción" class="md-nav__link">
+      Introducción
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap10/2_MVC/" title="Model/View/Controller" class="md-nav__link">
+      Model/View/Controller
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap10/3_MVP/" title="Model/View/Presenter" class="md-nav__link">
+      Model/View/Presenter
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap10/4_MVVM/" title="Model/View/ViewModel" class="md-nav__link">
+      Model/View/ViewModel
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap10/5_VIPER/" title="VIPER" class="md-nav__link">
+      VIPER
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap10/6a_ejercicios1/" title="Ejercicios parte I" class="md-nav__link">
+      Ejercicios parte I
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap10/6_ejercicios/" title="Ejercicios parte II" class="md-nav__link">
+      Ejercicios parte II
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap10/6_ejercicios_redux/" title="Ejercicios parte III" class="md-nav__link">
+      Ejercicios parte III
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  <h1>Modelar las entidades en código Swift</h1>
+                
+                <p>Desde Xcode 8 las clases de nuestro modelo de datos se pueden generar automáticamente y de modo transparente para el desarrollador cada vez que guardemos el modelo de datos (el <code>.xcdatamodeld</code>). </p>
+<p>En el editor del modelo de datos, si seleccionamos una entidad y accedemos a sus atributos en el panel de la derecha, veremos que hay una sección titulada <code>Class</code> que se ocupa del código generado, podemos cambiar:</p>
+<ul>
+<li>El nombre de la clase generada (por defecto el de la entidad)</li>
+<li>El módulo de Swift donde se crea la clase (por defecto pone <code>Global Namespace</code>, lo que significa que no hará falta ningún <code>import</code> para referenciar la clase)</li>
+<li>En <code>codegen</code> por defecto aparece seleccionada la opción  <code>Class definition</code>, que indica que Xcode va a generar por defecto la clase asociada a la entidad. Con "Manual" habría que hacer la generación explícitamente.</li>
+</ul>
+<p>Las clases se vuelven a generar si ha habido cambios cada vez que guardamos el modelo de datos (<code>File&gt;Save</code> o <code>Cmd-S</code>). No se generan en el directorio del proyecto, de modo que no son visibles directamente, sino en un directorio aparte denominado <code>Derived Data</code>, donde Xcode coloca típicamente el código auxiliar generado por él. Este directorio por defecto está en otro lugar totalmente distinto del proyecto, podemos ver dónde está en la opción <code>File&gt;Project Settings</code>, aunque no es necesario verlo ni recomendable modificar el contenido generado.</p>
+<blockquote>
+<p>Si queremos "echarle un vistazo" al fuente de las clases generadas sin tener que ir a la carpeta podemos usar el "truco" de hacer <code>Cmd-Click</code> sobre el nombre de una clase que tengamos en el código. Xcode abre automáticamente el archivo en el que se define. Esto funciona con las clases de nuestro proyecto, con las autogeneradas y almacenadas en <code>Derived Data</code> e incluso con clases del sistema, como por ejemplo <code>UIViewController</code>.</p>
+</blockquote>
+<p>Cuando una entidad tiene relaciones a uno o a muchos podemos manipular estas relaciones a través de propiedades y métodos de la clase generada. Veremos esto en la sección dedicada a CRUD.</p>
+<h4>Generación "semiautomática" de las clases</h4>
+<blockquote>
+<p>Desde la versión 8 de Xcode el modo "automático" es el activo por defecto, y actualmente lo explicado en este apartado no es necesario. No obstante, se incluye aquí porque esta forma de trabajar nos permite ver el código generado dentro del proyecto, lo que puede ser instructivo en el proceso de aprendizaje.</p>
+</blockquote>
+<p>Xcode tiene un asistente que puede crear las clases que representan a las entidades. Teniendo seleccionada una entidad cualquiera en el  editor del modelo de datos, elegimos la opción <code>Editor &gt; Create NSManagedObject Subclass...</code> en el menú de Xcode. Se activará el asistente, que es bastante sencillo de usar. Solo tenemos que elegir el modelo de datos (si es que tenemos más de uno) y las entidades para las que vamos a generar clases.</p>
+<p>Por cada entidad Xcode generará dos archivos. Uno de ellos es una clase con el mismo nombre que la entidad (aunque el nombre se puede cambiar, en la sección <code>Configuration</code> del editor del modelo de datos). El otro es una extensión de esta clase. En esta extensión se definen las propiedades de la entidad y un conjunto de métodos que nos facilitarán el trabajo con las relaciones entre entidades.</p>
+<blockquote>
+<p>Si tras generar las clases modificamos las entidades tendremos que borrar manualmente las clases generadas y volver a generarlas. Esto se ha solucionado en Xcode 8, como veremos en la siguiente sección.</p>
+</blockquote>
+<p>Vamos a ver un ejemplo del tipo de código que genera Xcode. Si tuviéramos el modelo de datos de la figura</p>
+<p><img alt="" src="../img/graph_datamodel_2.png" /></p>
+<p>Tras generar clases para todas las entidades, acabaremos con 6 archivos fuente nuevos, dos por cada entidad. Para cada entidad, el primero de ellos tiene el mismo nombre que la entidad terminado en <code>+CoreDataClass.swift</code>. Si lo abrimos veremos que es la definición de una clase "vacía", marcada con algunas anotaciones especiales para que funcione correctamente la maquinaria interna de Core Data. Por ejemplo, para la entidad <code>Usuario</code> tendríamos algo como:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="c1">//  Usuario+CoreDataClass.swift</span>
+<span class="kd">import</span> <span class="nc">Foundation</span>
+<span class="kd">import</span> <span class="nc">CoreData</span>
+
+<span class="kr">@objc</span><span class="p">(</span><span class="n">Usuario</span><span class="p">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Usuario</span><span class="p">:</span> <span class="bp">NSManagedObject</span> <span class="p">{</span>
+
+<span class="p">}</span>
+</pre></div>
+</td></tr></table>
+
+<p>El segundo de los archivos para cada entidad tiene un nombre terminado en <code>+CoreDataProperties.swift</code>. Este archivo contiene una extensión de la clase anterior. El código generado tiene dos partes diferenciadas.</p>
+<p>En primer lugar tenemos <strong>la definición de las propiedades</strong>, que en el ejemplo serían algo como</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kr">@NSManaged</span> <span class="kd">public</span> <span class="kd">var</span> <span class="nv">login</span><span class="p">:</span> <span class="nb">String</span><span class="p">?</span>
+<span class="kr">@NSManaged</span> <span class="kd">public</span> <span class="kd">var</span> <span class="nv">creditos</span><span class="p">:</span> <span class="nb">Int16</span>
+<span class="kr">@NSManaged</span> <span class="kd">public</span> <span class="kd">var</span> <span class="nv">password</span><span class="p">:</span> <span class="nb">String</span><span class="p">?</span>
+<span class="kr">@NSManaged</span> <span class="kd">public</span> <span class="kd">var</span> <span class="nv">mensajes</span><span class="p">:</span> <span class="bp">NSSet</span><span class="p">?</span>
+<span class="kr">@NSManaged</span> <span class="kd">public</span> <span class="kd">var</span> <span class="nv">conversaciones</span><span class="p">:</span> <span class="bp">NSOrderedSet</span><span class="p">?</span>
+</pre></div>
+</td></tr></table>
+
+<p>Nótese que en la definición de la clase tenemos no solo las propiedades de la entidad en sí sino también <strong>variables que representan las relaciones</strong>. Por ejemplo en el diagrama puede verse una relación uno a muchos entre <code>Usuario</code> y <code>Mensaje</code> llamada <code>mensajes</code>, que representaría los mensajes enviados por un usuario. Esta relación se representa en código con la propiedad del mismo nombre. Esto quiere decir que si tenemos un usuario y vamos imprimiendo los objetos contenidos en la propiedad <code>mensajes</code> en realidad estaremos accediendo a la entidad <code>Mensaje</code>. Esto es mucho más sencillo y "limpio" que andar haciendo JOINs en SQL para obtener los datos relacionados.</p>
+<p>Nótese que las relaciones "uno a muchos" se modelan con <code>NSSet</code> si no son ordenadas. Con esta estructura de datos no se nos garantiza un orden determinado al ir iterando por ella. En el caso de ser una relación marcada como ordenada Xcode habría generado un <code>NSOrderedSet</code>.</p>
+<p><code>NSSet</code> es el "equivalente" al  tipo <code>Set</code> de Swift, pero <code>NSSet</code> está definido en la librería <code>Foundation</code> y no en la librería estándar de Swift, ya que se desarrolló inicialmente para usarse en Objective C, que no tiene un tipo nativo para definir conjuntos. Hay que tener en cuenta que Core Data se desarrolló originalmente para Objective C, por lo que la infraestructura para implementarlo se ha "heredado" de éste.</p>
+<p><code>NSSet</code> y <code>NSOrderedSet</code> complican un poco el trabajo cuando en lugar de simplemente leer datos queremos modificarlos (añadir un nuevo mensaje a una conversación, por ejemplo), ya que en Objective C se diferencia entre colecciones <em>mutables</em> e <em>inmutables</em>. En Swift lo que hace que una colección sea mutable o no es si la declaramos con <code>let</code> o con <code>var</code>, como en el resto de tipos, pero en <code>Foundation</code> cada colección tiene dos variantes, la "versión" mutable y la inmutable. Así , los <code>NSSet</code> son <em>inmutables</em>, de modo que no podríamos añadir más elementos a la relación usando directamente la variable. Tendríamos que obtener una copia <em>mutable</em> de la colección y trabajar con ella. Una posibilidad para hacer esto es llamar al método <code>mutableSetValueForKey</code> de <code>NSManagedObject</code>, que nos devolverá un conjunto mutable para una propiedad determinada.</p>
+<p>Para facilitar el trabajo con las relaciones "a muchos" Xcode también <strong>genera métodos de acceso para las colecciones, o *accesores</strong>*. Estos accesores nos permiten añadir/eliminar elementos de la colección. En el caso del <code>Usuario</code>, generará algo como:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="c1">// </span><span class="cs">MARK:</span><span class="c1"> Generated accessors for mensajes</span>
+<span class="kd">extension</span> <span class="nc">Usuario</span> <span class="p">{</span>
+
+    <span class="kr">@objc</span><span class="p">(</span><span class="n">addMensajesObject</span><span class="p">:)</span>
+    <span class="kr">@NSManaged</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">addToMensajes</span><span class="p">(</span><span class="kc">_</span> <span class="n">value</span><span class="p">:</span> <span class="n">Mensaje</span><span class="p">)</span>
+
+    <span class="kr">@objc</span><span class="p">(</span><span class="n">removeMensajesObject</span><span class="p">:)</span>
+    <span class="kr">@NSManaged</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">removeFromMensajes</span><span class="p">(</span><span class="kc">_</span> <span class="n">value</span><span class="p">:</span> <span class="n">Mensaje</span><span class="p">)</span>
+
+    <span class="kr">@objc</span><span class="p">(</span><span class="n">addMensajes</span><span class="p">:)</span>
+    <span class="kr">@NSManaged</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">addToMensajes</span><span class="p">(</span><span class="kc">_</span> <span class="n">values</span><span class="p">:</span> <span class="bp">NSSet</span><span class="p">)</span>
+
+    <span class="kr">@objc</span><span class="p">(</span><span class="n">removeMensajes</span><span class="p">:)</span>
+    <span class="kr">@NSManaged</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">removeFromMensajes</span><span class="p">(</span><span class="kc">_</span> <span class="n">values</span><span class="p">:</span> <span class="bp">NSSet</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table>
+
+<p>De este modo en nuestro código podemos establecer una relación entre un determinado usuario y un determinado mensaje sin más que llamar al método <code>addToMensajes</code>. Por ejemplo podríamos hacer algo como:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="c1">//omitimos la parte en la que obtenemos una referencia al contexto de Core Data</span>
+<span class="kd">let</span> <span class="nv">u</span> <span class="p">=</span> <span class="bp">NSEntityDescription</span><span class="p">.</span><span class="n">insertNewObject</span><span class="p">(</span><span class="n">forEntityName</span><span class="p">:</span> <span class="s">&quot;Usuario&quot;</span><span class="p">,</span> <span class="n">into</span><span class="p">:</span> <span class="n">miContexto</span><span class="p">)</span> <span class="k">as</span><span class="p">!</span> <span class="n">Usuario</span>
+<span class="n">u</span><span class="p">.</span><span class="n">login</span> <span class="p">=</span> <span class="s">&quot;Pepe&quot;</span>
+<span class="n">u</span><span class="p">.</span><span class="n">password</span> <span class="p">=</span> <span class="s">&quot;123456&quot;</span>
+<span class="kd">let</span> <span class="nv">m</span> <span class="p">=</span> <span class="bp">NSEntityDescription</span><span class="p">.</span><span class="n">insertNewObject</span><span class="p">(</span><span class="n">forEntityName</span><span class="p">:</span> <span class="s">&quot;Mensaje&quot;</span><span class="p">,</span> <span class="n">into</span><span class="p">:</span> <span class="n">miContexto</span><span class="p">)</span> <span class="k">as</span><span class="p">!</span> <span class="n">Mensaje</span>
+<span class="n">u</span><span class="p">.</span><span class="n">addToMensajes</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<span class="k">try</span><span class="p">!</span> <span class="n">miContexto</span><span class="p">.</span><span class="n">save</span><span class="p">()</span> 
+</pre></div>
+</td></tr></table>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../4.1_crear_modelo/" title="Crear y editar modelos" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Anterior
+                </span>
+                Crear y editar modelos
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../4.3_CRUD/" title="CRUD en Core Data" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Siguiente
+                </span>
+                CRUD en Core Data
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.ac79c3b0.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      
+    
+  </body>
+</html>
