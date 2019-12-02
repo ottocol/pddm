@@ -1243,6 +1243,9 @@
 <li>Guardar el archivo <code>.json</code> con un <code>JSONEncoder</code></li>
 </ul>
 <p><strong>Comprobar</strong> que cuando se sale de la aplicación pulsando el botón <code>Home</code> se ha creado el archivo <code>mensaje.json</code> con el contenido adecuado. Usad la <a href="https://github.com/dsmelov/simsim/releases">aplicación SimSim</a> para ver la carpeta del Mac donde se guarda el <em>sandbox</em> de vuestra <em>app</em>.</p>
+<blockquote>
+<p>Asegúrate de descargar de Github una <em>release</em> con la aplicación SimSim ya compilada (una <em>release</em>), y no el código fuente. Cuando descargues la aplicación es posible que el Mac no te deje ejecutarla al no haber sido bajada de la App Store ni proceder de un desarrollador identificado. Si pasa eso, para darle permiso ve al icono de "Preferencias del Sistema", apartado de "Seguridad y Privacidad". . Aparecerá un mensaje diciendo que la app no se ha ejecutado porque la has descargado de Internet, puedes marcar en "Ejecutar de todos modos" para que se pueda usar.</p>
+</blockquote>
 <h3 id="recuperar-los-datos-del-archivo-1-puntos">Recuperar los datos del archivo (1 puntos)<a class="headerlink" href="#recuperar-los-datos-del-archivo-1-puntos" title="Permanent link">&para;</a></h3>
 <blockquote>
 <p>Si salimos de la aplicación pulsando el botón <code>Home</code> y volviendo a entrar en ella veremos muy probablemente que se conservan los datos, pero es porque el sistema no ha liberado la memoria. Si quieres estar seguro de que la libere, en el modo en que aparecen todas las <em>apps</em> que se están ejecutando, desliza hacia arriba esta aplicación. Para activar este modo, a partir del iPhone X puedes arrastrar desde el borde inferior de la pantalla del simulador. En dispositivos anteriores hay que pulsar dos veces el botón <em>home</em>.</p>
@@ -1255,14 +1258,12 @@
 </ul>
 <p><strong>Comprobar</strong> que cuando paramos el simulador y lo volvemos a poner en marcha se recuperan los datos del <code>.json</code>.</p>
 <h2 id="ejercicio-2-preferencias-de-usuario-15-puntos">Ejercicio 2: Preferencias de usuario (1.5 puntos)<a class="headerlink" href="#ejercicio-2-preferencias-de-usuario-15-puntos" title="Permanent link">&para;</a></h2>
-<p>Vamos a probar cómo se podría implementar el ejercicio anterior usando preferencias de usuario, aunque no lo implementaremos del todo, solo lo justo para hacer una prueba.</p>
-<p>En el método <code>textViewDidEndEditing</code> del <code>ViewController</code> añade el código Swift que necesites para almacenar el texto y la fecha como preferencias llamadas "texto" y "fecha" respectivamente (con la fecha guarda la propiedad de tipo <code>Date</code>, no la fecha convertida a texto). Al salir de la aplicación se debería crear un archivo <code>.plist</code> dentro del <code>Library/Preferences</code> del <em>sandbox</em>. <strong>Usando la <em>app</em> SimSim comprueba</strong> que efectivamente se ha creado este archivo.</p>
-<blockquote>
-<p>Por defecto el <code>.plist</code> con las preferencias tiene formato binario, así que si lo abres con un editor de texto no verás el contenido pero sí al abrirlo con Xcode</p>
-</blockquote>
+<p>Vamos a probar cómo se podría implementar el ejercicio anterior usando el API de preferencias de usuario (<code>UserDefaults</code>), aunque no lo implementaremos del todo, solo lo justo para hacer una prueba.</p>
+<p>En el método <code>textViewDidEndEditing</code> del <code>ViewController</code> añade el código Swift que necesites para almacenar el texto y la fecha como preferencias llamadas "texto" y "fecha" respectivamente (con la fecha guarda la propiedad de tipo <code>Date</code>, no la fecha convertida a texto). </p>
 <p>Finalmente, en el <code>viewDidLoad</code> añade código que recupere las dos preferencias y las imprima con <code>print</code> (no tiene sentido que las ponga en los <em>outlets</em> ya que eso ya lo hacíamos en el ejercicio anterior). Para recuperar la fecha, como es un objeto tendrás que usar el método <code>object(forKey:)</code> de <code>UserDefaults</code>.</p>
 <blockquote>
-<p>Fíjate que la ventaja de las preferencias sobre el Encoding/Decoding manual es que nos olvidamos de los detalles de cómo y dónde almacenar los datos. A cambio, perdemos el control sobre algunos aspectos como el formato de los datos o el momento exacto en que se guardan.</p>
+<p>Al salir de la aplicación iOS debería haber creado automáticamente un archivo <code>.plist</code> dentro del <code>Library/Preferences</code> del <em>sandbox</em>. <strong>Usando la <em>app</em> SimSim comprueba</strong> que efectivamente se ha creado este archivo. Fíjate que la ventaja de las preferencias sobre el Encoding/Decoding manual es que nos olvidamos de los detalles de cómo y dónde almacenar los datos. A cambio, perdemos el control sobre algunos aspectos como el formato de los datos o el momento exacto en que se guardan.</p>
+<p>Por defecto el <code>.plist</code> que crea iOS automáticamente con las preferencias tiene formato binario, así que si lo abres con un editor de texto no verás el contenido pero sí al abrirlo con Xcode</p>
 </blockquote>
                 
                   

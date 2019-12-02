@@ -287,6 +287,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#modificar-las-preferencias" class="md-nav__link">
+    Modificar las preferencias
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#ubicar-las-preferencias-en-el-panel-de-control-general" class="md-nav__link">
     Ubicar las preferencias en el “panel de control” general
   </a>
@@ -1106,6 +1113,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#modificar-las-preferencias" class="md-nav__link">
+    Modificar las preferencias
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#ubicar-las-preferencias-en-el-panel-de-control-general" class="md-nav__link">
     Ubicar las preferencias en el “panel de control” general
   </a>
@@ -1184,35 +1198,18 @@
 <p>Hay que destacar que <em>los valores registrados por defecto no son permanentes</em>. Es decir, que hay que registrarlos cada vez que arranque la aplicación.</p>
 <p>Si registramos un valor por defecto y este ya ha sido fijado por código (en la siguiente sección veremos cómo) el valor por defecto no “machacará” al ya fijado. Cuando iOS busca el valor para una preferencia sigue un esquema de “dominios”, en el que si no encuentra la clave en un dominio la busca en el siguiente. De este modo, primero busca en el dominio de los valores fijados por el usuario y si lo encuentra aquí lo devuelve. Es solo si no lo encuentra aquí cuando pasa a consultar los valores por defecto.</p>
 <p>En un poco tedioso tener que volcar en el código un diccionario con todos los valores por defecto. Un método muy habitual de registrar los valores por defecto de modo más “limpio” es almacenarlos en un archivo <code>.plist</code> y deserializarlos con <code>initWithContentsOfFile</code>, como vimos en el apartado de cómo leer <em>property lists</em>.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>### Modificar las preferencias
+<h3 id="modificar-las-preferencias">Modificar las preferencias<a class="headerlink" href="#modificar-las-preferencias" title="Permanent link">&para;</a></h3>
+<p>Simplemente tenemos que fijar la clave al valor que queramos usando la familia de métodos <code>set(valor,forKey:)</code></p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">prefs</span> <span class="p">=</span> <span class="n">UserDefaults</span><span class="p">()</span>
+<span class="n">prefs</span><span class="p">.</span><span class="kr">set</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">forKey</span><span class="p">:</span><span class="s">&quot;nivel&quot;</span><span class="p">)</span>
+<span class="n">prefs</span><span class="p">.</span><span class="kr">set</span><span class="p">(</span><span class="s">&quot;Pepito&quot;</span><span class="p">,</span> <span class="n">forKey</span><span class="p">:</span><span class="s">&quot;nick&quot;</span><span class="p">)</span>
+</pre></div>
+</td></tr></table>
 
-Simplemente tenemos que fijar la clave al valor que queramos usando la familia de métodos `set(valor,forKey:)`
-
-```swift
-let prefs = UserDefaults()
-prefs.set(5, forKey:&quot;nivel&quot;)
-prefs.set(&quot;Pepito&quot;, forKey:&quot;nick&quot;)
-```
-
-Por cuestiones de eficiencia, iOS no hace persistente el cambio inmediatamente sino a intervalos regulares o en momentos especiales (por ejemplo justo antes de salir de la aplicación). Una *property list* no se puede modificar de manera parcial y hay que crearla entera de nuevo, de manera que no sería eficiente persistir siempre los datos tras ejecutar el `set`. Por código podemos forzar el cambio en el `.plist` llamando al método `synchronize` de las preferencias
-
-```swift
-UserDefaults().synchronize()
-```
+<p>Por cuestiones de eficiencia, iOS no hace persistente el cambio inmediatamente sino a intervalos regulares o en momentos especiales (por ejemplo justo antes de salir de la aplicación). Una <em>property list</em> no se puede modificar de manera parcial y hay que crearla entera de nuevo, de manera que no sería eficiente persistir siempre los datos tras ejecutar el <code>set</code>. Por código podemos forzar el cambio en el <code>.plist</code> llamando al método <code>synchronize</code> de las preferencias</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">UserDefaults</span><span class="p">().</span><span class="n">synchronize</span><span class="p">()</span>
 </pre></div>
 </td></tr></table>
 
