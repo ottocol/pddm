@@ -24,16 +24,10 @@ nav:
     - Las entidades. Almacenar datos: 'cap3/3.3_entidades.md'
     - Recuperar los datos: 'cap3/3.4_recuperar_datos.md'        
   - Modelos de datos en Core Data: 
-    - Crear modelos: 'cap4/4.1_crear_modelo.md'
-    - Entidades con clases propias: 'cap4/4.2_clases_propias.md'
-    - CRUD: 'cap4/4.3_CRUD.md'
-    - Ejercicios: 'cap4/4.4_ejercicios.md'
-  - Más sobre modelos de datos: 
-    - Tipos de datos transformables: 'cap5/1_transformables.md'
-    - Validaciones: 'cap5/2_validaciones.md'
-    - El ciclo de vida de los objetos gestionados: 'cap5/3_ciclo_de_vida.md'
-    - Deshacer y rehacer operaciones: 'cap5/4_undo.md'
-    - Ejercicios: 'cap5/5_ejercicios.md'
+    - Crear y editar modelos: 'cap4/4.1_crear_modelo.md'
+    - Modelar las entidades en código Swift: 'cap4/4.2_clases_propias.md'
+    - CRUD en Core Data: 'cap4/4.3_CRUD.md'
+    - Ejercicios de modelos de datos: 'cap4/4.4_ejercicios.md'
   - Búsquedas en Core Data: 
     - Predicados: 'cap6/1_predicados.md'
     - Ordenación: 'cap6/2_ordenacion.md'
@@ -52,7 +46,7 @@ nav:
     - Migraciones pesadas: 'cap8/4_migraciones_pesadas.md'
     - Ejercicios: 'cap8/5_ejercicios.md'
     - Apéndice. migraciones en versiones antiguas de iOS: 'cap8/apendice_migraciones_ios9.md'
-  - Contextos múltiples: 
+  - Concurrencia. Contextos múltiples: 
     - Múltiples contextos para trabajos en *background*: 'cap9/1_background.md'
     - Comunicación entre contextos: 'cap9/2_comunicacion.md'
     - Contextos anidados: 'cap9/3_contextos_anidados.md'
