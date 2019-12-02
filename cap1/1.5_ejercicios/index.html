@@ -1244,7 +1244,9 @@
 </ul>
 <p><strong>Comprobar</strong> que cuando se sale de la aplicación pulsando el botón <code>Home</code> se ha creado el archivo <code>mensaje.json</code> con el contenido adecuado. Usad la <a href="https://github.com/dsmelov/simsim/releases">aplicación SimSim</a> para ver la carpeta del Mac donde se guarda el <em>sandbox</em> de vuestra <em>app</em>.</p>
 <h3 id="recuperar-los-datos-del-archivo-1-puntos">Recuperar los datos del archivo (1 puntos)<a class="headerlink" href="#recuperar-los-datos-del-archivo-1-puntos" title="Permanent link">&para;</a></h3>
-<p>Si salimos de la aplicación pulsando el botón <code>Home</code> y volviendo a entrar en ella veremos muy probablemente que se conservan los datos, pero es porque el sistema no ha liberado la memoria. Si quieres estar seguro de que la libere, en el modo en que aparecen todas las <em>apps</em> que se están ejecutando, desliza hacia arriba esta aplicación.</p>
+<blockquote>
+<p>Si salimos de la aplicación pulsando el botón <code>Home</code> y volviendo a entrar en ella veremos muy probablemente que se conservan los datos, pero es porque el sistema no ha liberado la memoria. Si quieres estar seguro de que la libere, en el modo en que aparecen todas las <em>apps</em> que se están ejecutando, desliza hacia arriba esta aplicación. Para activar este modo, a partir del iPhone X puedes arrastrar desde el borde inferior de la pantalla del simulador. En dispositivos anteriores hay que pulsar dos veces el botón <em>home</em>.</p>
+</blockquote>
 <p>Para recuperar los datos al arrancar la aplicación tenemos que  añadir código al <code>viewDidLoad</code> del <em>view controller</em>: (los dos primeros pasos son los mismos que para guardar los datos)</p>
 <ul>
 <li>Obtener la URL del directorio <code>Documents</code> de la aplicación </li>
