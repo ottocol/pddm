@@ -1348,7 +1348,7 @@
 <h4>Consultas con parámetros</h4>
 <p>En el ejemplo del apartado anterior la consulta SQL era una cadena fija pero en muchos casos necesitaremos parametrizar la consulta (por ejemplo obtener todos los alumnos cuyo apellido empiece por una letra, o los nacidos después de una fecha determinada). </p>
 <p>Aunque podemos construir el  <code>String</code> concatenando subcadenas es más "limpio" usar parámetros, que además nos protegen contra posibles intentos de inyección SQL. Al igual que en la mayoría de BD los parámetros se especifican con el símbolo <code>?</code></p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">querySQL</span> <span class="p">=</span> <span class="p">@</span><span class="s">&quot;SELECT * FROM alumnos WHERE fecha_nacimiento &lt; ?&quot;</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">querySQL</span> <span class="p">=</span> <span class="s">&quot;SELECT * FROM alumnos WHERE fecha_nacimiento &lt; ?&quot;</span>
 </pre></div>
 </td></tr></table>
 

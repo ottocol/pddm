@@ -1300,7 +1300,7 @@
 </pre></div>
 </td></tr></table>
 
-<p>De momento, <strong>dará errores de compilación</strong> porque todavía no has incluido SQLite en el proyecto. Ahora hay que configurar el proyecto para poder usar SQLite. <strong>Añade la librería</strong> <code>libsqlite3.tbd</code> y <strong>crea</strong> el <em>Bridging Header</em> según se explica en el apartado de <a href="../2.1_intro_SQLite/#config_sqlite">configuración de SQlite</a> de los apuntes.</p>
+<p>De momento, <strong>dará errores de compilación</strong> porque todavía no has incluido SQLite en el proyecto. Ahora hay que configurar el proyecto para poder usar SQLite. <strong>Añade la librería</strong> <code>libsqlite3.tbd</code> y <strong>crea</strong> el <em>Bridging Header</em> según se explica en el apartado <a href="../2.1_intro_SQLite/">"Configurar el proyecto"</a> de los apuntes.</p>
 <p>Para comprobar que funciona, introduce el siguiente código en el  método <code>viewDidLoad</code> del <code>MasterViewController</code>  </p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">manager</span> <span class="p">=</span> <span class="n">DBManager</span><span class="p">(</span><span class="n">db</span><span class="p">:</span><span class="s">&quot;tareas.db&quot;</span><span class="p">,</span> <span class="n">reload</span><span class="p">:</span><span class="kc">false</span><span class="p">)</span>
 </pre></div>
