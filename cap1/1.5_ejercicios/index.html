@@ -1258,9 +1258,9 @@
 <blockquote>
 <p>Por defecto el <code>.plist</code> con las preferencias tiene formato binario, así que si lo abres con un editor de texto no verás el contenido pero sí al abrirlo con Xcode</p>
 </blockquote>
-<p>Finalmente, en el <code>viewDidLoad</code> añade código que recupere las dos preferencias y las imprima con <code>print</code> (no tiene sentido que las ponga en los <em>outlets</em> ya que eso ya lo hacíamos en el ejercicio anterior). Para recuperar la fecha tendrás que usar el método <code>object</code> de <code>UserDefaults</code>.</p>
+<p>Finalmente, en el <code>viewDidLoad</code> añade código que recupere las dos preferencias y las imprima con <code>print</code> (no tiene sentido que las ponga en los <em>outlets</em> ya que eso ya lo hacíamos en el ejercicio anterior). Para recuperar la fecha, como es un objeto tendrás que usar el método <code>object(forKey:)</code> de <code>UserDefaults</code>.</p>
 <blockquote>
-<p>Fíjate que la ventaja de las preferencias sobre el JSON es que no necesitamos serializar/deserializar explícitamente los datos. A cambio perdemos el control sobre algunos aspectos como el formato de los datos o el momento exacto en que se guardan.</p>
+<p>Fíjate que la ventaja de las preferencias sobre el Encoding/Decoding manual es que nos olvidamos de los detalles de cómo y dónde almacenar los datos. A cambio, perdemos el control sobre algunos aspectos como el formato de los datos o el momento exacto en que se guardan.</p>
 </blockquote>
                 
                   
