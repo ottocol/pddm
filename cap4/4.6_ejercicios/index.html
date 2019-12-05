@@ -1192,8 +1192,11 @@ que sincroniza el objeto con la BD, en este caso como la nota todavía no está 
 <li>Añadir la entidad Libreta, con un atributo nombre de tipo String</li>
 <li>Crear una relación "a muchos" de <code>Libreta</code> a <code>Nota</code> y "a uno" de <code>Nota</code> a <code>Libreta</code> (la inversa)</li>
 </ul>
+<blockquote>
+<p>Recuerda que según las convenciones de Core Data, la relación de Libreta a Nota se debería llamar "notas" y la de nota a libreta, "libreta". Así, por ejemplo luego podríamos acceder a las notas de una libreta <code>l</code> con <code>l.notas</code>, lo que resulta intuitivo en el código.</p>
+</blockquote>
 <h2 id="crear-libretas-1-punto">Crear libretas (1 punto)<a class="headerlink" href="#crear-libretas-1-punto" title="Permanent link">&para;</a></h2>
-<p>Para simplificar será un botón "nueva libreta" en la pantalla inicial, que al pulsarlo debe mostrar un <em>alert</em> con un camp de texto con el nombre de la libreta. Tendrás que definirte el <em>action</em> correspondiente para detectar que se ha pulsado el botón. En el <em>action</em> puedes llamar al siguiente código para mostrar el <em>alert</em>:</p>
+<p>Para simplificar será un botón "nueva libreta" en la pantalla inicial, que al pulsarlo debe mostrar un <em>alert</em> con un campo de texto para escribir el nombre. Tendrás que definirte el <em>action</em> correspondiente para detectar que se ha pulsado el botón. En el <em>action</em> puedes llamar al siguiente código para mostrar el <em>alert</em>:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
@@ -1235,16 +1238,26 @@ que sincroniza el objeto con la BD, en este caso como la nota todavía no está 
 </ul>
 <h2 id="listar-libretas-15-puntos">Listar libretas (1.5 puntos)<a class="headerlink" href="#listar-libretas-15-puntos" title="Permanent link">&para;</a></h2>
 <p>Antes de empezar con esto asegúrate de que las libretas se están creando correctamente en la base de datos. En el <code>viewWillAppear</code> de la pantalla de lista de notas puedes poner provisionalmente una consulta que las imprima en la consola (luego acuérdate de quitarlo)</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5
-6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">queryLibretas</span> <span class="p">=</span> <span class="bp">NSFetchRequest</span><span class="p">&lt;</span><span class="n">Libreta</span><span class="p">&gt;(</span><span class="n">entityName</span><span class="p">:</span><span class="s">&quot;Libreta&quot;</span><span class="p">)</span>
-<span class="c1">//RECUERDA QUE NECESITAS EL CONTEXTO DE PERSISTENCIA. AQUI SE LLAMA &quot;miContexto&quot;</span>
-<span class="kd">let</span> <span class="nv">libretas</span> <span class="p">=</span> <span class="k">try</span><span class="p">!</span> <span class="n">miContexto</span><span class="p">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">queryLibretas</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">libreta</span> <span class="k">in</span> <span class="n">libretas</span> <span class="p">{</span>
-    <span class="bp">print</span><span class="p">(</span><span class="n">libreta</span><span class="p">.</span><span class="n">nombre</span><span class="p">)</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kr">override</span> <span class="kd">func</span> <span class="nf">viewWillAppear</span><span class="p">(</span><span class="kc">_</span> <span class="n">animated</span><span class="p">:</span> <span class="nb">Bool</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nv">queryLibretas</span> <span class="p">=</span> <span class="bp">NSFetchRequest</span><span class="p">&lt;</span><span class="n">Libreta</span><span class="p">&gt;(</span><span class="n">entityName</span><span class="p">:</span><span class="s">&quot;Libreta&quot;</span><span class="p">)</span>
+    <span class="k">guard</span> <span class="kd">let</span> <span class="nv">miDelegate</span> <span class="p">=</span> <span class="bp">UIApplication</span><span class="p">.</span><span class="n">shared</span><span class="p">.</span><span class="n">delegate</span> <span class="k">as</span><span class="p">?</span> <span class="n">AppDelegate</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">return</span>
+    <span class="p">}</span>
+    <span class="kd">let</span> <span class="nv">miContexto</span> <span class="p">=</span> <span class="n">miDelegate</span><span class="p">.</span><span class="n">persistentContainer</span><span class="p">.</span><span class="n">viewContext</span>
+    <span class="kd">let</span> <span class="nv">libretas</span> <span class="p">=</span> <span class="k">try</span><span class="p">!</span> <span class="n">miContexto</span><span class="p">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">queryLibretas</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">libreta</span> <span class="k">in</span> <span class="n">libretas</span> <span class="p">{</span>
+        <span class="bp">print</span><span class="p">(</span><span class="n">libreta</span><span class="p">.</span><span class="n">nombre</span><span class="p">)</span>
+    <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </td></tr></table>

@@ -1149,11 +1149,10 @@
 <p>Las entidades son los objetos que queremos hacer persistentes en nuestra aplicación. Debemos especificar sus propiedades (nombre y tipo) y como veremos en sesiones posteriores podemos establecer relaciones con otros objetos.</p>
 <p>Para gestionar las entidades debemos editar el archivo <code>xcdatamodeld</code>. En el editor visual de Xcode podemos, entre otras cosas, añadir entidades. Vamos a crear la única entidad que necesitamos en nuestra aplicación: <code>Nota</code>. Para ello seguir estos pasos:</p>
 <ol>
-<li><strong>Añadir una entidad</strong> pulsando el botón <code>Add Entity</code> de la parte inferior. Creará una nueva entidad llamada por defecto <code>Entity</code>. Podemos cambiarle el nombre haciendo doble clic sobre él. <ol start="2">
+<li><strong>Abrir el modelo de datos</strong>: el archivo del proyecto con el mismo nombre que el proyecto y extensión <code>xcdatamodeld</code>. </li>
+<li><strong>Añadir una entidad</strong> pulsando el botón <code>Add Entity</code> de la parte inferior. Creará una nueva entidad llamada por defecto <code>Entity</code>. Podemos cambiarle el nombre haciendo doble clic sobre él. </li>
 <li><strong>Cambiarle el nombre a la entidad</strong> a <code>Nota</code> </li>
-<li><strong>Añadir atributos</strong> pulsando sobre el botón <code>+</code> de la sección <code>Attributes</code>. Para cada atributo hay que especificar su nombre y tipo. Añadiremos dos atributos, <code>fecha</code>, de tipo <code>Date</code> y <code>texto</code> de tipo <code>String</code></li>
-</ol>
-</li>
+<li><strong>Añadir los atributos</strong> pulsando sobre el botón <code>+</code> de la sección <code>Attributes</code>. Para cada atributo hay que especificar su nombre y tipo. Añadiremos dos atributos, <code>fecha</code>, de tipo <code>Date</code> y <code>texto</code> de tipo <code>String</code></li>
 </ol>
 <blockquote>
 <p>IMPORTANTE: Los nombres de las entidades deben comenzar por mayúscula y los nombres de los atributos por minúscula. El editor no nos dejará hacer lo contrario.</p>
@@ -1239,50 +1238,6 @@
 <p>Faltaría <strong>actualizar la etiqueta con la fecha y hora de la nota</strong> para que refleje la fecha asignada, y también <strong>actualizar la etiqueta con el mensaje al usuario que indique "nota guardada" o algo similar</strong>. <strong>Escribe el código necesario para hacer esto</strong>.</p>
 <blockquote>
 <p>Tal y como está ahora el código, cada vez que pulses sobre <code>Guardar</code> se creará una <strong>nueva nota</strong>, así que aunque no modifiques el texto si pulsas varias veces tendrás varias notas, que serán iguales en contenido, aunque no con la misma fecha/hora). No es necesario que soluciones esto, déjalo así por el momento.</p>
-</blockquote>
-<h4>Ver los datos creados</h4>
-<blockquote>
-<p>No es estrictamente necesario que sigas estos pasos en la práctica, pero sí que al menos los leas para poder entender mejor el funcionamiento interno de Core Data</p>
-</blockquote>
-<p>Podemos "espiar" el almacenamiento persistente, que como ya hemos visto el código ha configurado como una base de datos SQLite con el mismo nombre del proyecto. Podemos localizar el archivo tecleando desde la terminal</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>find . -name MisNotas.sqlite -print
-</pre></div>
-</td></tr></table>
-
-<p>o más sencillo, usar alguna utilidad como <a href="http://simpholders.com/">Simpholders</a>, que ya hemos usado en otras sesiones para localizar el directorio con el <em>sandbox</em> de nuestra aplicación. En proyectos creados con Xcode 8 la base de datos se crea por defecto en el directorio <code>Library/Application Support</code> del <em>sandbox</em>.</p>
-<p>Si abrimos la base de datos usando alguna utilidad gráfica o bien desde la terminal (moviéndose al directorio donde está el <code>MisNotas.sqlite</code> y tecleando:)</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>sqlite3 MisNotas.sqlite
-</pre></div>
-</td></tr></table>
-
-<p>Debería aparecer el <em>prompt</em> de SQLite donde podemos por ejemplo ver la estructura de la BD, tecleando</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>sqlite&gt; .schema
-</pre></div>
-</td></tr></table>
-
-<p>Aparecerá algo como </p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5
-6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">ZNOTA</span> <span class="p">(</span> <span class="n">Z_PK</span> <span class="nb">INTEGER</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span> <span class="n">Z_ENT</span> <span class="nb">INTEGER</span><span class="p">,</span> <span class="n">Z_OPT</span> <span class="nb">INTEGER</span><span class="p">,</span>
-  <span class="n">ZFECHA</span> <span class="k">TIMESTAMP</span><span class="p">,</span> <span class="n">ZTEXTO</span> <span class="nb">VARCHAR</span> <span class="p">);</span>
-<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">Z_PRIMARYKEY</span> <span class="p">(</span><span class="n">Z_ENT</span> <span class="nb">INTEGER</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span> <span class="n">Z_NAME</span> <span class="nb">VARCHAR</span><span class="p">,</span> <span class="n">Z_SUPER</span>
-  <span class="nb">INTEGER</span><span class="p">,</span> <span class="n">Z_MAX</span> <span class="nb">INTEGER</span><span class="p">);</span>
-<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">Z_METADATA</span> <span class="p">(</span><span class="n">Z_VERSION</span> <span class="nb">INTEGER</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span> <span class="n">Z_UUID</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">),</span>
-  <span class="n">Z_PLIST</span> <span class="nb">BLOB</span><span class="p">);</span>
-</pre></div>
-</td></tr></table>
-
-<p>Como se ve, Core Data crea automáticamente una tabla para la entidad <code>Nota</code>, con el mismo nombre (aunque precedida de una curiosa <code>Z</code>, como los nombres de los campos). Crea también una columna por cada propiedad, asignándoles el tipo apropiado. Además automáticamente crea una clave primaria, aunque en la entidad no hemos definido ninguna.</p>
-<p>Podemos comprobar también si se ha guardado la nota ejecutando una sentencia SQL</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">sqlite</span><span class="o">&gt;</span> <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">ZNOTA</span><span class="p">;</span>
-</pre></div>
-</td></tr></table>
-
-<blockquote>
-<p>Es posible que el <code>select</code> anterior no muestre los registros actualizados, ya que a partir de iOS7 se usa un modo de SQLite que se llama "Write Ahead Logging".  En este modo, las transacciones para las que no se ha hecho <em>commit</em> se almacenan en un archivo <code>.wal</code> aparte. Para desactivar este modo consultar la documentación de Core Data.</p>
 </blockquote>
                 
                   
