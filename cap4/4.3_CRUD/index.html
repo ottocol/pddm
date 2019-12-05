@@ -395,6 +395,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap3/apendice_ver_almacenamiento/" title="Apéndice. Cómo examinar el almacenamiento persistente" class="md-nav__link">
+      Apéndice. Cómo examinar el almacenamiento persistente
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -485,6 +497,40 @@
     Actualización
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#relaciones-a-uno" class="md-nav__link">
+    Relaciones "a uno"
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relaciones-a-muchos" class="md-nav__link">
+    Relaciones “a muchos”
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lectura" class="md-nav__link">
+    Lectura
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#borrado" class="md-nav__link">
+    Borrado
+  </a>
+  
 </li>
       
       
@@ -504,7 +550,31 @@
 
 
   <li class="md-nav__item">
-    <a href="../4.4_ejercicios/" title="Ejercicios de modelos de datos" class="md-nav__link">
+    <a href="../4.4_validaciones/" title="Validaciones" class="md-nav__link">
+      Validaciones
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../4.5_transformables/" title="Transformables" class="md-nav__link">
+      Transformables
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../4.6_ejercicios/" title="Ejercicios de modelos de datos" class="md-nav__link">
       Ejercicios de modelos de datos
     </a>
   </li>
@@ -1061,6 +1131,40 @@
     Actualización
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#relaciones-a-uno" class="md-nav__link">
+    Relaciones "a uno"
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relaciones-a-muchos" class="md-nav__link">
+    Relaciones “a muchos”
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lectura" class="md-nav__link">
+    Lectura
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#borrado" class="md-nav__link">
+    Borrado
+  </a>
+  
 </li>
       
       
@@ -1082,8 +1186,8 @@
                 
                   <h1>CRUD en Core Data</h1>
                 
-                <p>Las operaciones más básicas con Core Data van a ser las de crear, obtener, actualizar y borrar objetos persistentes, es decir operaciones del tipo <code>Create/Read/Update/Delete</code> o CRUD. Aunque ya hemos explicado algo de esto en la sesión anterior, vamos a verlo aquí de modo más sistemático.</p>
-<h3 id="creacion">Creación<a class="headerlink" href="#creacion" title="Permanent link">&para;</a></h3>
+                <p>Las operaciones más básicas con Core Data van a ser las de crear, obtener, actualizar y borrar objetos persistentes, es decir operaciones del tipo <code>Create/Read/Update/Delete</code> o CRUD. Aunque ya hemos explicado algo de esto, vamos a verlo aquí de modo más sistemático.</p>
+<h2 id="creacion">Creación<a class="headerlink" href="#creacion" title="Permanent link">&para;</a></h2>
 <p>En nuestro código Swift estamos acostumbrados a crear objetos llamando simplemente al inicializador correspondiente, y podríamos estar tentados de hacer algo parecido con los objetos de Core Data, por ejemplo</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
@@ -1106,7 +1210,7 @@
 </pre></div>
 </td></tr></table>
 
-<h3 id="actualizacion">Actualización<a class="headerlink" href="#actualizacion" title="Permanent link">&para;</a></h3>
+<h2 id="actualizacion">Actualización<a class="headerlink" href="#actualizacion" title="Permanent link">&para;</a></h2>
 <p>Una vez tenemos un objeto gestionado (sea creado con <code>init(context:)</code> o ya existente y recuperado con una <em>fetch request</em>) podemos cambiar sus propiedades y establecer relaciones con otros objetos. No obstante los cambios solo se harán persistentes cuando guardemos el contexto de persistencia con <code>save</code>:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
@@ -1125,7 +1229,7 @@
 </td></tr></table>
 
 <p>Dicho de otro modo, los cambios que hacemos en los objetos son cambios únicamente dentro del <em>contexto</em> (o si se quiere decir así, “en la memoria”). Cuando usamos <code>save</code> los cambios se hacen también en el <em>almacenamiento</em> (<em>store</em>).</p>
-<h4>Relaciones "a uno"</h4>
+<h3 id="relaciones-a-uno">Relaciones "a uno"<a class="headerlink" href="#relaciones-a-uno" title="Permanent link">&para;</a></h3>
 <p>Las relaciones "uno a uno" se representan con propiedades que son objetos "individuales". Por ejemplo un <code>Mensaje</code> pertenece a un <code>Usuario</code> a través de la relación <code>usuario</code>. De este modo, podemos tratar la relación simplemente como una propiedad más.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">mensaje</span><span class="p">.</span><span class="n">usuario</span> <span class="p">=</span> <span class="n">nuevoUsuario</span>
 </pre></div>
@@ -1151,13 +1255,13 @@
 <span class="c1">//Core Data hace lo propio con Usuario-&gt;&gt;Mensaje (1 a N)</span>
 <span class="bp">print</span><span class="p">(</span><span class="s">&quot;Mensajes del usuario </span><span class="si">\(</span><span class="n">u</span><span class="p">.</span><span class="n">login</span><span class="si">)</span><span class="s">&quot;</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">mensaje</span> <span class="k">in</span> <span class="n">u</span><span class="p">.</span><span class="n">mensajes</span> <span class="p">{</span>
-        <span class="bp">print</span><span class="p">(</span><span class="s">&quot;</span><span class="si">\(</span><span class="n">mensaje</span><span class="p">.</span><span class="n">fecha</span><span class="si">)</span><span class="s"> </span><span class="si">\(</span><span class="n">mensaje</span><span class="p">.</span><span class="n">texto</span><span class="si">)</span><span class="s">&quot;</span><span class="p">)</span>
+    <span class="bp">print</span><span class="p">(</span><span class="s">&quot;</span><span class="si">\(</span><span class="n">mensaje</span><span class="p">.</span><span class="n">fecha</span><span class="si">)</span><span class="s"> </span><span class="si">\(</span><span class="n">mensaje</span><span class="p">.</span><span class="n">texto</span><span class="si">)</span><span class="s">&quot;</span><span class="p">)</span>
 <span class="p">}</span>
 </pre></div>
 </td></tr></table>
 
 <p>En el ejemplo anterior decimos que un mensaje pertenece a un determinado usuario estableciendo la relación que va de Mensaje-&gt;Usuario. Core Data hace lo propio con la inversa, que va de Usuario-&gt;&gt;Mensaje, de modo que si accedemos al usuario e iteramos por los mensajes, veremos el nuevo mensaje que hemos añadido.</p>
-<h4>Relaciones “a muchos”</h4>
+<h3 id="relaciones-a-muchos">Relaciones “a muchos”<a class="headerlink" href="#relaciones-a-muchos" title="Permanent link">&para;</a></h3>
 <p>Como ya vimos al crear el modelo de datos, si usamos clases propias en el modelo, por cada relación del tipo "a muchos" se genera una propiedad del tipo <code>NSSet</code> (<code>NSOrderedSet</code> si la relación es ordenada). Nótese que son clases inmutables. Si queremos añadir o eliminar elementos a la relación tendremos que copiar la propiedad en un <code>NSMutableSet</code> o <code>NSMutableOrderedSet</code>, hacer la modificación y luego asignar el nuevo conjunto a la propiedad.</p>
 <p>Afortunadamente hay una forma mucho más sencilla de añadir/eliminar elementos, usar los métodos <code>addToXXX</code> y <code>removeFromXXX</code> obtenidos al generar las clases del modelo.  Por ejemplo:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
@@ -1184,7 +1288,7 @@
 </pre></div>
 </td></tr></table>
 
-<h4>Lectura</h4>
+<h2 id="lectura">Lectura<a class="headerlink" href="#lectura" title="Permanent link">&para;</a></h2>
 <p>Para recuperar un objeto gestionado por Core Data normalmente se usan <em>fetch requests</em>, que en un entorno de BD se correspondería con las consultas. En la siguiente sesión veremos con más detalle la sintaxis, pero por ejemplo obtener todas las instancias de una determinada entidad es sencillo, ya que no hay que especificar condición alguna, solo crear y ejecutar una <em>fetch request</em> del tipo deseado:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
@@ -1207,7 +1311,7 @@
 <blockquote>
 <p>En las clases generadas por Xcode tenemos un método de utilidad llamado <code>fetchRequest</code> que simplifica el trabajo de la primera línea del ejemplo anterior. Así, podemos hacer simplemente <code>let request = Usuario.fetchRequest()</code></p>
 </blockquote>
-<h4>Borrado</h4>
+<h2 id="borrado">Borrado<a class="headerlink" href="#borrado" title="Permanent link">&para;</a></h2>
 <p>Podemos eliminar un objeto del contexto llamando a <code>delete</code> sobre el contexto y pasándole el objeto a eliminar</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">miContexto</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="n">usuario</span><span class="p">)</span>
 </pre></div>
@@ -1251,13 +1355,13 @@
           </a>
         
         
-          <a href="../4.4_ejercicios/" title="Ejercicios de modelos de datos" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../4.4_validaciones/" title="Validaciones" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Siguiente
                 </span>
-                Ejercicios de modelos de datos
+                Validaciones
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

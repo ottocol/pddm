@@ -83,6 +83,10 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
+      <a href="#generacion-automatica-de-las-clases" tabindex="1" class="md-skip">
+        Saltar a contenido
+      </a>
+    
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header-nav md-grid">
@@ -391,6 +395,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap3/apendice_ver_almacenamiento/" title="Apéndice. Cómo examinar el almacenamiento persistente" class="md-nav__link">
+      Apéndice. Cómo examinar el almacenamiento persistente
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -441,9 +457,43 @@
     <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
     
     
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Modelar las entidades en código Swift
+      </label>
+    
     <a href="./" title="Modelar las entidades en código Swift" class="md-nav__link md-nav__link--active">
       Modelar las entidades en código Swift
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Tabla de contenidos</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#generacion-automatica-de-las-clases" class="md-nav__link">
+    Generación automática de las clases
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generacion-semiautomatica-de-las-clases" class="md-nav__link">
+    Generación "semiautomática" de las clases
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -466,7 +516,31 @@
 
 
   <li class="md-nav__item">
-    <a href="../4.4_ejercicios/" title="Ejercicios de modelos de datos" class="md-nav__link">
+    <a href="../4.4_validaciones/" title="Validaciones" class="md-nav__link">
+      Validaciones
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../4.5_transformables/" title="Transformables" class="md-nav__link">
+      Transformables
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../4.6_ejercicios/" title="Ejercicios de modelos de datos" class="md-nav__link">
       Ejercicios de modelos de datos
     </a>
   </li>
@@ -1000,6 +1074,42 @@
               </div>
             
             
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Tabla de contenidos</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#generacion-automatica-de-las-clases" class="md-nav__link">
+    Generación automática de las clases
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generacion-semiautomatica-de-las-clases" class="md-nav__link">
+    Generación "semiautomática" de las clases
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           <div class="md-content">
             <article class="md-content__inner md-typeset">
@@ -1008,7 +1118,9 @@
                 
                   <h1>Modelar las entidades en código Swift</h1>
                 
-                <p>Desde Xcode 8 las clases de nuestro modelo de datos se pueden generar automáticamente y de modo transparente para el desarrollador cada vez que guardemos el modelo de datos (el <code>.xcdatamodeld</code>). </p>
+                <p>Desde el punto de vista del código Swift las entidades del modelo serán instancias de clases Swift. Así, dada la entidad Usuario con ciertos atributos lo que tendremos en Swift es una clase con el mismo nombre y las correspondientes propiedades.</p>
+<h2 id="generacion-automatica-de-las-clases">Generación automática de las clases<a class="headerlink" href="#generacion-automatica-de-las-clases" title="Permanent link">&para;</a></h2>
+<p>Desde Xcode 8 las clases de nuestro modelo de datos se pueden generar automáticamente y de modo transparente para el desarrollador cada vez que guardemos el modelo de datos (el <code>.xcdatamodeld</code>). </p>
 <p>En el editor del modelo de datos, si seleccionamos una entidad y accedemos a sus atributos en el panel de la derecha, veremos que hay una sección titulada <code>Class</code> que se ocupa del código generado, podemos cambiar:</p>
 <ul>
 <li>El nombre de la clase generada (por defecto el de la entidad)</li>
@@ -1020,9 +1132,9 @@
 <p>Si queremos "echarle un vistazo" al fuente de las clases generadas sin tener que ir a la carpeta podemos usar el "truco" de hacer <code>Cmd-Click</code> sobre el nombre de una clase que tengamos en el código. Xcode abre automáticamente el archivo en el que se define. Esto funciona con las clases de nuestro proyecto, con las autogeneradas y almacenadas en <code>Derived Data</code> e incluso con clases del sistema, como por ejemplo <code>UIViewController</code>.</p>
 </blockquote>
 <p>Cuando una entidad tiene relaciones a uno o a muchos podemos manipular estas relaciones a través de propiedades y métodos de la clase generada. Veremos esto en la sección dedicada a CRUD.</p>
-<h4>Generación "semiautomática" de las clases</h4>
+<h2 id="generacion-semiautomatica-de-las-clases">Generación "semiautomática" de las clases<a class="headerlink" href="#generacion-semiautomatica-de-las-clases" title="Permanent link">&para;</a></h2>
 <blockquote>
-<p>Desde la versión 8 de Xcode el modo "automático" es el activo por defecto, y actualmente lo explicado en este apartado no es necesario. No obstante, se incluye aquí porque esta forma de trabajar nos permite ver el código generado dentro del proyecto, lo que puede ser instructivo en el proceso de aprendizaje.</p>
+<p>Desde la versión 8 de Xcode el modo "automático" es el activo por defecto. No obstante en algunos casos nos interesará personalizar el código generado por Xcode y para esto no podemos usar la generación automática, ya que Xcode sobreescribiría los cambios hechos manualmente.</p>
 </blockquote>
 <p>Xcode tiene un asistente que puede crear las clases que representan a las entidades. Teniendo seleccionada una entidad cualquiera en el  editor del modelo de datos, elegimos la opción <code>Editor &gt; Create NSManagedObject Subclass...</code> en el menú de Xcode. Se activará el asistente, que es bastante sencillo de usar. Solo tenemos que elegir el modelo de datos (si es que tenemos más de uno) y las entidades para las que vamos a generar clases.</p>
 <p>Por cada entidad Xcode generará dos archivos. Uno de ellos es una clase con el mismo nombre que la entidad (aunque el nombre se puede cambiar, en la sección <code>Configuration</code> del editor del modelo de datos). El otro es una extensión de esta clase. En esta extensión se definen las propiedades de la entidad y un conjunto de métodos que nos facilitarán el trabajo con las relaciones entre entidades.</p>
@@ -1064,7 +1176,10 @@
 </pre></div>
 </td></tr></table>
 
-<p>Nótese que en la definición de la clase tenemos no solo las propiedades de la entidad en sí sino también <strong>variables que representan las relaciones</strong>. Por ejemplo en el diagrama puede verse una relación uno a muchos entre <code>Usuario</code> y <code>Mensaje</code> llamada <code>mensajes</code>, que representaría los mensajes enviados por un usuario. Esta relación se representa en código con la propiedad del mismo nombre. Esto quiere decir que si tenemos un usuario y vamos imprimiendo los objetos contenidos en la propiedad <code>mensajes</code> en realidad estaremos accediendo a la entidad <code>Mensaje</code>. Esto es mucho más sencillo y "limpio" que andar haciendo JOINs en SQL para obtener los datos relacionados.</p>
+<p>Nótese que en la definición de la clase tenemos no solo las propiedades de la entidad en sí sino también <strong>propiedades que representan las relaciones</strong>. Por ejemplo en el diagrama puede verse una relación uno a muchos entre <code>Usuario</code> y <code>Mensaje</code> llamada <code>mensajes</code>, que representaría los mensajes enviados por un usuario. Esta relación se representa en código con la propiedad del mismo nombre. Esto quiere decir que si tenemos un usuario y vamos imprimiendo los objetos contenidos en la propiedad <code>mensajes</code> en realidad estaremos accediendo a la entidad <code>Mensaje</code>. Esto es mucho más sencillo y "limpio" que andar haciendo JOINs en SQL para obtener los datos relacionados.</p>
+<blockquote>
+<p>Que las relaciones se vean en código como propiedades es lo que explica la convención de darle siempre a una relación el nombre de la entidad destino en singular si es "a uno" y en plural si es "a muchos", ya que en código queda bastante natural. Por ejemplo dado un usuario <code>u</code> sus mensajes serían accesibles como <code>u.mensajes</code>, y dado un mensaje <code>m</code> la conversación a la que pertenece estaría en <code>m.conversacion</code>. </p>
+</blockquote>
 <p>Nótese que las relaciones "uno a muchos" se modelan con <code>NSSet</code> si no son ordenadas. Con esta estructura de datos no se nos garantiza un orden determinado al ir iterando por ella. En el caso de ser una relación marcada como ordenada Xcode habría generado un <code>NSOrderedSet</code>.</p>
 <p><code>NSSet</code> es el "equivalente" al  tipo <code>Set</code> de Swift, pero <code>NSSet</code> está definido en la librería <code>Foundation</code> y no en la librería estándar de Swift, ya que se desarrolló inicialmente para usarse en Objective C, que no tiene un tipo nativo para definir conjuntos. Hay que tener en cuenta que Core Data se desarrolló originalmente para Objective C, por lo que la infraestructura para implementarlo se ha "heredado" de éste.</p>
 <p><code>NSSet</code> y <code>NSOrderedSet</code> complican un poco el trabajo cuando en lugar de simplemente leer datos queremos modificarlos (añadir un nuevo mensaje a una conversación, por ejemplo), ya que en Objective C se diferencia entre colecciones <em>mutables</em> e <em>inmutables</em>. En Swift lo que hace que una colección sea mutable o no es si la declaramos con <code>let</code> o con <code>var</code>, como en el resto de tipos, pero en <code>Foundation</code> cada colección tiene dos variantes, la "versión" mutable y la inmutable. Así , los <code>NSSet</code> son <em>inmutables</em>, de modo que no podríamos añadir más elementos a la relación usando directamente la variable. Tendríamos que obtener una copia <em>mutable</em> de la colección y trabajar con ella. Una posibilidad para hacer esto es llamar al método <code>mutableSetValueForKey</code> de <code>NSManagedObject</code>, que nos devolverá un conjunto mutable para una propiedad determinada.</p>
@@ -1109,10 +1224,10 @@
 5
 6
 7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="c1">//omitimos la parte en la que obtenemos una referencia al contexto de Core Data</span>
-<span class="kd">let</span> <span class="nv">u</span> <span class="p">=</span> <span class="bp">NSEntityDescription</span><span class="p">.</span><span class="n">insertNewObject</span><span class="p">(</span><span class="n">forEntityName</span><span class="p">:</span> <span class="s">&quot;Usuario&quot;</span><span class="p">,</span> <span class="n">into</span><span class="p">:</span> <span class="n">miContexto</span><span class="p">)</span> <span class="k">as</span><span class="p">!</span> <span class="n">Usuario</span>
+<span class="kd">let</span> <span class="nv">u</span> <span class="p">=</span> <span class="n">Usuario</span><span class="p">(</span><span class="n">context</span><span class="p">:</span><span class="n">miContexto</span><span class="p">)</span>
 <span class="n">u</span><span class="p">.</span><span class="n">login</span> <span class="p">=</span> <span class="s">&quot;Pepe&quot;</span>
 <span class="n">u</span><span class="p">.</span><span class="n">password</span> <span class="p">=</span> <span class="s">&quot;123456&quot;</span>
-<span class="kd">let</span> <span class="nv">m</span> <span class="p">=</span> <span class="bp">NSEntityDescription</span><span class="p">.</span><span class="n">insertNewObject</span><span class="p">(</span><span class="n">forEntityName</span><span class="p">:</span> <span class="s">&quot;Mensaje&quot;</span><span class="p">,</span> <span class="n">into</span><span class="p">:</span> <span class="n">miContexto</span><span class="p">)</span> <span class="k">as</span><span class="p">!</span> <span class="n">Mensaje</span>
+<span class="kd">let</span> <span class="nv">m</span> <span class="p">=</span> <span class="n">Mensaje</span><span class="p">(</span><span class="n">context</span><span class="p">:</span><span class="n">miContexto</span><span class="p">)</span>
 <span class="n">u</span><span class="p">.</span><span class="n">addToMensajes</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
 <span class="k">try</span><span class="p">!</span> <span class="n">miContexto</span><span class="p">.</span><span class="n">save</span><span class="p">()</span> 
 </pre></div>

@@ -36,7 +36,7 @@
     
     
       
-        <title>5 ejercicios - PDDM-iOS</title>
+        <title>Ejercicios de modelos de datos - PDDM-iOS</title>
       
     
     
@@ -83,7 +83,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#ejercicios-de-la-sesion" tabindex="1" class="md-skip">
+      <a href="#validacion-de-datos-1-punto" tabindex="1" class="md-skip">
         Saltar a contenido
       </a>
     
@@ -109,7 +109,7 @@
             </span>
             <span class="md-header-nav__topic">
               
-                5 ejercicios
+                Ejercicios de modelos de datos
               
             </span>
           
@@ -395,6 +395,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap3/apendice_ver_almacenamiento/" title="Apéndice. Cómo examinar el almacenamiento persistente" class="md-nav__link">
+      Apéndice. Cómo examinar el almacenamiento persistente
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -404,10 +416,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
     
     <label class="md-nav__link" for="nav-4">
       Modelos de datos en Core Data
@@ -425,7 +439,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../cap4/4.1_crear_modelo/" title="Crear y editar modelos" class="md-nav__link">
+    <a href="../4.1_crear_modelo/" title="Crear y editar modelos" class="md-nav__link">
       Crear y editar modelos
     </a>
   </li>
@@ -437,7 +451,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../cap4/4.2_clases_propias/" title="Modelar las entidades en código Swift" class="md-nav__link">
+    <a href="../4.2_clases_propias/" title="Modelar las entidades en código Swift" class="md-nav__link">
       Modelar las entidades en código Swift
     </a>
   </li>
@@ -449,7 +463,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../cap4/4.3_CRUD/" title="CRUD en Core Data" class="md-nav__link">
+    <a href="../4.3_CRUD/" title="CRUD en Core Data" class="md-nav__link">
       CRUD en Core Data
     </a>
   </li>
@@ -461,9 +475,102 @@
 
 
   <li class="md-nav__item">
-    <a href="../../cap4/4.4_ejercicios/" title="Ejercicios de modelos de datos" class="md-nav__link">
+    <a href="../4.4_validaciones/" title="Validaciones" class="md-nav__link">
+      Validaciones
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../4.5_transformables/" title="Transformables" class="md-nav__link">
+      Transformables
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Ejercicios de modelos de datos
+      </label>
+    
+    <a href="./" title="Ejercicios de modelos de datos" class="md-nav__link md-nav__link--active">
       Ejercicios de modelos de datos
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Tabla de contenidos</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#validacion-de-datos-1-punto" class="md-nav__link">
+    Validación de datos (1 punto)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#anadir-la-entidad-libreta-1-punto" class="md-nav__link">
+    Añadir la entidad Libreta (1 punto)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#crear-libretas-1-punto" class="md-nav__link">
+    Crear libretas (1 punto)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#listar-libretas-15-puntos" class="md-nav__link">
+    Listar libretas (1.5 puntos)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#asociar-una-libreta-a-la-nota-actual-1-punto" class="md-nav__link">
+    Asociar una libreta a la nota actual (1 punto)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mostrar-la-libreta-al-listar-las-notas-05-puntos" class="md-nav__link">
+    Mostrar la libreta al listar las notas (0.5 puntos)
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -1007,43 +1114,44 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#ejercicios-de-la-sesion" class="md-nav__link">
-    Ejercicios de la sesión
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#usar-la-clase-nota-1-punto" class="md-nav__link">
-    Usar la clase Nota (1 punto)
+  <a href="#validacion-de-datos-1-punto" class="md-nav__link">
+    Validación de datos (1 punto)
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#validacion-de-datos-15-puntos" class="md-nav__link">
-    Validación de datos (1.5 puntos)
+      
+        <li class="md-nav__item">
+  <a href="#anadir-la-entidad-libreta-1-punto" class="md-nav__link">
+    Añadir la entidad Libreta (1 punto)
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#transformables-15-puntos" class="md-nav__link">
-    Transformables (1.5 puntos)
+      
+        <li class="md-nav__item">
+  <a href="#crear-libretas-1-punto" class="md-nav__link">
+    Crear libretas (1 punto)
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#anadir-otra-entidad-6-puntos" class="md-nav__link">
-    Añadir otra entidad (6 puntos)
+      
+        <li class="md-nav__item">
+  <a href="#listar-libretas-15-puntos" class="md-nav__link">
+    Listar libretas (1.5 puntos)
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
+      
+        <li class="md-nav__item">
+  <a href="#asociar-una-libreta-a-la-nota-actual-1-punto" class="md-nav__link">
+    Asociar una libreta a la nota actual (1 punto)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mostrar-la-libreta-al-listar-las-notas-05-puntos" class="md-nav__link">
+    Mostrar la libreta al listar las notas (0.5 puntos)
+  </a>
   
 </li>
       
@@ -1064,76 +1172,27 @@
               
                 
                 
-                  <h1>5 ejercicios</h1>
+                  <h1>Ejercicios de modelos de datos</h1>
                 
-                <h2 id="ejercicios-de-la-sesion">Ejercicios de la sesión<a class="headerlink" href="#ejercicios-de-la-sesion" title="Permanent link">&para;</a></h2>
-<p>En esta sesión vamos a continuar trabajando sobre la aplicación de notas de la primera sesión de Core Data. Necesitarás que esa sesión esté terminada para poder continuar en ella.</p>
-<blockquote>
-<p>Antes de ponerte a hacer las modificaciones de esta sesión asegúrate de que has hecho un <code>commit</code> con el mensaje <code>terminada sesión 3</code>. También puedes hacer un <code>.zip</code> con el proyecto, llamarlo <code>notas_sesion_3.zip</code> y adjuntarlo en las entregas de la asignatura. Así cuando se evalúe el ejercicio el profesor podrá consultar el estado de la aplicación antes de estos ejercicios.</p>
-</blockquote>
-<h3 id="usar-la-clase-nota-1-punto">Usar la clase <code>Nota</code> (1 punto)<a class="headerlink" href="#usar-la-clase-nota-1-punto" title="Permanent link">&para;</a></h3>
-<p>Modifica el código que tenías de Core Data para que use la clase <code>Nota</code>, que habrá generado automáticamente Xcode. Es decir:</p>
-<ul>
-<li>Para crear una nota, en lugar de <code>insertNewObject</code> puedes usar el inicializador <code>Nota(context:)</code>.</li>
-<li>Cuando accedas a los atributos lo puedes hacer directamente en vez de con <code>set(value:forKey)</code> y <code>value(forKey:)</code> </li>
-</ul>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="c1">//En vez de...</span>
-<span class="n">nuevaNota</span><span class="p">.</span><span class="kr">set</span><span class="p">(</span><span class="n">value</span><span class="p">:</span><span class="s">&quot;EL TEXTO QUE HAGA FALTA ASIGNAR&quot;</span><span class="p">,</span> <span class="n">forKey</span><span class="p">:</span><span class="s">&quot;texto&quot;</span><span class="p">)</span>
-
-<span class="c1">//ahora sería</span>
-<span class="n">nuevaNota</span><span class="p">.</span><span class="n">fecha</span> <span class="p">=</span> <span class="s">&quot;EL TEXTO QUE HAGA FALTA ASIGNAR&quot;</span>
-</pre></div>
-</td></tr></table>
-
-<h3 id="validacion-de-datos-15-puntos">Validación de datos (1.5 puntos)<a class="headerlink" href="#validacion-de-datos-15-puntos" title="Permanent link">&para;</a></h3>
+                <p>En esta sesión vamos a continuar trabajando sobre la aplicación de notas de la primera sesión de Core Data. <strong>Necesitarás que la sesión anterior esté terminada</strong> para poder continuar con esta.</p>
+<h2 id="validacion-de-datos-1-punto">Validación de datos (1 punto)<a class="headerlink" href="#validacion-de-datos-1-punto" title="Permanent link">&para;</a></h2>
 <p>Queremos validar que la nota no esté vacía antes de guardarla. Para ello:</p>
 <ol>
 <li>En el modelo, ve a la entidad <code>Nota</code>, atributo <code>texto</code> y en el panel de propiedades de la derecha, en la validación, pon 1 como longitud mínima.</li>
 <li>Captura los errores de validación del <code>save</code> con un <code>do...catch let error as NSError</code>. El error que nos interesa tiene el código 1670, correspondiente a la constante <code>NSNSValidationStringTooShortError</code>. Puedes mostrar el error en el campo de texo donde se muestra el mensaje de "nota guardada"</li>
 <li>En el <code>catch</code>, si la nota no tiene longitud válida, además de mostrar el error debes descartar el objeto pendiente de guardar. Puedes hacerlo con</li>
 </ol>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">miContexto</span><span class="p">.</span><span class="n">refresh</span><span class="p">(</span><span class="n">nuevaNota</span><span class="p">,</span> <span class="n">mergeChanges</span><span class="p">:</span> <span class="kc">false</span><span class="p">)</span>
+<p><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">miContexto</span><span class="p">.</span><span class="n">refresh</span><span class="p">(</span><span class="n">nuevaNota</span><span class="p">,</span> <span class="n">mergeChanges</span><span class="p">:</span> <span class="kc">false</span><span class="p">)</span>
 </pre></div>
 </td></tr></table>
-
-<p>que sincroniza el objeto con la BD, en este caso como la nota todavía no está guardada, descarta los cambios.</p>
-<h3 id="transformables-15-puntos">Transformables (1.5 puntos)<a class="headerlink" href="#transformables-15-puntos" title="Permanent link">&para;</a></h3>
-<p>Vamos a añadirle a cada nota un atributo que sea un array de <em>tags</em>, o palabras clave. Es decir, un array de Strings.</p>
-<ol>
-<li>Añade el atributo, llamado <code>tags</code> en el editor del modelo. Asígnale como tipo <code>Transformable</code></li>
-<li>En las propiedades del atributo, en el cuadro de texto <code>Custom class</code> puedes teclear el tipo deseado. Por defecto es <code>NSObject</code>, simplemente un objeto cualquiera (algo así como el <code>Any</code> de Swift). Cámbialo tecleando <code>[String]</code></li>
-<li>En la interfaz de usuario de alta de nota añade un campo de texto más. Allí el usuario debe escribir las <em>tags</em> como una lista de palabras separadas por espacios</li>
-<li>Para pasar de una cadena separada por espacios a un array de Strings puedes usar el método de la clase <code>String</code> llamado <code>components(separatedBy:)</code>, que aplicado sobre una cadena la divide por la cadena "separadora" generando un array</li>
-</ol>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="s">&quot;hola mundo&quot;</span><span class="p">.</span><span class="n">components</span><span class="p">(</span><span class="n">separatedBy</span><span class="p">:</span><span class="s">&quot; &quot;</span><span class="p">)</span>  <span class="c1">//devolvería [&quot;hola&quot;, &quot;mundo&quot;]</span>
-</pre></div>
-</td></tr></table>
-
-<p>Haz que la lista de <em>tags</em> aparezca en la lista de notas, pero ahora separadas por comas:</p>
-<ol>
-<li>Tendrás que cambiar el prototipo de la celda por un tipo que tenga texto de "detalle" (cualquiera que no sea <code>Basic</code>). </li>
-<li>En el método <code>tableView(_:, cellForRowAt:)</code>  del <code>ListaNotasController</code>, la etiqueta de detalle es la propiedad <code>cell.detailTextLabel</code>. Como texto de la etiqueta pon la lista de <em>tags</em> como un único String donde estén separadas por barras. Puedes usar <code>joined</code> para componer un String a partir de un array de Strings (es como el "inverso" del método <code>components</code> que usaste antes)</li>
-</ol>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">miArray</span> <span class="p">=</span> <span class="p">[</span><span class="s">&quot;hola&quot;</span><span class="p">,</span> <span class="s">&quot;mundo&quot;</span><span class="p">]</span>
-<span class="n">miArray</span><span class="p">.</span><span class="n">joined</span><span class="p">(</span><span class="n">separator</span><span class="p">:</span><span class="s">&quot;/&quot;</span><span class="p">)</span>  <span class="c1">//devolvería &quot;hola/mundo&quot;</span>
-</pre></div>
-</td></tr></table>
-
-<blockquote>
-<p>Lo sé, parece un poco tonto separar un String en un array y volver a juntarlo para mostrarlo, pero los <em>tags</em> están almacenados de modo mejor estructurado como array, y la forma más sencilla de mostrarlos es como String </p>
-</blockquote>
-<h3 id="anadir-otra-entidad-6-puntos">Añadir otra entidad (6 puntos)<a class="headerlink" href="#anadir-otra-entidad-6-puntos" title="Permanent link">&para;</a></h3>
+que sincroniza el objeto con la BD, en este caso como la nota todavía no está guardada, descarta los cambios.</p>
+<h2 id="anadir-la-entidad-libreta-1-punto">Añadir la entidad <code>Libreta</code> (1 punto)<a class="headerlink" href="#anadir-la-entidad-libreta-1-punto" title="Permanent link">&para;</a></h2>
 <p>Queremos que las notas puedan estar agrupadas en "libretas". Cada libreta contendrá muchas notas, pero cada nota solo puede estar en una libreta.</p>
 <ul>
 <li>Añadir la entidad Libreta, con un atributo nombre de tipo String</li>
 <li>Crear una relación "a muchos" de <code>Libreta</code> a <code>Nota</code> y "a uno" de <code>Nota</code> a <code>Libreta</code> (la inversa)</li>
 </ul>
-<h4>Insertar libretas en Core Data</h4>
+<h2 id="crear-libretas-1-punto">Crear libretas (1 punto)<a class="headerlink" href="#crear-libretas-1-punto" title="Permanent link">&para;</a></h2>
 <p>Para simplificar será un botón "nueva libreta" en la pantalla inicial, que al pulsarlo debe mostrar un <em>alert</em> con un camp de texto con el nombre de la libreta. Tendrás que definirte el <em>action</em> correspondiente para detectar que se ha pulsado el botón. En el <em>action</em> puedes llamar al siguiente código para mostrar el <em>alert</em>:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
@@ -1174,7 +1233,7 @@
 <ul>
 <li>En el código anterior falta <strong>guardar la libreta</strong> usando Core Data, implementa esta funcionalidad</li>
 </ul>
-<h4>Listar libretas</h4>
+<h2 id="listar-libretas-15-puntos">Listar libretas (1.5 puntos)<a class="headerlink" href="#listar-libretas-15-puntos" title="Permanent link">&para;</a></h2>
 <p>Antes de empezar con esto asegúrate de que las libretas se están creando correctamente en la base de datos. En el <code>viewWillAppear</code> de la pantalla de lista de notas puedes poner provisionalmente una consulta que las imprima en la consola (luego acuérdate de quitarlo)</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
@@ -1298,7 +1357,7 @@
 </pre></div>
 </td></tr></table>
 
-<h4>Asociar una libreta a la nota actual</h4>
+<h2 id="asociar-una-libreta-a-la-nota-actual-1-punto">Asociar una libreta a la nota actual (1 punto)<a class="headerlink" href="#asociar-una-libreta-a-la-nota-actual-1-punto" title="Permanent link">&para;</a></h2>
 <p>Falta que cuando se guarde la nota, se le asocie la libreta que aparece seleccionada en el <em>picker view</em>. Igual que asignas el "texto" y la "fecha" de la nota, <strong>asígnale también el objeto libreta usando la relación "a uno" entre <code>Nota</code> y <code>Libreta</code></strong>. Para saber qué número de opción está seleccionado actualmente en un <em>picker</em> puedes usar su método <code>selectedRow</code>:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="c1">//de nuevo, &quot;picker&quot; es el outlet del &quot;picker view&quot;. Cámbialo por el tuyo</span>
@@ -1307,8 +1366,8 @@
 </td></tr></table>
 
 <p>El objeto <code>Libreta</code> en esa posición será la misma posición del array <code>libretas</code> del <code>self.miGestorPicker</code>.</p>
-<h4>Mostrar la libreta al listar las notas</h4>
-<p>Para simplificar, esto puedes hacerlo por la consola si no quieres complicarte. En caso contrario puedes mostrarlo en la parte del texto de detalle de la celda (recuerda que era la propiedad <code>detailTextLabel</code> de la celda). Coge el valor que haya  (que tendrá también ls <em>tags</em>) y concaténale el nombre de la libreta entre paréntesis, por ejemplo.</p>
+<h2 id="mostrar-la-libreta-al-listar-las-notas-05-puntos">Mostrar la libreta al listar las notas (0.5 puntos)<a class="headerlink" href="#mostrar-la-libreta-al-listar-las-notas-05-puntos" title="Permanent link">&para;</a></h2>
+<p>Puedes mostrar el nombre de la libreta en la parte del texto de detalle de la celda (recuerda que era la propiedad <code>detailTextLabel</code> de la celda). </p>
                 
                   
                 
@@ -1325,6 +1384,41 @@
       
         
 <footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../4.5_transformables/" title="Transformables" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Anterior
+                </span>
+                Transformables
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../../cap6/1_predicados/" title="Predicados" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Siguiente
+                </span>
+                Predicados
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">

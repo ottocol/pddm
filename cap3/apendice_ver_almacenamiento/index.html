@@ -36,7 +36,7 @@
     
     
       
-        <title>1 transformables - PDDM-iOS</title>
+        <title>Apéndice. Cómo examinar el almacenamiento persistente - PDDM-iOS</title>
       
     
     
@@ -83,10 +83,6 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#mas-tipos-de-datos-en-core-data" tabindex="1" class="md-skip">
-        Saltar a contenido
-      </a>
-    
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header-nav md-grid">
@@ -109,7 +105,7 @@
             </span>
             <span class="md-header-nav__topic">
               
-                1 transformables
+                Apéndice. Cómo examinar el almacenamiento persistente
               
             </span>
           
@@ -332,10 +328,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
     
     <label class="md-nav__link" for="nav-3">
       ¡Hola Core Data!. Una aplicación de ejemplo
@@ -353,7 +351,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../cap3/3.1_intro/" title="Introducción a Core Data" class="md-nav__link">
+    <a href="../3.1_intro/" title="Introducción a Core Data" class="md-nav__link">
       Introducción a Core Data
     </a>
   </li>
@@ -365,7 +363,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../cap3/3.2_stack/" title="Crear el stack de Core Data en iOS" class="md-nav__link">
+    <a href="../3.2_stack/" title="Crear el stack de Core Data en iOS" class="md-nav__link">
       Crear el stack de Core Data en iOS
     </a>
   </li>
@@ -377,7 +375,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../cap3/3.3_entidades/" title="Las entidades. Almacenar datos" class="md-nav__link">
+    <a href="../3.3_entidades/" title="Las entidades. Almacenar datos" class="md-nav__link">
       Las entidades. Almacenar datos
     </a>
   </li>
@@ -389,9 +387,28 @@
 
 
   <li class="md-nav__item">
-    <a href="../../cap3/3.4_recuperar_datos/" title="Recuperar los datos" class="md-nav__link">
+    <a href="../3.4_recuperar_datos/" title="Recuperar los datos" class="md-nav__link">
       Recuperar los datos
     </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+    <a href="./" title="Apéndice. Cómo examinar el almacenamiento persistente" class="md-nav__link md-nav__link--active">
+      Apéndice. Cómo examinar el almacenamiento persistente
+    </a>
+    
   </li>
 
         
@@ -461,7 +478,31 @@
 
 
   <li class="md-nav__item">
-    <a href="../../cap4/4.4_ejercicios/" title="Ejercicios de modelos de datos" class="md-nav__link">
+    <a href="../../cap4/4.4_validaciones/" title="Validaciones" class="md-nav__link">
+      Validaciones
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap4/4.5_transformables/" title="Transformables" class="md-nav__link">
+      Transformables
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cap4/4.6_ejercicios/" title="Ejercicios de modelos de datos" class="md-nav__link">
       Ejercicios de modelos de datos
     </a>
   </li>
@@ -995,55 +1036,57 @@
               </div>
             
             
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
-<nav class="md-nav md-nav--secondary">
-  
-  
-  
-    <label class="md-nav__title" for="__toc">Tabla de contenidos</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#mas-tipos-de-datos-en-core-data" class="md-nav__link">
-    Más tipos de datos en Core Data
-  </a>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
-</nav>
-                  </div>
-                </div>
-              </div>
-            
           
           <div class="md-content">
             <article class="md-content__inner md-typeset">
               
                 
                 
-                  <h1>1 transformables</h1>
+                  <h1>Apéndice. Cómo examinar el almacenamiento persistente</h1>
                 
-                <h2 id="mas-tipos-de-datos-en-core-data">Más tipos de datos en Core Data<a class="headerlink" href="#mas-tipos-de-datos-en-core-data" title="Permanent link">&para;</a></h2>
-<p>Hasta el momento hemos visto que en una entidad de Core Data puede haber atributos de diversos tipos: enteros, reales, cadenas y fechas. </p>
-<p>¿Y si queremos almacenar un atributo de otro tipo, por ejemplo un array, un diccionario o una instancia de cualquier otra clase no contemplada en los casos anteriores?. Si es una clase propia siempre podemos convertirla en otra entidad, pero puede haber casos en los que no tenga mucho sentido complicar el modelo de este modo. Para estos casos tenemos el tipo <em>transformable</em>, en el que Core Data transformará a binario (<code>NSData</code>) el atributo para hacerlo persistente. Y a la inversa, cuando lo lea del almacenamiento lo decodificará de binario al tipo de datos correspondiente. </p>
-<p>Con los atributos transformables tenemos dos casos posibles: el "fácil", en el que no tenemos que escribir código ya que Core Data puede realizar la transformación automáticamente, y el más complejo, en el que tendremos que implementar nosotros mismos la transformación. Todo depende de si el dato a almacenar implementa el protocolo <code>NSCoding</code>. Recordemos de la primera sesión que las clases que implementan en otro protocolo son <em>archivables</em> o <em>serializables</em>. Así que Core Data no hace directamente la transformación sino que recurre al mecanismo estándar en iOS para archivar/desarchivar objetos.</p>
-<p>Por ejemplo supongamos que en una entidad de Core Data quisiéramos almacenar un array de String. No podemos crear un atributo de Core Data de este tipo directamente, pero afortunadamente los arrays implementan el protocolo <code>NSCoding</code>, así que la transformación va a ser automática. Seguiríamos estos pasos</p>
-<ul>
-<li>En la entidad, definir el tipo del atributo como <code>Transformable</code>.</li>
-<li>Generar la clase de la entidad con Xcode de manera manual (con <code>Editor&gt;Create NSManagedObject subclass...</code>)</li>
-<li>Opcionalmente, modificar el archivo fuente generado por Xcode, que habrá puesto la propiedad como <code>NSObject</code> y cambiarla por el tipo correspondiente. En este caso <code>[String]</code> De este modo nos ahorraremos el <em>cast</em> hacia y desde <code>NSObject</code>. La contrapartida es que si volvemos a generar la clase nos tocará volver a editar el archivo.</li>
-</ul>
-<p>Ya no hay que hacer nada más. Nosotros trataremos con la propiedad como un array de <code>String</code> y automáticamente se hará la transformación hacia y desde binario, que es como se almacenan los datos.</p>
-<p>En caso de que el tipo de datos del atributo no sea conforme al protocolo <code>NSCoding</code> tendremos que escribir una clase propia que haga la transformación a y desde binario. En Cocoa esto se hace implementando una clase que herede de <code>NSValueTransformer</code>. Para ver un ejemplo concreto podéis consultar <a href="http://bluelemonbits.com/index.php/2016/02/07/using-nsvaluetransformers-value-transformer-swift-2-0/">este tutorial</a>.</p>
+                <blockquote>
+<p>No es estrictamente necesario que sigas estos pasos en el ejercicio, pero sí que al menos los leas para poder entender mejor el funcionamiento interno de Core Data</p>
+</blockquote>
+<p>Podemos "espiar" el almacenamiento persistente, que como ya hemos visto el código Swift del <em>delegate</em> configura por defecto como una base de datos SQLite con el mismo nombre del proyecto. Podemos localizar el archivo tecleando desde la terminal:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>find . -name MisNotas.sqlite -print
+</pre></div>
+</td></tr></table>
+
+<p>o más sencillo, usar alguna utilidad como <a href="https://github.com/dsmelov/simsim/releases">SimSim</a>, que ya hemos usado en otras sesiones para localizar el directorio con el <em>sandbox</em> de nuestra aplicación. La base de datos se crea por defecto en el directorio <code>Library/Application Support</code> del <em>sandbox</em>.</p>
+<p>Si abrimos la base de datos usando alguna utilidad gráfica o bien desde la terminal (moviéndose al directorio donde está el <code>MisNotas.sqlite</code> y tecleando:)</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>sqlite3 MisNotas.sqlite
+</pre></div>
+</td></tr></table>
+
+<p>Debería aparecer el <em>prompt</em> de SQLite donde podemos por ejemplo ver la estructura de la BD, tecleando</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>sqlite&gt; .schema
+</pre></div>
+</td></tr></table>
+
+<p>Aparecerá algo como </p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">ZNOTA</span> <span class="p">(</span> <span class="n">Z_PK</span> <span class="nb">INTEGER</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span> <span class="n">Z_ENT</span> <span class="nb">INTEGER</span><span class="p">,</span> <span class="n">Z_OPT</span> <span class="nb">INTEGER</span><span class="p">,</span>
+  <span class="n">ZFECHA</span> <span class="k">TIMESTAMP</span><span class="p">,</span> <span class="n">ZTEXTO</span> <span class="nb">VARCHAR</span> <span class="p">);</span>
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">Z_PRIMARYKEY</span> <span class="p">(</span><span class="n">Z_ENT</span> <span class="nb">INTEGER</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span> <span class="n">Z_NAME</span> <span class="nb">VARCHAR</span><span class="p">,</span> <span class="n">Z_SUPER</span>
+  <span class="nb">INTEGER</span><span class="p">,</span> <span class="n">Z_MAX</span> <span class="nb">INTEGER</span><span class="p">);</span>
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">Z_METADATA</span> <span class="p">(</span><span class="n">Z_VERSION</span> <span class="nb">INTEGER</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span> <span class="n">Z_UUID</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">),</span>
+  <span class="n">Z_PLIST</span> <span class="nb">BLOB</span><span class="p">);</span>
+</pre></div>
+</td></tr></table>
+
+<p>Como se ve, Core Data crea automáticamente una tabla para la entidad <code>Nota</code>, con el mismo nombre (aunque precedida de una curiosa <code>Z</code>, como los nombres de los campos). Crea también una columna por cada propiedad, asignándoles el tipo apropiado. Además automáticamente crea una clave primaria, aunque en la entidad no hemos definido ninguna.</p>
+<p>Podemos comprobar también si se ha guardado la nota ejecutando una sentencia SQL</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">sqlite</span><span class="o">&gt;</span> <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">ZNOTA</span><span class="p">;</span>
+</pre></div>
+</td></tr></table>
+
+<blockquote>
+<p>Es posible que el <code>select</code> anterior no muestre los registros actualizados, ya que a partir de iOS7 se usa un modo de SQLite que se llama "Write Ahead Logging".  En este modo, las transacciones para las que no se ha hecho <em>commit</em> se almacenan en un archivo <code>.wal</code> aparte. </p>
+</blockquote>
                 
                   
                 
@@ -1060,6 +1103,41 @@
       
         
 <footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../3.4_recuperar_datos/" title="Recuperar los datos" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Anterior
+                </span>
+                Recuperar los datos
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../../cap4/4.1_crear_modelo/" title="Crear y editar modelos" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Siguiente
+                </span>
+                Crear y editar modelos
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
