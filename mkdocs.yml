@@ -17,12 +17,15 @@ nav:
     - Introducción a Core Data: 'cap3/3.1_intro.md'
     - Crear el stack de Core Data en iOS: 'cap3/3.2_stack.md'
     - Las entidades. Almacenar datos: 'cap3/3.3_entidades.md'
-    - Recuperar los datos: 'cap3/3.4_recuperar_datos.md'        
+    - Recuperar los datos: 'cap3/3.4_recuperar_datos.md' 
+    - Apéndice. Cómo examinar el almacenamiento persistente: 'cap3/apendice_ver_almacenamiento.md'        
   - Modelos de datos en Core Data: 
     - Crear y editar modelos: 'cap4/4.1_crear_modelo.md'
     - Modelar las entidades en código Swift: 'cap4/4.2_clases_propias.md'
     - CRUD en Core Data: 'cap4/4.3_CRUD.md'
-    - Ejercicios de modelos de datos: 'cap4/4.4_ejercicios.md'
+    - Validaciones: 'cap4/4.4_validaciones.md'
+    - Transformables: 'cap4/4.5_transformables.md'
+    - Ejercicios de modelos de datos: 'cap4/4.6_ejercicios.md'
   - Búsquedas en Core Data: 
     - Predicados: 'cap6/1_predicados.md'
     - Ordenación: 'cap6/2_ordenacion.md'
