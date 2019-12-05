@@ -1,4 +1,3 @@
-## Apéndice: Cómo ver los datos guardados en el almacenamiento persistente
 
 > No es estrictamente necesario que sigas estos pasos en el ejercicio, pero sí que al menos los leas para poder entender mejor el funcionamiento interno de Core Data
 
