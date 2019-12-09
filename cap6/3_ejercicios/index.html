@@ -83,7 +83,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#ejercicio-busqueda-en-la-aplicacion-de-notas" tabindex="1" class="md-skip">
+      <a href="#preparacion-de-la-interfaz-1-punto" tabindex="1" class="md-skip">
         Saltar a contenido
       </a>
     
@@ -582,29 +582,23 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#ejercicio-busqueda-en-la-aplicacion-de-notas" class="md-nav__link">
-    Ejercicio: búsqueda en la aplicación de notas
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#preparacion-de-la-interfaz-1-punto" class="md-nav__link">
     Preparación de la interfaz (1 punto)
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#implementacion-del-codigo-de-busqueda-3-puntos" class="md-nav__link">
-    Implementación del código de búsqueda (3 puntos)
+      
+        <li class="md-nav__item">
+  <a href="#implementacion-del-codigo-de-busqueda-25-puntos" class="md-nav__link">
+    Implementación del código de búsqueda (2.5 puntos)
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
+      
+        <li class="md-nav__item">
+  <a href="#throttling-de-las-busquedas-05-puntos" class="md-nav__link">
+    Throttling de las búsquedas (0,5 puntos)
+  </a>
   
 </li>
       
@@ -1099,29 +1093,23 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#ejercicio-busqueda-en-la-aplicacion-de-notas" class="md-nav__link">
-    Ejercicio: búsqueda en la aplicación de notas
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#preparacion-de-la-interfaz-1-punto" class="md-nav__link">
     Preparación de la interfaz (1 punto)
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#implementacion-del-codigo-de-busqueda-3-puntos" class="md-nav__link">
-    Implementación del código de búsqueda (3 puntos)
+      
+        <li class="md-nav__item">
+  <a href="#implementacion-del-codigo-de-busqueda-25-puntos" class="md-nav__link">
+    Implementación del código de búsqueda (2.5 puntos)
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
+      
+        <li class="md-nav__item">
+  <a href="#throttling-de-las-busquedas-05-puntos" class="md-nav__link">
+    Throttling de las búsquedas (0,5 puntos)
+  </a>
   
 </li>
       
@@ -1144,52 +1132,172 @@
                 
                   <h1>Ejercicios</h1>
                 
-                <h2 id="ejercicio-busqueda-en-la-aplicacion-de-notas">Ejercicio: búsqueda en la aplicación de notas<a class="headerlink" href="#ejercicio-busqueda-en-la-aplicacion-de-notas" title="Permanent link">&para;</a></h2>
-<p>Vamos a implementar una búsqueda por texto en la aplicación de notas sobre la que estáis trabajando en estar sesiones</p>
+                <p>Vamos a implementar una búsqueda por texto en la aplicación de notas sobre la que estáis trabajando en estas sesiones.</p>
 <blockquote>
-<p>Antes de ponerte a hacer las modificaciones de esta sesión asegúrate de que has hecho un <code>commit</code> con el mensaje <code>terminada sesión 5</code>. También puedes hacer un <code>.zip</code> con el proyecto, llamarlo <code>notas_sesion_5.zip</code> y adjuntarlo en las entregas de la asignatura. Así cuando se evalúe el ejercicio el profesor podrá consultar el estado que tenía la aplicación antes de estos ejercicios.</p>
+<p>Antes de ponerte a hacer las modificaciones de esta sesión asegúrate de que has hecho un <code>commit</code> con el mensaje <code>terminada sesión 4</code>. También puedes hacer un <code>.zip</code> con el proyecto, llamarlo <code>notas_sesion_4.zip</code> y adjuntarlo en las entregas de la asignatura. Así cuando se evalúe el ejercicio el profesor podrá consultar el estado que tenía la aplicación antes de estos ejercicios.</p>
 </blockquote>
 <h3 id="preparacion-de-la-interfaz-1-punto">Preparación de la interfaz (1 punto)<a class="headerlink" href="#preparacion-de-la-interfaz-1-punto" title="Permanent link">&para;</a></h3>
-<p>En el <em>storyboard</em> arrastrar una <code>Search bar</code> a la parte superior de la pantalla de listar notas. </p>
-<p><img alt="" src="../img/search_bar_top.png" /></p>
-<p>Para que la barra de <em>status</em> de la parte superior (la hora, la batería,...) no moleste, "sobreescribimos" la propiedad <code>prefersStatusBarHidden</code>  en <code>ListaNotasController</code></p>
+<p>Necesitamos una barra de búsqueda para poder introducir la cadena de texto a buscar. Usaremos un <code>UISearchController</code>. Este componente incluye la <em>search bar</em>. </p>
+<p>En <code>ListaNotasController</code>:</p>
+<ol>
+<li>Define una propiedad que será el <code>UISearchController</code></li>
+</ol>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kr">override</span> <span class="kd">var</span> <span class="nv">prefersStatusBarHidden</span><span class="p">:</span> <span class="nb">Bool</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="kc">true</span>
-<span class="p">}</span>
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="c1">//esto debe ser una variable miembro de ListaNotasController</span>
+<span class="kd">let</span> <span class="nv">searchController</span> <span class="p">=</span> <span class="bp">UISearchController</span><span class="p">(</span><span class="n">searchResultsController</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
 </pre></div>
 </td></tr></table>
 
-<p>Para poder interactuar con la <em>search bar</em> podemos convertir <code>ListaNotasController</code> en su <em>delegate</em>. Pasos:</p>
-<p>1.- Establecer la <strong>conexión</strong>: <code>Ctrl+Arrastrar</code> desde la <em>search bar</em> hacia el icono que representa al controller en la parte superior. En el menú contextual de <code>Outlets</code> elegir <code>delegate</code>. Verificar en el panel de la derecha (inspector de conexiones) que la conexión está bien hecha.</p>
-<p>2.- Hacer que <code>ListaNotasController</code> implemente el protocolo correspondiente: <code>UISearchBarDelegate</code></p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kd">class</span> <span class="nc">ListaNotasController</span><span class="p">:</span> <span class="bp">UITableViewController</span><span class="p">,</span> <span class="bp">UISearchBarDelegate</span> <span class="p">{</span>
- <span class="p">...</span>
-<span class="p">}</span>
+<ol start="2">
+<li>En el <code>viewDidLoad</code> introduce el siguiente código, que configura e inicializa el <code>UISearchController</code></li>
+</ol>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="c1">//iOS intentará pintar la tabla, hay que inicializarla aunque sea vacía</span>
+<span class="kc">self</span><span class="p">.</span><span class="n">listaNotas</span> <span class="p">=</span> <span class="p">[]</span>
+<span class="c1">//ListaNotasController recibirá lo que se está escribiendo en la barra de búsqueda </span>
+<span class="n">searchController</span><span class="p">.</span><span class="n">searchResultsUpdater</span> <span class="p">=</span> <span class="kc">self</span>
+<span class="c1">//Configuramos el search controller</span>
+<span class="n">searchController</span><span class="p">.</span><span class="n">obscuresBackgroundDuringPresentation</span> <span class="p">=</span> <span class="kc">false</span>
+<span class="n">searchController</span><span class="p">.</span><span class="n">searchBar</span><span class="p">.</span><span class="n">placeholder</span> <span class="p">=</span> <span class="s">&quot;Buscar texto&quot;</span>
+<span class="c1">//Lo añadimos a la tabla</span>
+<span class="n">searchController</span><span class="p">.</span><span class="n">searchBar</span><span class="p">.</span><span class="n">sizeToFit</span><span class="p">()</span>
+<span class="kc">self</span><span class="p">.</span><span class="n">tableView</span><span class="p">.</span><span class="n">tableHeaderView</span> <span class="p">=</span> <span class="n">searchController</span><span class="p">.</span><span class="n">searchBar</span>
 </pre></div>
 </td></tr></table>
 
-<p>3.- Implementar en <code>ListaNotasController</code> el método que responderá cuando el usuario escriba algo y pulse el botón <code>Search</code> en el teclado iOS</p>
+<ol start="3">
+<li>La propiedad <code>searchResultsUpdater</code> indica quién es el <em>delegate</em> del <code>UISearchController</code>, en este caso <code>ListaNotasViewController</code>. El <em>delegate</em> debe ser conforme al protocolo <code>UISearchResultsUpdating</code>, que requiere que se implemente un método llamado <code>updateSearchResults(for:)</code>.</li>
+</ol>
+<p>Cambia la cabecera de <code>ListaNotasViewController</code> para declarar que es conforme al protocolo <code>UISearchResultsUpdating</code>:</p>
+<p><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kd">class</span> <span class="nc">ListaViewController</span><span class="p">:</span> <span class="bp">UITableViewController</span><span class="p">,</span> <span class="bp">UISearchResultsUpdating</span> <span class="p">{</span>
+  <span class="p">...</span>
+<span class="p">}</span>  
+</pre></div>
+</td></tr></table>
+Define en la clase el método <code>updateSearchResults(for:)</code></p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
-4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kd">func</span> <span class="nf">searchBarSearchButtonClicked</span><span class="p">(</span><span class="kc">_</span> <span class="n">searchBar</span><span class="p">:</span> <span class="bp">UISearchBar</span><span class="p">)</span> <span class="p">{</span>
-   <span class="c1">//El texto escrito en la barra es la propiedad &quot;text&quot; </span>
-   <span class="bp">print</span><span class="p">(</span><span class="s">&quot;buscando </span><span class="si">\(</span><span class="n">searchBar</span><span class="p">.</span><span class="n">text</span><span class="p">!</span><span class="si">)</span><span class="s">&quot;</span><span class="p">)</span>
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kd">func</span> <span class="nf">updateSearchResults</span><span class="p">(</span><span class="k">for</span> <span class="n">searchController</span><span class="p">:</span> <span class="bp">UISearchController</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nv">texto</span> <span class="p">=</span> <span class="n">searchController</span><span class="p">.</span><span class="n">searchBar</span><span class="p">.</span><span class="n">text</span><span class="p">!</span>
+    <span class="bp">print</span><span class="p">(</span><span class="s">&quot;Buscando </span><span class="si">\(</span><span class="n">texto</span><span class="si">)</span><span class="s">&quot;</span><span class="p">)</span>
 <span class="p">}</span>
 </pre></div>
 </td></tr></table>
 
+<p><strong>Prueba la aplicación</strong> para comprobar que todo está correcto, y deberías ver que cada vez que se escribe en la barra de búsqueda se llama a este método y se imprime en la consola la cadena buscada.</p>
+<h3 id="implementacion-del-codigo-de-busqueda-25-puntos">Implementación del código de búsqueda (2.5 puntos)<a class="headerlink" href="#implementacion-del-codigo-de-busqueda-25-puntos" title="Permanent link">&para;</a></h3>
 <blockquote>
-<p>Verás que <em>la barra de búsqueda se desplaza hacia arriba</em> de la pantalla si nos desplazamos por la tabla. Para que permanezca fija, lo más sencillo es no usar el <code>Table View Controller</code> del interfaz gráfico de Xcode, ya que su tabla “ocupa toda la pantalla” (la vista es la tabla en sí). En su lugar usaríamos un <code>View controller</code> normal y a él arrastraríamos una <code>table view</code> dándole las dimensiones deseadas y luego la <code>search bar</code>. Eso sí, tendremos que establecer  manualmente las conexiones de tipo <em>datasource</em> y <em>delegate</em> entre la vista de tabla y el controller, que con el <code>Table View Controller</code> son automáticas.</p>
+<p><code>updateSearchResults</code> se llama por cada nuevo carácter escrito en la barra de búsquedas, lo que permite actualizar los datos en "tiempo real" pero es muy ineficiente. Veremos cómo solucionarlo en el siguiente apartado, de momento dispararemos una nueva búsqueda por cada pulsación</p>
 </blockquote>
-<h3 id="implementacion-del-codigo-de-busqueda-3-puntos">Implementación del código de búsqueda (3 puntos)<a class="headerlink" href="#implementacion-del-codigo-de-busqueda-3-puntos" title="Permanent link">&para;</a></h3>
-<p>Hecha toda la preparación de la interfaz, falta implementar la búsqueda en sí. En el método <code>searchBarSearchButtonClicked</code> <strong>debes crear una fetch request que busque las notas cuyo texto contenga la cadena escrita</strong> en la barra de búsqueda, sin distinguir mayúsculas/minúsculas o caracteres diacríticos. </p>
+<p>Hecha la preparación de la interfaz, falta implementar la búsqueda en sí. En el método <code>updateSearchResults</code> <strong>debes crear una fetch request que busque las notas cuyo texto contenga el texto escrito</strong> en la barra de búsqueda, sin distinguir mayúsculas/minúsculas o caracteres diacríticos. </p>
 <p>Recuerda que para que se actualicen los datos visibles debes llamar a <code>tableView.reloadData()</code></p>
-<p>Una vez comprobado que funciona, <strong>mejora la fetch request para que las notas aparezcan en orden inverso por fecha</strong>, de más reciente a más antigua. </p>
+<p>Una vez comprobado que funciona, <strong>mejora la fetch request para que las notas aparezcan en orden inverso por fecha</strong>, de más reciente a más antigua.</p>
+<h3 id="throttling-de-las-busquedas-05-puntos"><em>Throttling</em> de las búsquedas (0,5 puntos)<a class="headerlink" href="#throttling-de-las-busquedas-05-puntos" title="Permanent link">&para;</a></h3>
+<p>Lanzar una nueva <em>fetch request</em> por cada carácter tecleado es muy ineficiente, sobre todo si el usuario teclea rápido y ni siquiera da tiempo a ver los resultados intermedios. Una implementación mejor haría <em>throttling</em> de la búsqueda, es decir, impediría que se repita la operación si todavía no ha pasado un mínimo de tiempo desde la anterior.</p>
+<p>La idea es que si se intenta repetir la operación y todavía no ha pasado un tiempo prefijado por nosotros, la nueva operación se retrase hasta que pase el intervalo de tiempo. Esto no está implementado en los APIs de iOS pero en Internet vpodéis encontrar diversas implementaciones. La siguiente clase, tomada de <a href="https://www.craftappco.com/blog/2018/5/30/simple-throttling-in-swift">este tutorial</a>, implementa esta funcionalidad.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kd">import</span> <span class="nc">Foundation</span>
+
+<span class="c1">//De https://www.craftappco.com/blog/2018/5/30/simple-throttling-in-swift</span>
+<span class="kd">class</span> <span class="nc">Throttler</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="kd">var</span> <span class="nv">workItem</span><span class="p">:</span> <span class="n">DispatchWorkItem</span> <span class="p">=</span> <span class="n">DispatchWorkItem</span><span class="p">(</span><span class="n">block</span><span class="p">:</span> <span class="p">{})</span>
+    <span class="kd">private</span> <span class="kd">var</span> <span class="nv">previousRun</span><span class="p">:</span> <span class="n">Date</span> <span class="p">=</span> <span class="n">Date</span><span class="p">.</span><span class="n">distantPast</span>
+    <span class="kd">private</span> <span class="kd">let</span> <span class="nv">queue</span><span class="p">:</span> <span class="n">DispatchQueue</span>
+    <span class="kd">private</span> <span class="kd">let</span> <span class="nv">minimumDelay</span><span class="p">:</span> <span class="n">TimeInterval</span>
+
+    <span class="kd">init</span><span class="p">(</span><span class="n">minimumDelay</span><span class="p">:</span> <span class="n">TimeInterval</span><span class="p">,</span> <span class="n">queue</span><span class="p">:</span> <span class="n">DispatchQueue</span> <span class="p">=</span> <span class="n">DispatchQueue</span><span class="p">.</span><span class="n">main</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">minimumDelay</span> <span class="p">=</span> <span class="n">minimumDelay</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">queue</span> <span class="p">=</span> <span class="n">queue</span>
+    <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="nf">throttle</span><span class="p">(</span><span class="kc">_</span> <span class="n">block</span><span class="p">:</span> <span class="p">@</span><span class="n">escaping</span> <span class="p">()</span> <span class="p">-&gt;</span> <span class="nb">Void</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// Cancel any existing work item if it has not yet executed</span>
+        <span class="n">workItem</span><span class="p">.</span><span class="n">cancel</span><span class="p">()</span>
+
+        <span class="c1">// Re-assign workItem with the new block task, resetting the previousRun time when it executes</span>
+        <span class="n">workItem</span> <span class="p">=</span> <span class="n">DispatchWorkItem</span><span class="p">()</span> <span class="p">{</span>
+            <span class="p">[</span><span class="kr">weak</span> <span class="kc">self</span><span class="p">]</span> <span class="k">in</span>
+            <span class="kc">self</span><span class="p">?.</span><span class="n">previousRun</span> <span class="p">=</span> <span class="n">Date</span><span class="p">()</span>
+            <span class="n">block</span><span class="p">()</span>
+        <span class="p">}</span>
+
+        <span class="c1">// If the time since the previous run is more than the required minimum delay</span>
+        <span class="c1">// =&gt; execute the workItem immediately</span>
+        <span class="c1">// else</span>
+        <span class="c1">// =&gt; delay the workItem execution by the minimum delay time</span>
+        <span class="kd">let</span> <span class="nv">delay</span> <span class="p">=</span> <span class="n">previousRun</span><span class="p">.</span><span class="n">timeIntervalSinceNow</span> <span class="o">&gt;</span> <span class="n">minimumDelay</span> <span class="p">?</span> <span class="mi">0</span> <span class="p">:</span> <span class="n">minimumDelay</span>
+        <span class="n">queue</span><span class="p">.</span><span class="n">asyncAfter</span><span class="p">(</span><span class="n">deadline</span><span class="p">:</span> <span class="p">.</span><span class="n">now</span><span class="p">()</span> <span class="o">+</span> <span class="nb">Double</span><span class="p">(</span><span class="n">delay</span><span class="p">),</span> <span class="n">execute</span><span class="p">:</span> <span class="n">workItem</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table>
+
+<p>Crea un nuevo fichero Swift en tu proyecto con esta clase. Para usarlo en <code>ListaNotasViewController</code>:</p>
+<ol>
+<li>Define una variable miembro de tipo <code>Throttler</code> con el intervalo de tiempo deseado, por ejemplo 0.5 segundos (no queremos repetir búsquedas con más frecuencia)</li>
+</ol>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">throttler</span> <span class="p">=</span> <span class="n">Throttler</span><span class="p">(</span><span class="n">minimumDelay</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</td></tr></table>
+
+<ol start="2">
+<li>En el <code>updateSearchResults</code> "envuelve" tu código de búsqueda en un <code>throttle</code>. Automáticamente la clase <code>Throttler</code> se encargará de que el código no se ejecute más de 1 vez por cada 0.5 segundos (o el intervalo que hayas elegido)</li>
+</ol>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kd">func</span> <span class="nf">updateSearchResults</span><span class="p">(</span><span class="k">for</span> <span class="n">searchController</span><span class="p">:</span> <span class="bp">UISearchController</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">throttler</span><span class="p">.</span><span class="n">throttle</span> <span class="p">{</span>
+        <span class="kd">let</span> <span class="nv">texto</span> <span class="p">=</span> <span class="n">searchController</span><span class="p">.</span><span class="n">searchBar</span><span class="p">.</span><span class="n">text</span><span class="p">!</span>
+        <span class="c1">//Aquí iría tu código de búsqueda</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table>
                 
                   
                 
