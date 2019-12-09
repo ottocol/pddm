@@ -1,53 +1,123 @@
-## Ejercicio: búsqueda en la aplicación de notas
 
-Vamos a implementar una búsqueda por texto en la aplicación de notas sobre la que estáis trabajando en estar sesiones
+Vamos a implementar una búsqueda por texto en la aplicación de notas sobre la que estáis trabajando en estas sesiones.
 
-> Antes de ponerte a hacer las modificaciones de esta sesión asegúrate de que has hecho un `commit` con el mensaje `terminada sesión 5`. También puedes hacer un `.zip` con el proyecto, llamarlo `notas_sesion_5.zip` y adjuntarlo en las entregas de la asignatura. Así cuando se evalúe el ejercicio el profesor podrá consultar el estado que tenía la aplicación antes de estos ejercicios.
+> Antes de ponerte a hacer las modificaciones de esta sesión asegúrate de que has hecho un `commit` con el mensaje `terminada sesión 4`. También puedes hacer un `.zip` con el proyecto, llamarlo `notas_sesion_4.zip` y adjuntarlo en las entregas de la asignatura. Así cuando se evalúe el ejercicio el profesor podrá consultar el estado que tenía la aplicación antes de estos ejercicios.
 
 ### Preparación de la interfaz (1 punto)
 
-En el *storyboard* arrastrar una `Search bar` a la parte superior de la pantalla de listar notas. 
+Necesitamos una barra de búsqueda para poder introducir la cadena de texto a buscar. Usaremos un `UISearchController`. Este componente incluye la *search bar*. 
 
-![](img/search_bar_top.png)
+En `ListaNotasController`:
 
-Para que la barra de *status* de la parte superior (la hora, la batería,...) no moleste, "sobreescribimos" la propiedad `prefersStatusBarHidden`  en `ListaNotasController`
+1. Define una propiedad que será el `UISearchController`
 
 ```swift
-override var prefersStatusBarHidden: Bool {
-    return true
+//esto debe ser una variable miembro de ListaNotasController
+let searchController = UISearchController(searchResultsController: nil)
+```
+
+2. En el `viewDidLoad` introduce el siguiente código, que configura e inicializa el `UISearchController`
+
+```swift
+//iOS intentará pintar la tabla, hay que inicializarla aunque sea vacía
+self.listaNotas = []
+//ListaNotasController recibirá lo que se está escribiendo en la barra de búsqueda 
+searchController.searchResultsUpdater = self
+//Configuramos el search controller
+searchController.obscuresBackgroundDuringPresentation = false
+searchController.searchBar.placeholder = "Buscar texto"
+//Lo añadimos a la tabla
+searchController.searchBar.sizeToFit()
+self.tableView.tableHeaderView = searchController.searchBar
+```
+
+3. La propiedad `searchResultsUpdater` indica quién es el *delegate* del `UISearchController`, en este caso `ListaNotasViewController`. El *delegate* debe ser conforme al protocolo `UISearchResultsUpdating`, que requiere que se implemente un método llamado `updateSearchResults(for:)`.
+
+Cambia la cabecera de `ListaNotasViewController` para declarar que es conforme al protocolo `UISearchResultsUpdating`:
+
+```swift
+class ListaViewController: UITableViewController, UISearchResultsUpdating {
+  ...
+}  
+```
+Define en la clase el método `updateSearchResults(for:)`
+
+```swift
+func updateSearchResults(for searchController: UISearchController) {
+    let texto = searchController.searchBar.text!
+    print("Buscando \(texto)")
 }
 ```
 
-Para poder interactuar con la *search bar* podemos convertir `ListaNotasController` en su *delegate*. Pasos:
+**Prueba la aplicación** para comprobar que todo está correcto, y deberías ver que cada vez que se escribe en la barra de búsqueda se llama a este método y se imprime en la consola la cadena buscada.
 
-1.- Establecer la **conexión**: `Ctrl+Arrastrar` desde la *search bar* hacia el icono que representa al controller en la parte superior. En el menú contextual de `Outlets` elegir `delegate`. Verificar en el panel de la derecha (inspector de conexiones) que la conexión está bien hecha.
+### Implementación del código de búsqueda (2.5 puntos)
 
-2.- Hacer que `ListaNotasController` implemente el protocolo correspondiente: `UISearchBarDelegate`
+> `updateSearchResults` se llama por cada nuevo carácter escrito en la barra de búsquedas, lo que permite actualizar los datos en "tiempo real" pero es muy ineficiente. Veremos cómo solucionarlo en el siguiente apartado, de momento dispararemos una nueva búsqueda por cada pulsación
 
-
-```swift
-class ListaNotasController: UITableViewController, UISearchBarDelegate {
- ...
-}
-```
-
-3.- Implementar en `ListaNotasController` el método que responderá cuando el usuario escriba algo y pulse el botón `Search` en el teclado iOS
-
-
-```swift
-func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-   //El texto escrito en la barra es la propiedad "text" 
-   print("buscando \(searchBar.text!)")
-}
-```
-
-> Verás que *la barra de búsqueda se desplaza hacia arriba* de la pantalla si nos desplazamos por la tabla. Para que permanezca fija, lo más sencillo es no usar el `Table View Controller` del interfaz gráfico de Xcode, ya que su tabla “ocupa toda la pantalla” (la vista es la tabla en sí). En su lugar usaríamos un `View controller` normal y a él arrastraríamos una `table view` dándole las dimensiones deseadas y luego la `search bar`. Eso sí, tendremos que establecer  manualmente las conexiones de tipo *datasource* y *delegate* entre la vista de tabla y el controller, que con el `Table View Controller` son automáticas.
-
-### Implementación del código de búsqueda (3 puntos)
-
-Hecha toda la preparación de la interfaz, falta implementar la búsqueda en sí. En el método `searchBarSearchButtonClicked` **debes crear una fetch request que busque las notas cuyo texto contenga la cadena escrita** en la barra de búsqueda, sin distinguir mayúsculas/minúsculas o caracteres diacríticos. 
+Hecha la preparación de la interfaz, falta implementar la búsqueda en sí. En el método `updateSearchResults` **debes crear una fetch request que busque las notas cuyo texto contenga el texto escrito** en la barra de búsqueda, sin distinguir mayúsculas/minúsculas o caracteres diacríticos. 
 
 Recuerda que para que se actualicen los datos visibles debes llamar a `tableView.reloadData()`
 
-Una vez comprobado que funciona, **mejora la fetch request para que las notas aparezcan en orden inverso por fecha**, de más reciente a más antigua. 
+Una vez comprobado que funciona, **mejora la fetch request para que las notas aparezcan en orden inverso por fecha**, de más reciente a más antigua.
 
+### *Throttling* de las búsquedas (0,5 puntos) 
+
+Lanzar una nueva *fetch request* por cada carácter tecleado es muy ineficiente, sobre todo si el usuario teclea rápido y ni siquiera da tiempo a ver los resultados intermedios. Una implementación mejor haría *throttling* de la búsqueda, es decir, impediría que se repita la operación si todavía no ha pasado un mínimo de tiempo desde la anterior.
+
+La idea es que si se intenta repetir la operación y todavía no ha pasado un tiempo prefijado por nosotros, la nueva operación se retrase hasta que pase el intervalo de tiempo. Esto no está implementado en los APIs de iOS pero en Internet vpodéis encontrar diversas implementaciones. La siguiente clase, tomada de [este tutorial](https://www.craftappco.com/blog/2018/5/30/simple-throttling-in-swift), implementa esta funcionalidad.
+
+```swift
+import Foundation
+
+//De https://www.craftappco.com/blog/2018/5/30/simple-throttling-in-swift
+class Throttler {
+    private var workItem: DispatchWorkItem = DispatchWorkItem(block: {})
+    private var previousRun: Date = Date.distantPast
+    private let queue: DispatchQueue
+    private let minimumDelay: TimeInterval
+    
+    init(minimumDelay: TimeInterval, queue: DispatchQueue = DispatchQueue.main) {
+        self.minimumDelay = minimumDelay
+        self.queue = queue
+    }
+    
+    func throttle(_ block: @escaping () -> Void) {
+        // Cancel any existing work item if it has not yet executed
+        workItem.cancel()
+        
+        // Re-assign workItem with the new block task, resetting the previousRun time when it executes
+        workItem = DispatchWorkItem() {
+            [weak self] in
+            self?.previousRun = Date()
+            block()
+        }
+        
+        // If the time since the previous run is more than the required minimum delay
+        // => execute the workItem immediately
+        // else
+        // => delay the workItem execution by the minimum delay time
+        let delay = previousRun.timeIntervalSinceNow > minimumDelay ? 0 : minimumDelay
+        queue.asyncAfter(deadline: .now() + Double(delay), execute: workItem)
+    }
+}
+```
+
+Crea un nuevo fichero Swift en tu proyecto con esta clase. Para usarlo en `ListaNotasViewController`:
+
+1. Define una variable miembro de tipo `Throttler` con el intervalo de tiempo deseado, por ejemplo 0.5 segundos (no queremos repetir búsquedas con más frecuencia)
+
+```swift
+let throttler = Throttler(minimumDelay: 0.5)
+```
+
+2. En el `updateSearchResults` "envuelve" tu código de búsqueda en un `throttle`. Automáticamente la clase `Throttler` se encargará de que el código no se ejecute más de 1 vez por cada 0.5 segundos (o el intervalo que hayas elegido)
+
+```swift
+func updateSearchResults(for searchController: UISearchController) {
+    throttler.throttle {
+        let texto = searchController.searchBar.text!
+        //Aquí iría tu código de búsqueda
+    }
+}
+```
