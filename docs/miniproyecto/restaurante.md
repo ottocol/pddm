@@ -61,7 +61,7 @@ Esta parte de la *app* muestra los datos del pedido actual, añade los platos se
 
 El *controller* recibe el plato elegido desde el controller anterior en la propiedad `platoElegido`, hay que añadir una entidad `LineaPedido` que vincule este plato con el pedido actual.
 
-El pedido actual no se puede guardar en el propio *controller* ya que por la navegación entre pantallas este se destruiría al salir de ella. Por eso se debe guardar aparte, en la variable `pedidoActual` del *singleton* `StateSingleton.shared`. **Esta variable estaba comentada para que no diera error** ya que hasta ahora no existía la entidad `Pedido`, **descoméntala**.
+El pedido actual no se puede guardar en el propio *controller* ya que por la navegación entre pantallas este se destruiría al salir de ella. Por eso se debe guardar aparte, en la variable `pedidoActual` del *singleton* `StateSingleton.shared`. **Esta variable estaba comentada para que no diera error** ya que hasta ahora no existía la entidad `Pedido`, **descoméntala**. 
 
 ### Añadir el plato elegido al pedido
 
