@@ -83,7 +83,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#ejercicios" tabindex="1" class="md-skip">
+      <a href="#contextos-multiples-para-operaciones-en-background-2-puntos" tabindex="1" class="md-skip">
         Saltar a contenido
       </a>
     
@@ -737,18 +737,6 @@
 
 
   <li class="md-nav__item">
-    <a href="../../cap8/5_ejercicios/" title="Ejercicios" class="md-nav__link">
-      Ejercicios
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
     <a href="../../cap8/apendice_migraciones_ios9/" title="Apéndice. migraciones en versiones antiguas de iOS" class="md-nav__link">
       Apéndice. migraciones en versiones antiguas de iOS
     </a>
@@ -846,29 +834,9 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#ejercicios" class="md-nav__link">
-    Ejercicios
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#contextos-multiples-para-operaciones-en-background-2-puntos" class="md-nav__link">
     Contextos múltiples para operaciones en background (2 puntos)
   </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#comunicar-contextos-entre-si-3-puntos" class="md-nav__link">
-    Comunicar contextos entre sí (3 puntos)
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1135,29 +1103,9 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#ejercicios" class="md-nav__link">
-    Ejercicios
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#contextos-multiples-para-operaciones-en-background-2-puntos" class="md-nav__link">
     Contextos múltiples para operaciones en background (2 puntos)
   </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#comunicar-contextos-entre-si-3-puntos" class="md-nav__link">
-    Comunicar contextos entre sí (3 puntos)
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1180,24 +1128,11 @@
                 
                   <h1>Ejercicios</h1>
                 
-                <h2 id="ejercicios">Ejercicios<a class="headerlink" href="#ejercicios" title="Permanent link">&para;</a></h2>
-<p>En las plantillas de la sesión hay un proyecto llamado <code>PruebaContextosMultiples</code> que servirá como base para los ejercicios de la sesión. La aplicación solo tiene una pantalla con un listado de notas (no se pueden crear ni modificar). Hay dos operaciones costosas: exportar las notas y refrescar el listado con datos que vengan del servidor. En ambos casos el coste es simulado ya que ni se exportan de verdad ni se actualizan desde ningún servidor (ejem). El coste se simula "durmiendo" al hilo actual con la instrucción <code>usleep</code>.</p>
+                <p>En las plantillas de la sesión hay un proyecto llamado <code>PruebaContextosMultiples</code> que servirá como base para los ejercicios de la sesión. La aplicación solo tiene una pantalla con un listado de notas (no se pueden crear ni modificar). Hay dos operaciones costosas: exportar las notas y refrescar el listado con datos que vengan del servidor. En ambos casos el coste es simulado ya que ni se exportan de verdad ni se actualizan desde ningún servidor (ejem). El coste se simula "durmiendo" al hilo actual con la instrucción <code>usleep</code>.</p>
 <p>Cuando la aplicación se carga, si no hay datos automáticamente inserta 500 objetos en la base de datos.</p>
 <h3 id="contextos-multiples-para-operaciones-en-background-2-puntos">Contextos múltiples para operaciones en <em>background</em> (2 puntos)<a class="headerlink" href="#contextos-multiples-para-operaciones-en-background-2-puntos" title="Permanent link">&para;</a></h3>
 <p>Pulsa sobre el botón de "exportar". Verás que la operación tarda 2-3 segundos. Si intentas hacer <em>scroll</em> de la pantalla durante este tiempo no podrás, ya que se queda bloqueada. Hay que solucionar esto.</p>
 <p>verás que en el método <code>botonExportarPulsado</code> del <em>view controller</em> se llama a un método que (de modo simulado) exporta las notas y que es el "culpable" del bloqueo. El método admite como parámetro el contexto de persistencia. <strong>Cambia el código para que esta operación se haga en un nuevo contexto en background</strong>. Recuerda que las operaciones de interfaz (como mostrar el alert tras la exportación) deben hacerse en el <em>thread</em> principal.</p>
-<h3 id="comunicar-contextos-entre-si-3-puntos">Comunicar contextos entre sí (3 puntos)<a class="headerlink" href="#comunicar-contextos-entre-si-3-puntos" title="Permanent link">&para;</a></h3>
-<p>Si haces "pull to refresh" de la tabla, de modo simulado se conecta con el servidor para recibir los datos. La operación tarda unos segundos, durante los que se bloquea la interfaz, problema que tendrás que arreglar igual que en el apartado anterior.</p>
-<p>Para que puedas ver que efectivamente se insertan datos, puedes pulsar primero el botón "Borrar todas", que elimina todos los datos</p>
-<p>Cuando se hace "pull to refresh" se llama al método <code>handleRefresh</code> del <em>view controller</em>. En este se llama a <code>refrescarDatosDeServidor</code>, que supuestamente conecta con el servidor y inserta los nuevos datos en el contexto de persistencia. </p>
-<blockquote>
-<p>Los datos se actualizan en pantalla automáticamente porque usamos un <em>fetched results controller</em> que los está escuchando, y puedes ver en el código que el <em>view controller</em> actúa como su <code>delegate</code>, actualizando la tabla si es necesario.</p>
-</blockquote>
-<p>Tendrás que hacer dos cambios en el código:</p>
-<ul>
-<li>Igual que hiciste antes, la operación de <code>refrescarDatosDeServidor</code> se debería hacer en <em>background</em> para que no bloqueara la interfaz de usuario</li>
-<li>Una vez hecho lo anterior no se bloqueará la interfaz, pero los objetos se estarán recibiendo en otro contexto distinto al principal. Para enviar los datos al contexto principal y que aparezcan allí puedes usar notificaciones como has visto en la sesión de hoy</li>
-</ul>
                 
                   
                 
