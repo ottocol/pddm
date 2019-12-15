@@ -1,4 +1,3 @@
-## Ejercicios de arquitecturas iOS, parte II
 
 Tenemos la aplicación para consultar el tiempo que ya usamos en el módulo de *tecnologías de desarrollo* y queremos cambiarla para que en lugar de usar MVC use MVVM.
 
@@ -25,7 +24,7 @@ En el `TiempoViewModel` añadir una propiedad que represente al modelo
 let modelo = TiempoModelo()
 ```
 
-### Mostrar la descripción del tiempo (4 puntos)
+### Mostrar la descripción del tiempo (2 puntos)
 
 En este apartado conseguiremos que al pulsar en el botón "consultar tiempo" la descripción en modo texto (p.ej. "sol") aparezca en la pantalla del dispositivo.
 
@@ -53,22 +52,15 @@ self.viewModel.consultarTiempo(de: loc)
 
 - en el `viewDidLoad()` vincular la propiedad `estado` del `viewModel` al texto de la etiqueta `estadoLabel`
 
-## Mostrar el icono del tiempo (3 puntos)
+## Mostrar el icono del tiempo (2 puntos)
 
 - Haz lo mismo para el icono del tiempo, solo que será más complicado ya que vinculamos un String con un icono (`UIImage`)
+- Para convertir una String en un icono:
+  + Filtrar los Strings con `filter` solo dejando pasar los distintos de la cadena vacía
+  + Una vez filtrados, usar `map` para transformar de String->URL->Data->UIImage. En Swift puedes:
+    + llamar al inicializador `URL(string:)`    
+    + obtener los datos binarios de una URL con `Data(contentsOf:)`
+    + crear un UIImage a partir de datos binarios con `UIIMage(data:)`
 
-```swift
-.filter {
-  icono in
-  return icono != ""
-}
-.map {
-  icono in
-  let urlIcono = URL(string:icono)!
-  let datosIcono = try! Data(contentsOf:urlIcono)
-  let imgIcono = UIImage(data: datosIcono)
-  return imgIcono!
-}
-```
 
 
