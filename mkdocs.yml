@@ -42,7 +42,6 @@ nav:
     - Versiones del modelo de datos: 'cap8/2_versiones.md'
     - Migraciones ligeras: 'cap8/3_migraciones_ligeras.md'
     - Migraciones pesadas: 'cap8/4_migraciones_pesadas.md'
-    - Ejercicios: 'cap8/5_ejercicios.md'
     - Apéndice. migraciones en versiones antiguas de iOS: 'cap8/apendice_migraciones_ios9.md'
   - Concurrencia. Contextos múltiples: 
     - Múltiples contextos para trabajos en *background*: 'cap9/1_background.md'
