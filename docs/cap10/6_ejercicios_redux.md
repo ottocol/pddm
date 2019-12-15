@@ -1,4 +1,4 @@
-## Ejercicios de arquitecturas iOS, parte III: Redux
+## Ejercicios de arquitecturas iOS, parte II: Redux
 
 En las plantillas de la sesión tenemos una aplicación que implementa una "lista de la compra" para apuntar cosas pendientes de comprar y que está desarrollada siguiendo el paradigma MVC. Queremos pasarla a Redux con la ayuda de ReSwift.
 
