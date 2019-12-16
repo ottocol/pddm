@@ -13,9 +13,15 @@ El objetivo es desarrollar un pequeño chat con la *realtime database*. La plant
 
 En la pantalla inicial de la *app* hay un formulario para hacer login. **Añade el código necesario para que cuando se pulse sobre el botón "Entrar" se haga login en Firebase**. 
 
+Si el login ha tenido éxito habrá que saltar a la segunda pantalla por el *segue* llamado "login"
+
+```swift
+performSegue(withIdentifier:"login", sender:self)
+```
+
 #### Segunda pantalla
 
-El botón "Entrar" está conectado mediante un *segue* con la segunda pantalla, que es donde se verán los mensajes del chat. En el *outlet* `usuarioLabel` debería aparecer el login del usuario que se ha autentificado.
+En el *outlet* `usuarioLabel` debería aparecer el login del usuario que se ha autentificado.
 
 **Añade el código necesario para mostrar el email del usuario actual de Firebase** en el `usuarioLabel`. Puedes hacerlo en el método `viewWillAppear` del `ChatViewController`. 
 
