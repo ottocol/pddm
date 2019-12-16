@@ -1153,8 +1153,13 @@
 <h3 id="loginlogout-2-puntos">Login/logout (2 puntos)<a class="headerlink" href="#loginlogout-2-puntos" title="Permanent link">&para;</a></h3>
 <h4>Pantalla inicial:</h4>
 <p>En la pantalla inicial de la <em>app</em> hay un formulario para hacer login. <strong>Añade el código necesario para que cuando se pulse sobre el botón "Entrar" se haga login en Firebase</strong>. </p>
+<p>Si el login ha tenido éxito habrá que saltar a la segunda pantalla por el <em>segue</em> llamado "login"</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">performSegue</span><span class="p">(</span><span class="n">withIdentifier</span><span class="p">:</span><span class="s">&quot;login&quot;</span><span class="p">,</span> <span class="n">sender</span><span class="p">:</span><span class="kc">self</span><span class="p">)</span>
+</pre></div>
+</td></tr></table>
+
 <h4>Segunda pantalla</h4>
-<p>El botón "Entrar" está conectado mediante un <em>segue</em> con la segunda pantalla, que es donde se verán los mensajes del chat. En el <em>outlet</em> <code>usuarioLabel</code> debería aparecer el login del usuario que se ha autentificado.</p>
+<p>En el <em>outlet</em> <code>usuarioLabel</code> debería aparecer el login del usuario que se ha autentificado.</p>
 <p><strong>Añade el código necesario para mostrar el email del usuario actual de Firebase</strong> en el <code>usuarioLabel</code>. Puedes hacerlo en el método <code>viewWillAppear</code> del <code>ChatViewController</code>. </p>
 <p>Finalmente, <strong>añade el código necesario para que al pulsar sobre <code>Salir</code></strong> se haga <em>logout</em> en Firebase.  </p>
 <h3 id="mensajes-del-chat-3-puntos">Mensajes del chat (3 puntos)<a class="headerlink" href="#mensajes-del-chat-3-puntos" title="Permanent link">&para;</a></h3>
