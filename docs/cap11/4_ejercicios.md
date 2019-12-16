@@ -7,7 +7,7 @@ En las plantillas de la sesión hay un proyecto Xcode con las librerías de Fire
 El objetivo es desarrollar un pequeño chat con la *realtime database*. La plantilla ya tiene la interfaz hecha y hay que añadirle el código de Firebase.
 
 
-### Login/logout (3 puntos)
+### Login/logout (2 puntos)
 
 #### Pantalla inicial:
 
@@ -22,7 +22,7 @@ El botón "Entrar" está conectado mediante un *segue* con la segunda pantalla, 
 Finalmente, **añade el código necesario para que al pulsar sobre `Salir`** se haga *logout* en Firebase.  
 
 
-### Mensajes del chat (5 puntos)
+### Mensajes del chat (3 puntos)
 
 Usaremos la siguiente estructura para almacenar los mensajes del chat:
 
@@ -65,7 +65,7 @@ if let valor = snapshot.value, let v = valor as? [String:String] {
 }
 ```
 
-    - Cuando se reciba el evento, mostrar el mensaje en la tabla. Con el texto del mensaje y el email del usuario construir un `struct` de tipo `Mensaje` y añadirlo al array `self.mensajes` del `ChatViewController`. Para que aparezca visualmente en la tabla tienes además que añadir una fila en la posición correspondiente:
+Cuando se reciba el evento, mostrar el mensaje en la tabla. Con el texto del mensaje y el email del usuario construir un `struct` de tipo `Mensaje` y añadirlo al array `self.mensajes` del `ChatViewController`. Para que aparezca visualmente en la tabla tienes además que añadir una fila en la posición correspondiente:
 
 ```swift
 let indexPath = IndexPath(row:self.mensajes.count-1,section:0)
