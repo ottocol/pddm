@@ -950,15 +950,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#loginlogout-3-puntos" class="md-nav__link">
-    Login/logout (3 puntos)
+  <a href="#loginlogout-2-puntos" class="md-nav__link">
+    Login/logout (2 puntos)
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#mensajes-del-chat-5-puntos" class="md-nav__link">
-    Mensajes del chat (5 puntos)
+  <a href="#mensajes-del-chat-3-puntos" class="md-nav__link">
+    Mensajes del chat (3 puntos)
   </a>
   
 </li>
@@ -1107,15 +1107,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#loginlogout-3-puntos" class="md-nav__link">
-    Login/logout (3 puntos)
+  <a href="#loginlogout-2-puntos" class="md-nav__link">
+    Login/logout (2 puntos)
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#mensajes-del-chat-5-puntos" class="md-nav__link">
-    Mensajes del chat (5 puntos)
+  <a href="#mensajes-del-chat-3-puntos" class="md-nav__link">
+    Mensajes del chat (3 puntos)
   </a>
   
 </li>
@@ -1150,14 +1150,14 @@
 <p>IMPORTANTE: para trabajar con el proyecto, <strong>abrir el <code>.xcworkspace</code></strong>, NO el <code>.xcodeproj</code> que abrimos habitualmente. Al abrir el <em>workspace</em> veréis dos proyectos, uno con la <em>app</em> en sí, llamado <code>ChatFirebase</code> y otro con las librerías auxiliares llamado <code>pods</code>. Tras abrir el <em>workspace</em> lo primero que deberíais hacer es <code>Product &gt; Build</code>.</p>
 </blockquote>
 <p>El objetivo es desarrollar un pequeño chat con la <em>realtime database</em>. La plantilla ya tiene la interfaz hecha y hay que añadirle el código de Firebase.</p>
-<h3 id="loginlogout-3-puntos">Login/logout (3 puntos)<a class="headerlink" href="#loginlogout-3-puntos" title="Permanent link">&para;</a></h3>
+<h3 id="loginlogout-2-puntos">Login/logout (2 puntos)<a class="headerlink" href="#loginlogout-2-puntos" title="Permanent link">&para;</a></h3>
 <h4>Pantalla inicial:</h4>
 <p>En la pantalla inicial de la <em>app</em> hay un formulario para hacer login. <strong>Añade el código necesario para que cuando se pulse sobre el botón "Entrar" se haga login en Firebase</strong>. </p>
 <h4>Segunda pantalla</h4>
 <p>El botón "Entrar" está conectado mediante un <em>segue</em> con la segunda pantalla, que es donde se verán los mensajes del chat. En el <em>outlet</em> <code>usuarioLabel</code> debería aparecer el login del usuario que se ha autentificado.</p>
 <p><strong>Añade el código necesario para mostrar el email del usuario actual de Firebase</strong> en el <code>usuarioLabel</code>. Puedes hacerlo en el método <code>viewWillAppear</code> del <code>ChatViewController</code>. </p>
 <p>Finalmente, <strong>añade el código necesario para que al pulsar sobre <code>Salir</code></strong> se haga <em>logout</em> en Firebase.  </p>
-<h3 id="mensajes-del-chat-5-puntos">Mensajes del chat (5 puntos)<a class="headerlink" href="#mensajes-del-chat-5-puntos" title="Permanent link">&para;</a></h3>
+<h3 id="mensajes-del-chat-3-puntos">Mensajes del chat (3 puntos)<a class="headerlink" href="#mensajes-del-chat-3-puntos" title="Permanent link">&para;</a></h3>
 <p>Usaremos la siguiente estructura para almacenar los mensajes del chat:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
@@ -1216,10 +1216,7 @@
 </pre></div>
 </td></tr></table>
 
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>- Cuando se reciba el evento, mostrar el mensaje en la tabla. Con el texto del mensaje y el email del usuario construir un `struct` de tipo `Mensaje` y añadirlo al array `self.mensajes` del `ChatViewController`. Para que aparezca visualmente en la tabla tienes además que añadir una fila en la posición correspondiente:
-</pre></div>
-</td></tr></table>
-
+<p>Cuando se reciba el evento, mostrar el mensaje en la tabla. Con el texto del mensaje y el email del usuario construir un <code>struct</code> de tipo <code>Mensaje</code> y añadirlo al array <code>self.mensajes</code> del <code>ChatViewController</code>. Para que aparezca visualmente en la tabla tienes además que añadir una fila en la posición correspondiente:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">indexPath</span> <span class="p">=</span> <span class="n">IndexPath</span><span class="p">(</span><span class="n">row</span><span class="p">:</span><span class="kc">self</span><span class="p">.</span><span class="n">mensajes</span><span class="p">.</span><span class="bp">count</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">section</span><span class="p">:</span><span class="mi">0</span><span class="p">)</span>
