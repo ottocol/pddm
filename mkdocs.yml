@@ -8,60 +8,60 @@ nav:
     - Property lists: 'cap1/1.3_property_lists.md'
     - Preferencias: 'cap1/1.4_preferencias.md'
     - Ejercicios: 'cap1/1.5_ejercicios.md'
-  - SQLite:
-    - Introducción: 'cap2/2.1_intro_SQLite.md'
-    - El API de SQLIte: 'cap2/2.2_API_SQLite.md'
-    - Frameworks para SQLite: 'cap2/2.3_frameworks.md'
-    - Ejercicios: 'cap2/2.4_ejercicios.md'
-  - ¡Hola Core Data!. Una aplicación de ejemplo: 
-    - Introducción a Core Data: 'cap3/3.1_intro.md'
-    - Crear el stack de Core Data en iOS: 'cap3/3.2_stack.md'
-    - Las entidades. Almacenar datos: 'cap3/3.3_entidades.md'
-    - Recuperar los datos: 'cap3/3.4_recuperar_datos.md' 
-    - Apéndice. Cómo examinar el almacenamiento persistente: 'cap3/apendice_ver_almacenamiento.md'        
-  - Modelos de datos en Core Data: 
-    - Crear y editar modelos: 'cap4/4.1_crear_modelo.md'
-    - Modelar las entidades en código Swift: 'cap4/4.2_clases_propias.md'
-    - CRUD en Core Data: 'cap4/4.3_CRUD.md'
-    - Validaciones: 'cap4/4.4_validaciones.md'
-    - Transformables: 'cap4/4.5_transformables.md'
-    - Ejercicios de modelos de datos: 'cap4/4.6_ejercicios.md'
-  - Búsquedas en Core Data: 
-    - Predicados: 'cap6/1_predicados.md'
-    - Ordenación: 'cap6/2_ordenacion.md'
-    - Ejercicios: 'cap6/3_ejercicios.md'
-  - Tablas en Core Data: 
-    - El *fetched results controller*: 'cap7/1_el_frc.md'
-    - Inicializar el "fetched results controller": 'cap7/2_configuracion_basica.md'
-    - Mostrar los datos en la tabla: 'cap7/3_tabla.md'
-    - Refrescar la tabla: 'cap7/4_refrescar_tabla.md'
-    - Secciones de tabla automáticas: 'cap7/5_secciones.md'
-    - Ejercicios: 'cap7/6_ejercicios.md'
-  - Migraciones de datos: 
-    - Qué son las migraciones de datos: 'cap8/1_intro.md'
-    - Versiones del modelo de datos: 'cap8/2_versiones.md'
-    - Migraciones ligeras: 'cap8/3_migraciones_ligeras.md'
-    - Migraciones pesadas: 'cap8/4_migraciones_pesadas.md'
-    - Apéndice. migraciones en versiones antiguas de iOS: 'cap8/apendice_migraciones_ios9.md'
-  - Concurrencia. Contextos múltiples: 
-    - Múltiples contextos para trabajos en *background*: 'cap9/1_background.md'
-    - Comunicación entre contextos: 'cap9/2_comunicacion.md'
-    - Contextos anidados: 'cap9/3_contextos_anidados.md'
-    - Ejercicios: 'cap9/4_ejercicios.md'
-  - Miniproyecto:
-    - Enunciado: 'miniproyecto/restaurante.md'  
-  - Persistencia como servicio: 
-    - Backend as a Service: 'cap11/1_introduccion_BAAS.md'
-    - Gestión de usuarios en Firebase: 'cap11/2_gestion_usuarios.md'
-    - Persistencia en Firebase: 'cap11/3_persistencia.md'
-    - Ejercicios: 'cap11/4_ejercicios.md' 
-  - Arquitecturas de aplicaciones en iOS: 
-    - Introducción: 'cap10/intro.md'
-    - Model/View/Controller: 'cap10/2_MVC.md'
-    - Model/View/Presenter: 'cap10/3_MVP.md'
-    - Model/View/ViewModel: 'cap10/4_MVVM.md'
-    - VIPER: 'cap10/5_VIPER.md'
-    - Ejercicios MVVM: 'cap10/6_ejercicios.md'
+  # - SQLite:
+  #   - Introducción: 'cap2/2.1_intro_SQLite.md'
+  #   - El API de SQLIte: 'cap2/2.2_API_SQLite.md'
+  #   - Frameworks para SQLite: 'cap2/2.3_frameworks.md'
+  #   - Ejercicios: 'cap2/2.4_ejercicios.md'
+  # - ¡Hola Core Data!. Una aplicación de ejemplo: 
+  #   - Introducción a Core Data: 'cap3/3.1_intro.md'
+  #   - Crear el stack de Core Data en iOS: 'cap3/3.2_stack.md'
+  #   - Las entidades. Almacenar datos: 'cap3/3.3_entidades.md'
+  #   - Recuperar los datos: 'cap3/3.4_recuperar_datos.md' 
+  #   - Apéndice. Cómo examinar el almacenamiento persistente: 'cap3/apendice_ver_almacenamiento.md'        
+  # - Modelos de datos en Core Data: 
+  #   - Crear y editar modelos: 'cap4/4.1_crear_modelo.md'
+  #   - Modelar las entidades en código Swift: 'cap4/4.2_clases_propias.md'
+  #   - CRUD en Core Data: 'cap4/4.3_CRUD.md'
+  #   - Validaciones: 'cap4/4.4_validaciones.md'
+  #   - Transformables: 'cap4/4.5_transformables.md'
+  #   - Ejercicios de modelos de datos: 'cap4/4.6_ejercicios.md'
+  # - Búsquedas en Core Data: 
+  #   - Predicados: 'cap6/1_predicados.md'
+  #   - Ordenación: 'cap6/2_ordenacion.md'
+  #   - Ejercicios: 'cap6/3_ejercicios.md'
+  # - Tablas en Core Data: 
+  #   - El *fetched results controller*: 'cap7/1_el_frc.md'
+  #   - Inicializar el "fetched results controller": 'cap7/2_configuracion_basica.md'
+  #   - Mostrar los datos en la tabla: 'cap7/3_tabla.md'
+  #   - Refrescar la tabla: 'cap7/4_refrescar_tabla.md'
+  #   - Secciones de tabla automáticas: 'cap7/5_secciones.md'
+  #   - Ejercicios: 'cap7/6_ejercicios.md'
+  # - Migraciones de datos: 
+  #   - Qué son las migraciones de datos: 'cap8/1_intro.md'
+  #   - Versiones del modelo de datos: 'cap8/2_versiones.md'
+  #   - Migraciones ligeras: 'cap8/3_migraciones_ligeras.md'
+  #   - Migraciones pesadas: 'cap8/4_migraciones_pesadas.md'
+  #   - Apéndice. migraciones en versiones antiguas de iOS: 'cap8/apendice_migraciones_ios9.md'
+  # - Concurrencia. Contextos múltiples: 
+  #   - Múltiples contextos para trabajos en *background*: 'cap9/1_background.md'
+  #   - Comunicación entre contextos: 'cap9/2_comunicacion.md'
+  #   - Contextos anidados: 'cap9/3_contextos_anidados.md'
+  #   - Ejercicios: 'cap9/4_ejercicios.md'
+  # - Miniproyecto:
+  #   - Enunciado: 'miniproyecto/restaurante.md'  
+  # - Persistencia como servicio: 
+  #   - Backend as a Service: 'cap11/1_introduccion_BAAS.md'
+  #   - Gestión de usuarios en Firebase: 'cap11/2_gestion_usuarios.md'
+  #   - Persistencia en Firebase: 'cap11/3_persistencia.md'
+  #   - Ejercicios: 'cap11/4_ejercicios.md' 
+  # - Arquitecturas de aplicaciones en iOS: 
+  #   - Introducción: 'cap10/intro.md'
+  #   - Model/View/Controller: 'cap10/2_MVC.md'
+  #   - Model/View/Presenter: 'cap10/3_MVP.md'
+  #   - Model/View/ViewModel: 'cap10/4_MVVM.md'
+  #   - VIPER: 'cap10/5_VIPER.md'
+  #   - Ejercicios MVVM: 'cap10/6_ejercicios.md'
 
 
 theme:
