@@ -1,13 +1,13 @@
 
-> No es estrictamente necesario que sigas estos pasos en el ejercicio, pero sí que al menos los leas para poder entender mejor el funcionamiento interno de Core Data
+> **No es necesario que sigas estos pasos** en el ejercicio, pero sí es interesante que los leas para poder entender mejor el funcionamiento interno de Core Data.
 
-Podemos "espiar" el almacenamiento persistente, que como ya hemos visto el código Swift del *delegate* configura por defecto como una base de datos SQLite con el mismo nombre del proyecto. Podemos localizar el archivo tecleando desde la terminal:
+Podemos examinar el almacenamiento persistente, que como ya hemos visto el código Swift del *delegate*, se configura por defecto como una base de datos SQLite con el mismo nombre del proyecto. Podemos localizar el archivo tecleando desde la terminal:
 
 ```bash
 find . -name MisNotas.sqlite -print
 ```
 
-o más sencillo, usar alguna utilidad como [SimSim](https://github.com/dsmelov/simsim/releases), que ya hemos usado en otras sesiones para localizar el directorio con el *sandbox* de nuestra aplicación. La base de datos se crea por defecto en el directorio `Library/Application Support` del *sandbox*.
+o más sencillo, emplear alguna utilidad como [SimSim](https://github.com/dsmelov/simsim/releases), que ya hemos usado en otras sesiones para localizar el directorio con el *sandbox* de nuestra aplicación. La base de datos se crea por defecto en el directorio `Library/Application Support` del *sandbox*.
 
 Si abrimos la base de datos usando alguna utilidad gráfica o bien desde la terminal (moviéndose al directorio donde está el `MisNotas.sqlite` y tecleando:)
 
