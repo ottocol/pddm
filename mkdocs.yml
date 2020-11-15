@@ -50,11 +50,11 @@ nav:
   #   - Ejercicios: 'cap9/4_ejercicios.md'
   # - Miniproyecto:
   #   - Enunciado: 'miniproyecto/restaurante.md'  
-  # - Persistencia como servicio: 
-  #   - Backend as a Service: 'cap11/1_introduccion_BAAS.md'
-  #   - Gestión de usuarios en Firebase: 'cap11/2_gestion_usuarios.md'
-  #   - Persistencia en Firebase: 'cap11/3_persistencia.md'
-  #   - Ejercicios: 'cap11/4_ejercicios.md' 
+  - Persistencia como servicio: 
+    - Backend as a Service: 'cap11/1_introduccion_BAAS.md'
+    - Gestión de usuarios en Firebase: 'cap11/2_gestion_usuarios.md'
+    - Persistencia en Firebase: 'cap11/3_persistencia.md'
+    - Ejercicios: 'cap11/4_ejercicios.md' 
   # - Arquitecturas de aplicaciones en iOS: 
   #   - Introducción: 'cap10/intro.md'
   #   - Model/View/Controller: 'cap10/2_MVC.md'
