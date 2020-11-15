@@ -36,7 +36,7 @@
     
     
       
-        <title>3 persistencia - PDDM-iOS</title>
+        <title>Persistencia en Firebase - PDDM-iOS</title>
       
     
     
@@ -83,7 +83,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#persistencia-de-datos-en-firebase" tabindex="1" class="md-skip">
+      <a href="#estructurar-los-datos" tabindex="1" class="md-skip">
         Saltar a contenido
       </a>
     
@@ -109,7 +109,7 @@
             </span>
             <span class="md-header-nav__topic">
               
-                3 persistencia
+                Persistencia en Firebase
               
             </span>
           
@@ -508,6 +508,135 @@
   </li>
 
     
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
+    
+    <label class="md-nav__link" for="nav-5">
+      Persistencia como servicio
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Persistencia como servicio
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../1_introduccion_BAAS/" title="Backend as a Service" class="md-nav__link">
+      Backend as a Service
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../2_gestion_usuarios/" title="Gestión de usuarios en Firebase" class="md-nav__link">
+      Gestión de usuarios en Firebase
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Persistencia en Firebase
+      </label>
+    
+    <a href="./" title="Persistencia en Firebase" class="md-nav__link md-nav__link--active">
+      Persistencia en Firebase
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Tabla de contenidos</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#estructurar-los-datos" class="md-nav__link">
+    Estructurar los datos
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referencias" class="md-nav__link">
+    Referencias
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#crear-y-actualizar-datos" class="md-nav__link">
+    Crear y actualizar datos
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consultas" class="md-nav__link">
+    Consultas
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../4_ejercicios/" title="Ejercicios" class="md-nav__link">
+      Ejercicios
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
   </ul>
 </nav>
                   </div>
@@ -527,43 +656,30 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#persistencia-de-datos-en-firebase" class="md-nav__link">
-    Persistencia de datos en Firebase
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#estructurar-los-datos" class="md-nav__link">
     Estructurar los datos
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#referencias" class="md-nav__link">
     Referencias
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#crear-y-actualizar-datos" class="md-nav__link">
     Crear y actualizar datos
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#consultas" class="md-nav__link">
     Consultas
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -584,12 +700,11 @@
               
                 
                 
-                  <h1>3 persistencia</h1>
+                  <h1>Persistencia en Firebase</h1>
                 
-                <h2 id="persistencia-de-datos-en-firebase">Persistencia de datos en Firebase<a class="headerlink" href="#persistencia-de-datos-en-firebase" title="Permanent link">&para;</a></h2>
-<p>Actualmente hay dos bases de datos disponibles en Firebase: la <em>realtime</em> database, que es la "original" y el <em>cloud firestore</em>, que se introdujo posteriormente. Ambas son bases de datos NoSQL, aunque la <em>realtime</em> tiene una estructura de datos algo más peculiar. Vamos a ver aquí la <em>realtime database</em>, que como su nombre indica es especialmente apropiada para aplicaciones en <em>tiempo real</em>, ya que además de poder hacer las típicas consultas podemos "escuchar" los cambios en los datos. No obstante se puede usar en cualquier tipo de aplicación.</p>
+                <p>Actualmente hay dos bases de datos disponibles en Firebase: la <em>realtime</em> database, que es la "original" y el <em>cloud firestore</em>, que se introdujo posteriormente. Ambas son bases de datos NoSQL, aunque la <em>realtime</em> tiene una estructura de datos algo más peculiar. Vamos a ver aquí la <em>realtime database</em>, que como su nombre indica es especialmente apropiada para aplicaciones en <em>tiempo real</em>, ya que además de poder hacer las típicas consultas podemos "escuchar" los cambios en los datos. No obstante se puede usar en cualquier tipo de aplicación.</p>
 <p>Podéis consultar <em>online</em> y traducida al español la <a href="https://firebase.google.com/docs/database/ios/start">documentación de los APIs de iOS para la <em>realtime database</em></a>.</p>
-<h3 id="estructurar-los-datos">Estructurar los datos<a class="headerlink" href="#estructurar-los-datos" title="Permanent link">&para;</a></h3>
+<h2 id="estructurar-los-datos">Estructurar los datos<a class="headerlink" href="#estructurar-los-datos" title="Permanent link">&para;</a></h2>
 <p>Como ya hemos comentado, las dos bases de datos disponibles en Firebase son NoSQL. Esto quiere decir que los datos no tienen la división habitual en tablas a la que estamos acostumbrados en bases de datos relacionales. La base de datos tampoco se ocupa de comprobar automáticamente la consistencia o la integridad de los datos, quedando esta tarea en manos de la aplicación.</p>
 <p>En la <em>realtime database</em> todos los datos están contenidos en un único "árbol" de pares clave-valor. Los valores pueden ser primitivos (números, cadenas o valores booleanos) o pueden ser valores compuestos a su vez de pares clave-valor.  Por ejemplo podríamos tener algo como:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
@@ -710,7 +825,7 @@
 </pre></div>
 </td></tr></table>
 
-<h3 id="referencias">Referencias<a class="headerlink" href="#referencias" title="Permanent link">&para;</a></h3>
+<h2 id="referencias">Referencias<a class="headerlink" href="#referencias" title="Permanent link">&para;</a></h2>
 <p>Un concepto fundamental y necesario para poder leer y escribir datos es el de <em>referencia</em>. Una <em>referencia</em> representa un nodo del árbol de datos. Con los métodos del API podemos obtener directamente una referencia a un nodo cualquiera si conocemos su <em>path</em> desde la raíz. O bien podemos partir de una referencia que ya tengamos a un nodo y movernos a uno de sus hijos. Una vez obtenida la referencia al nodo que nos interesa, podremos leer su estado/modificarlo con otros métodos del API.</p>
 <p>Por ejemplo supongamos que tenemos la estructura de datos en Firebase que vimos en el apartado anterior.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
@@ -774,7 +889,7 @@
 </td></tr></table>
 
 <p>Esto nos permitirá crear un nuevo pedido cuyos datos sean hijos del nodo "pedidos/1" sin necesidad de haber creado previamente los nodos intermedios.</p>
-<h3 id="crear-y-actualizar-datos">Crear y actualizar datos<a class="headerlink" href="#crear-y-actualizar-datos" title="Permanent link">&para;</a></h3>
+<h2 id="crear-y-actualizar-datos">Crear y actualizar datos<a class="headerlink" href="#crear-y-actualizar-datos" title="Permanent link">&para;</a></h2>
 <p>Para <strong>modificar un nodo</strong> usamos <code>setValue(&lt;nuevovalor&gt;)</code> sobre su referencia. Este método es destructivo, ya que sustituye completamente el valor actual del nodo, incluso aunque este tenga otros nodos hijos. Por ejemplo:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
@@ -883,7 +998,7 @@
 
 <p>El algoritmo de generación de ids asegura que no va a haber colisiones entre los identificadores generados por los distintos clientes. Además el <em>id</em> incluye un <em>timestamp</em>, de modo que si ordenamos por <em>id</em> estamos ordenando implícitamente por orden de inserción en la base de datos.</p>
 <p>Finalmente, podemos <strong>borrar datos</strong> con <code>removeValue()</code>. También podríamos hacer <code>setValue(nil)</code>, o poner a <code>nil</code> alguna propiedad en <code>updateChildValues</code>.</p>
-<h3 id="consultas">Consultas<a class="headerlink" href="#consultas" title="Permanent link">&para;</a></h3>
+<h2 id="consultas">Consultas<a class="headerlink" href="#consultas" title="Permanent link">&para;</a></h2>
 <p>La <em>realtime Database</em>, como su propio nombre indica, tiene funcionalidades apropiadas para aplicaciones que necesitan datos en tiempo real. En concreto <strong>podemos <em>escuchar</em> los cambios en los datos</strong>. Como luego veremos podemos usar este API también para hacer consultas al estilo más clásico, que simplemente devuelvan el estado actual de la BD.</p>
 <p>Para observar los cambios en los datos de un nodo, incluyendo también todos los nodos que hay "por debajo", podemos usar <code>observe(_,withBlock:)</code>, donde el último parámetro es una clausura a ejecutar cuando se produzca el evento. Por ejemplo:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
@@ -970,6 +1085,41 @@
       
         
 <footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../2_gestion_usuarios/" title="Gestión de usuarios en Firebase" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Anterior
+                </span>
+                Gestión de usuarios en Firebase
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../4_ejercicios/" title="Ejercicios" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Siguiente
+                </span>
+                Ejercicios
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">

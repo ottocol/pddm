@@ -36,7 +36,7 @@
     
     
       
-        <title>1 introduccion BAAS - PDDM-iOS</title>
+        <title>Backend as a Service - PDDM-iOS</title>
       
     
     
@@ -83,10 +83,6 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#backend-as-a-service-baas" tabindex="1" class="md-skip">
-        Saltar a contenido
-      </a>
-    
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header-nav md-grid">
@@ -109,7 +105,7 @@
             </span>
             <span class="md-header-nav__topic">
               
-                1 introduccion BAAS
+                Backend as a Service
               
             </span>
           
@@ -508,6 +504,87 @@
   </li>
 
     
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
+    
+    <label class="md-nav__link" for="nav-5">
+      Persistencia como servicio
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Persistencia como servicio
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+    <a href="./" title="Backend as a Service" class="md-nav__link md-nav__link--active">
+      Backend as a Service
+    </a>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../2_gestion_usuarios/" title="Gestión de usuarios en Firebase" class="md-nav__link">
+      Gestión de usuarios en Firebase
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../3_persistencia/" title="Persistencia en Firebase" class="md-nav__link">
+      Persistencia en Firebase
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../4_ejercicios/" title="Ejercicios" class="md-nav__link">
+      Ejercicios
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
   </ul>
 </nav>
                   </div>
@@ -515,45 +592,15 @@
               </div>
             
             
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
-<nav class="md-nav md-nav--secondary">
-  
-  
-  
-    <label class="md-nav__title" for="__toc">Tabla de contenidos</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#backend-as-a-service-baas" class="md-nav__link">
-    Backend As A Service (BAAS)
-  </a>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
-</nav>
-                  </div>
-                </div>
-              </div>
-            
           
           <div class="md-content">
             <article class="md-content__inner md-typeset">
               
                 
                 
-                  <h1>1 introduccion BAAS</h1>
+                  <h1>Backend as a Service</h1>
                 
-                <h2 id="backend-as-a-service-baas">Backend As A Service (BAAS)<a class="headerlink" href="#backend-as-a-service-baas" title="Permanent link">&para;</a></h2>
-<p>Aunque hay algunas aplicaciones que pueden funcionar por sí solas sin necesidad de un servidor, muchas aplicaciones actuales necesitan de un <em>backend</em> para poder almacenar datos “en la nube”. Así el usuario pueda acceder a su información independientemente del dispositivo que esté usando. Otras muchas aplicaciones lo usan para que se pueda compartir información con otros usuarios.  </p>
+                <p>Aunque hay algunas aplicaciones que pueden funcionar por sí solas sin necesidad de un servidor, muchas aplicaciones actuales necesitan de un <em>backend</em> para poder almacenar datos “en la nube”. Así el usuario pueda acceder a su información independientemente del dispositivo que esté usando. Otras muchas aplicaciones lo usan para que se pueda compartir información con otros usuarios.  </p>
 <p>El problema es que desarrollar un <em>backend</em> para una aplicación móvil no es una tarea trivial, incluso si se tienen los conocimientos necesarios. Hay que escribir la aplicación en el lado del servidor, desplegarla, alojarla en algún <em>hosting</em>, hacerla escalable, …. Y además muchos desarrolladores de aplicaciones móviles no tienen las habilidades necesarias, ya que en el <em>backend</em> se usan lenguajes, tecnologías y herramientas totalmente diferentes de los usados para el desarrollo del cliente.</p>
 <p>Esto ha hecho que surja un mercado de lo que se conoce como “Backend as a Service” (o BaaS), es decir, ofrecer como servicio “listo para usar” las funcionalidades más típicas de los <em>backends</em> para aplicaciones móviles: autentificación de usuarios, persistencia de datos “en la nube”, analíticas de tráfico, notificaciones <em>push</em> etc. Por supuesto las propias plataformas de desarrollo móvil ya ofrecen algunos de estos servicios (por ejemplo Apple ofrece persistencia “en la nube” con iCloud), pero ha surgido una serie de compañías que ofrecen estos servicios con compatibilidad multiplataforma, de modo que por ejemplo podemos acceder a los mismos datos remotos estemos en la versión iOS, en la versión Android o incluso en la versión web de la aplicación.</p>
 <p>En la actualidad existen múltiples plataformas de terceros que ofrecen funcionalidades de Baas. Vamos a centrarnos aquí en Firebase simplemente porque es una de las más conocidas y porque es multiplataformas. El resto de plataformas ofrecen funcionalidades similares.</p>
@@ -575,6 +622,41 @@
       
         
 <footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../../cap2/2.4_ejercicios/" title="Ejercicios" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Anterior
+                </span>
+                Ejercicios
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../2_gestion_usuarios/" title="Gestión de usuarios en Firebase" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Siguiente
+                </span>
+                Gestión de usuarios en Firebase
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">

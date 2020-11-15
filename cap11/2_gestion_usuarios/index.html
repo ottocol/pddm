@@ -36,7 +36,7 @@
     
     
       
-        <title>2 gestion usuarios - PDDM-iOS</title>
+        <title>Gestión de usuarios en Firebase - PDDM-iOS</title>
       
     
     
@@ -83,7 +83,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#autentificacion-y-gestion-de-usuarios" tabindex="1" class="md-skip">
+      <a href="#anadir-autentificacion-a-una-app-de-firebase" tabindex="1" class="md-skip">
         Saltar a contenido
       </a>
     
@@ -109,7 +109,7 @@
             </span>
             <span class="md-header-nav__topic">
               
-                2 gestion usuarios
+                Gestión de usuarios en Firebase
               
             </span>
           
@@ -508,6 +508,162 @@
   </li>
 
     
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
+    
+    <label class="md-nav__link" for="nav-5">
+      Persistencia como servicio
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Persistencia como servicio
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../1_introduccion_BAAS/" title="Backend as a Service" class="md-nav__link">
+      Backend as a Service
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Gestión de usuarios en Firebase
+      </label>
+    
+    <a href="./" title="Gestión de usuarios en Firebase" class="md-nav__link md-nav__link--active">
+      Gestión de usuarios en Firebase
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Tabla de contenidos</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#anadir-autentificacion-a-una-app-de-firebase" class="md-nav__link">
+    Añadir autentificación a una app de Firebase
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#administracion-de-usuarios" class="md-nav__link">
+    Administración de usuarios
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dar-de-alta-usuarios" class="md-nav__link">
+    Dar de alta usuarios
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validar-el-alta-de-un-usuario" class="md-nav__link">
+    Validar el alta de un usuario
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modificar-el-perfil-de-un-usuario" class="md-nav__link">
+    Modificar el perfil de un usuario
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dar-de-baja-a-un-usuario" class="md-nav__link">
+    Dar de baja a un usuario
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#autentificacion" class="md-nav__link">
+    Autentificación
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../3_persistencia/" title="Persistencia en Firebase" class="md-nav__link">
+      Persistencia en Firebase
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../4_ejercicios/" title="Ejercicios" class="md-nav__link">
+      Ejercicios
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
   </ul>
 </nav>
                   </div>
@@ -527,36 +683,57 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#autentificacion-y-gestion-de-usuarios" class="md-nav__link">
-    Autentificación y gestión de usuarios
+  <a href="#anadir-autentificacion-a-una-app-de-firebase" class="md-nav__link">
+    Añadir autentificación a una app de Firebase
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#administracion-de-usuarios" class="md-nav__link">
+    Administración de usuarios
   </a>
   
     <nav class="md-nav">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#anadir-autentificacion-a-una-app-de-firebase" class="md-nav__link">
-    Añadir autentificación a una app de Firebase
+  <a href="#dar-de-alta-usuarios" class="md-nav__link">
+    Dar de alta usuarios
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#administracion-de-usuarios" class="md-nav__link">
-    Administración de usuarios
+  <a href="#validar-el-alta-de-un-usuario" class="md-nav__link">
+    Validar el alta de un usuario
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#autentificacion" class="md-nav__link">
-    Autentificación
+  <a href="#modificar-el-perfil-de-un-usuario" class="md-nav__link">
+    Modificar el perfil de un usuario
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dar-de-baja-a-un-usuario" class="md-nav__link">
+    Dar de baja a un usuario
   </a>
   
 </li>
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#autentificacion" class="md-nav__link">
+    Autentificación
+  </a>
   
 </li>
       
@@ -577,16 +754,15 @@
               
                 
                 
-                  <h1>2 gestion usuarios</h1>
+                  <h1>Gestión de usuarios en Firebase</h1>
                 
-                <h2 id="autentificacion-y-gestion-de-usuarios">Autentificación y gestión de usuarios<a class="headerlink" href="#autentificacion-y-gestion-de-usuarios" title="Permanent link">&para;</a></h2>
-<p>La gran mayoría de aplicaciones tiene que gestionar datos de usuarios y autentificarlos para poder realizar ciertas operaciones. Típicamente vamos a tener que:</p>
+                <p>La gran mayoría de aplicaciones tiene que gestionar datos de usuarios y autentificarlos para poder realizar ciertas operaciones. Típicamente vamos a tener que:</p>
 <ul>
 <li>Implementar un CRUD de usuarios, para poder darlos de alta, de baja y que puedan modificar sus datos de perfil.</li>
 <li>Implementar funcionalidades de login/logout para que el usuario se pueda autentificar en la aplicación y así tenga acceso a las funcionalidades que la requieran.</li>
 </ul>
 <p>Firebase cubre los dos tipos de funcionalidades. Además no solo vamos a poder gestionar usuarios dándolos de alta en la aplicación con login y password, sino que también nos permite autentificación con credenciales externas, o <em>identidad federada</em>: el usuario puede identificarse en nuestra <em>app</em> con su login de otros sitios como Facebook, Twitter o Google, con lo que se evita tener que crearse un nuevo usuario/contraseña solo para nuestra aplicación.</p>
-<h3 id="anadir-autentificacion-a-una-app-de-firebase">Añadir autentificación a una app de Firebase<a class="headerlink" href="#anadir-autentificacion-a-una-app-de-firebase" title="Permanent link">&para;</a></h3>
+<h2 id="anadir-autentificacion-a-una-app-de-firebase">Añadir autentificación a una app de Firebase<a class="headerlink" href="#anadir-autentificacion-a-una-app-de-firebase" title="Permanent link">&para;</a></h2>
 <p>Las funcionalidades de usuarios están en el módulo <code>auth</code>. Si usamos Cocoapods para gestionar las dependencias, tendremos que añadir la siguiente dependencia al <code>Podfile</code></p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>pod <span class="s1">&#39;Firebase/Auth&#39;</span>
 </pre></div>
@@ -599,12 +775,12 @@
 </td></tr></table>
 
 <p>Podéis consultar <em>online</em> y traducida al español la <a href="https://firebase.google.com/docs/auth/ios/start">documentación de las librerías de iOS</a> para gestión de usuarios y autentificación.</p>
-<h3 id="administracion-de-usuarios">Administración de usuarios<a class="headerlink" href="#administracion-de-usuarios" title="Permanent link">&para;</a></h3>
+<h2 id="administracion-de-usuarios">Administración de usuarios<a class="headerlink" href="#administracion-de-usuarios" title="Permanent link">&para;</a></h2>
 <p>Los usuarios en Firebase tienen una serie de propiedades básicas: un <em>id</em> único, una dirección de correo electrónico, un nombre y la URL de su foto de perfil. Todos los usuarios tienen estos datos, aunque podemos simplemente ignorar alguno en nuestra <em>app</em> (por ejemplo la URL). A los objetos usuario no se les pueden añadir más propiedades, si necesitamos más datos (fecha de nacimiento, sexo, e-mail secundario,...) tendremos que almacenarlos aparte en la base de datos de Firebase.</p>
 <p>Aunque Firebase permite que los usuarios puedan autentificarse con credenciales de Google, Facebook, Twitter, ... aquí solo veremos la autentificación con contraseña, es decir, los usuarios van a darse de alta en nuestra <em>app</em> y elegir un login (que debe ser su <em>email</em>) y un <em>password</em>. <em>passwors</em> no lo podremos consultar desde nuestra <em>app</em>, solo modificar). Para ver cómo autentificarse con identidades federadas, consultar la <a href="https://firebase.google.com/docs/auth/ios/start#next_steps">documentación de Firebase</a></p>
 <p>Como veremos, la mayoría de métodos del API son asíncronos, ya que requieren de interacción con el servidor y hacerlos síncronos bloquearía la <em>app</em> hasta que este respondiera. Los métodos asíncronos del API tienen como último parámetro  una clausura que se ejecutará cuando el servidor complete la operación. </p>
 <p>La clausura a ejecutar recibe como parámetro un error en caso de haberse producido alguno, y además en algunos métodos recibe un parámetro adicional con el resultado de la operación si ha sido exitoso.</p>
-<h4>Dar de alta usuarios</h4>
+<h3 id="dar-de-alta-usuarios">Dar de alta usuarios<a class="headerlink" href="#dar-de-alta-usuarios" title="Permanent link">&para;</a></h3>
 <p>Para <strong>dar de alta un usuario</strong> llamaremos al método <code>createUser(withEmail:,password:,completion:)</code>. Es un método asíncrono, su último parámetro es una clausura que se ejecutará cuando se complete en el servidor el proceso de registro. Como ya se ha dicho esta clausura recibe como parámetro el error producido, si lo hay. Si no ha habido error, además como primer parámetro se recibe un objeto de tipo <code>AuthDataResult</code> con el resultado de la operación. Dentro de este objeto el campo <code>user</code> contiene información sobre el usuario recién creado. </p>
 <p>Por ejemplo:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
@@ -632,7 +808,7 @@
 <p>Como crear las pantallas de alta, login, etc es un proceso tedioso, en Firebase existe un módulo denominado <code>FirebaseUI</code> que implementa la interfaz de las operaciones más comunes. Podéis consultar más información en la <a href="https://firebase.google.com/docs/auth/ios/firebaseui">documentación de Firebase</a>.</p>
 </blockquote>
 <p>Nótese además que el <code>createUser</code> solo rellena los datos más básicos, para rellenar el resto de datos usaremos la funcionalidad de actualizar perfil.</p>
-<h4>Validar el alta de un usuario</h4>
+<h3 id="validar-el-alta-de-un-usuario">Validar el alta de un usuario<a class="headerlink" href="#validar-el-alta-de-un-usuario" title="Permanent link">&para;</a></h3>
 <p>En muchos sitios web cuando un usuario se da de alta se le envía por email un <em>link</em> para que confirme el registro. En Firebase podemos hacer esto con el método <code>sendEmailVerification</code> del usuario actual. Este método pertenece al usuario autentificado .</p>
 <p>Para obtener el usuario autentificado actualmente en la <em>app</em> accedemos a la propiedad <code>Auth.auth().currentUser</code>. Si es <code>nil</code> no hay ningún usuario autentificado.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
@@ -643,7 +819,7 @@
 </pre></div>
 </td></tr></table>
 
-<h4>Modificar el perfil de un usuario</h4>
+<h3 id="modificar-el-perfil-de-un-usuario">Modificar el perfil de un usuario<a class="headerlink" href="#modificar-el-perfil-de-un-usuario" title="Permanent link">&para;</a></h3>
 <p>Para modificar los datos de un usuario, el objeto usuario correspondiente debe llamar a <code>createProfileChangeRequest</code>, hacemos los cambios y finalmente llamamos a <code>commitChanges(completion:)</code>, que es asíncrono, y al que se le pasa una clausura a ejecutar cuando los cambios se hagan efectivos en el servidor. </p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
@@ -684,7 +860,7 @@
 
 <p>Por razones de seguridad, cuando un usuario cambia su dirección de correo electrónico, se le envía un <em>email</em> a la su dirección  para que pueda consultar el cambio. Se puede cambiar la plantilla que se usa para este email en la consola de Firebase, en el apartado: <code>Autenticación &gt; Plantillas</code>.</p>
 <p>En lugar de actualizar el <em>password</em> directamente, podemos enviarle al usuario el típico mensaje de <em>resetear password</em>, con un enlace en el que se hace <em>clic</em> se saltará a una página (hecha por Google) con un formulario para cambiar el <em>password</em>.  </p>
-<h4>Dar de baja a un usuario</h4>
+<h3 id="dar-de-baja-a-un-usuario">Dar de baja a un usuario<a class="headerlink" href="#dar-de-baja-a-un-usuario" title="Permanent link">&para;</a></h3>
 <p>Para borrar a un usuario, usamos <code>delete</code>, que de nuevo es un método asíncrono:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
@@ -704,7 +880,7 @@
 </pre></div>
 </td></tr></table>
 
-<h3 id="autentificacion">Autentificación<a class="headerlink" href="#autentificacion" title="Permanent link">&para;</a></h3>
+<h2 id="autentificacion">Autentificación<a class="headerlink" href="#autentificacion" title="Permanent link">&para;</a></h2>
 <p>Para <em>hacer login</em> en la aplicación, llamamos al método <code>signIn</code>, que como viene siendo habitual es asíncrono. Si la autentificación tiene éxito se devuelve un objeto de tipo <code>AuthDataResult</code> que contiene entre otros datos la referencia al usuario autentificado en su campo <code>user</code>.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
@@ -768,6 +944,41 @@ Auth.auth().removeStateDidChangeListener(self.handle)</code></p>
       
         
 <footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../1_introduccion_BAAS/" title="Backend as a Service" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Anterior
+                </span>
+                Backend as a Service
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../3_persistencia/" title="Persistencia en Firebase" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Siguiente
+                </span>
+                Persistencia en Firebase
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
