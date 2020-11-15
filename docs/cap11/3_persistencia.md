@@ -1,10 +1,9 @@
-## Persistencia de datos en Firebase
 
 Actualmente hay dos bases de datos disponibles en Firebase: la *realtime* database, que es la "original" y el *cloud firestore*, que se introdujo posteriormente. Ambas son bases de datos NoSQL, aunque la *realtime* tiene una estructura de datos algo más peculiar. Vamos a ver aquí la *realtime database*, que como su nombre indica es especialmente apropiada para aplicaciones en *tiempo real*, ya que además de poder hacer las típicas consultas podemos "escuchar" los cambios en los datos. No obstante se puede usar en cualquier tipo de aplicación.
 
 Podéis consultar *online* y traducida al español la [documentación de los APIs de iOS para la *realtime database*](https://firebase.google.com/docs/database/ios/start).
 
-### Estructurar los datos
+## Estructurar los datos
 
 Como ya hemos comentado, las dos bases de datos disponibles en Firebase son NoSQL. Esto quiere decir que los datos no tienen la división habitual en tablas a la que estamos acostumbrados en bases de datos relacionales. La base de datos tampoco se ocupa de comprobar automáticamente la consistencia o la integridad de los datos, quedando esta tarea en manos de la aplicación.
 
@@ -85,7 +84,7 @@ Este problema se puede resolver *desnormalizando* los datos, es decir, duplicand
 
 ```
 
-### Referencias
+## Referencias
 
 Un concepto fundamental y necesario para poder leer y escribir datos es el de *referencia*. Una *referencia* representa un nodo del árbol de datos. Con los métodos del API podemos obtener directamente una referencia a un nodo cualquiera si conocemos su *path* desde la raíz. O bien podemos partir de una referencia que ya tengamos a un nodo y movernos a uno de sus hijos. Una vez obtenida la referencia al nodo que nos interesa, podremos leer su estado/modificarlo con otros métodos del API.
 
@@ -135,7 +134,7 @@ let ref = db.reference(withPath("pedidos/1"))
 
 Esto nos permitirá crear un nuevo pedido cuyos datos sean hijos del nodo "pedidos/1" sin necesidad de haber creado previamente los nodos intermedios.
 
-### Crear y actualizar datos
+## Crear y actualizar datos
 
 Para **modificar un nodo** usamos `setValue(<nuevovalor>)` sobre su referencia. Este método es destructivo, ya que sustituye completamente el valor actual del nodo, incluso aunque este tenga otros nodos hijos. Por ejemplo:
 
@@ -222,7 +221,7 @@ El algoritmo de generación de ids asegura que no va a haber colisiones entre lo
 
 Finalmente, podemos **borrar datos** con `removeValue()`. También podríamos hacer `setValue(nil)`, o poner a `nil` alguna propiedad en `updateChildValues`.
 
-### Consultas
+## Consultas
 
 La *realtime Database*, como su propio nombre indica, tiene funcionalidades apropiadas para aplicaciones que necesitan datos en tiempo real. En concreto **podemos *escuchar* los cambios en los datos**. Como luego veremos podemos usar este API también para hacer consultas al estilo más clásico, que simplemente devuelvan el estado actual de la BD.
 

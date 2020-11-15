@@ -1,4 +1,3 @@
-## Autentificación y gestión de usuarios
 
 La gran mayoría de aplicaciones tiene que gestionar datos de usuarios y autentificarlos para poder realizar ciertas operaciones. Típicamente vamos a tener que:
 
@@ -7,7 +6,7 @@ La gran mayoría de aplicaciones tiene que gestionar datos de usuarios y autenti
 
 Firebase cubre los dos tipos de funcionalidades. Además no solo vamos a poder gestionar usuarios dándolos de alta en la aplicación con login y password, sino que también nos permite autentificación con credenciales externas, o *identidad federada*: el usuario puede identificarse en nuestra *app* con su login de otros sitios como Facebook, Twitter o Google, con lo que se evita tener que crearse un nuevo usuario/contraseña solo para nuestra aplicación.
 
-### Añadir autentificación a una app de Firebase
+## Añadir autentificación a una app de Firebase
 
 Las funcionalidades de usuarios están en el módulo `auth`. Si usamos Cocoapods para gestionar las dependencias, tendremos que añadir la siguiente dependencia al `Podfile`
 
@@ -25,7 +24,7 @@ import Firebase
 
 Podéis consultar *online* y traducida al español la [documentación de las librerías de iOS](https://firebase.google.com/docs/auth/ios/start) para gestión de usuarios y autentificación.
 
-### Administración de usuarios
+## Administración de usuarios
 
 Los usuarios en Firebase tienen una serie de propiedades básicas: un *id* único, una dirección de correo electrónico, un nombre y la URL de su foto de perfil. Todos los usuarios tienen estos datos, aunque podemos simplemente ignorar alguno en nuestra *app* (por ejemplo la URL). A los objetos usuario no se les pueden añadir más propiedades, si necesitamos más datos (fecha de nacimiento, sexo, e-mail secundario,...) tendremos que almacenarlos aparte en la base de datos de Firebase.
 
@@ -35,7 +34,7 @@ Como veremos, la mayoría de métodos del API son asíncronos, ya que requieren 
 
 La clausura a ejecutar recibe como parámetro un error en caso de haberse producido alguno, y además en algunos métodos recibe un parámetro adicional con el resultado de la operación si ha sido exitoso.
 
-#### Dar de alta usuarios
+### Dar de alta usuarios
 
 Para **dar de alta un usuario** llamaremos al método `createUser(withEmail:,password:,completion:)`. Es un método asíncrono, su último parámetro es una clausura que se ejecutará cuando se complete en el servidor el proceso de registro. Como ya se ha dicho esta clausura recibe como parámetro el error producido, si lo hay. Si no ha habido error, además como primer parámetro se recibe un objeto de tipo `AuthDataResult` con el resultado de la operación. Dentro de este objeto el campo `user` contiene información sobre el usuario recién creado. 
 
@@ -59,7 +58,7 @@ Como es lógico, antes de poder llamar a este método tenemos que haber hecho al
 
 Nótese además que el `createUser` solo rellena los datos más básicos, para rellenar el resto de datos usaremos la funcionalidad de actualizar perfil.
 
-#### Validar el alta de un usuario
+### Validar el alta de un usuario
 
 En muchos sitios web cuando un usuario se da de alta se le envía por email un *link* para que confirme el registro. En Firebase podemos hacer esto con el método `sendEmailVerification` del usuario actual. Este método pertenece al usuario autentificado .
 
@@ -71,7 +70,7 @@ Auth.auth().currentUser?.sendEmailVerification { (error) in
 }
 ```
 
-#### Modificar el perfil de un usuario
+### Modificar el perfil de un usuario
 
 Para modificar los datos de un usuario, el objeto usuario correspondiente debe llamar a `createProfileChangeRequest`, hacemos los cambios y finalmente llamamos a `commitChanges(completion:)`, que es asíncrono, y al que se le pasa una clausura a ejecutar cuando los cambios se hagan efectivos en el servidor. 
 
@@ -103,7 +102,7 @@ Por razones de seguridad, cuando un usuario cambia su dirección de correo elect
 
 En lugar de actualizar el *password* directamente, podemos enviarle al usuario el típico mensaje de *resetear password*, con un enlace en el que se hace *clic* se saltará a una página (hecha por Google) con un formulario para cambiar el *password*.  
 
-#### Dar de baja a un usuario
+### Dar de baja a un usuario
 
 Para borrar a un usuario, usamos `delete`, que de nuevo es un método asíncrono:
 
@@ -118,7 +117,7 @@ user?.delete { error in
 }
 ```
 
-### Autentificación
+## Autentificación
 
 Para *hacer login* en la aplicación, llamamos al método `signIn`, que como viene siendo habitual es asíncrono. Si la autentificación tiene éxito se devuelve un objeto de tipo `AuthDataResult` que contiene entre otros datos la referencia al usuario autentificado en su campo `user`.
 

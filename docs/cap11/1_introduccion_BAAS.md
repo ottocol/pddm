@@ -1,4 +1,3 @@
-## Backend As A Service (BAAS)
 
 Aunque hay algunas aplicaciones que pueden funcionar por sí solas sin necesidad de un servidor, muchas aplicaciones actuales necesitan de un *backend* para poder almacenar datos “en la nube”. Así el usuario pueda acceder a su información independientemente del dispositivo que esté usando. Otras muchas aplicaciones lo usan para que se pueda compartir información con otros usuarios.  
 

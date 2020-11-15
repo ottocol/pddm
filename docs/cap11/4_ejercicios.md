@@ -1,4 +1,3 @@
-## Ejercicios de Firebase
 
 En las plantillas de la sesión hay un proyecto Xcode con las librerías de Firebase ya instaladas y configuradas. El proyecto está vinculado con una aplicación ya dada de alta en el servidor de Firebase.
 
@@ -7,9 +6,9 @@ En las plantillas de la sesión hay un proyecto Xcode con las librerías de Fire
 El objetivo es desarrollar un pequeño chat con la *realtime database*. La plantilla ya tiene la interfaz hecha y hay que añadirle el código de Firebase.
 
 
-### Login/logout (2 puntos)
+## Login/logout (0,5 puntos)
 
-#### Pantalla inicial:
+### Pantalla inicial:
 
 En la pantalla inicial de la *app* hay un formulario para hacer login. **Añade el código necesario para que cuando se pulse sobre el botón "Entrar" se haga login en Firebase**. 
 
@@ -19,7 +18,7 @@ Si el login ha tenido éxito habrá que saltar a la segunda pantalla por el *seg
 performSegue(withIdentifier:"login", sender:self)
 ```
 
-#### Segunda pantalla
+### Segunda pantalla
 
 En el *outlet* `usuarioLabel` debería aparecer el login del usuario que se ha autentificado.
 
@@ -28,7 +27,7 @@ En el *outlet* `usuarioLabel` debería aparecer el login del usuario que se ha a
 Finalmente, **añade el código necesario para que al pulsar sobre `Salir`** se haga *logout* en Firebase.  
 
 
-### Mensajes del chat (3 puntos)
+## Mensajes del chat (1 punto)
 
 Usaremos la siguiente estructura para almacenar los mensajes del chat:
 
