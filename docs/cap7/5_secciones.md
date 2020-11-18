@@ -1,4 +1,3 @@
-## Secciones de tabla automáticas
 
 Podemos conseguir generar secciones de modo automático basándonos en alguna propiedad de la entidad sobre la que se hace la *fetch request*. Tiene que ser la misma propiedad que se usa para ordenar o alguna basada en ella, ya que elementos que siguen el orden del listado no pueden ir alternando de sección (las secciones no se repiten).
 

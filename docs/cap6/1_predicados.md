@@ -1,5 +1,4 @@
 
-## Predicados para filtrar *fetch requests*
 
 Hasta ahora hemos visto solo como crear *fetch request* que devuelvan todas las instancias de una entidad, lo que sería el equivalente a un `SELECT` sin `WHERE` en SQL. Por supuesto podemos filtrar los resultados de una *fetch request*, y esto lo haremos con **predicados**, que en el API se representan con la clase `NSPredicate`. Los predicados son un mecanismo genérico de Cocoa para filtrar colecciones de datos y pueden usarse no solo en Core Data, sino también para filtrar arrays o para buscar en *spotlight*, el mecanismo de búsqueda estándar de aplicaciones/contactos/documentos dentro de los dispositivos iOS.
 

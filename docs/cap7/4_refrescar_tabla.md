@@ -1,4 +1,3 @@
-## Refrescar la tabla
 
 Tal y como está ahora el código si creamos un nuevo mensaje este no aparece en la tabla. Pero podemos resolverlo de forma sencilla con el *fetched results controller*, ya que este está “suscrito” a los cambios que se producen en el contexto de persistencia, siempre que afecten a los contenidos en su *fetch request*. 
 

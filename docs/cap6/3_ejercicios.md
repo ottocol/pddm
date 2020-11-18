@@ -1,9 +1,9 @@
 
 Vamos a implementar una búsqueda por texto en la aplicación de notas sobre la que estáis trabajando en estas sesiones.
 
-> Antes de ponerte a hacer las modificaciones de esta sesión asegúrate de que has hecho un `commit` con el mensaje `terminada sesión 4`. También puedes hacer un `.zip` con el proyecto, llamarlo `notas_sesion_4.zip` y adjuntarlo en las entregas de la asignatura. Así cuando se evalúe el ejercicio el profesor podrá consultar el estado que tenía la aplicación antes de estos ejercicios.
+> Antes de ponerte a hacer las modificaciones de esta sesión asegúrate de que has hecho un `commit` con el mensaje `terminada sesión 2`. También puedes hacer un `.zip` con el proyecto, llamarlo `notas_sesion_2.zip` y adjuntarlo en las entregas de la asignatura. Así cuando se evalúe el ejercicio el profesor podrá consultar el estado que tenía la aplicación antes de estos ejercicios.
 
-### Preparación de la interfaz (1 punto)
+### Preparación de la interfaz (0.5 puntos)
 
 Necesitamos una barra de búsqueda para poder introducir la cadena de texto a buscar. Usaremos un `UISearchController`. Este componente incluye la *search bar*. 
 
@@ -51,7 +51,7 @@ func updateSearchResults(for searchController: UISearchController) {
 
 **Prueba la aplicación** para comprobar que todo está correcto, y deberías ver que cada vez que se escribe en la barra de búsqueda se llama a este método y se imprime en la consola la cadena buscada.
 
-### Implementación del código de búsqueda (2.5 puntos)
+### Implementación del código de búsqueda (0.75 puntos)
 
 > `updateSearchResults` se llama por cada nuevo carácter escrito en la barra de búsquedas, lo que permite actualizar los datos en "tiempo real" pero es muy ineficiente. Veremos cómo solucionarlo en el siguiente apartado, de momento dispararemos una nueva búsqueda por cada pulsación
 
@@ -61,7 +61,7 @@ Recuerda que para que se actualicen los datos visibles debes llamar a `tableView
 
 Una vez comprobado que funciona, **mejora la fetch request para que las notas aparezcan en orden inverso por fecha**, de más reciente a más antigua.
 
-### *Throttling* de las búsquedas (0,5 puntos) 
+### *Throttling* de las búsquedas (0.25 puntos) 
 
 Lanzar una nueva *fetch request* por cada carácter tecleado es muy ineficiente, sobre todo si el usuario teclea rápido y ni siquiera da tiempo a ver los resultados intermedios. Una implementación mejor haría *throttling* de la búsqueda, es decir, impediría que se repita la operación si todavía no ha pasado un mínimo de tiempo desde la anterior.
 

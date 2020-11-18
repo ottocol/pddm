@@ -1,6 +1,4 @@
 
-## Inicializar el "fetched results controller" {#inicializar_frc}
-
 Vamos a empezar con un *fetched results controller* "mínimo". Supondremos que estamos usando un *view controller* que hereda de `UITableViewController` (aunque no va a haber gran diferencia si no usamos esta clase).
 
 Lo primero es crear el `NSFetchedResultsController`. Para ello necesitamos como mínimo dos cosas:

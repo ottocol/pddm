@@ -21,22 +21,27 @@ nav:
     - Validaciones: 'cap4/4.4_validaciones.md'
     - Transformables: 'cap4/4.5_transformables.md'
     - Ejercicios de modelos de datos: 'cap4/4.6_ejercicios.md'
+  - Persistencia como servicio: 
+    - Backend as a Service: 'cap11/1_introduccion_BAAS.md'
+    - Gestión de usuarios en Firebase: 'cap11/2_gestion_usuarios.md'
+    - Persistencia en Firebase: 'cap11/3_persistencia.md'
+    - Ejercicios: 'cap11/4_ejercicios.md'   
+  - Búsquedas en Core Data: 
+    - Predicados: 'cap6/1_predicados.md'
+    - Ordenación: 'cap6/2_ordenacion.md'
+    - Ejercicios: 'cap6/3_ejercicios.md'
+  - Tablas en Core Data: 
+    - El "fetched results controller": 'cap7/1_el_frc.md'
+    - Inicializar el "fetched results controller": 'cap7/2_configuracion_basica.md'
+    - Mostrar los datos en la tabla: 'cap7/3_tabla.md'
+    - Refrescar la tabla: 'cap7/4_refrescar_tabla.md'
+    - Secciones de tabla automáticas: 'cap7/5_secciones.md'
+    - Ejercicios: 'cap7/6_ejercicios.md'
   - Material complementario. SQLite en iOS: 
     - Introducción: 'cap2/2.1_intro_SQLite.md'
     - El API de SQLIte: 'cap2/2.2_API_SQLite.md'
     - Frameworks para SQLite: 'cap2/2.3_frameworks.md'
     - Ejercicios: 'cap2/2.4_ejercicios.md'
-  # - Búsquedas en Core Data: 
-  #   - Predicados: 'cap6/1_predicados.md'
-  #   - Ordenación: 'cap6/2_ordenacion.md'
-  #   - Ejercicios: 'cap6/3_ejercicios.md'
-  # - Tablas en Core Data: 
-  #   - El *fetched results controller*: 'cap7/1_el_frc.md'
-  #   - Inicializar el "fetched results controller": 'cap7/2_configuracion_basica.md'
-  #   - Mostrar los datos en la tabla: 'cap7/3_tabla.md'
-  #   - Refrescar la tabla: 'cap7/4_refrescar_tabla.md'
-  #   - Secciones de tabla automáticas: 'cap7/5_secciones.md'
-  #   - Ejercicios: 'cap7/6_ejercicios.md'
   # - Migraciones de datos: 
   #   - Qué son las migraciones de datos: 'cap8/1_intro.md'
   #   - Versiones del modelo de datos: 'cap8/2_versiones.md'
@@ -50,11 +55,7 @@ nav:
   #   - Ejercicios: 'cap9/4_ejercicios.md'
   # - Miniproyecto:
   #   - Enunciado: 'miniproyecto/restaurante.md'  
-  - Persistencia como servicio: 
-    - Backend as a Service: 'cap11/1_introduccion_BAAS.md'
-    - Gestión de usuarios en Firebase: 'cap11/2_gestion_usuarios.md'
-    - Persistencia en Firebase: 'cap11/3_persistencia.md'
-    - Ejercicios: 'cap11/4_ejercicios.md' 
+  
   # - Arquitecturas de aplicaciones en iOS: 
   #   - Introducción: 'cap10/intro.md'
   #   - Model/View/Controller: 'cap10/2_MVC.md'

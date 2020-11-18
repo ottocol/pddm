@@ -1,5 +1,4 @@
 
-## El *fetched results controller*
 
 Hasta ahora hemos obtenido los datos de Core Data con *fetch requests*. En principio no es complicado mostrar estos datos en una tabla, ya que como ya hemos visto, al ejecutar una *fetch request* obtenemos un array. A lo largo del curso hemos usado múltiples veces arrays como fuentes de datos para vistas de tabla. Pero hacer esto presenta una serie de dificultades:
 
