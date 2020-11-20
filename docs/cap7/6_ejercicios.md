@@ -3,7 +3,7 @@
 
 Vamos a ampliar la dichosa aplicación de notas para que use un *fetched results controller*. Para no afectar a lo ya hecho, haremos una tercera pantalla con un listado de todas las notas usando un `FetchedResultsController` (no es necesario implementar búsqueda como tienes en el otro listado)
 
-## Interfaz gráfico (0.25)
+## Interfaz gráfico
 
 Crea una nueva pantalla de tipo `Table View Controller`. Conecta la primera pantalla a esta (`Ctrl+Arrastrar` y elegir como tipo de *segue* `View Controllers`). Al final en la aplicación tendrás un *tab bar* con tres opciones.
 
@@ -15,7 +15,7 @@ Recuerda hacer en el *storyboard* que esta clase sea el *controller* de esta pan
 
 ![](img/set_controller.png)
 
-## Listar notas (0.75 puntos)
+## Listar notas (0.5 puntos)
 
 ### Listar provisionalmente en la consola 
 
@@ -29,7 +29,7 @@ Una vez hecho esto, ya puedes listar las notas en la tabla. Consulta la sección
 
 Para esto **hay que implementar lo que aparece en la sección ["Refrescar la tabla"](4_refrescar_tabla.html)** de los apuntes. Una vez hecho, comprueba que cuando insertamos una nota nueva en la pantalla de notas se muestra en la lista del *fetched results controller*
  
-## Eliminar filas (0.5 puntos)
+## Eliminar filas (0.25 puntos)
 
 Para ver cómo se modifican las filas "en directo", haz que se puedan borrar notas haciendo *swipe to delete* en la tabla. Para que funcione este gesto, hay que implementar el método:
 
@@ -50,7 +50,7 @@ override func tableView(_ tableView: UITableView, commit editingStyle: UITableVi
 
 Ahora puedes probar a borrar una celda haciendo sobre ella el gesto de *swipe* a la izquierda y ver que se actualiza la lista.
 
-## Secciones de tabla (0.5 puntos)
+## Secciones de tabla (0.25 puntos)
 
 Finalmente, haz que la tabla tenga secciones automáticas según la primera letra del texto de cada nota. Para ello:
 

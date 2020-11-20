@@ -3,7 +3,7 @@ Vamos a implementar una búsqueda por texto en la aplicación de notas sobre la 
 
 > Antes de ponerte a hacer las modificaciones de esta sesión asegúrate de que has hecho un `commit` con el mensaje `terminada sesión 2`. También puedes hacer un `.zip` con el proyecto, llamarlo `notas_sesion_2.zip` y adjuntarlo en las entregas de la asignatura. Así cuando se evalúe el ejercicio el profesor podrá consultar el estado que tenía la aplicación antes de estos ejercicios.
 
-### Preparación de la interfaz (0.5 puntos)
+### Preparación de la interfaz (0.25 puntos)
 
 Necesitamos una barra de búsqueda para poder introducir la cadena de texto a buscar. Usaremos un `UISearchController`. Este componente incluye la *search bar*. 
 
@@ -51,7 +51,7 @@ func updateSearchResults(for searchController: UISearchController) {
 
 **Prueba la aplicación** para comprobar que todo está correcto, y deberías ver que cada vez que se escribe en la barra de búsqueda se llama a este método y se imprime en la consola la cadena buscada.
 
-### Implementación del código de búsqueda (0.75 puntos)
+### Implementación del código de búsqueda (0.5 puntos)
 
 > `updateSearchResults` se llama por cada nuevo carácter escrito en la barra de búsquedas, lo que permite actualizar los datos en "tiempo real" pero es muy ineficiente. Veremos cómo solucionarlo en el siguiente apartado, de momento dispararemos una nueva búsqueda por cada pulsación
 
