@@ -83,7 +83,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#interfaz-grafico-025" tabindex="1" class="md-skip">
+      <a href="#interfaz-grafico" tabindex="1" class="md-skip">
         Saltar a contenido
       </a>
     
@@ -678,15 +678,15 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#interfaz-grafico-025" class="md-nav__link">
-    Interfaz gráfico (0.25)
+  <a href="#interfaz-grafico" class="md-nav__link">
+    Interfaz gráfico
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#listar-notas-075-puntos" class="md-nav__link">
-    Listar notas (0.75 puntos)
+  <a href="#listar-notas-05-puntos" class="md-nav__link">
+    Listar notas (0.5 puntos)
   </a>
   
     <nav class="md-nav">
@@ -719,15 +719,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#eliminar-filas-05-puntos" class="md-nav__link">
-    Eliminar filas (0.5 puntos)
+  <a href="#eliminar-filas-025-puntos" class="md-nav__link">
+    Eliminar filas (0.25 puntos)
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#secciones-de-tabla-05-puntos" class="md-nav__link">
-    Secciones de tabla (0.5 puntos)
+  <a href="#secciones-de-tabla-025-puntos" class="md-nav__link">
+    Secciones de tabla (0.25 puntos)
   </a>
   
 </li>
@@ -839,15 +839,15 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#interfaz-grafico-025" class="md-nav__link">
-    Interfaz gráfico (0.25)
+  <a href="#interfaz-grafico" class="md-nav__link">
+    Interfaz gráfico
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#listar-notas-075-puntos" class="md-nav__link">
-    Listar notas (0.75 puntos)
+  <a href="#listar-notas-05-puntos" class="md-nav__link">
+    Listar notas (0.5 puntos)
   </a>
   
     <nav class="md-nav">
@@ -880,15 +880,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#eliminar-filas-05-puntos" class="md-nav__link">
-    Eliminar filas (0.5 puntos)
+  <a href="#eliminar-filas-025-puntos" class="md-nav__link">
+    Eliminar filas (0.25 puntos)
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#secciones-de-tabla-05-puntos" class="md-nav__link">
-    Secciones de tabla (0.5 puntos)
+  <a href="#secciones-de-tabla-025-puntos" class="md-nav__link">
+    Secciones de tabla (0.25 puntos)
   </a>
   
 </li>
@@ -916,7 +916,7 @@
 <p>Las modificaciones de estos ejercicios no afectan al código de las sesiones anteriores, así que no es necesario que hagas ninguna copia del estado del proyecto antes de empezar con esta sesión.</p>
 </blockquote>
 <p>Vamos a ampliar la dichosa aplicación de notas para que use un <em>fetched results controller</em>. Para no afectar a lo ya hecho, haremos una tercera pantalla con un listado de todas las notas usando un <code>FetchedResultsController</code> (no es necesario implementar búsqueda como tienes en el otro listado)</p>
-<h2 id="interfaz-grafico-025">Interfaz gráfico (0.25)<a class="headerlink" href="#interfaz-grafico-025" title="Permanent link">&para;</a></h2>
+<h2 id="interfaz-grafico">Interfaz gráfico<a class="headerlink" href="#interfaz-grafico" title="Permanent link">&para;</a></h2>
 <p>Crea una nueva pantalla de tipo <code>Table View Controller</code>. Conecta la primera pantalla a esta (<code>Ctrl+Arrastrar</code> y elegir como tipo de <em>segue</em> <code>View Controllers</code>). Al final en la aplicación tendrás un <em>tab bar</em> con tres opciones.</p>
 <blockquote>
 <p>Haz una tercera pantalla, no cambies la que tenías para que no se pierda el código que hiciste en la sesión anterior. Evidentemente en una aplicación "normal" no tendría sentido tener dos pantallas con la lista de notas.</p>
@@ -924,14 +924,14 @@
 <p>Para esta pantalla, crea una nueva clase <code>ListaNotasCDController</code> ("CD" de “Core Data”) que herede de <code>UITableViewController</code>. Recuerda que para que tu clase herede de una de iOS lo más sencillo es usar la plantilla "Cocoa Touch Class". </p>
 <p>Recuerda hacer en el <em>storyboard</em> que esta clase sea el <em>controller</em> de esta pantalla. Para ello, selecciona la pantalla de listado de notas (<em>clic</em> en el primero de los iconos de la barra superior, el de fondo amarillo)  y en el Identity Inspector ( tercero de los iconos del área de la derecha), como "Custom Class" elige <code>ListaNotasCDController</code>.</p>
 <p><img alt="" src="../img/set_controller.png" /></p>
-<h2 id="listar-notas-075-puntos">Listar notas (0.75 puntos)<a class="headerlink" href="#listar-notas-075-puntos" title="Permanent link">&para;</a></h2>
+<h2 id="listar-notas-05-puntos">Listar notas (0.5 puntos)<a class="headerlink" href="#listar-notas-05-puntos" title="Permanent link">&para;</a></h2>
 <h3 id="listar-provisionalmente-en-la-consola">Listar provisionalmente en la consola<a class="headerlink" href="#listar-provisionalmente-en-la-consola" title="Permanent link">&para;</a></h3>
 <p>Siguiendo el código de los apuntes y las transparencias <strong>usa un <em>fetched results controller</em> para mostrar todas las notas en la tabla</strong>. De momento cuando se inserten notas nuevas la lista no se actualizará. Primero simplemente haz que los datos aparezcan en la consola (consulta el apartado <a href="2_configuracion_basica.html">"inicializar el fetched results..."</a>). </p>
 <h3 id="listar-notas-en-la-tabla">Listar notas en la tabla<a class="headerlink" href="#listar-notas-en-la-tabla" title="Permanent link">&para;</a></h3>
 <p>Una vez hecho esto, ya puedes listar las notas en la tabla. Consulta la sección <a href="3_tabla.html">mostrar los datos en la tabla</a>. El problema es que cuando insertes una nueva nota esta no se reflejará en la tabla, solo verás las que había al arrancar la <em>app</em>.</p>
 <h2 id="refrescar-las-notas-de-la-tabla-05-puntos">Refrescar las notas de la tabla (0.5 puntos)<a class="headerlink" href="#refrescar-las-notas-de-la-tabla-05-puntos" title="Permanent link">&para;</a></h2>
 <p>Para esto <strong>hay que implementar lo que aparece en la sección <a href="4_refrescar_tabla.html">"Refrescar la tabla"</a></strong> de los apuntes. Una vez hecho, comprueba que cuando insertamos una nota nueva en la pantalla de notas se muestra en la lista del <em>fetched results controller</em></p>
-<h2 id="eliminar-filas-05-puntos">Eliminar filas (0.5 puntos)<a class="headerlink" href="#eliminar-filas-05-puntos" title="Permanent link">&para;</a></h2>
+<h2 id="eliminar-filas-025-puntos">Eliminar filas (0.25 puntos)<a class="headerlink" href="#eliminar-filas-025-puntos" title="Permanent link">&para;</a></h2>
 <p>Para ver cómo se modifican las filas "en directo", haz que se puedan borrar notas haciendo <em>swipe to delete</em> en la tabla. Para que funcione este gesto, hay que implementar el método:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
@@ -960,7 +960,7 @@
 </td></tr></table>
 
 <p>Ahora puedes probar a borrar una celda haciendo sobre ella el gesto de <em>swipe</em> a la izquierda y ver que se actualiza la lista.</p>
-<h2 id="secciones-de-tabla-05-puntos">Secciones de tabla (0.5 puntos)<a class="headerlink" href="#secciones-de-tabla-05-puntos" title="Permanent link">&para;</a></h2>
+<h2 id="secciones-de-tabla-025-puntos">Secciones de tabla (0.25 puntos)<a class="headerlink" href="#secciones-de-tabla-025-puntos" title="Permanent link">&para;</a></h2>
 <p>Finalmente, haz que la tabla tenga secciones automáticas según la primera letra del texto de cada nota. Para ello:</p>
 <ul>
 <li>Crea una extensión de la clase <code>Nota</code> y añádele una propiedad calculada llamada <code>inicial</code> que devuelva solo esta:</li>
