@@ -36,7 +36,7 @@
     
     
       
-        <title>1 intro arquitecturas - PDDM-iOS</title>
+        <title>Enunciado parte I - PDDM-iOS</title>
       
     
     
@@ -83,6 +83,10 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
+      <a href="#miniproyecto-app-restaurante-parte-1-el-modelo-de-datos" tabindex="1" class="md-skip">
+        Saltar a contenido
+      </a>
+    
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header-nav md-grid">
@@ -105,7 +109,7 @@
             </span>
             <span class="md-header-nav__topic">
               
-                1 intro arquitecturas
+                Enunciado parte I
               
             </span>
           
@@ -736,10 +740,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8" checked>
     
     <label class="md-nav__link" for="nav-8">
       Miniproyecto
@@ -755,11 +761,56 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../../miniproyecto/restaurante_parte_1/" title="Enunciado parte I" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Enunciado parte I
+      </label>
+    
+    <a href="./" title="Enunciado parte I" class="md-nav__link md-nav__link--active">
       Enunciado parte I
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Tabla de contenidos</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#el-modelo-de-datos-1-punto" class="md-nav__link">
+    El modelo de datos (1 punto)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inicializar-los-datos-05-puntos" class="md-nav__link">
+    Inicializar los datos (0,5 puntos)
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -775,15 +826,109 @@
               </div>
             
             
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Tabla de contenidos</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#el-modelo-de-datos-1-punto" class="md-nav__link">
+    El modelo de datos (1 punto)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inicializar-los-datos-05-puntos" class="md-nav__link">
+    Inicializar los datos (0,5 puntos)
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           <div class="md-content">
             <article class="md-content__inner md-typeset">
               
                 
                 
-                  <h1>1 intro arquitecturas</h1>
-                
-                
+                <h1 id="miniproyecto-app-restaurante-parte-1-el-modelo-de-datos">Miniproyecto: <em>app</em> restaurante. Parte 1: El modelo de datos<a class="headerlink" href="#miniproyecto-app-restaurante-parte-1-el-modelo-de-datos" title="Permanent link">&para;</a></h1>
+<p>El objetivo es desarrollar una pequeña aplicación para gestionar pedidos <em>online</em> a un restaurante. Para ello almacenaremos los datos de la carta y de los pedidos realizados por el usuario en Core Data.</p>
+<p>Descárgate la plantilla de la aplicación desde moodle, aquí está ya implementada la mayor parte de la interfaz.</p>
+<p>En esta primera sesión nos ocuparemos del modelo de datos y de leer los datos de los platos, que están almacenados en un JSON, y pasarlos a Core Data.</p>
+<h2 id="el-modelo-de-datos-1-punto">El modelo de datos (1 punto)<a class="headerlink" href="#el-modelo-de-datos-1-punto" title="Permanent link">&para;</a></h2>
+<p><strong>En el proyecto abre el fichero <code>Restaurante.xcdatamodeld</code> y crea el siguiente modelo de datos</strong></p>
+<p>Nuestro modelo de datos debe tener tres entidades, <code>Plato</code>, <code>Pedido</code> y <code>LineaPedido</code>. Esta última es la que relaciona los platos con los pedidos,  guardando cuántas unidades de un plato se han incluido en un pedido. </p>
+<p><img alt="" src="../modelo_datos.png" /></p>
+<p>Cada entidad debe tener las siguientes propiedades y relaciones</p>
+<ul>
+<li><code>Plato</code>:<ul>
+<li>Propiedades:<ul>
+<li><code>nombre</code> de tipo <code>String</code></li>
+<li><code>descripcion</code> de tipo <code>String</code></li>
+<li><code>precio</code> de tipo <code>Double</code></li>
+<li><code>tipo</code> de tipo <code>String</code></li>
+</ul>
+</li>
+<li>Relaciones:<ul>
+<li><code>lineasPedido</code>, relación "a muchos" con destino <code>LineaPedido</code>. La inversa es la relación <code>plato</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>Pedido</code>:<ul>
+<li>Propiedades:<ul>
+<li><code>direccion</code> de tipo <code>String</code></li>
+<li><code>telefono</code> de tipo <code>String</code></li>
+<li><code>fecha</code> de tipo <code>Date</code></li>
+<li><code>total</code> de tipo `Double</li>
+</ul>
+</li>
+<li>Relaciones:<ul>
+<li><code>lineasPedido</code>, relación "a muchos" con destino <code>LineaPedido</code>. La relación <strong>debe ser ordenada</strong>, para poder mostrar las lineas de un pedido siempre en el mismo orden. La inversa es la relación <code>pedido</code>. En la regla de borrado (<code>delete rule</code>) pon <code>Cascade</code> para que al eliminar un pedido se eliminen automáticamente sus líneas.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>LineaPedido</code>:<ul>
+<li>Propiedades<ul>
+<li><code>cantidad</code> de tipo <code>Integer 16</code></li>
+</ul>
+</li>
+<li>Relaciones<ul>
+<li><code>pedido</code>, relación "a uno" con destino <code>Pedido</code>. La inversa es la relación <code>lineasPedido</code></li>
+<li><code>plato</code>, relación "a uno" con destino <code>Plato</code>. La inversa es la relación <code>lineasPedido</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>Simplificaciones</strong>: en realidad se deberían usar tipos <code>Decimal</code> en los precios para evitar errores de redondeo, pero usaremos <code>Double</code> por simplicidad de uso. Además, el tipo del plato debería ser un enumerado, pero estos no se pueden almacenar directamente en Core Data. Tendríamos que generar manualmente el código de las entidades para poder representar los datos externamente como <em>enums</em> e internamente como otro tipo.</p>
+</blockquote>
+<h2 id="inicializar-los-datos-05-puntos">Inicializar los datos (0,5 puntos)<a class="headerlink" href="#inicializar-los-datos-05-puntos" title="Permanent link">&para;</a></h2>
+<p>Los datos de los platos del restaurante están en un archivo <code>platos.json</code>.  En el <code>AppDelegate</code> hay una función <code>importPlatos</code> que lee el JSON, lo almacena en un array de <code>structs</code> de tipo <code>DatosPlato</code> con los datos correspondientes, y pone una preferencia de usuario llamada <code>platosImportados</code> a <code>true</code>. El JSON solo se lee si la preferencia está a <code>false</code> (valor por defecto)</p>
+<p><strong>Añade código Swift que copie los datos de los structs a entidades <code>Plato</code> y guarde el contexto de persistencia para hacer efectivos los cambios</strong>. Tendrás que introducir el código en el <code>AppDelegate</code>, donde está el comentario de <code>TODO:</code>. El array de structs de tipo <code>DatosPlato</code> se llama <code>datos</code>. Copia todos sus datos a Core Data. </p>
+<p>Tras esto, con la ayuda de la aplicación <a href="https://github.com/dsmelov/simsim/blob/master/Release/SimSim_latest.zip?raw=true"><code>SimSim</code></a> puedes echarle un vistazo a la base de datos de SQLite creada por Core Data para ver si están los registros. En <code>SimSim</code> selecciona la app <code>Restaurante</code> y luego la opción <code>Finder</code> para abrir la carpeta donde se guardan sus datos en el emulador. La base de datos de SQLite se almacena en <code>Library/Application Support</code>. Luego con la ayuda de algún visor de SQLite puedes ver el contenido de la BD. Si no tienes ninguno instalado puedes usar <a href="https://sqliteonline.com/">https://sqliteonline.com/</a>.</p>
+<p>Para forzar la recarga de los datos también puedes usar también la aplicación <code>SimSim</code> . Tendrás que borrar las preferencias y la base de datos. Las preferencias están en <code>Library/Preferences</code>.</p>
                 
                   
                 
@@ -800,6 +945,27 @@
       
         
 <footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../../cap2/2.4_ejercicios/" title="Ejercicios" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Anterior
+                </span>
+                Ejercicios
+              </span>
+            </div>
+          </a>
+        
+        
+      </nav>
+    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">

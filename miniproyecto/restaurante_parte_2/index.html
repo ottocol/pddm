@@ -36,7 +36,7 @@
     
     
       
-        <title>Miniproyecto: *app* restaurante - PDDM-iOS</title>
+        <title>Miniproyecto: *app* restaurante. Parte 2: Las pantallas de la *app* - PDDM-iOS</title>
       
     
     
@@ -83,7 +83,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#miniproyecto-app-restaurante" tabindex="1" class="md-skip">
+      <a href="#miniproyecto-app-restaurante-parte-2-las-pantallas-de-la-app" tabindex="1" class="md-skip">
         Saltar a contenido
       </a>
     
@@ -109,7 +109,7 @@
             </span>
             <span class="md-header-nav__topic">
               
-                Miniproyecto: *app* restaurante
+                Miniproyecto: *app* restaurante. Parte 2: Las pantallas de la *app*
               
             </span>
           
@@ -736,6 +736,42 @@
   </li>
 
     
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
+    
+    <label class="md-nav__link" for="nav-8">
+      Miniproyecto
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-8">
+        Miniproyecto
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../restaurante_parte_1/" title="Enunciado parte I" class="md-nav__link">
+      Enunciado parte I
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
   </ul>
 </nav>
                   </div>
@@ -755,13 +791,6 @@
   
     <label class="md-nav__title" for="__toc">Tabla de contenidos</label>
     <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#el-modelo-de-datos-inicial-05-puntos" class="md-nav__link">
-    El modelo de datos inicial (0.5 puntos)
-  </a>
-  
-</li>
       
         <li class="md-nav__item">
   <a href="#la-carta-3-puntos" class="md-nav__link">
@@ -832,8 +861,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#apendice-el-modelo-de-datos-completo" class="md-nav__link">
-    Apéndice: el modelo de datos completo
+  <a href="#apendice" class="md-nav__link">
+    Apéndice:
   </a>
   
 </li>
@@ -855,27 +884,8 @@
               
                 
                 
-                <h1 id="miniproyecto-app-restaurante">Miniproyecto: <em>app</em> restaurante<a class="headerlink" href="#miniproyecto-app-restaurante" title="Permanent link">&para;</a></h1>
-<p>El objetivo es desarrollar una pequeña aplicación para gestionar pedidos <em>online</em> a un restaurante. Para ello almacenaremos los datos de la carta y de los pedidos realizados por el usuario en Core Data.</p>
-<p>Descárgate la plantilla de la aplicación desde moodle, aquí está ya implementada la mayor parte de la interfaz.</p>
-<h2 id="el-modelo-de-datos-inicial-05-puntos">El modelo de datos inicial (0.5 puntos)<a class="headerlink" href="#el-modelo-de-datos-inicial-05-puntos" title="Permanent link">&para;</a></h2>
-<p>Nuestro modelo de datos debe tener tres entidades, <code>Plato</code>, <code>Pedido</code> y <code>LineaPedido</code>. Esta última es la que relaciona los platos con los pedidos,  guardando cuántas unidades de un plato se han incluido en un pedido. </p>
-<p><strong>Para simplificar, en una primera iteración, puedes crear solo la entidad <code>Plato</code></strong>, solo con sus propiedades, sin relaciones. Más tarde puedes encargarte del resto (puedes ver el modelo completo en el apéndice del enunciado).</p>
-<ul>
-<li><code>Plato</code>:<ul>
-<li>Propiedades:<ul>
-<li><code>nombre</code> de tipo <code>String</code></li>
-<li><code>descripcion</code> de tipo <code>String</code></li>
-<li><code>precio</code> de tipo <code>Double</code></li>
-<li><code>tipo</code> de tipo <code>String</code></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>Se deberían usar tipos <code>Decimal</code> en los precios para evitar errores de redondeo, pero usaremos <code>Double</code> por simplicidad. Además, el tipo del plato debería ser un enumerado, pero estos no se pueden almacenar directamente en Core Data. Tendríamos que generar manualmente el código de las entidades para poder representar los datos externamente como enums e internamente como otro tipo.</p>
-</blockquote>
+                <h1 id="miniproyecto-app-restaurante-parte-2-las-pantallas-de-la-app">Miniproyecto: <em>app</em> restaurante. Parte 2: Las pantallas de la <em>app</em><a class="headerlink" href="#miniproyecto-app-restaurante-parte-2-las-pantallas-de-la-app" title="Permanent link">&para;</a></h1>
+<p>En esta segunda parte implementaremos las pantallas de la <em>app</em>. La mayor parte de la interfaz ya está creada, tú tienes que implementar las funcionalidades en Core Data.</p>
 <h2 id="la-carta-3-puntos">La Carta (3 puntos)<a class="headerlink" href="#la-carta-3-puntos" title="Permanent link">&para;</a></h2>
 <p>Esta parte de la <em>app</em> es la que muestra los platos y nos permite añadirlos al pedido.</p>
 <h3 id="inicializar-los-datos">Inicializar los datos<a class="headerlink" href="#inicializar-los-datos" title="Permanent link">&para;</a></h3>
@@ -941,52 +951,7 @@
 <li>(2 puntos) Si muestras en una tabla una línea con el resumen de cada pedido (fecha, total y número de platos pedidos)</li>
 <li>(4 puntos) Si muestras una pantalla con el listado de pedidos y otra con los detalles de cada uno   </li>
 </ul>
-<h2 id="apendice-el-modelo-de-datos-completo">Apéndice: el modelo de datos completo<a class="headerlink" href="#apendice-el-modelo-de-datos-completo" title="Permanent link">&para;</a></h2>
-<p>Nuestro modelo de datos debe tener tres entidades, <code>Plato</code>, <code>Pedido</code> y <code>LineaPedido</code>. Esta última es la que relaciona los platos con los pedidos,  guardando cuántas unidades de un plato se han incluido en un pedido. </p>
-<p><img alt="" src="../modelo_datos.png" /></p>
-<p>Cada entidad debe tener las siguientes propiedades y relaciones</p>
-<ul>
-<li><code>Plato</code>:<ul>
-<li>Propiedades:<ul>
-<li><code>nombre</code> de tipo <code>String</code></li>
-<li><code>descripcion</code> de tipo <code>String</code></li>
-<li><code>precio</code> de tipo <code>Double</code></li>
-<li><code>tipo</code> de tipo <code>String</code></li>
-</ul>
-</li>
-<li>Relaciones:<ul>
-<li><code>lineasPedido</code>, relación "a muchos" con destino <code>LineaPedido</code>. La inversa es la relación <code>plato</code></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><code>Pedido</code>:<ul>
-<li>Propiedades:<ul>
-<li><code>direccion</code> de tipo <code>String</code></li>
-<li><code>telefono</code> de tipo <code>String</code></li>
-<li><code>fecha</code> de tipo <code>Date</code></li>
-<li><code>total</code> de tipo `Double</li>
-</ul>
-</li>
-<li>Relaciones:<ul>
-<li><code>lineasPedido</code>, relación "a muchos" con destino <code>LineaPedido</code>. La relación <strong>debe ser ordenada</strong>, para poder mostrar las lineas de un pedido siempre en el mismo orden. La inversa es la relación <code>pedido</code>. En la regla de borrado (<code>delete rule</code>) pon <code>Cascade</code> para que al eliminar un pedido se eliminen automáticamente sus líneas.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><code>LineaPedido</code>:<ul>
-<li>Propiedades<ul>
-<li><code>cantidad</code> de tipo <code>Integer 16</code></li>
-</ul>
-</li>
-<li>Relaciones<ul>
-<li><code>pedido</code>, relación "a uno" con destino <code>Pedido</code>. La inversa es la relación <code>lineasPedido</code></li>
-<li><code>plato</code>, relación "a uno" con destino <code>Plato</code>. La inversa es la relación <code>lineasPedido</code></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+<h2 id="apendice">Apéndice:<a class="headerlink" href="#apendice" title="Permanent link">&para;</a></h2>
                 
                   
                 
