@@ -7,7 +7,7 @@ Descárgate la plantilla de la aplicación desde moodle, aquí está ya implemen
 
 En esta primera sesión nos ocuparemos del modelo de datos y de leer los datos de los platos, que están almacenados en un JSON, y pasarlos a Core Data.
 
-## El modelo de datos
+## El modelo de datos (1 punto)
 
 **En el proyecto abre el fichero `Restaurante.xcdatamodeld` y crea el siguiente modelo de datos**
 
@@ -42,7 +42,7 @@ Cada entidad debe tener las siguientes propiedades y relaciones
 
 > **Simplificaciones**: en realidad se deberían usar tipos `Decimal` en los precios para evitar errores de redondeo, pero usaremos `Double` por simplicidad de uso. Además, el tipo del plato debería ser un enumerado, pero estos no se pueden almacenar directamente en Core Data. Tendríamos que generar manualmente el código de las entidades para poder representar los datos externamente como *enums* e internamente como otro tipo.
 
-## Inicializar los datos
+## Inicializar los datos (0,5 puntos)
 
 Los datos de los platos del restaurante están en un archivo `platos.json`.  En el `AppDelegate` hay una función `importPlatos` que lee el JSON, lo almacena en un array de `structs` de tipo `DatosPlato` con los datos correspondientes, y pone una preferencia de usuario llamada `platosImportados` a `true`. El JSON solo se lee si la preferencia está a `false` (valor por defecto)
 
