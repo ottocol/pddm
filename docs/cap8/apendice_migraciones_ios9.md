@@ -1,5 +1,3 @@
-## Apéndice: migraciones en versiones de iOS<10
-
 
 Como vimos en la primera sesión de Core Data, el *stack* se gestiona con la clase `NSPersistentContainer`. Esta clase tiene activadas por defecto las migraciones automáticas, y por eso en iOS10 podemos hacer modificaciones al modelo de datos sin causar errores en tiempo de ejecución. No obstante esta clase es nueva de la versión 10. ¿Qué ocurre si necesitamos generar código compatible con versiones anteriores, o tenemos un proyecto "heredado" de esas versiones?.
 

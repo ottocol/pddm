@@ -1,5 +1,4 @@
 
-## Contextos anidados
 
 El contexto de persistencia está conectado con un *Persistent Store Coordinator*, cuyo trabajo, como su propio nombre indica, es el de gestionar el almacenamiento persistente. Cuando almacenamos un objeto haciendo `save` del contexto, es el *store coordinator* el que se encarga de "pelearse" con la base de datos SQLite (o con el almacenamiento que sea). Cuando tenemos varios contextos, típicamente están todos "conectados" con el mismo *coordinator*. Este es el esquema más típico en aplicaciones iOS.
 

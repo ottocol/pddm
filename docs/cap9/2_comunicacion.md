@@ -1,4 +1,3 @@
-## Comunicación entre contextos
 
 En la sección anterior hemos visto un ejemplo que implicaba una operación costosa con objetos gestionados, pero esos objetos gestionados se "quedaban dentro" del contexto secundario. Las notas que se recuperaban con la *fetch request* no se usaban en la cola de operaciones principal, se manejaban solo dentro de la otra cola.
 

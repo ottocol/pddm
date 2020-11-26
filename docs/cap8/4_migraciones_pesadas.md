@@ -1,4 +1,3 @@
-## Migraciones “pesadas”
 
 Hay muchos cambios que no encajan en las operaciones previstas en las migraciones “ligeras”. Por ejemplo supongamos que tenemos el nombre y apellidos en un campo `nombre_completo` en el típico formato de *apellido_1 apellido_2, nombre* y queremos dividirlo en dos campos: `apellidos`  y `nombre` (o al contrario, partimos de dos y los queremos fusionar). En estos casos Core Data no puede inferir automáticamente la forma de transformar el modelo origen al modelo objetivo, y tenemos que especificar “manualmente” cómo hacer la transformación.
 

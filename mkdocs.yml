@@ -37,24 +37,24 @@ nav:
     - Refrescar la tabla: 'cap7/4_refrescar_tabla.md'
     - Secciones de tabla automáticas: 'cap7/5_secciones.md'
     - Ejercicios: 'cap7/6_ejercicios.md'
+    - Ejercicios: 'cap2/2.4_ejercicios.md'
+  - Migraciones de datos: 
+    - Qué son las migraciones de datos: 'cap8/1_intro.md'
+    - Versiones del modelo de datos: 'cap8/2_versiones.md'
+    - Migraciones ligeras: 'cap8/3_migraciones_ligeras.md'
+    - Migraciones pesadas: 'cap8/4_migraciones_pesadas.md'
+    - Apéndice. migraciones en versiones antiguas de iOS: 'cap8/apendice_migraciones_ios9.md'
+  - Concurrencia. Contextos múltiples: 
+    - Múltiples contextos para trabajos en *background*: 'cap9/1_background.md'
+    - Comunicación entre contextos: 'cap9/2_comunicacion.md'
+    - Contextos anidados: 'cap9/3_contextos_anidados.md'
+  #   - Ejercicios: 'cap9/4_ejercicios.md'
+  - Miniproyecto:
+     - Enunciado parte I: 'miniproyecto/restaurante_parte_1.md'  
   - Material complementario. SQLite en iOS: 
     - Introducción: 'cap2/2.1_intro_SQLite.md'
     - El API de SQLIte: 'cap2/2.2_API_SQLite.md'
     - Frameworks para SQLite: 'cap2/2.3_frameworks.md'
-    - Ejercicios: 'cap2/2.4_ejercicios.md'
-  # - Migraciones de datos: 
-  #   - Qué son las migraciones de datos: 'cap8/1_intro.md'
-  #   - Versiones del modelo de datos: 'cap8/2_versiones.md'
-  #   - Migraciones ligeras: 'cap8/3_migraciones_ligeras.md'
-  #   - Migraciones pesadas: 'cap8/4_migraciones_pesadas.md'
-  #   - Apéndice. migraciones en versiones antiguas de iOS: 'cap8/apendice_migraciones_ios9.md'
-  # - Concurrencia. Contextos múltiples: 
-  #   - Múltiples contextos para trabajos en *background*: 'cap9/1_background.md'
-  #   - Comunicación entre contextos: 'cap9/2_comunicacion.md'
-  #   - Contextos anidados: 'cap9/3_contextos_anidados.md'
-  #   - Ejercicios: 'cap9/4_ejercicios.md'
-  - Miniproyecto:
-     - Enunciado parte I: 'miniproyecto/restaurante_parte_1.md'  
 
 
 theme:

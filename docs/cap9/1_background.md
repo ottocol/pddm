@@ -1,4 +1,3 @@
-## Múltiples contextos para trabajos en *background*
 
 Algunas operaciones con Core Data pueden ser bastante costosas en tiempo: por ejemplo una búsqueda en una base de datos con muchos registros, o la sincronización de los datos con un servicio web. Si efectuamos la operación en el hilo principal de la aplicación, donde trabajamos normalmente, la interfaz de usuario se quedará paralizada durante ese tiempo y la aplicación no responderá a los eventos, ya que la interfaz corre en ese hilo.
 

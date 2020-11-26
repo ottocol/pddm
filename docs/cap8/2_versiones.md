@@ -1,4 +1,3 @@
-## Versiones del modelo de datos
 
 Siendo la evolución progresiva del modelo de datos algo tan común en cualquier desarrollo de aplicación iOS es lógico que Core Data tenga algún mecanismo de *control de versiones*, para que sea accesible el historial de los sucesivos cambios. No estamos hablando del control de versiones general del proyecto, (`git` o el que sea que usemos), ya que con el "tradicional" Core Data no tiene acceso más que a la última versión del modelo.
 

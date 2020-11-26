@@ -1,4 +1,3 @@
-## Migraciones *ligeras*
 
 Se conocen como migraciones *ligeras* aquellas en las que Core Data se puede encargar de manera prácticamente automática de migrar los datos a la nueva versión del modelo. Típicamente comprenden estas operaciones:
 

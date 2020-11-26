@@ -7,14 +7,6 @@ En esta segunda parte implementaremos las pantallas de la *app*. La mayor parte 
 
 Esta parte de la *app* es la que muestra los platos y nos permite añadirlos al pedido.
 
-### Inicializar los datos
-
-Los datos de los platos del restaurante están en un archivo `platos.json`.  En el `AppDelegate` hay una función `importPlatos` que lee el JSON, lo almacena en un array de `structs` con los datos correspondientes, y pone una preferencia de usuario llamada `platosImportados` a `true`. El JSON solo se lee si la preferencia está a `false` (valor por defecto)
-
-**Añade código Swift que copie los datos de los structs a entidades `Plato` y guarde el contexto de persistencia para hacer efectivos los cambios**.
-
-> Para forzar el borrado de la base de datos o las preferencias puedes usar la aplicación `SimSim` para borrar el almacenamiento de la app `Restaurante` en el simulador (selecciona la app y luego la opción `Finder` para abrir la carpeta). La base de datos de SQLite se almacena en `Library/Application Support` y las preferencias de usuario en `Library/Preferences`
-
 ### La pantalla de Carta (`PlatosViewController`)
 
 En esta pantalla se deben mostrar los datos de los platos. Está controlada por el `PlatosViewController`. Iremos primero con que salgan los platos listados y luego con la funcionalidad del botón de "Añadir" al pedido.
@@ -30,9 +22,9 @@ En esta pantalla se deben mostrar los datos de los platos. Está controlada por 
 
 #### Añadir al pedido actual
 
-Las celdas de la tabla usan el patrón *delegate* para avisar de que se ha pulsado el botón "Añadir". Cada celda almacena su `IndexPath` (su número de fila y de sección) y tiene como *delegate* al controller de la pantalla.
+Las celdas de la tabla tienen un *delegate* al que  avisarán de que se ha pulsado el botón "Añadir". Cada celda almacena su `IndexPath` (su número de fila y de sección) y tiene como *delegate* al *controller* de la pantalla.
 
-Para avisar al controller de que se ha pulsado sobre "Añadir" se llama al **método `platoAñadido`. Aquí tienes que obtener la entidad `Plato` elegida (la que está en la fila y sección seleccionadas)** para que el código restante (ya implementado) se lo pase al controller de la pantalla siguiente.
+Para avisar al *controller* de que se ha pulsado sobre "Añadir" se llama al **método `platoAñadido`. En este método tienes que obtener la entidad `Plato` elegida (la que está en la fila y sección seleccionadas)** para que el código restante (ya implementado) se lo pase al controller de la pantalla siguiente.
 
 ## El pedido actual (`PedidoActualViewController`) (3 puntos)
 
@@ -79,5 +71,3 @@ En esta pantalla se deberían mostrar todos los pedidos realizados por el usuari
 - (1 punto) Si en el `viewWillAppear` muestras los datos de todos los pedidos en la consola con `print`, solo para ver que efectivamente se han almacenado correctamente
 - (2 puntos) Si muestras en una tabla una línea con el resumen de cada pedido (fecha, total y número de platos pedidos)
 - (4 puntos) Si muestras una pantalla con el listado de pedidos y otra con los detalles de cada uno   
-
-## Apéndice: 
