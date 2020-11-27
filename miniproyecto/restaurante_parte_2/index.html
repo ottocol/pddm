@@ -925,8 +925,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#la-carta-3-puntos" class="md-nav__link">
-    La Carta (3 puntos)
+  <a href="#la-carta-075-puntos" class="md-nav__link">
+    La Carta (0,75 puntos)
   </a>
   
     <nav class="md-nav">
@@ -952,8 +952,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#el-pedido-actual-pedidoactualviewcontroller" class="md-nav__link">
-    El pedido actual (PedidoActualViewController)
+  <a href="#el-pedido-actual-075-puntos" class="md-nav__link">
+    El pedido actual (0,75 puntos)
   </a>
   
     <nav class="md-nav">
@@ -986,8 +986,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tu-historial-pedidosviewcontroller" class="md-nav__link">
-    Tu historial (PedidosViewController)
+  <a href="#tu-historial-hasta-05-puntos" class="md-nav__link">
+    Tu historial (hasta 0,5 puntos)
   </a>
   
 </li>
@@ -1010,8 +1010,8 @@
                 
                 
                 <h1 id="miniproyecto-app-restaurante-parte-2-las-funcionalidades-de-la-app">Miniproyecto: <em>app</em> restaurante. Parte 2: Las funcionalidades de la <em>app</em><a class="headerlink" href="#miniproyecto-app-restaurante-parte-2-las-funcionalidades-de-la-app" title="Permanent link">&para;</a></h1>
-<p>En esta segunda parte implementaremos las funcionalidades de la <em>app</em>. La mayor parte de la interfaz ya está creada, tú tienes que implementar las funcionalidades relacionadas con Core Data.</p>
-<h2 id="la-carta-3-puntos">La Carta (3 puntos)<a class="headerlink" href="#la-carta-3-puntos" title="Permanent link">&para;</a></h2>
+<p>En esta segunda parte implementaremos las funcionalidades de la <em>app</em>. La mayor parte de la interfaz ya está creada (salvo la última pantalla), tú tienes que implementar las funcionalidades relacionadas con Core Data.</p>
+<h2 id="la-carta-075-puntos">La Carta (0,75 puntos)<a class="headerlink" href="#la-carta-075-puntos" title="Permanent link">&para;</a></h2>
 <p>Esta parte de la <em>app</em> es la que muestra los platos y nos permite añadirlos al pedido.</p>
 <p>En la pantalla de "Carta" se deben mostrar los datos de los platos. Está controlada por el <code>PlatosViewController</code>. Iremos primero con que salgan los platos listados y luego con la funcionalidad del botón de "Añadir" al pedido.</p>
 <h3 id="listado-de-platos">Listado de platos<a class="headerlink" href="#listado-de-platos" title="Permanent link">&para;</a></h3>
@@ -1035,8 +1035,8 @@
 <h3 id="anadir-al-pedido-actual">Añadir al pedido actual<a class="headerlink" href="#anadir-al-pedido-actual" title="Permanent link">&para;</a></h3>
 <p>Las celdas de la tabla tienen un <em>delegate</em> al que  avisarán de que se ha pulsado el botón "Añadir". Cada celda almacena su <code>IndexPath</code> (su número de fila y de sección) y tiene como <em>delegate</em> al <em>controller</em> de la pantalla.</p>
 <p>Para avisar al <em>controller</em> de que se ha pulsado sobre "Añadir" se llama al <strong>método <code>platoAñadido</code>. En este método tienes que obtener la entidad <code>Plato</code> elegida (la que está en la fila y sección seleccionadas)</strong> para que el código restante (ya implementado) se lo pase al controller de la pantalla siguiente.</p>
-<h2 id="el-pedido-actual-pedidoactualviewcontroller">El pedido actual (<code>PedidoActualViewController</code>)<a class="headerlink" href="#el-pedido-actual-pedidoactualviewcontroller" title="Permanent link">&para;</a></h2>
-<p>Esta parte de la <em>app</em> muestra los datos del pedido actual, añade los platos seleccionados al pedido y permite hacer el pedido o cancelarlo.</p>
+<h2 id="el-pedido-actual-075-puntos">El pedido actual (0,75 puntos)<a class="headerlink" href="#el-pedido-actual-075-puntos" title="Permanent link">&para;</a></h2>
+<p>Esta parte de la <em>app</em> muestra los datos del pedido actual, añade los platos seleccionados al pedido y permite hacer el pedido o cancelarlo. La pantalla está controlada por el <code>PedidoActualViewController</code>.</p>
 <p>El <em>controller</em> recibe el plato elegido desde el controller anterior en la propiedad <code>platoElegido</code>, hay que añadir una entidad <code>LineaPedido</code> que vincule este plato con el pedido actual.</p>
 <p>El pedido actual no se puede guardar en el propio <em>controller</em> ya que por la navegación entre pantallas este se destruiría al salir de ella. Por eso se debe guardar aparte, en la variable <code>pedidoActual</code> del <em>singleton</em> <code>StateSingleton.shared</code>. <strong>Esta variable estaba comentada para que no diera error</strong> ya que hasta ahora no existía la entidad <code>Pedido</code>, <strong>descoméntala</strong>. </p>
 <h3 id="anadir-el-plato-elegido-al-pedido">Añadir el plato elegido al pedido<a class="headerlink" href="#anadir-el-plato-elegido-al-pedido" title="Permanent link">&para;</a></h3>
@@ -1063,12 +1063,11 @@
 <li>Si se pulsa a "realizar" bastará con que le asignes la fecha actual al pedido, crees un nuevo pedido en <code>StateSingleton.shared.pedidoActual</code> y muestres un mensaje al usuario indicando que "su pedido está en camino" o algo similar</li>
 <li>Si se pulsa a "cancelar" deberías borrar en Core Data el pedido actual. Si la regla de borrado en cascada está puesta correctamente, al borrar un pedido deberían borrarse automáticamente todas sus líneas.</li>
 </ul>
-<h2 id="tu-historial-pedidosviewcontroller">Tu historial (<code>PedidosViewController</code>)<a class="headerlink" href="#tu-historial-pedidosviewcontroller" title="Permanent link">&para;</a></h2>
-<p>En esta pantalla se deberían mostrar todos los pedidos realizados por el usuario actual. Está en blanco y puedes crear la interfaz del modo que desees.</p>
+<h2 id="tu-historial-hasta-05-puntos">Tu historial (hasta 0,5 puntos)<a class="headerlink" href="#tu-historial-hasta-05-puntos" title="Permanent link">&para;</a></h2>
+<p>En esta pantalla se deberían mostrar todos los pedidos realizados por el usuario actual. La pantalla está controlada por el (<code>PedidosViewController</code>). Está en blanco y puedes crear la interfaz del modo que desees.</p>
 <ul>
-<li>(1 punto) Si en el <code>viewWillAppear</code> muestras los datos de todos los pedidos en la consola con <code>print</code>, solo para ver que efectivamente se han almacenado correctamente</li>
-<li>(2 puntos) Si muestras en una tabla una línea con el resumen de cada pedido (fecha, total y número de platos pedidos)</li>
-<li>(4 puntos) Si muestras una pantalla con el listado de pedidos y otra con los detalles de cada uno   </li>
+<li>(0,25 puntos) Si en el <code>viewWillAppear</code> muestras los datos de todos los pedidos en la consola con <code>print</code>, solo para ver que efectivamente se han almacenado correctamente</li>
+<li>(0,5 puntos) Si en lugar de lo anterior muestras en una tabla una línea con el resumen de cada pedido (fecha, total y número de platos pedidos)</li>
 </ul>
                 
                   
