@@ -54,15 +54,22 @@ donde los identificadores de mensaje deberían ser generados automáticamente po
 
 Para que funcione el chat hay que implementar dos funcionalidades:
 
-- Que cuando se pulse sobre "Enviar" se guarde el mensaje en la BD. Usando el API de la base de datos habrá que:
-    + Obtener la referencia al nodo "mensajes"
-    + Generar la referencia a un nuevo nodo id hijo de la referencia anterior con `childByAutoId()` 
-    + Fijar el valor de este nuevo nodo con `setValue()` a un diccionario Swift con las claves "texto" y "usuario" y que contenga el texto del mensaje y el email del usuario actual de Firebase.
+### Enviar mensajes
 
-> Con el HTML llamado "Consola Firebase" que se incluye en las plantillas podéis ver el estado actual de la BD y podéis comprobar si se ha insertado correctamente vuestro mensaje.
+Que cuando se pulse sobre "Enviar" se guarde el mensaje en la BD. Usando el API de la base de datos habrá que:
+  + Obtener la referencia al nodo "mensajes"
+  + Generar la referencia a un nuevo nodo id hijo de la referencia anterior con `childByAutoId()` 
+  + Fijar el valor de este nuevo nodo con `setValue()` a un diccionario Swift con las claves "texto" y "usuario" y que contenga el texto del mensaje y el email del usuario actual de Firebase.
 
-- Que cuando alguien envía un mensaje al chat este aparezca en la tabla
-    - Recibir el mensaje: en el `viewWillAppear` del `ChatViewController` añadir un *listener* para que escuche el evento `.childAdded` sobre el nodo "mensajes"
+> Con el HTML llamado "Consola Firebase" que se incluye en las plantillas podéis ver en un recuadro el estado actual de la BD y podéis comprobar si se ha insertado correctamente vuestro mensaje. También podéis enviar mensajes, pero eso sería para probar la siguiente sección
+
+### Recibir mensajes
+
+Que cuando alguien envíe un mensaje al chat este aparezca en la tabla
+
+> Como es más que posible que en este momento estés probando tú sol@ la *app* no habrá nadie más enviando mensajes al chat. Puedes similar que envías mensajes como otro usuario desde el HTML de moodle que actúa como "consola de Firebase"
+
+En el `viewWillAppear` del `ChatViewController` añadir un *listener* para que escuche el evento `.childAdded` sobre el nodo "mensajes"
 
 Ten en cuenta que el código que recibe el evento recibe un parámetro `snapshot` con los nuevos valores en el campo `value`. En nuestro caso será un diccionario con el texto y el usuario. Podemos hacer el *cast* a un diccionario con claves y valores `String` para poder usarlo en el código, algo como:
 
@@ -71,8 +78,10 @@ if let valor = snapshot.value, let v = valor as? [String:String] {
    //Aquí ya podríamos acceder a los valores con v["texto"] y v["usuario"]
 }
 ```
+Cuando se reciba el evento, para mostrar el mensaje en la tabla:
 
-Cuando se reciba el evento, mostrar el mensaje en la tabla. Con el texto del mensaje y el email del usuario construir un `struct` de tipo `Mensaje` y añadirlo al array `self.mensajes` del `ChatViewController`. Para que aparezca visualmente en la tabla tienes además que añadir una fila en la posición correspondiente:
+-  Con el texto del mensaje y el email del usuario construir un `struct` de tipo `Mensaje` y añadirlo al array `self.mensajes` del `ChatViewController`. 
+-  Para que aparezca visualmente en la tabla tienes además que añadir una fila en la posición correspondiente:
 
 ```swift
 let indexPath = IndexPath(row:self.mensajes.count-1,section:0)
