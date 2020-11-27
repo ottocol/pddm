@@ -11,14 +11,69 @@ En la pantalla de "Carta" se deben mostrar los datos de los platos. Está contro
 
 ### Listado de platos
 
-- Usa un `NSFetchedResultsController` para **listar los platos** en la tabla. Haz que los platos se agrupen en secciones según su tipo.
-    + Es mejor que al crear el `NSFetchedResultsController` no use una cache, ya que al escribir en la barra de búsqueda cambiamos la *fetch request* y por tanto invalidamos la cache, por lo que en este caso no tiene apenas utilidad. 
-    + Las celdas de la tabla son de la clase `PlatoTableViewCell`, aquí ya están definidos los *outlets* para poder rellenar los datos.
+Usa un `NSFetchedResultsController` para **listar los platos** en la tabla. Haz que los platos se agrupen en secciones según su tipo.
 
-- Implementa una **búsqueda/filtrado de platos** como hiciste en la aplicación de notas, que busque texto en el nombre o en la descripción del plato. Para aplicar el "filtro" puedes:
-    - Ya hemos comentado que el `NSFetchedResultsController` no debería tener cache, pero si la tiene, en este momento se debería borrar con el método `NSFetchedResultsController.deleteCache(withName:)`
-    - Crear un predicado (`NSPredicate`) con la condición de búsqueda y asignárselo a la propiedad `fetchRequest.predicate` del `NSFetchedResultsController`. 
-    - Para que se actualicen los datos tendrás que hacer un `performFetch` del `NSFetchedResultsController`
++ Es mucho mejor que al crear el `NSFetchedResultsController` no use una cache (pasar el parámetro `cacheName` a `nil`) , ya que al escribir en la barra de búsqueda cambiamos la *fetch request* y por tanto invalidamos la cache, por lo que en este caso no tiene apenas utilidad. 
++ Las celdas de la tabla son de la clase `PlatoTableViewCell`, aquí ya están definidos los *outlets* para poder rellenar los datos.
+
+### Búsqueda/Filtrado de platos
+
+Implementa una **búsqueda/filtrado de platos** como hiciste en la aplicación de notas, que busque texto en el nombre o en la descripción del plato. Para aplicar el "filtro":
+
+Define un `UISearchController` en el `PlatosViewController`
+
+```swift
+let searchController = UISearchController(searchResultsController: nil)
+```
+
+Añade `UISearchResultsUpdating ` a la cabecera del controller para que se ocupe de los resultados de la búsqueda, debe quedar como:
+
+```swift
+class PlatosViewController: UIViewController, UITableViewDataSource, PlatoTableViewCellDelegate, NSFetchedResultsControllerDelegate, UISearchResultsUpdating  {
+    ...
+}
+```
+
+Configura el *search controller* y añádelo a la tabla en el `viewDidLoad`
+```swift
+self.searchController.searchResultsUpdater = self
+//Configuramos el search controller
+self.searchController.obscuresBackgroundDuringPresentation = false
+self.searchController.searchBar.placeholder = "Buscar texto"
+//Lo añadimos a la tabla
+self.searchController.searchBar.sizeToFit()
+self.tabla.tableHeaderView = searchController.searchBar
+//opcionalmente puedes usar un throttler
+
+```
+
+Opcionalmente puedes usar un [Throttler](Throttler.swift) para que no busque en cada pulsación de tecla, sino que espere una fracción de segundo. En caso de que quieras usarlo, bájate el código del enlace anterior, ponlo en un archivo en tu proyecto y define una variable de la clase `Throttler`:
+
+```swift
+let throttler = Throttler(minimumDelay: 0.5)
+```
+
+Añade el método `ùpdateSearchResults` al `PlatosViewController`, **aquí es donde realmente tienes que implementar el filtrado**
+
+```swift
+func updateSearchResults(for searchController: UISearchController) {
+    //este throttler.throttle solo si quieres usar throttling
+    //en caso contrario solo el let textoBuscado=... etc
+    throttler.throttle {
+        let textoBuscado = searchController.searchBar.text!
+        //Aquí iría tu código de búsqueda
+    }
+}
+```
+
+- Ya hemos comentado que el `NSFetchedResultsController` no debería tener cache, pero si la tiene, en este momento se debería borrar con el método `NSFetchedResultsController.deleteCache(withName:)`
+- Crear un predicado (`NSPredicate`) con la condición de búsqueda (repásate la sesión de búsquedas en Core Data para ver la sintaxis de la *query*, será muy similar a la que hiciste en el ejercicio de esa sesión) y asignárselo a la propiedad `fetchRequest.predicate` del `NSFetchedResultsController`. 
+- Para que se actualicen los datos tendrás que hacer:
+
+```swift
+try! self.frc.performFetch()
+self.tabla.reloadData()
+```
 
 ### Añadir al pedido actual
 

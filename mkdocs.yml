@@ -50,6 +50,7 @@ nav:
   #   - Ejercicios: 'cap9/4_ejercicios.md'
   - Miniproyecto:
      - Enunciado parte I: 'miniproyecto/restaurante_parte_1.md'  
+     - Enunciado parte II: 'miniproyecto/restaurante_parte_2.md'  
   - Material complementario. SQLite en iOS: 
     - Introducción: 'cap2/2.1_intro_SQLite.md'
     - El API de SQLIte: 'cap2/2.2_API_SQLite.md'
