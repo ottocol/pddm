@@ -43,8 +43,6 @@ self.searchController.searchBar.placeholder = "Buscar texto"
 //Lo añadimos a la tabla
 self.searchController.searchBar.sizeToFit()
 self.tabla.tableHeaderView = searchController.searchBar
-//opcionalmente puedes usar un throttler
-
 ```
 
 Opcionalmente puedes usar un [Throttler](Throttler.swift) para que no busque en cada pulsación de tecla, sino que espere una fracción de segundo. En caso de que quieras usarlo, bájate el código del enlace anterior, ponlo en un archivo en tu proyecto y define una variable de la clase `Throttler`:
