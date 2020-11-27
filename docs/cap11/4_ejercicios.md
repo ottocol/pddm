@@ -8,6 +8,8 @@ El objetivo es desarrollar un pequeño chat con la *realtime database*. La plant
 
 ## Login/logout (0,5 puntos)
 
+> La aplicación usa una cuenta de Firebase que ya está dada de alta en Google, los alumnos del máster estáis añadidos como usuarios con vuestro email de `alu.ua.es` que es tanto vuestro login en la app como la contraseña. Probad esta sección con esas credenciales. Si no os funciona avisad al profesor, es posible que haya algún problema con vuestro usuario de Firebase en el servidor.
+
 ### Pantalla inicial:
 
 En la pantalla inicial de la *app* hay un formulario para hacer login. **Añade el código necesario para que cuando se pulse sobre el botón "Entrar" se haga login en Firebase**. 
@@ -57,7 +59,7 @@ Para que funcione el chat hay que implementar dos funcionalidades:
     + Generar la referencia a un nuevo nodo id hijo de la referencia anterior con `childByAutoId()` 
     + Fijar el valor de este nuevo nodo con `setValue()` a un diccionario Swift con las claves "texto" y "usuario" y que contenga el texto del mensaje y el email del usuario actual de Firebase.
 
-> Con el HTML que se incluye en las plantillas podéis ver el estado actual de la BD y podéis comprobar si se ha insertado correctamente vuestro mensaje 
+> Con el HTML llamado "Consola Firebase" que se incluye en las plantillas podéis ver el estado actual de la BD y podéis comprobar si se ha insertado correctamente vuestro mensaje.
 
 - Que cuando alguien envía un mensaje al chat este aparezca en la tabla
     - Recibir el mensaje: en el `viewWillAppear` del `ChatViewController` añadir un *listener* para que escuche el evento `.childAdded` sobre el nodo "mensajes"
