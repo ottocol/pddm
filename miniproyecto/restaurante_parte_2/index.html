@@ -1170,15 +1170,13 @@
 4
 5
 6
-7
-8</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kc">self</span><span class="p">.</span><span class="n">searchController</span><span class="p">.</span><span class="n">searchResultsUpdater</span> <span class="p">=</span> <span class="kc">self</span>
+7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kc">self</span><span class="p">.</span><span class="n">searchController</span><span class="p">.</span><span class="n">searchResultsUpdater</span> <span class="p">=</span> <span class="kc">self</span>
 <span class="c1">//Configuramos el search controller</span>
 <span class="kc">self</span><span class="p">.</span><span class="n">searchController</span><span class="p">.</span><span class="n">obscuresBackgroundDuringPresentation</span> <span class="p">=</span> <span class="kc">false</span>
 <span class="kc">self</span><span class="p">.</span><span class="n">searchController</span><span class="p">.</span><span class="n">searchBar</span><span class="p">.</span><span class="n">placeholder</span> <span class="p">=</span> <span class="s">&quot;Buscar texto&quot;</span>
 <span class="c1">//Lo añadimos a la tabla</span>
 <span class="kc">self</span><span class="p">.</span><span class="n">searchController</span><span class="p">.</span><span class="n">searchBar</span><span class="p">.</span><span class="n">sizeToFit</span><span class="p">()</span>
 <span class="kc">self</span><span class="p">.</span><span class="n">tabla</span><span class="p">.</span><span class="n">tableHeaderView</span> <span class="p">=</span> <span class="n">searchController</span><span class="p">.</span><span class="n">searchBar</span>
-<span class="c1">//opcionalmente puedes usar un throttler</span>
 </pre></div>
 </td></tr></table></p>
 <p>Opcionalmente puedes usar un <a href="../Throttler.swift">Throttler</a> para que no busque en cada pulsación de tecla, sino que espere una fracción de segundo. En caso de que quieras usarlo, bájate el código del enlace anterior, ponlo en un archivo en tu proyecto y define una variable de la clase <code>Throttler</code>:</p>
