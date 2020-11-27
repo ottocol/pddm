@@ -37,7 +37,6 @@ nav:
     - Refrescar la tabla: 'cap7/4_refrescar_tabla.md'
     - Secciones de tabla automáticas: 'cap7/5_secciones.md'
     - Ejercicios: 'cap7/6_ejercicios.md'
-    - Ejercicios: 'cap2/2.4_ejercicios.md'
   - Migraciones de datos: 
     - Qué son las migraciones de datos: 'cap8/1_intro.md'
     - Versiones del modelo de datos: 'cap8/2_versiones.md'
