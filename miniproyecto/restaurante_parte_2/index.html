@@ -36,7 +36,7 @@
     
     
       
-        <title>Miniproyecto: *app* restaurante. Parte 2: Las funcionalidades de la *app* - PDDM-iOS</title>
+        <title>Enunciado parte II - PDDM-iOS</title>
       
     
     
@@ -109,7 +109,7 @@
             </span>
             <span class="md-header-nav__topic">
               
-                Miniproyecto: *app* restaurante. Parte 2: Las funcionalidades de la *app*
+                Enunciado parte II
               
             </span>
           
@@ -812,10 +812,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9" checked>
     
     <label class="md-nav__link" for="nav-9">
       Miniproyecto
@@ -836,6 +838,124 @@
     <a href="../restaurante_parte_1/" title="Enunciado parte I" class="md-nav__link">
       Enunciado parte I
     </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Enunciado parte II
+      </label>
+    
+    <a href="./" title="Enunciado parte II" class="md-nav__link md-nav__link--active">
+      Enunciado parte II
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Tabla de contenidos</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#la-carta-075-puntos" class="md-nav__link">
+    La Carta (0,75 puntos)
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#listado-de-platos" class="md-nav__link">
+    Listado de platos
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#busquedafiltrado-de-platos" class="md-nav__link">
+    Búsqueda/Filtrado de platos
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anadir-al-pedido-actual" class="md-nav__link">
+    Añadir al pedido actual
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#el-pedido-actual-075-puntos" class="md-nav__link">
+    El pedido actual (0,75 puntos)
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#anadir-el-plato-elegido-al-pedido" class="md-nav__link">
+    Añadir el plato elegido al pedido
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cambiar-la-cantidad-de-un-plato" class="md-nav__link">
+    Cambiar la cantidad de un plato
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#realizar-y-cancelar-pedido" class="md-nav__link">
+    Realizar y cancelar pedido
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tu-historial-hasta-05-puntos" class="md-nav__link">
+    Tu historial (hasta 0,5 puntos)
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -940,6 +1060,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#busquedafiltrado-de-platos" class="md-nav__link">
+    Búsqueda/Filtrado de platos
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#anadir-al-pedido-actual" class="md-nav__link">
     Añadir al pedido actual
   </a>
@@ -1015,23 +1142,80 @@
 <p>Esta parte de la <em>app</em> es la que muestra los platos y nos permite añadirlos al pedido.</p>
 <p>En la pantalla de "Carta" se deben mostrar los datos de los platos. Está controlada por el <code>PlatosViewController</code>. Iremos primero con que salgan los platos listados y luego con la funcionalidad del botón de "Añadir" al pedido.</p>
 <h3 id="listado-de-platos">Listado de platos<a class="headerlink" href="#listado-de-platos" title="Permanent link">&para;</a></h3>
-<ul>
-<li>
 <p>Usa un <code>NSFetchedResultsController</code> para <strong>listar los platos</strong> en la tabla. Haz que los platos se agrupen en secciones según su tipo.</p>
 <ul>
-<li>Es mejor que al crear el <code>NSFetchedResultsController</code> no use una cache, ya que al escribir en la barra de búsqueda cambiamos la <em>fetch request</em> y por tanto invalidamos la cache, por lo que en este caso no tiene apenas utilidad. </li>
+<li>Es mucho mejor que al crear el <code>NSFetchedResultsController</code> no use una cache (pasar el parámetro <code>cacheName</code> a <code>nil</code>) , ya que al escribir en la barra de búsqueda cambiamos la <em>fetch request</em> y por tanto invalidamos la cache, por lo que en este caso no tiene apenas utilidad. </li>
 <li>Las celdas de la tabla son de la clase <code>PlatoTableViewCell</code>, aquí ya están definidos los <em>outlets</em> para poder rellenar los datos.</li>
 </ul>
-</li>
-<li>
-<p>Implementa una <strong>búsqueda/filtrado de platos</strong> como hiciste en la aplicación de notas, que busque texto en el nombre o en la descripción del plato. Para aplicar el "filtro" puedes:</p>
+<h3 id="busquedafiltrado-de-platos">Búsqueda/Filtrado de platos<a class="headerlink" href="#busquedafiltrado-de-platos" title="Permanent link">&para;</a></h3>
+<p>Implementa una <strong>búsqueda/filtrado de platos</strong> como hiciste en la aplicación de notas, que busque texto en el nombre o en la descripción del plato. Para aplicar el "filtro":</p>
+<p>Define un <code>UISearchController</code> en el <code>PlatosViewController</code></p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">searchController</span> <span class="p">=</span> <span class="bp">UISearchController</span><span class="p">(</span><span class="n">searchResultsController</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+</pre></div>
+</td></tr></table>
+
+<p>Añade <code>UISearchResultsUpdating</code> a la cabecera del controller para que se ocupe de los resultados de la búsqueda, debe quedar como:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kd">class</span> <span class="nc">PlatosViewController</span><span class="p">:</span> <span class="bp">UIViewController</span><span class="p">,</span> <span class="bp">UITableViewDataSource</span><span class="p">,</span> <span class="n">PlatoTableViewCellDelegate</span><span class="p">,</span> <span class="bp">NSFetchedResultsControllerDelegate</span><span class="p">,</span> <span class="bp">UISearchResultsUpdating</span>  <span class="p">{</span>
+    <span class="p">...</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table>
+
+<p>Configura el <em>search controller</em> y añádelo a la tabla en el <code>viewDidLoad</code>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kc">self</span><span class="p">.</span><span class="n">searchController</span><span class="p">.</span><span class="n">searchResultsUpdater</span> <span class="p">=</span> <span class="kc">self</span>
+<span class="c1">//Configuramos el search controller</span>
+<span class="kc">self</span><span class="p">.</span><span class="n">searchController</span><span class="p">.</span><span class="n">obscuresBackgroundDuringPresentation</span> <span class="p">=</span> <span class="kc">false</span>
+<span class="kc">self</span><span class="p">.</span><span class="n">searchController</span><span class="p">.</span><span class="n">searchBar</span><span class="p">.</span><span class="n">placeholder</span> <span class="p">=</span> <span class="s">&quot;Buscar texto&quot;</span>
+<span class="c1">//Lo añadimos a la tabla</span>
+<span class="kc">self</span><span class="p">.</span><span class="n">searchController</span><span class="p">.</span><span class="n">searchBar</span><span class="p">.</span><span class="n">sizeToFit</span><span class="p">()</span>
+<span class="kc">self</span><span class="p">.</span><span class="n">tabla</span><span class="p">.</span><span class="n">tableHeaderView</span> <span class="p">=</span> <span class="n">searchController</span><span class="p">.</span><span class="n">searchBar</span>
+<span class="c1">//opcionalmente puedes usar un throttler</span>
+</pre></div>
+</td></tr></table></p>
+<p>Opcionalmente puedes usar un <a href="../Throttler.swift">Throttler</a> para que no busque en cada pulsación de tecla, sino que espere una fracción de segundo. En caso de que quieras usarlo, bájate el código del enlace anterior, ponlo en un archivo en tu proyecto y define una variable de la clase <code>Throttler</code>:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">throttler</span> <span class="p">=</span> <span class="n">Throttler</span><span class="p">(</span><span class="n">minimumDelay</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</td></tr></table>
+
+<p>Añade el método <code>ùpdateSearchResults</code> al <code>PlatosViewController</code>, <strong>aquí es donde realmente tienes que implementar el filtrado</strong></p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kd">func</span> <span class="nf">updateSearchResults</span><span class="p">(</span><span class="k">for</span> <span class="n">searchController</span><span class="p">:</span> <span class="bp">UISearchController</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">//este throttler.throttle solo si quieres usar throttling</span>
+    <span class="c1">//en caso contrario solo el let textoBuscado=... etc</span>
+    <span class="n">throttler</span><span class="p">.</span><span class="n">throttle</span> <span class="p">{</span>
+        <span class="kd">let</span> <span class="nv">textoBuscado</span> <span class="p">=</span> <span class="n">searchController</span><span class="p">.</span><span class="n">searchBar</span><span class="p">.</span><span class="n">text</span><span class="p">!</span>
+        <span class="c1">//Aquí iría tu código de búsqueda</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table>
+
 <ul>
 <li>Ya hemos comentado que el <code>NSFetchedResultsController</code> no debería tener cache, pero si la tiene, en este momento se debería borrar con el método <code>NSFetchedResultsController.deleteCache(withName:)</code></li>
-<li>Crear un predicado (<code>NSPredicate</code>) con la condición de búsqueda y asignárselo a la propiedad <code>fetchRequest.predicate</code> del <code>NSFetchedResultsController</code>. </li>
-<li>Para que se actualicen los datos tendrás que hacer un <code>performFetch</code> del <code>NSFetchedResultsController</code></li>
+<li>Crear un predicado (<code>NSPredicate</code>) con la condición de búsqueda (repásate la sesión de búsquedas en Core Data para ver la sintaxis de la <em>query</em>, será muy similar a la que hiciste en el ejercicio de esa sesión) y asignárselo a la propiedad <code>fetchRequest.predicate</code> del <code>NSFetchedResultsController</code>. </li>
+<li>Para que se actualicen los datos tendrás que hacer:</li>
 </ul>
-</li>
-</ul>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">try</span><span class="p">!</span> <span class="kc">self</span><span class="p">.</span><span class="n">frc</span><span class="p">.</span><span class="n">performFetch</span><span class="p">()</span>
+<span class="kc">self</span><span class="p">.</span><span class="n">tabla</span><span class="p">.</span><span class="n">reloadData</span><span class="p">()</span>
+</pre></div>
+</td></tr></table>
+
 <h3 id="anadir-al-pedido-actual">Añadir al pedido actual<a class="headerlink" href="#anadir-al-pedido-actual" title="Permanent link">&para;</a></h3>
 <p>Las celdas de la tabla tienen un <em>delegate</em> al que  avisarán de que se ha pulsado el botón "Añadir". Cada celda almacena su <code>IndexPath</code> (su número de fila y de sección) y tiene como <em>delegate</em> al <em>controller</em> de la pantalla.</p>
 <p>Para avisar al <em>controller</em> de que se ha pulsado sobre "Añadir" se llama al <strong>método <code>platoAñadido</code>. En este método tienes que obtener la entidad <code>Plato</code> elegida (la que está en la fila y sección seleccionadas)</strong> para que el código restante (ya implementado) se lo pase al controller de la pantalla siguiente.</p>
@@ -1085,6 +1269,41 @@
       
         
 <footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../restaurante_parte_1/" title="Enunciado parte I" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Anterior
+                </span>
+                Enunciado parte I
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../../cap2/2.1_intro_SQLite/" title="Introducción" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Siguiente
+                </span>
+                Introducción
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
