@@ -553,6 +553,26 @@
     Mensajes del chat (1 punto)
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enviar-mensajes" class="md-nav__link">
+    Enviar mensajes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recibir-mensajes" class="md-nav__link">
+    Recibir mensajes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
       
@@ -1029,6 +1049,26 @@
     Mensajes del chat (1 punto)
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enviar-mensajes" class="md-nav__link">
+    Enviar mensajes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recibir-mensajes" class="md-nav__link">
+    Recibir mensajes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
       
@@ -1103,33 +1143,33 @@
 <p>Llevad mucho cuidado, ya que con vuestro usuario tenéis permiso total para escribir en la base de datos, por lo que por error podríais borrar los mensajes enviados por los demás.</p>
 </blockquote>
 <p>Para que funcione el chat hay que implementar dos funcionalidades:</p>
-<ul>
-<li>Que cuando se pulse sobre "Enviar" se guarde el mensaje en la BD. Usando el API de la base de datos habrá que:<ul>
-<li>Obtener la referencia al nodo "mensajes"</li>
-<li>Generar la referencia a un nuevo nodo id hijo de la referencia anterior con <code>childByAutoId()</code> </li>
-<li>Fijar el valor de este nuevo nodo con <code>setValue()</code> a un diccionario Swift con las claves "texto" y "usuario" y que contenga el texto del mensaje y el email del usuario actual de Firebase.</li>
-</ul>
-</li>
-</ul>
+<h3 id="enviar-mensajes">Enviar mensajes<a class="headerlink" href="#enviar-mensajes" title="Permanent link">&para;</a></h3>
+<p>Que cuando se pulse sobre "Enviar" se guarde el mensaje en la BD. Usando el API de la base de datos habrá que:
+  + Obtener la referencia al nodo "mensajes"
+  + Generar la referencia a un nuevo nodo id hijo de la referencia anterior con <code>childByAutoId()</code> 
+  + Fijar el valor de este nuevo nodo con <code>setValue()</code> a un diccionario Swift con las claves "texto" y "usuario" y que contenga el texto del mensaje y el email del usuario actual de Firebase.</p>
 <blockquote>
-<p>Con el HTML llamado "Consola Firebase" que se incluye en las plantillas podéis ver el estado actual de la BD y podéis comprobar si se ha insertado correctamente vuestro mensaje.</p>
+<p>Con el HTML llamado "Consola Firebase" que se incluye en las plantillas podéis ver en un recuadro el estado actual de la BD y podéis comprobar si se ha insertado correctamente vuestro mensaje. También podéis enviar mensajes, pero eso sería para probar la siguiente sección</p>
 </blockquote>
-<ul>
-<li>Que cuando alguien envía un mensaje al chat este aparezca en la tabla<ul>
-<li>Recibir el mensaje: en el <code>viewWillAppear</code> del <code>ChatViewController</code> añadir un <em>listener</em> para que escuche el evento <code>.childAdded</code> sobre el nodo "mensajes"</li>
-</ul>
-</li>
-</ul>
+<h3 id="recibir-mensajes">Recibir mensajes<a class="headerlink" href="#recibir-mensajes" title="Permanent link">&para;</a></h3>
+<p>Que cuando alguien envíe un mensaje al chat este aparezca en la tabla</p>
+<blockquote>
+<p>Como es más que posible que en este momento estés probando tú sol@ la <em>app</em> no habrá nadie más enviando mensajes al chat. Puedes similar que envías mensajes como otro usuario desde el HTML de moodle que actúa como "consola de Firebase"</p>
+</blockquote>
+<p>En el <code>viewWillAppear</code> del <code>ChatViewController</code> añadir un <em>listener</em> para que escuche el evento <code>.childAdded</code> sobre el nodo "mensajes"</p>
 <p>Ten en cuenta que el código que recibe el evento recibe un parámetro <code>snapshot</code> con los nuevos valores en el campo <code>value</code>. En nuestro caso será un diccionario con el texto y el usuario. Podemos hacer el <em>cast</em> a un diccionario con claves y valores <code>String</code> para poder usarlo en el código, algo como:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+<p><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">if</span> <span class="kd">let</span> <span class="nv">valor</span> <span class="p">=</span> <span class="n">snapshot</span><span class="p">.</span><span class="n">value</span><span class="p">,</span> <span class="kd">let</span> <span class="nv">v</span> <span class="p">=</span> <span class="n">valor</span> <span class="k">as</span><span class="p">?</span> <span class="p">[</span><span class="nb">String</span><span class="p">:</span><span class="nb">String</span><span class="p">]</span> <span class="p">{</span>
    <span class="c1">//Aquí ya podríamos acceder a los valores con v[&quot;texto&quot;] y v[&quot;usuario&quot;]</span>
 <span class="p">}</span>
 </pre></div>
 </td></tr></table>
-
-<p>Cuando se reciba el evento, mostrar el mensaje en la tabla. Con el texto del mensaje y el email del usuario construir un <code>struct</code> de tipo <code>Mensaje</code> y añadirlo al array <code>self.mensajes</code> del <code>ChatViewController</code>. Para que aparezca visualmente en la tabla tienes además que añadir una fila en la posición correspondiente:</p>
+Cuando se reciba el evento, para mostrar el mensaje en la tabla:</p>
+<ul>
+<li>Con el texto del mensaje y el email del usuario construir un <code>struct</code> de tipo <code>Mensaje</code> y añadirlo al array <code>self.mensajes</code> del <code>ChatViewController</code>. </li>
+<li>Para que aparezca visualmente en la tabla tienes además que añadir una fila en la posición correspondiente:</li>
+</ul>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kd">let</span> <span class="nv">indexPath</span> <span class="p">=</span> <span class="n">IndexPath</span><span class="p">(</span><span class="n">row</span><span class="p">:</span><span class="kc">self</span><span class="p">.</span><span class="n">mensajes</span><span class="p">.</span><span class="bp">count</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">section</span><span class="p">:</span><span class="mi">0</span><span class="p">)</span>
