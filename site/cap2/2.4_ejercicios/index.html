@@ -1,0 +1,623 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.3.2">
+    
+    
+      
+        <title>Ejercicio de SQLite: *app* de tareas pendientes (5 puntos) - PDDM-iOS</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.24c991ad.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f5d1f46.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#009485">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ejercicio-de-sqlite-app-de-tareas-pendientes-5-puntos" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="PDDM-iOS" class="md-header__button md-logo" aria-label="PDDM-iOS" data-md-component="logo">
+      
+  <img src="../../logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PDDM-iOS
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Ejercicio de SQLite: *app* de tareas pendientes (5 puntos)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Limpiar" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="PDDM-iOS" class="md-nav__button md-logo" aria-label="PDDM-iOS" data-md-component="logo">
+      
+  <img src="../../logo.png" alt="logo">
+
+    </a>
+    PDDM-iOS
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1">
+          Persistencia básica
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Persistencia básica" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          Persistencia básica
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cap1/1.0_introduccion/" class="md-nav__link">
+        Introducción
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cap1/1.1_sistema_de_archivos/" class="md-nav__link">
+        Sistema de archivos
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cap1/1.2_serializacion/" class="md-nav__link">
+        Serialización
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cap1/1.3_property_lists/" class="md-nav__link">
+        Property lists
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cap1/1.4_preferencias/" class="md-nav__link">
+        Preferencias
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#infraestructura-basica-1-punto" class="md-nav__link">
+    Infraestructura básica (1 punto)
+  </a>
+  
+    <nav class="md-nav" aria-label="Infraestructura básica (1 punto)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configurar-el-proyecto" class="md-nav__link">
+    Configurar el proyecto
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#codigo-base" class="md-nav__link">
+    Código base
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#funcionalidad-1-listar-tareas-3-puntos" class="md-nav__link">
+    Funcionalidad 1: Listar tareas (3 puntos)
+  </a>
+  
+    <nav class="md-nav" aria-label="Funcionalidad 1: Listar tareas (3 puntos)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#implementar-el-listado-en-si" class="md-nav__link">
+    Implementar el listado en sí
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mostrar-las-tareas-en-la-tabla" class="md-nav__link">
+    Mostrar las tareas en la tabla
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#funcionalidad-2-insertar-nueva-tarea-2-puntos" class="md-nav__link">
+    Funcionalidad 2: Insertar nueva tarea (2 puntos)
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="ejercicio-de-sqlite-app-de-tareas-pendientes-5-puntos">Ejercicio de SQLite: <em>app</em> de tareas pendientes (5 puntos)<a class="headerlink" href="#ejercicio-de-sqlite-app-de-tareas-pendientes-5-puntos" title="Permanent link">&para;</a></h1>
+<p>En este ejercicio vamos a crear una pequeña aplicación de gestión de tareas pendientes, en la que se puedan listar tareas y añadir tareas nuevas. Cada tarea tiene un <code>id</code> (entero, autonumérico), un <code>titulo</code> (cadena),  un <code>vencimiento</code> (fecha) y una una <code>descripcion</code> (cadena). Las columnas están por este orden en la tabla. La base de datos ya está creada, y tú debes copiarla a tu proyecto como se explica a continuación.</p>
+<h2 id="infraestructura-basica-1-punto">Infraestructura básica (1 punto)<a class="headerlink" href="#infraestructura-basica-1-punto" title="Permanent link">&para;</a></h2>
+<h3 id="configurar-el-proyecto">Configurar el proyecto<a class="headerlink" href="#configurar-el-proyecto" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Crear un proyecto llamado <code>TareasSQLite</code> <strong>de tipo <em>Master-Detail Application</em></strong></li>
+<li>En la carpeta <code>archivos SQLite</code> de las plantillas hay unos cuantos recursos que debes copiar al proyecto<ul>
+<li><strong>Copia en el proyecto la base de datos</strong> <code>tareas.db</code>. <strong>NO LO HAGAS ARRASTRANDO</strong>, usa el menú <code>File &gt; Add files to TareasSQLite...</code> y selecciona el archivo <code>tareas.db</code>. En el cuadro de diálogo de copia, pulsa sobre el boton <code>options</code> de la parte inferior y <em>asegúrate de que la casilla de <code>Copy items if needed</code> está marcada</em>. En caso contrario estás haciendo solo una referencia al archivo original, que se pierde si mueves el proyecto, y tampoco se sube al repositorio.</li>
+<li><strong>Crea en el proyecto un <code>DBManager.swift</code></strong> con el siguiente código, es muy parecido al que tienes en los apuntes</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kd">import</span> <span class="nc">Foundation</span>
+
+<span class="kd">class</span> <span class="nc">DBManager</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nv">db</span> <span class="p">:</span> <span class="n">OpaquePointer</span><span class="p">?</span> <span class="p">=</span> <span class="kc">nil</span>
+
+    <span class="kd">init</span><span class="p">(</span><span class="n">db</span> <span class="n">nombreDB</span> <span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">reload</span><span class="p">:</span> <span class="nb">Bool</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="kd">let</span> <span class="nv">dbCopiaURL</span> <span class="p">=</span> <span class="n">copyDB</span><span class="p">(</span><span class="n">conNombre</span><span class="p">:</span> <span class="n">nombreDB</span><span class="p">,</span> <span class="n">reload</span><span class="p">:</span> <span class="n">reload</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="n">sqlite3_open</span><span class="p">(</span><span class="n">dbCopiaURL</span><span class="p">.</span><span class="n">path</span><span class="p">,</span> <span class="o">&amp;</span><span class="p">(</span><span class="kc">self</span><span class="p">.</span><span class="n">db</span><span class="p">))</span> <span class="p">==</span> <span class="n">SQLITE_OK</span> <span class="p">{</span>
+                <span class="bp">print</span><span class="p">(</span><span class="s">&quot;Base de datos </span><span class="si">\(</span><span class="n">dbCopiaURL</span><span class="si">)</span><span class="s"> abierta OK&quot;</span><span class="p">)</span>
+            <span class="p">}</span>
+            <span class="k">else</span> <span class="p">{</span>
+                <span class="kd">let</span> <span class="nv">error</span> <span class="p">=</span> <span class="nb">String</span><span class="p">(</span><span class="n">cString</span><span class="p">:</span><span class="n">sqlite3_errmsg</span><span class="p">(</span><span class="n">db</span><span class="p">))</span>
+                <span class="bp">print</span><span class="p">(</span><span class="s">&quot;Error al intentar abrir la BD: </span><span class="si">\(</span><span class="n">error</span><span class="si">)</span><span class="s"> &quot;</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="p">{</span>
+            <span class="bp">print</span><span class="p">(</span><span class="s">&quot;El archivo no se encuentra&quot;</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">deinit</span> <span class="p">{</span>
+        <span class="n">sqlite3_close</span><span class="p">(</span><span class="kc">self</span><span class="p">.</span><span class="n">db</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="c1">//Copia la base de datos desde el bundle al directorio Documents, para que se pueda modificar</span>
+    <span class="c1">//si el parámetro &quot;machaca&quot; es true, copia la BD aunque ya esté en Documents.</span>
+    <span class="c1">//En una app normal esto no lo haríamos cada vez que arranquemos, ya que se machacaría la BD</span>
+    <span class="kd">func</span> <span class="nf">copyDB</span><span class="p">(</span><span class="n">conNombre</span> <span class="n">nombre</span> <span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">reload</span> <span class="n">machaca</span> <span class="p">:</span> <span class="nb">Bool</span><span class="p">)-&gt;</span><span class="n">URL</span><span class="p">?</span> <span class="p">{</span>
+        <span class="kd">let</span> <span class="nv">fileManager</span> <span class="p">=</span> <span class="n">FileManager</span><span class="p">.</span><span class="k">default</span>
+        <span class="kd">let</span> <span class="nv">docsURL</span> <span class="p">=</span> <span class="n">fileManager</span><span class="p">.</span><span class="n">urls</span><span class="p">(</span><span class="k">for</span><span class="p">:</span> <span class="p">.</span><span class="n">documentDirectory</span><span class="p">,</span> <span class="k">in</span><span class="p">:</span> <span class="p">.</span><span class="n">userDomainMask</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="kd">let</span> <span class="nv">dbCopiaURL</span> <span class="p">=</span> <span class="n">docsURL</span><span class="p">.</span><span class="n">appendingPathComponent</span><span class="p">(</span><span class="n">nombre</span><span class="p">)</span>
+        <span class="kd">let</span> <span class="nv">existe</span> <span class="p">=</span> <span class="n">fileManager</span><span class="p">.</span><span class="n">fileExists</span><span class="p">(</span><span class="n">atPath</span><span class="p">:</span> <span class="n">dbCopiaURL</span><span class="p">.</span><span class="n">path</span><span class="p">)</span>
+        <span class="k">if</span>  <span class="n">existe</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">machaca</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="n">dbCopiaURL</span>
+        <span class="p">}</span>  
+        <span class="k">else</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="kd">let</span> <span class="nv">dbOriginalURL</span> <span class="p">=</span> <span class="n">Bundle</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">url</span><span class="p">(</span><span class="n">forResource</span><span class="p">:</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">withExtension</span><span class="p">:</span> <span class="s">&quot;&quot;</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">existe</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="k">try</span><span class="p">!</span> <span class="n">fileManager</span><span class="p">.</span><span class="n">removeItem</span><span class="p">(</span><span class="n">at</span><span class="p">:</span> <span class="n">dbCopiaURL</span><span class="p">)</span>
+                <span class="p">}</span>
+                <span class="k">if</span> <span class="p">(</span><span class="k">try</span><span class="p">?</span> <span class="n">fileManager</span><span class="p">.</span><span class="n">copyItem</span><span class="p">(</span><span class="n">at</span><span class="p">:</span> <span class="n">dbOriginalURL</span><span class="p">,</span> <span class="n">to</span><span class="p">:</span> <span class="n">dbCopiaURL</span><span class="p">))</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+                    <span class="k">return</span> <span class="n">dbCopiaURL</span>
+                <span class="p">}</span>
+                <span class="k">else</span> <span class="p">{</span>
+                    <span class="k">return</span> <span class="kc">nil</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="k">else</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="kc">nil</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>    
+<span class="p">}</span>
+</code></pre></div>
+<p>De momento, <strong>dará errores de compilación</strong> porque todavía no has incluido SQLite en el proyecto. Ahora hay que configurar el proyecto para poder usar SQLite. <strong>Añade la librería</strong> <code>libsqlite3.tbd</code> y <strong>crea</strong> el <em>Bridging Header</em> según se explica en el apartado <a href="../2.1_intro_SQLite/">"Configurar el proyecto"</a> de los apuntes.</p>
+<p>Para comprobar que funciona, introduce el siguiente código en el  método <code>viewDidLoad</code> del <code>MasterViewController</code>  </p>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nv">manager</span> <span class="p">=</span> <span class="n">DBManager</span><span class="p">(</span><span class="n">db</span><span class="p">:</span><span class="s">&quot;tareas.db&quot;</span><span class="p">,</span> <span class="n">reload</span><span class="p">:</span><span class="kc">false</span><span class="p">)</span>
+</code></pre></div>
+<p>Si todo es correcto, en el <em>log</em> debe aparecer el mensaje "Base de datos <em>url_enormemente_larga_de_la_BD</em> abierta OK". <strong>Una vez que sepas que funciona, quita la línea que has insertado</strong> en el <code>viewDidLoad</code> para que no interfiera con el resto del ejercicio.</p>
+<p>Nótese que como primer parámetro se pasa el nombre de la BD, y como segundo un booleano indicando si la copia de la BD de <code>Documents</code> se va a sobreescribir cada vez que se arranque la aplicación (útil cuando en desarrollo estamos cambiando “desde fuera” la BD para hacer pruebas)</p>
+<blockquote>
+<p>Si por algún motivo cambias manualmente la estructura o el contenido de la base de datos, recuerda poner el parámetro <code>reload</code> a <code>true</code> la primera vez que ejecutes la aplicación tras la modificación</p>
+</blockquote>
+<h3 id="codigo-base">Código base<a class="headerlink" href="#codigo-base" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>Crea una <code>struct</code> Swift llamada <code>Tarea</code> en un archivo <code>Tarea.swift</code> y añádele como propiedades:</p>
+<ul>
+<li><code>id</code> de tipo <code>Int</code></li>
+<li><code>titulo</code> de tipo <code>String</code></li>
+<li><code>vencimiento</code> de tipo <code>Date</code></li>
+<li><code>descripcion</code> de tipo <code>String</code></li>
+</ul>
+</li>
+<li>
+<p>Crea un archivo <code>TareasManager.swift</code> donde se defina una clase del mismo nombre, y que sea una subclase de <code>DBManager</code>. En los siguientes apartados implementaremos aquí las operaciones con la tabla de tareas.</p>
+</li>
+</ul>
+<h2 id="funcionalidad-1-listar-tareas-3-puntos">Funcionalidad 1: Listar tareas (3 puntos)<a class="headerlink" href="#funcionalidad-1-listar-tareas-3-puntos" title="Permanent link">&para;</a></h2>
+<h3 id="implementar-el-listado-en-si">Implementar el listado en sí<a class="headerlink" href="#implementar-el-listado-en-si" title="Permanent link">&para;</a></h3>
+<p><strong>En <code>TareasManager</code>  Implementa un método <code>listarTareas</code></strong> que debe hacer un SELECT de la tabla <code>tareas</code> ordenado por fecha de vencimiento y devolver un array de objetos <code>Tarea</code> . <em>Será muy similar al código que sirve para listar personas en los apuntes</em>.</p>
+<p>Recuerda que en la tabla <code>tareas</code> las columnas son los mismos campos que en la <code>struct Tarea</code>: <code>id</code>, <code>titulo</code>, <code>vencimiento</code> y <code>descripcion</code>.</p>
+<p>Para ir paso a paso, <strong>puedes implementar primero en TareasManager una versión inicial de <code>listarTareas</code></strong> que solo saque de la BD el campo <code>titulo</code> (columna 1, de tipo cadena), y ponga el resto de campos a valores fijos y arbitrarios. </p>
+<p>Una vez lo tengas puedes probarlo en el  <code>MasterViewController</code>. Añade la siguiente propiedad para almacenar una referencia al <code>TareasManager</code> </p>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span> <span class="nv">tm</span> <span class="p">:</span> <span class="n">TareasManager</span><span class="p">!</span> <span class="p">=</span> <span class="kc">nil</span>
+</code></pre></div>
+<p>y ahora en el <code>viewDidLoad</code> añade:</p>
+<div class="highlight"><pre><span></span><code><span class="kc">self</span><span class="p">.</span><span class="n">tm</span> <span class="p">=</span> <span class="n">TareasManager</span><span class="p">(</span><span class="n">db</span><span class="p">:</span> <span class="s">&quot;tareas.db&quot;</span><span class="p">,</span> <span class="n">reload</span><span class="p">:</span> <span class="kc">false</span><span class="p">)</span>
+<span class="kd">let</span> <span class="nv">lista</span> <span class="p">=</span> <span class="kc">self</span><span class="p">.</span><span class="n">tm</span><span class="p">.</span><span class="n">listarTareas</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">t</span> <span class="k">in</span> <span class="n">lista</span> <span class="p">{</span>
+    <span class="bp">print</span><span class="p">(</span><span class="s">&quot;</span><span class="si">\(</span><span class="n">t</span><span class="p">.</span><span class="n">titulo</span><span class="si">)</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Deberían salir los títulos de 3 tareas distintas. Si esto va, ya sabes que la parte básica te funciona y ahora puedes añadir  en <code>listarTareas</code> el resto de campos: <code>id</code>, <code>descripcion</code> y <code>vencimiento</code>. Este último campo ten en cuenta que usa “tiempo UNIX”: número de segundos transcurridos desde el 1/1/1970.</p>
+<h3 id="mostrar-las-tareas-en-la-tabla">Mostrar las tareas en la tabla<a class="headerlink" href="#mostrar-las-tareas-en-la-tabla" title="Permanent link">&para;</a></h3>
+<p>Vamos a modificar el código del <code>viewDidLoad</code> para integrarlo mejor con la plantilla que ha generado Xcode. Fijate que lo que nosotros definimos como <em>lista</em> la plantilla lo define en la propiedad <code>objects</code> de la clase <code>MasterViewController</code>, y que es un array de objetos cualesquiera  (<code>[Any]()</code>). Cámbialo por un array de tareas, <code>[Tarea]()</code>), y cambia el código del apartado anterior para que use <code>self.objects</code> en vez de <code>lista</code>. Quedará como:</p>
+<div class="highlight"><pre><span></span><code><span class="kc">self</span><span class="p">.</span><span class="n">tm</span> <span class="p">=</span> <span class="n">TareasManager</span><span class="p">(</span><span class="n">db</span><span class="p">:</span> <span class="s">&quot;tareas.db&quot;</span><span class="p">,</span> <span class="n">reload</span><span class="p">:</span> <span class="kc">false</span><span class="p">)</span>
+<span class="kc">self</span><span class="p">.</span><span class="n">objects</span> <span class="p">=</span> <span class="kc">self</span><span class="p">.</span><span class="n">tm</span><span class="p">.</span><span class="n">listarTareas</span><span class="p">()</span>
+</code></pre></div>
+<p>Para que las tareas aparezcan correctamente el interfaz  gráfico puedes cambiar las línea en el método <code>tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath)</code> que dicen</p>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nv">object</span> <span class="p">=</span> <span class="n">objects</span><span class="p">[</span><span class="n">indexPath</span><span class="p">.</span><span class="n">row</span><span class="p">]</span> <span class="k">as</span><span class="p">!</span> <span class="bp">NSDate</span>
+<span class="n">cell</span><span class="p">.</span><span class="n">textLabel</span><span class="p">!.</span><span class="n">text</span> <span class="p">=</span> <span class="n">object</span><span class="p">.</span><span class="n">description</span>
+</code></pre></div>
+<p>por otras que usen la clase <code>Tarea</code> y referencien su propiedad <code>titulo</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nv">tarea</span> <span class="p">=</span> <span class="n">objects</span><span class="p">[</span><span class="n">indexPath</span><span class="p">.</span><span class="n">row</span><span class="p">]</span>
+<span class="n">cell</span><span class="p">.</span><span class="n">textLabel</span><span class="p">!.</span><span class="n">text</span> <span class="p">=</span> <span class="n">tarea</span><span class="p">.</span><span class="n">titulo</span>
+</code></pre></div>
+<p>Para evitar errores de compilación, en el método <code>insertNewObject</code> cambia la primera línea (<code>objects.insert...</code>) por:</p>
+<div class="highlight"><pre><span></span><code><span class="n">objects</span><span class="p">.</span><span class="bp">insert</span><span class="p">(</span><span class="n">Tarea</span><span class="p">(</span><span class="n">id</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span> <span class="n">titulo</span><span class="p">:</span><span class="s">&quot;Prueba&quot;</span><span class="p">,</span> <span class="n">descripcion</span><span class="p">:</span><span class="s">&quot;&quot;</span><span class="p">,</span> <span class="n">vencimiento</span><span class="p">:</span><span class="n">Date</span><span class="p">()),</span> <span class="n">at</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+<p>Ahora puedes probar la <em>app</em> y los títulos de las tareas deberían aparecer en la lista (aunque si pinchas en alguna de ellas dará error en tiempo de ejecución, ya que la plantilla asume que son <code>NSDate</code> y no objetos <code>Tarea</code>)</p>
+<p>Para poder ver algún detalle más en la lista, por ejemplo la fecha de vencimiento, abre el <em>storyboard</em> y selecciona la celda de tabla que aparece en la segunda pantalla de la aplicación. En las propiedades, cambiar el <code>Style</code> de <code>Basic</code> a <code>Subtitle</code>, por ejemplo (aunque también valdrían los otros dos estilos).</p>
+<p>En el código de <code>tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath)</code> debes incluir código que</p>
+<ol>
+<li>convierta <code>object</code> a Tarea</li>
+<li>acceda a su propiedad <code>vencimiento</code>, que será una fecha, y la convierta a texto con <code>DateFormatter</code> (mira las transparencias)</li>
+<li>Asigne esta fecha en formato texto a <code>cell.detailTextLabel.text</code>.</li>
+</ol>
+<p>Finalmente, para que funcione la pantalla secundaria de detalle hay que:</p>
+<ul>
+<li>En el método <code>prepare</code> del <code>MasterViewController</code> cambiar la línea</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nv">object</span> <span class="p">=</span> <span class="n">objects</span><span class="p">[</span><span class="n">indexPath</span><span class="p">.</span><span class="n">row</span><span class="p">]</span> <span class="k">as</span><span class="p">!</span> <span class="bp">NSDate</span>
+</code></pre></div>
+<p>eliminando la conversión a <code>NSDate</code>, quedará simplemente como </p>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nv">object</span> <span class="p">=</span> <span class="n">objects</span><span class="p">[</span><span class="n">indexPath</span><span class="p">.</span><span class="n">row</span><span class="p">]</span>
+</code></pre></div>
+<ul>
+<li>En la línea 31 de la clase <code>DetailViewController</code> cambiar el tipo de  <code>DetailItem</code> de <code>NSDate</code> a <code>Tarea</code></li>
+<li>En la línea 20 de la misma clase cambiar <code>detail.description</code> por <code>detail.descripcion</code> que es un campo que sí tienen los objetos <code>Tarea</code></li>
+</ul>
+<h2 id="funcionalidad-2-insertar-nueva-tarea-2-puntos">Funcionalidad 2: Insertar nueva tarea (2 puntos)<a class="headerlink" href="#funcionalidad-2-insertar-nueva-tarea-2-puntos" title="Permanent link">&para;</a></h2>
+<p>Implementar un método <code>func insertar(tarea : Tarea)-&gt;Bool</code> en la clase <code>TareasManager</code>, que inserte una nueva tarea en la BD y devuelva <code>true</code> si todo ha ido bien y <code>false</code> en caso contrario.</p>
+<blockquote>
+<p>Al campo <code>id</code> no es necesario darle valor al insertar un registro ya que es autonumérico.</p>
+</blockquote>
+<p>Primero comprueba que funciona correctamente, insertando una tarea con datos fijos desde el <code>viewDidLoad</code> del <code>MasterViewController.</code>  (hazlo antes del que las lista, para que la nueva esté incluida también en la lista de tareas)</p>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nv">nueva</span> <span class="p">=</span> <span class="n">Tarea</span><span class="p">()</span>
+<span class="n">nueva</span><span class="p">.</span><span class="n">titulo</span> <span class="p">=</span> <span class="s">&quot;Tarea nueva&quot;</span><span class="p">;</span>
+<span class="n">nueva</span><span class="p">.</span><span class="n">descripcion</span> <span class="p">=</span> <span class="s">&quot;nueva descripcion&quot;</span><span class="p">;</span>
+<span class="c1">//24*60*60 segundos posterior a la fecha actual -&gt; mañana a la misma hora</span>
+<span class="n">nueva</span><span class="p">.</span><span class="n">vencimiento</span> <span class="p">=</span> <span class="n">Date</span><span class="p">(</span><span class="n">timeIntervalSinceNow</span><span class="p">:</span><span class="mi">24</span><span class="o">*</span><span class="mi">60</span><span class="o">*</span><span class="mi">60</span><span class="p">);</span>
+<span class="kc">self</span><span class="p">.</span><span class="n">tm</span><span class="p">.</span><span class="n">insertar</span><span class="p">(</span><span class="n">tarea</span><span class="p">:</span><span class="n">nueva</span><span class="p">)</span>
+</code></pre></div>
+<p>Una vez comprobado puedes eliminar el código anterior. Para añadir la funcionalidad en la interfaz de forma sencilla podemos usar un <code>UIAlertAction</code></p>
+<blockquote>
+<p>Sería mucho más elegante tener una pantalla aparte para introducir los datos de la tarea, pero lo que nos importa en esta sesión es trabajar con SQLite y "perderíamos" demasiado tiempo en crear la interfaz.</p>
+</blockquote>
+<p>Copia este método en el <code>MasterViewController</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="kr">@objc</span> <span class="kd">func</span> <span class="nf">nuevaTarea</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nv">alert</span> <span class="p">=</span> <span class="bp">UIAlertController</span><span class="p">(</span><span class="n">title</span><span class="p">:</span> <span class="s">&quot;Nueva tarea&quot;</span><span class="p">,</span>
+                                 <span class="n">message</span><span class="p">:</span> <span class="s">&quot;Introduce los datos&quot;</span><span class="p">,</span>
+                                 <span class="n">preferredStyle</span><span class="p">:</span> <span class="p">.</span><span class="n">alert</span><span class="p">)</span>
+    <span class="kd">let</span> <span class="nv">crear</span> <span class="p">=</span> <span class="bp">UIAlertAction</span><span class="p">(</span><span class="n">title</span><span class="p">:</span> <span class="s">&quot;Crear&quot;</span><span class="p">,</span> <span class="n">style</span><span class="p">:</span> <span class="p">.</span><span class="k">default</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">action</span> <span class="k">in</span>
+        <span class="kd">let</span> <span class="nv">tit</span> <span class="p">=</span> <span class="n">alert</span><span class="p">.</span><span class="n">textFields</span><span class="p">![</span><span class="mi">0</span><span class="p">].</span><span class="n">text</span><span class="p">!</span>
+        <span class="k">if</span> <span class="kd">let</span> <span class="nv">desc</span> <span class="p">=</span> <span class="n">alert</span><span class="p">.</span><span class="n">textFields</span><span class="p">![</span><span class="mi">1</span><span class="p">].</span><span class="n">text</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="kd">let</span> <span class="nv">diasVenc</span> <span class="p">=</span> <span class="nb">Double</span><span class="p">(</span><span class="n">alert</span><span class="p">.</span><span class="n">textFields</span><span class="p">![</span><span class="mi">2</span><span class="p">].</span><span class="n">text</span><span class="p">!)</span> <span class="p">{</span>
+               <span class="kd">let</span> <span class="nv">venc</span> <span class="p">=</span> <span class="n">Date</span><span class="p">(</span><span class="n">timeIntervalSinceNow</span><span class="p">:</span><span class="mi">24</span><span class="o">*</span><span class="mi">60</span><span class="o">*</span><span class="mi">60</span><span class="o">*</span><span class="n">diasVenc</span><span class="p">)</span>
+               <span class="kd">let</span> <span class="nv">t</span> <span class="p">=</span> <span class="n">Tarea</span><span class="p">(</span><span class="n">id</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span> <span class="n">titulo</span><span class="p">:</span> <span class="n">tit</span><span class="p">,</span> <span class="n">descripcion</span><span class="p">:</span> <span class="n">desc</span><span class="p">,</span> <span class="n">vencimiento</span><span class="p">:</span> <span class="n">venc</span><span class="p">)</span>
+               <span class="k">if</span> <span class="p">(</span><span class="kc">self</span><span class="p">.</span><span class="n">tm</span><span class="p">.</span><span class="n">insertar</span><span class="p">(</span><span class="n">tarea</span><span class="p">:</span> <span class="n">t</span><span class="p">))</span> <span class="p">{</span>
+                    <span class="kc">self</span><span class="p">.</span><span class="n">objects</span><span class="p">.</span><span class="bp">insert</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">at</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span>
+                    <span class="kd">let</span> <span class="nv">indexPath</span> <span class="p">=</span> <span class="n">IndexPath</span><span class="p">(</span><span class="n">row</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="n">section</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span>
+                    <span class="kc">self</span><span class="p">.</span><span class="n">tableView</span><span class="p">.</span><span class="n">insertRows</span><span class="p">(</span><span class="n">at</span><span class="p">:</span> <span class="p">[</span><span class="n">indexPath</span><span class="p">],</span> <span class="n">with</span><span class="p">:</span> <span class="p">.</span><span class="n">automatic</span><span class="p">)</span>
+               <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="kd">let</span> <span class="nv">cancelar</span> <span class="p">=</span> <span class="bp">UIAlertAction</span><span class="p">(</span><span class="n">title</span><span class="p">:</span> <span class="s">&quot;Cancelar&quot;</span><span class="p">,</span> <span class="n">style</span><span class="p">:</span> <span class="p">.</span><span class="n">cancel</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">action</span> <span class="k">in</span>
+        <span class="bp">print</span><span class="p">(</span><span class="s">&quot;Cancelada creación de tarea&quot;</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="n">alert</span><span class="p">.</span><span class="n">addAction</span><span class="p">(</span><span class="n">crear</span><span class="p">)</span>
+    <span class="n">alert</span><span class="p">.</span><span class="n">addAction</span><span class="p">(</span><span class="n">cancelar</span><span class="p">)</span>
+    <span class="n">alert</span><span class="p">.</span><span class="n">addTextField</span><span class="p">()</span> <span class="p">{</span> <span class="nv">$0</span><span class="p">.</span><span class="n">placeholder</span> <span class="p">=</span> <span class="s">&quot;Título&quot;</span><span class="p">}</span>
+    <span class="n">alert</span><span class="p">.</span><span class="n">addTextField</span><span class="p">()</span> <span class="p">{</span> <span class="nv">$0</span><span class="p">.</span><span class="n">placeholder</span> <span class="p">=</span> <span class="s">&quot;Descripción&quot;</span><span class="p">}</span>
+    <span class="n">alert</span><span class="p">.</span><span class="n">addTextField</span><span class="p">()</span> <span class="p">{</span> <span class="nv">$0</span><span class="p">.</span><span class="n">placeholder</span> <span class="p">=</span> <span class="s">&quot;Vencimiento (días)&quot;</span><span class="p">}</span>
+    <span class="kc">self</span><span class="p">.</span><span class="n">present</span><span class="p">(</span><span class="n">alert</span><span class="p">,</span> <span class="n">animated</span><span class="p">:</span> <span class="kc">true</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Ahora hay que vincular el botón <code>+</code> de la interfaz con este método. En el <code>viewDidLoad</code> busca la línea</p>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nv">addButton</span> <span class="p">=</span> <span class="bp">UIBarButtonItem</span><span class="p">(</span><span class="n">barButtonSystemItem</span><span class="p">:</span> <span class="p">.</span><span class="n">add</span><span class="p">,</span> <span class="n">target</span><span class="p">:</span> <span class="kc">self</span><span class="p">,</span> <span class="n">action</span><span class="p">:</span> <span class="k">#selector</span><span class="p">(</span><span class="n">insertNewObject</span><span class="p">(</span><span class="kc">_</span><span class="p">)))</span>
+</code></pre></div>
+<p>y déjala como</p>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nv">addButton</span> <span class="p">=</span> <span class="bp">UIBarButtonItem</span><span class="p">(</span><span class="n">barButtonSystemItem</span><span class="p">:</span> <span class="p">.</span><span class="n">add</span><span class="p">,</span> <span class="n">target</span><span class="p">:</span> <span class="kc">self</span><span class="p">,</span> <span class="n">action</span><span class="p">:</span> <span class="k">#selector</span><span class="p">(</span><span class="n">nuevaTarea</span><span class="p">))</span>
+</code></pre></div>
+<p>Ahora al pulsar el botón <code>+</code> debería aparecer un alert para escribir los datos de la tarea. En esta versión simplificada no se puede poner una fecha de vencimiento día-mes-año, sino solo un número de días a partir de la fecha actual.</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs
+          </a>
+        
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copiar al portapapeles", "clipboard.copied": "Copiado al portapapeles", "search.config.lang": "es", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "B\u00fasqueda", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.term.missing": "Falta", "select.version.title": "Seleccionar versi\u00f3n"}, "search": "../../assets/javascripts/workers/search.e99e714c.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.bc35569b.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,526 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.3.2">
+    
+    
+      
+        <title>Miniproyecto: *app* restaurante. Parte 2: Las funcionalidades de la *app* - PDDM-iOS</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.24c991ad.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f5d1f46.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#009485">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#miniproyecto-app-restaurante-parte-2-las-funcionalidades-de-la-app" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="PDDM-iOS" class="md-header__button md-logo" aria-label="PDDM-iOS" data-md-component="logo">
+      
+  <img src="../../logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PDDM-iOS
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Miniproyecto: *app* restaurante. Parte 2: Las funcionalidades de la *app*
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Limpiar" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="PDDM-iOS" class="md-nav__button md-logo" aria-label="PDDM-iOS" data-md-component="logo">
+      
+  <img src="../../logo.png" alt="logo">
+
+    </a>
+    PDDM-iOS
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1">
+          Persistencia básica
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Persistencia básica" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          Persistencia básica
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cap1/1.0_introduccion/" class="md-nav__link">
+        Introducción
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cap1/1.1_sistema_de_archivos/" class="md-nav__link">
+        Sistema de archivos
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cap1/1.2_serializacion/" class="md-nav__link">
+        Serialización
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cap1/1.3_property_lists/" class="md-nav__link">
+        Property lists
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cap1/1.4_preferencias/" class="md-nav__link">
+        Preferencias
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#la-carta-075-puntos" class="md-nav__link">
+    La Carta (0,75 puntos)
+  </a>
+  
+    <nav class="md-nav" aria-label="La Carta (0,75 puntos)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#listado-de-platos" class="md-nav__link">
+    Listado de platos
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#busquedafiltrado-de-platos" class="md-nav__link">
+    Búsqueda/Filtrado de platos
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anadir-al-pedido-actual" class="md-nav__link">
+    Añadir al pedido actual
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#el-pedido-actual-075-puntos" class="md-nav__link">
+    El pedido actual (0,75 puntos)
+  </a>
+  
+    <nav class="md-nav" aria-label="El pedido actual (0,75 puntos)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#anadir-el-plato-elegido-al-pedido" class="md-nav__link">
+    Añadir el plato elegido al pedido
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cambiar-la-cantidad-de-un-plato" class="md-nav__link">
+    Cambiar la cantidad de un plato
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#realizar-y-cancelar-pedido" class="md-nav__link">
+    Realizar y cancelar pedido
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tu-historial-hasta-05-puntos" class="md-nav__link">
+    Tu historial (hasta 0,5 puntos)
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="miniproyecto-app-restaurante-parte-2-las-funcionalidades-de-la-app">Miniproyecto: <em>app</em> restaurante. Parte 2: Las funcionalidades de la <em>app</em><a class="headerlink" href="#miniproyecto-app-restaurante-parte-2-las-funcionalidades-de-la-app" title="Permanent link">&para;</a></h1>
+<p>En esta segunda parte implementaremos las funcionalidades de la <em>app</em>. La mayor parte de la interfaz ya está creada (salvo la última pantalla), tú tienes que implementar las funcionalidades relacionadas con Core Data.</p>
+<h2 id="la-carta-075-puntos">La Carta (0,75 puntos)<a class="headerlink" href="#la-carta-075-puntos" title="Permanent link">&para;</a></h2>
+<p>Esta parte de la <em>app</em> es la que muestra los platos y nos permite añadirlos al pedido.</p>
+<p>En la pantalla de "Carta" se deben mostrar los datos de los platos. Está controlada por el <code>PlatosViewController</code>. Iremos primero con que salgan los platos listados y luego con la funcionalidad del botón de "Añadir" al pedido.</p>
+<h3 id="listado-de-platos">Listado de platos<a class="headerlink" href="#listado-de-platos" title="Permanent link">&para;</a></h3>
+<p>Usa un <code>NSFetchedResultsController</code> para <strong>listar los platos</strong> en la tabla. Haz que los platos se agrupen en secciones según su tipo.</p>
+<ul>
+<li>Es mucho mejor que al crear el <code>NSFetchedResultsController</code> no use una cache (pasar el parámetro <code>cacheName</code> a <code>nil</code>) , ya que al escribir en la barra de búsqueda cambiamos la <em>fetch request</em> y por tanto invalidamos la cache, por lo que en este caso no tiene apenas utilidad. </li>
+<li>Las celdas de la tabla son de la clase <code>PlatoTableViewCell</code>, aquí ya están definidos los <em>outlets</em> para poder rellenar los datos.</li>
+</ul>
+<h3 id="busquedafiltrado-de-platos">Búsqueda/Filtrado de platos<a class="headerlink" href="#busquedafiltrado-de-platos" title="Permanent link">&para;</a></h3>
+<p>Implementa una <strong>búsqueda/filtrado de platos</strong> como hiciste en la aplicación de notas, que busque texto en el nombre o en la descripción del plato. Para aplicar el "filtro":</p>
+<p>Define un <code>UISearchController</code> en el <code>PlatosViewController</code></p>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nv">searchController</span> <span class="p">=</span> <span class="bp">UISearchController</span><span class="p">(</span><span class="n">searchResultsController</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+</code></pre></div>
+<p>Añade <code>UISearchResultsUpdating</code> a la cabecera del controller para que se ocupe de los resultados de la búsqueda, debe quedar como:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">PlatosViewController</span><span class="p">:</span> <span class="bp">UIViewController</span><span class="p">,</span> <span class="bp">UITableViewDataSource</span><span class="p">,</span> <span class="n">PlatoTableViewCellDelegate</span><span class="p">,</span> <span class="bp">NSFetchedResultsControllerDelegate</span><span class="p">,</span> <span class="bp">UISearchResultsUpdating</span>  <span class="p">{</span>
+    <span class="p">...</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Configura el <em>search controller</em> y añádelo a la tabla en el <code>viewDidLoad</code>
+<div class="highlight"><pre><span></span><code><span class="kc">self</span><span class="p">.</span><span class="n">searchController</span><span class="p">.</span><span class="n">searchResultsUpdater</span> <span class="p">=</span> <span class="kc">self</span>
+<span class="c1">//Configuramos el search controller</span>
+<span class="kc">self</span><span class="p">.</span><span class="n">searchController</span><span class="p">.</span><span class="n">obscuresBackgroundDuringPresentation</span> <span class="p">=</span> <span class="kc">false</span>
+<span class="kc">self</span><span class="p">.</span><span class="n">searchController</span><span class="p">.</span><span class="n">searchBar</span><span class="p">.</span><span class="n">placeholder</span> <span class="p">=</span> <span class="s">&quot;Buscar texto&quot;</span>
+<span class="c1">//Lo añadimos a la tabla</span>
+<span class="kc">self</span><span class="p">.</span><span class="n">searchController</span><span class="p">.</span><span class="n">searchBar</span><span class="p">.</span><span class="n">sizeToFit</span><span class="p">()</span>
+<span class="kc">self</span><span class="p">.</span><span class="n">tabla</span><span class="p">.</span><span class="n">tableHeaderView</span> <span class="p">=</span> <span class="n">searchController</span><span class="p">.</span><span class="n">searchBar</span>
+</code></pre></div></p>
+<p>Opcionalmente puedes usar un <a href="../Throttler.swift">Throttler</a> para que no busque en cada pulsación de tecla, sino que espere una fracción de segundo. En caso de que quieras usarlo, bájate el código del enlace anterior, ponlo en un archivo en tu proyecto y define una variable de la clase <code>Throttler</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nv">throttler</span> <span class="p">=</span> <span class="n">Throttler</span><span class="p">(</span><span class="n">minimumDelay</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">)</span>
+</code></pre></div>
+<p>Añade el método <code>ùpdateSearchResults</code> al <code>PlatosViewController</code>, <strong>aquí es donde realmente tienes que implementar el filtrado</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kd">func</span> <span class="nf">updateSearchResults</span><span class="p">(</span><span class="k">for</span> <span class="n">searchController</span><span class="p">:</span> <span class="bp">UISearchController</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">//este throttler.throttle solo si quieres usar throttling</span>
+    <span class="c1">//en caso contrario solo el let textoBuscado=... etc</span>
+    <span class="n">throttler</span><span class="p">.</span><span class="n">throttle</span> <span class="p">{</span>
+        <span class="kd">let</span> <span class="nv">textoBuscado</span> <span class="p">=</span> <span class="n">searchController</span><span class="p">.</span><span class="n">searchBar</span><span class="p">.</span><span class="n">text</span><span class="p">!</span>
+        <span class="c1">//Aquí iría tu código de búsqueda</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<ul>
+<li>Ya hemos comentado que el <code>NSFetchedResultsController</code> no debería tener cache, pero si la tiene, en este momento se debería borrar con el método <code>NSFetchedResultsController.deleteCache(withName:)</code></li>
+<li>Crear un predicado (<code>NSPredicate</code>) con la condición de búsqueda (repásate la sesión de búsquedas en Core Data para ver la sintaxis de la <em>query</em>, será muy similar a la que hiciste en el ejercicio de esa sesión) y asignárselo a la propiedad <code>fetchRequest.predicate</code> del <code>NSFetchedResultsController</code>. </li>
+<li>Para que se actualicen los datos tendrás que hacer:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="k">try</span><span class="p">!</span> <span class="kc">self</span><span class="p">.</span><span class="n">frc</span><span class="p">.</span><span class="n">performFetch</span><span class="p">()</span>
+<span class="kc">self</span><span class="p">.</span><span class="n">tabla</span><span class="p">.</span><span class="n">reloadData</span><span class="p">()</span>
+</code></pre></div>
+<h3 id="anadir-al-pedido-actual">Añadir al pedido actual<a class="headerlink" href="#anadir-al-pedido-actual" title="Permanent link">&para;</a></h3>
+<p>Las celdas de la tabla tienen un <em>delegate</em> al que  avisarán de que se ha pulsado el botón "Añadir". Cada celda almacena su <code>IndexPath</code> (su número de fila y de sección) y tiene como <em>delegate</em> al <em>controller</em> de la pantalla.</p>
+<p>Para avisar al <em>controller</em> de que se ha pulsado sobre "Añadir" se llama al <strong>método <code>platoAñadido</code>. En este método tienes que obtener la entidad <code>Plato</code> elegida (la que está en la fila y sección seleccionadas)</strong> para que el código restante (ya implementado) se lo pase al controller de la pantalla siguiente.</p>
+<h2 id="el-pedido-actual-075-puntos">El pedido actual (0,75 puntos)<a class="headerlink" href="#el-pedido-actual-075-puntos" title="Permanent link">&para;</a></h2>
+<p>Esta parte de la <em>app</em> muestra los datos del pedido actual, añade los platos seleccionados al pedido y permite hacer el pedido o cancelarlo. La pantalla está controlada por el <code>PedidoActualViewController</code>.</p>
+<p>El <em>controller</em> recibe el plato elegido desde el controller anterior en la propiedad <code>platoElegido</code>, hay que añadir una entidad <code>LineaPedido</code> que vincule este plato con el pedido actual.</p>
+<p>El pedido actual no se puede guardar en el propio <em>controller</em> ya que por la navegación entre pantallas este se destruiría al salir de ella. Por eso se debe guardar aparte, en la variable <code>pedidoActual</code> del <em>singleton</em> <code>StateSingleton.shared</code>. <strong>Esta variable estaba comentada para que no diera error</strong> ya que hasta ahora no existía la entidad <code>Pedido</code>, <strong>descoméntala</strong>. </p>
+<h3 id="anadir-el-plato-elegido-al-pedido">Añadir el plato elegido al pedido<a class="headerlink" href="#anadir-el-plato-elegido-al-pedido" title="Permanent link">&para;</a></h3>
+<p>En el <code>viewDidLoad</code> de <code>PedidoActualViewController</code> nos tenemos que ocupar de añadir el plato elegido al pedido actual</p>
+<ul>
+<li>Primero <strong>comprueba si ya existe un <code>Pedido</code> actual (<code>StateSingleton.shared.pedidoActual!=nil</code>), y si no existe créalo en Core Data, guárdalo en el <code>StateSingleton</code> y haz save() del contexto de persistencia</strong></li>
+<li><strong>Crea un nuevo <code>LineaPedido</code></strong><ul>
+<li>Asígnale cantidad 1</li>
+<li>Asócialo con el plato elegido. Recuerda que el plato elegido debería estar en la propiedad <code>platoElegido</code> del controller.</li>
+<li>Asócialo con el pedido. Xcode debería haber generado un método de <code>Pedido</code> llamado <code>addToLineasPedido</code> para añadir una línea de pedido a un pedido.</li>
+</ul>
+</li>
+</ul>
+<h3 id="cambiar-la-cantidad-de-un-plato">Cambiar la cantidad de un plato<a class="headerlink" href="#cambiar-la-cantidad-de-un-plato" title="Permanent link">&para;</a></h3>
+<p>En esta pantalla también se puede cambiar el número de unidades que queremos pedir de un plato. </p>
+<blockquote>
+<p>Para simplificar solo podemos movernos entre 1 y 100, no podemos bajar las unidades a 0 y eliminar el plato</p>
+</blockquote>
+<p>Al igual que en la pantalla anterior se usa la idea de <em>delegate</em> para saber qué celda se está seleccionando. Las celdas son de la clase <code>LineaPedidoTableviewCell</code>, y cada vez que se pulsa en un <code>+</code> o un <code>-</code> se avisa al <em>delegate</em> (en este caso el controller), pasándole el número de la fila.</p>
+<p>El método <code>cantidadCambiada</code> del controller se llamará cada vez que el usuario cambie la cantidad de un plato. <strong>Añade código que obtenga la línea de pedido correspondiente, cambie la cantidad y guarde los cambios</strong></p>
+<h3 id="realizar-y-cancelar-pedido">Realizar y cancelar pedido<a class="headerlink" href="#realizar-y-cancelar-pedido" title="Permanent link">&para;</a></h3>
+<p>En la pantalla tienes dos botones para realizar y cancelar el pedido. </p>
+<ul>
+<li>Si se pulsa a "realizar" bastará con que le asignes la fecha actual al pedido, crees un nuevo pedido en <code>StateSingleton.shared.pedidoActual</code> y muestres un mensaje al usuario indicando que "su pedido está en camino" o algo similar</li>
+<li>Si se pulsa a "cancelar" deberías borrar en Core Data el pedido actual. Si la regla de borrado en cascada está puesta correctamente, al borrar un pedido deberían borrarse automáticamente todas sus líneas.</li>
+</ul>
+<h2 id="tu-historial-hasta-05-puntos">Tu historial (hasta 0,5 puntos)<a class="headerlink" href="#tu-historial-hasta-05-puntos" title="Permanent link">&para;</a></h2>
+<p>En esta pantalla se deberían mostrar todos los pedidos realizados por el usuario actual. La pantalla está controlada por el (<code>PedidosViewController</code>). Está en blanco y puedes crear la interfaz del modo que desees.</p>
+<ul>
+<li>(0,25 puntos) Si en el <code>viewWillAppear</code> muestras los datos de todos los pedidos en la consola con <code>print</code>, solo para ver que efectivamente se han almacenado correctamente</li>
+<li>(0,5 puntos) Si en lugar de lo anterior muestras en una tabla una línea con el resumen de cada pedido (fecha, total y número de platos pedidos)</li>
+</ul>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs
+          </a>
+        
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copiar al portapapeles", "clipboard.copied": "Copiado al portapapeles", "search.config.lang": "es", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "B\u00fasqueda", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.term.missing": "Falta", "select.version.title": "Seleccionar versi\u00f3n"}, "search": "../../assets/javascripts/workers/search.e99e714c.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.bc35569b.min.js"></script>
+      
+    
+  </body>
+</html>

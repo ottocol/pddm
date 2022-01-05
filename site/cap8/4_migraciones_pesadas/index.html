@@ -1,0 +1,455 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.3.2">
+    
+    
+      
+        <title>4 migraciones pesadas - PDDM-iOS</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.24c991ad.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f5d1f46.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#009485">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#crear-el-mapping-model" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="PDDM-iOS" class="md-header__button md-logo" aria-label="PDDM-iOS" data-md-component="logo">
+      
+  <img src="../../logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PDDM-iOS
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              4 migraciones pesadas
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Limpiar" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="PDDM-iOS" class="md-nav__button md-logo" aria-label="PDDM-iOS" data-md-component="logo">
+      
+  <img src="../../logo.png" alt="logo">
+
+    </a>
+    PDDM-iOS
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1">
+          Persistencia básica
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Persistencia básica" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          Persistencia básica
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cap1/1.0_introduccion/" class="md-nav__link">
+        Introducción
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cap1/1.1_sistema_de_archivos/" class="md-nav__link">
+        Sistema de archivos
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cap1/1.2_serializacion/" class="md-nav__link">
+        Serialización
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cap1/1.3_property_lists/" class="md-nav__link">
+        Property lists
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cap1/1.4_preferencias/" class="md-nav__link">
+        Preferencias
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#crear-el-mapping-model" class="md-nav__link">
+    Crear el “mapping model”
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#crear-la-migration-policy" class="md-nav__link">
+    Crear la “migration policy”
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  <h1>4 migraciones pesadas</h1>
+                
+                <p>Hay muchos cambios que no encajan en las operaciones previstas en las migraciones “ligeras”. Por ejemplo supongamos que tenemos el nombre y apellidos en un campo <code>nombre_completo</code> en el típico formato de <em>apellido_1 apellido_2, nombre</em> y queremos dividirlo en dos campos: <code>apellidos</code>  y <code>nombre</code> (o al contrario, partimos de dos y los queremos fusionar). En estos casos Core Data no puede inferir automáticamente la forma de transformar el modelo origen al modelo objetivo, y tenemos que especificar “manualmente” cómo hacer la transformación.</p>
+<p>Como hemos dicho, la transformación entre un modelo y otro se representa en iOS mediante un <em>mapping model</em>, y es lo que tenemos que darle a Core Data para que pueda actualizar los datos al nuevo modelo.</p>
+<p>Lo que hará Core Data durante el proceso de migración es cargar cada entidad en memoria, convertirla del modelo actual al nuevo ayudándose del <em>mapping model</em> y guardarla de nuevo en el almacenamiento persistente. Y hemos dicho Core Data, pero en realidad lo que tendremos que hacer será escribir nosotros código que haga esta tarea. Además del trabajo para nosotros, las migraciones de este tipo son mucho más costosas en tiempo y capacidad de procesamiento que las ligeras. Normalmente la aplicación necesitará mostrar al usuario un cuadro de diálogo o similar que le indique que se está realizando la operación.</p>
+<p>Vamos a ver cómo se implementaría una migración “pesada” con un ejemplo concreto. Supongamos que en la aplicación de notas nos hemos dado cuenta de que el campo “categoria” no está del todo bien, ya que así solo podemos hacer que una nota pertenezca a una única categoría, y además cuando varias notas tienen la misma categoría cada una debe repetir el valor. Sería mejor tener una entidad “categoría” aparte y establecer una relación “uno a muchos” en ambas direcciones.</p>
+<p>Lo primero es crear una nueva versión del modelo de datos con este cambio.</p>
+<h3 id="crear-el-mapping-model">Crear el “mapping model”<a class="headerlink" href="#crear-el-mapping-model" title="Permanent link">&para;</a></h3>
+<p>El nuevo modelo de datos tendrá el aspecto de la siguiente figura:</p>
+<p><img alt="" src="../img/modelo_datos_v3.png" /></p>
+<p>ahora tenemos que crear el <em>mapping model</em> que nos transforme el modelo actual en el nuevo modelo. En <code>File &gt; New</code> seleccionamos la categoría <code>Core Data</code> y elegimos la plantilla <code>Mapping Model</code>. El asistente nos preguntará cuál es el modelo origen, cuál el destino, y nos pedirá un nombre para el nuevo archivo <code>.xcmappingmodel</code> que creará.</p>
+<p>Si abrimos el archivo creado, veremos que Xcode ha intentado deducir la correspondencia entre el modelo origen y el destino. </p>
+<p><img alt="" src="../img/mapping_model.png" /></p>
+<p>A la izquierda veremos los <em>Entity Mappings</em> (cómo pasar de una entidad antigua a una nueva). Típicamente a estos los llama con el nombre de la entidad antigua y la nueva, algo como <code>NotaToNota</code>. Para las entidades nuevas pone simplemente el nombre de la entidad. </p>
+<p>Para cada Entity Mapping tenemos los <em>Attribute Mappings</em> y los <em>Relationship mappings</em> correspondientes. Se usa un conjunto de variables predefinido para expresarlos. Por ejemplo, <code>$source</code> indica la entidad origen. De modo que si en un atributo vemos <code>$source.texto</code> indica que Xcode ha deducido que para generar este atributo tenemos que copiar el valor del atributo <code>texto</code> de la entidad original. Para una lista de variables se recomienda consultar la <a href="https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/CoreDataVersioning/Articles/vmMappingOverview.html#//apple_ref/doc/uid/TP40004399-CH5-SW1">sección correspondiente</a> de la “<a href="https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/CoreDataVersioning/Articles/Introduction.html#//apple_ref/doc/uid/TP40004399-CH1-SW1">Core Data Model Versioning and Data Migration Programming Guide</a>”.</p>
+<h3 id="crear-la-migration-policy">Crear la “migration policy”<a class="headerlink" href="#crear-la-migration-policy" title="Permanent link">&para;</a></h3>
+<p>De la migración entre entidades del modelo “antiguo” y del “nuevo” se encarga la clase <code>NSEntityMigrationPolicy</code>. Si queremos personalizar la migración, como es nuestro caso para generar la nueva entidad <code>Categoria</code> a partir de los valores del antiguo atributo <code>categoria</code>, tendremos que crear una clase propia que herede de ella:</p>
+<p><img alt="" src="../img/create_migration_policy.png" /></p>
+<p>Tendremos también que especificar en el Mapping Model que vamos a usar esta clase para hacer una migración de entidad determinada. Seleccionamos la migración <code>NotaToNota</code> y en las propiedades escribimos el nombre de la nueva clase en el campo <code>Custom Policy</code>.</p>
+<p><img alt="" src="../img/mapping_model_custom_policy.png" /></p>
+<p>En la clase hay una serie de métodos que podemos sobreescribir para adaptar la migración a nuestras necesidades, pero el único que suele ser necesario es <code>createDestinationInstances(forSource:in:manager:)</code>, que se debe encargar de crear a partir de una instancia de la antigua entidad, la nueva entidad (o nuevas, si debe haber más de una). Este método se irá llamando para cada una de las entidades actualmente en el almacén persistente, para irlas migrando una a una. </p>
+<p>Para nuestro problema particular, lo que debemos hacer en este método es obtener la categoría a la que pertenece la nota y crear una nueva entidad <code>Categoria</code> basada en ella. Después establecemos la relación entre la nota y su por ahora única categoría. Hay un pequeño problema a tener en cuenta: como habrá varias notas de la misma categoría no podemos crear directamente la entidad <code>Categoria</code>, solo la crearemos si no existe ya. Vamos a guardar las <code>Categoria</code> que creamos en un diccionario para poder saber las que ya hemos creado</p>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span> <span class="nv">categorias</span> <span class="p">:</span> <span class="p">[</span><span class="nb">String</span> <span class="p">:</span> <span class="bp">NSManagedObject</span><span class="p">]</span> <span class="p">=</span> <span class="p">[:]</span>
+</code></pre></div>
+<p>Aquí tenemos el código de la clase que hace la migración</p>
+<div class="highlight"><pre><span></span><code><span class="kd">import</span> <span class="nc">UIKit</span>
+<span class="kd">import</span> <span class="nc">CoreData</span>
+
+<span class="kd">class</span> <span class="nc">CrearCategoriasMigrationPolicy</span><span class="p">:</span> <span class="bp">NSEntityMigrationPolicy</span> <span class="p">{</span>
+    <span class="c1">//instancias de categorías que existen ya</span>
+    <span class="kd">var</span> <span class="nv">categorias</span> <span class="p">:</span> <span class="p">[</span><span class="nb">String</span> <span class="p">:</span> <span class="bp">NSManagedObject</span><span class="p">]</span> <span class="p">=</span> <span class="p">[:]</span>
+
+    <span class="kr">override</span> <span class="kd">func</span> <span class="nf">createDestinationInstances</span><span class="p">(</span><span class="n">forSource</span> <span class="n">sInstance</span><span class="p">:</span> <span class="bp">NSManagedObject</span><span class="p">,</span> <span class="k">in</span> <span class="n">mapping</span><span class="p">:</span> <span class="bp">NSEntityMapping</span><span class="p">,</span> <span class="n">manager</span><span class="p">:</span> <span class="bp">NSMigrationManager</span><span class="p">)</span> <span class="kr">throws</span> <span class="p">{</span>
+        <span class="kd">let</span> <span class="nv">notaOrigen</span> <span class="p">=</span> <span class="n">sInstance</span> <span class="k">as</span><span class="p">!</span> <span class="n">Nota</span>
+        <span class="kd">let</span> <span class="nv">notaDestino</span> <span class="p">=</span> <span class="bp">NSEntityDescription</span><span class="p">.</span><span class="n">insertNewObject</span><span class="p">(</span><span class="n">forEntityName</span><span class="p">:</span> <span class="s">&quot;Nota&quot;</span><span class="p">,</span> <span class="n">into</span><span class="p">:</span> <span class="n">manager</span><span class="p">.</span><span class="n">destinationContext</span><span class="p">)</span> <span class="k">as</span><span class="p">!</span> <span class="n">Nota</span>
+        <span class="c1">//copiar propiedades básicas</span>
+        <span class="n">notaDestino</span><span class="p">.</span><span class="n">contenido</span> <span class="p">=</span> <span class="n">notaOrigen</span><span class="p">.</span><span class="n">contenido</span>
+        <span class="n">notaDestino</span><span class="p">.</span><span class="n">fecha</span> <span class="p">=</span> <span class="n">notaOrigen</span><span class="p">.</span><span class="n">fecha</span>
+        <span class="n">notaDestino</span><span class="p">.</span><span class="n">etiquetas</span> <span class="p">=</span> <span class="n">notaOrigen</span><span class="p">.</span><span class="n">etiquetas</span>
+        <span class="c1">//si la nota tiene una categoría</span>
+        <span class="k">if</span> <span class="kd">let</span> <span class="nv">nombreCategoria</span> <span class="p">=</span> <span class="n">notaOrigen</span><span class="p">.</span><span class="n">categoria</span> <span class="p">{</span>
+           <span class="c1">//miramos si la categoría ya existe como entidad</span>
+           <span class="kd">var</span> <span class="nv">categoria</span> <span class="p">=</span> <span class="n">categorias</span><span class="p">[</span><span class="n">nombreCategoria</span><span class="p">]</span>
+           <span class="c1">//si no existe, creamos la instancia de la entidad</span>
+           <span class="k">if</span> <span class="n">categoria</span><span class="p">==</span><span class="kc">nil</span> <span class="p">{</span>
+              <span class="n">categoria</span> <span class="p">=</span> <span class="bp">NSEntityDescription</span><span class="p">.</span><span class="n">insertNewObject</span><span class="p">(</span><span class="n">forEntityName</span><span class="p">:</span> <span class="s">&quot;Categoria&quot;</span><span class="p">,</span> <span class="n">into</span><span class="p">:</span> <span class="n">manager</span><span class="p">.</span><span class="n">destinationContext</span><span class="p">)</span>
+              <span class="n">categoria</span><span class="p">?.</span><span class="n">setValue</span><span class="p">(</span><span class="n">nombreCategoria</span><span class="p">,</span> <span class="n">forKey</span><span class="p">:</span> <span class="s">&quot;nombre&quot;</span><span class="p">)</span>
+              <span class="n">categorias</span><span class="p">[</span><span class="n">nombreCategoria</span><span class="p">]</span> <span class="p">=</span> <span class="n">categoria</span>
+           <span class="p">}</span>
+           <span class="c1">//asociamos la entidad nota con la entidad categoría</span>
+           <span class="c1">//como es una relación 1-&gt;N es un conjunto por ahora de un único elemento</span>
+           <span class="kd">var</span> <span class="nv">catsDeNota</span> <span class="p">=</span> <span class="n">Set</span><span class="p">&lt;</span><span class="bp">NSManagedObject</span><span class="p">&gt;()</span>
+           <span class="n">catsDeNota</span><span class="p">.</span><span class="bp">insert</span><span class="p">(</span><span class="n">categoria</span><span class="p">!)</span>
+           <span class="n">notaDestino</span><span class="p">.</span><span class="n">setValue</span><span class="p">(</span><span class="n">catsDeNota</span><span class="p">,</span> <span class="n">forKey</span><span class="p">:</span> <span class="s">&quot;categorias&quot;</span><span class="p">)</span>
+        <span class="p">}</span>
+        <span class="c1">//Al final siempre hay que llamar a este método para establecer una correspondencia</span>
+        <span class="c1">//entre entidad en el modelo actual y entidad en el nuevo</span>
+        <span class="n">manager</span><span class="p">.</span><span class="n">associate</span><span class="p">(</span><span class="n">sourceInstance</span><span class="p">:</span> <span class="n">notaOrigen</span><span class="p">,</span> <span class="n">withDestinationInstance</span><span class="p">:</span> <span class="n">notaDestino</span><span class="p">,</span> <span class="k">for</span><span class="p">:</span> <span class="n">mapping</span><span class="p">)</span>      
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Lo único que nos falta es configurar el <em>persistent store coordinator</em> para especificar que necesitamos una migración “pesada”. Tendremos que modificar el código de inicialización del <em>stack</em> de Core Data que se crea en la plantilla de Xcode al marcar <code>Use Core Data</code>: en el caso de estar usando la plantilla para iOS10 tendremos que modificar el código como sigue:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">//En el AppDelegate</span>
+<span class="c1">//Esta línea queda tal cual, las modificaciones vienen a partir de ella</span>
+<span class="c1">//CUIDADO: el name cambia, según el nombre del proyecto</span>
+<span class="kd">let</span> <span class="nv">container</span> <span class="p">=</span> <span class="bp">NSPersistentContainer</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="s">&quot;PruebaMigraciones&quot;</span><span class="p">)</span>
+
+<span class="kd">let</span> <span class="nv">urls</span> <span class="p">=</span> <span class="n">FileManager</span><span class="p">.</span><span class="k">default</span><span class="p">.</span><span class="n">urls</span><span class="p">(</span><span class="k">for</span><span class="p">:</span> <span class="p">.</span><span class="n">applicationSupportDirectory</span><span class="p">,</span> <span class="k">in</span><span class="p">:</span> <span class="p">.</span><span class="n">userDomainMask</span><span class="p">)</span>
+<span class="c1">//CUIDADO: la cadena cambia, según el nombre del proyecto</span>
+<span class="kd">let</span> <span class="nv">urlBD</span> <span class="p">=</span> <span class="n">urls</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">appendingPathComponent</span><span class="p">(</span><span class="s">&quot;PruebaMigraciones.sqlite&quot;</span><span class="p">)</span>
+<span class="kd">let</span> <span class="nv">psd</span> <span class="p">=</span> <span class="bp">NSPersistentStoreDescription</span><span class="p">(</span><span class="n">url</span><span class="p">:</span> <span class="n">urlBD</span><span class="p">)</span>
+<span class="c1">//que no se intente automatizar la migración</span>
+<span class="n">psd</span><span class="p">.</span><span class="n">shouldInferMappingModelAutomatically</span> <span class="p">=</span> <span class="kc">false</span>
+<span class="n">psd</span><span class="p">.</span><span class="n">type</span> <span class="p">=</span> <span class="n">NSSQLiteStoreType</span>
+
+<span class="n">container</span><span class="p">.</span><span class="n">persistentStoreDescriptions</span> <span class="p">=</span> <span class="p">[</span><span class="n">psd</span><span class="p">]</span>
+</code></pre></div>
+<p>Y ya está. Solo nos falta en el editor del modelo de datos <em>establecer como versión actual del modelo de datos la nueva versión</em></p>
+<p><img alt="" src="../img/set_current_model_version.png" /></p>
+<p>Cuando arranque la aplicación iOS detectará que el modelo de datos actual es incompatible con el almacén persistente y verá que en las opciones se especifica que no se debe inferir automáticamente el “mapping model”. Por tanto buscará un “mapping model” compatible con la versión origen y destino del modelo de datos y lo aplicará.</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs
+          </a>
+        
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copiar al portapapeles", "clipboard.copied": "Copiado al portapapeles", "search.config.lang": "es", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "B\u00fasqueda", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.term.missing": "Falta", "select.version.title": "Seleccionar versi\u00f3n"}, "search": "../../assets/javascripts/workers/search.e99e714c.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.bc35569b.min.js"></script>
+      
+    
+  </body>
+</html>

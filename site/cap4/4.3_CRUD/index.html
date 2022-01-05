@@ -1,0 +1,490 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.3.2">
+    
+    
+      
+        <title>4.3 CRUD - PDDM-iOS</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.24c991ad.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f5d1f46.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#009485">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#creacion" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="PDDM-iOS" class="md-header__button md-logo" aria-label="PDDM-iOS" data-md-component="logo">
+      
+  <img src="../../logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PDDM-iOS
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              4.3 CRUD
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Limpiar" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="PDDM-iOS" class="md-nav__button md-logo" aria-label="PDDM-iOS" data-md-component="logo">
+      
+  <img src="../../logo.png" alt="logo">
+
+    </a>
+    PDDM-iOS
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1">
+          Persistencia básica
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Persistencia básica" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          Persistencia básica
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cap1/1.0_introduccion/" class="md-nav__link">
+        Introducción
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cap1/1.1_sistema_de_archivos/" class="md-nav__link">
+        Sistema de archivos
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cap1/1.2_serializacion/" class="md-nav__link">
+        Serialización
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cap1/1.3_property_lists/" class="md-nav__link">
+        Property lists
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cap1/1.4_preferencias/" class="md-nav__link">
+        Preferencias
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#creacion" class="md-nav__link">
+    Creación
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#actualizacion" class="md-nav__link">
+    Actualización
+  </a>
+  
+    <nav class="md-nav" aria-label="Actualización">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#relaciones-a-uno" class="md-nav__link">
+    Relaciones "a uno"
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relaciones-a-muchos" class="md-nav__link">
+    Relaciones “a muchos”
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lectura" class="md-nav__link">
+    Lectura
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#borrado" class="md-nav__link">
+    Borrado
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  <h1>4.3 CRUD</h1>
+                
+                <p>Las operaciones más básicas con Core Data van a ser las de crear, obtener, actualizar y borrar objetos persistentes, es decir operaciones del tipo <code>Create/Read/Update/Delete</code> o CRUD. Aunque ya hemos explicado algo de esto, vamos a verlo aquí de modo más sistemático.</p>
+<h2 id="creacion">Creación<a class="headerlink" href="#creacion" title="Permanent link">&para;</a></h2>
+<p>En nuestro código Swift estamos acostumbrados a crear objetos llamando simplemente al inicializador correspondiente, y podríamos estar tentados de hacer algo parecido con los objetos de Core Data, por ejemplo</p>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span> <span class="nv">u</span> <span class="p">=</span> <span class="n">Usuario</span><span class="p">()</span>
+<span class="n">u</span><span class="p">.</span><span class="n">login</span> <span class="p">=</span> <span class="s">&quot;Pepe&quot;</span>
+<span class="p">...</span>
+</code></pre></div>
+<p>Pero <strong>esto no lo podemos hacer con los objetos persistentes, porque Core Data es quien debe gestionar su ciclo de vida</strong> y por tanto los debe "tener controlados" en todo momento, desde su creación. Lo adecuado es pedirle a Core Data que cree el objeto para nosotros. Esto lo hacemos llamando al inicializador que recibe el contexto de persistencia como parámetro: <code>init(context:)</code></p>
+<div class="highlight"><pre><span></span><code><span class="c1">//para insertar un objeto, recordar que necesitamos el contexto de Core Data</span>
+<span class="kd">let</span> <span class="nv">u</span> <span class="p">=</span> <span class="n">Usuario</span><span class="p">(</span><span class="n">context</span><span class="p">:</span><span class="n">miContexto</span><span class="p">)</span>
+<span class="c1">//también se podría hacer con</span>
+<span class="c1">//let u = NSEntityDescription.insertNewObject(forEntityName: &quot;Usuario&quot;, into: miContexto) as! Usuario</span>
+<span class="n">u</span><span class="p">.</span><span class="n">login</span> <span class="p">=</span> <span class="s">&quot;Pepe&quot;</span>
+</code></pre></div>
+<h2 id="actualizacion">Actualización<a class="headerlink" href="#actualizacion" title="Permanent link">&para;</a></h2>
+<p>Una vez tenemos un objeto gestionado (sea creado con <code>init(context:)</code> o ya existente y recuperado con una <em>fetch request</em>) podemos cambiar sus propiedades y establecer relaciones con otros objetos. No obstante los cambios solo se harán persistentes cuando guardemos el contexto de persistencia con <code>save</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">//suponemos &quot;usuario&quot; objeto gestionado por Core Data</span>
+<span class="c1">//es decir, se ha obtenido con `init(context:)` o una fetch request</span>
+<span class="n">usuario</span><span class="p">.</span><span class="n">login</span><span class="p">=</span><span class="s">&quot;mastermoviles&quot;</span><span class="p">;</span>
+<span class="n">usuario</span><span class="p">.</span><span class="n">password</span><span class="p">=</span><span class="s">&quot;123456&quot;</span><span class="p">;</span>
+
+<span class="c1">//AHORA es cuando se guardan las modificaciones de modo persistente</span>
+<span class="k">try</span><span class="p">!</span> <span class="n">miContexto</span><span class="p">.</span><span class="n">save</span><span class="p">()</span> 
+</code></pre></div>
+<p>Dicho de otro modo, los cambios que hacemos en los objetos son cambios únicamente dentro del <em>contexto</em> (o si se quiere decir así, “en la memoria”). Cuando usamos <code>save</code> los cambios se hacen también en el <em>almacenamiento</em> (<em>store</em>).</p>
+<h3 id="relaciones-a-uno">Relaciones "a uno"<a class="headerlink" href="#relaciones-a-uno" title="Permanent link">&para;</a></h3>
+<p>Las relaciones "uno a uno" se representan con propiedades que son objetos "individuales". Por ejemplo un <code>Mensaje</code> pertenece a un <code>Usuario</code> a través de la relación <code>usuario</code>. De este modo, podemos tratar la relación simplemente como una propiedad más.</p>
+<div class="highlight"><pre><span></span><code><span class="n">mensaje</span><span class="p">.</span><span class="n">usuario</span> <span class="p">=</span> <span class="n">nuevoUsuario</span>
+</code></pre></div>
+<p>Recordemos que normalmente las relaciones son bidireccionales. Si establecemos una relación entre objetos, <strong>Core Data se encargará automáticamente de actualizar la inversa</strong>. </p>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nv">m</span> <span class="p">=</span> <span class="n">Mensaje</span><span class="p">(</span><span class="n">context</span><span class="p">:</span><span class="n">miContexto</span><span class="p">)</span> 
+<span class="n">m</span><span class="p">.</span><span class="n">texto</span> <span class="p">=</span> <span class="s">&quot;hola amigos&quot;</span>
+<span class="n">m</span><span class="p">.</span><span class="n">fecha</span> <span class="p">=</span> <span class="n">Date</span><span class="p">()</span>
+<span class="c1">//Supongamos &quot;u&quot; un objeto Usuario gestionado por Core Data</span>
+<span class="c1">//Establecemos una relación Mensaje-&gt;Usuario</span>
+<span class="n">m</span><span class="p">.</span><span class="n">usuario</span> <span class="p">=</span> <span class="n">u</span><span class="p">;</span>
+<span class="c1">//Core Data hace lo propio con Usuario-&gt;&gt;Mensaje (1 a N)</span>
+<span class="bp">print</span><span class="p">(</span><span class="s">&quot;Mensajes del usuario </span><span class="si">\(</span><span class="n">u</span><span class="p">.</span><span class="n">login</span><span class="si">)</span><span class="s">&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">mensaje</span> <span class="k">in</span> <span class="n">u</span><span class="p">.</span><span class="n">mensajes</span> <span class="p">{</span>
+    <span class="bp">print</span><span class="p">(</span><span class="s">&quot;</span><span class="si">\(</span><span class="n">mensaje</span><span class="p">.</span><span class="n">fecha</span><span class="si">)</span><span class="s"> </span><span class="si">\(</span><span class="n">mensaje</span><span class="p">.</span><span class="n">texto</span><span class="si">)</span><span class="s">&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>En el ejemplo anterior decimos que un mensaje pertenece a un determinado usuario estableciendo la relación que va de Mensaje-&gt;Usuario. Core Data hace lo propio con la inversa, que va de Usuario-&gt;&gt;Mensaje, de modo que si accedemos al usuario e iteramos por los mensajes, veremos el nuevo mensaje que hemos añadido.</p>
+<h3 id="relaciones-a-muchos">Relaciones “a muchos”<a class="headerlink" href="#relaciones-a-muchos" title="Permanent link">&para;</a></h3>
+<p>Como ya vimos al crear el modelo de datos, si usamos clases propias en el modelo, por cada relación del tipo "a muchos" se genera una propiedad del tipo <code>NSSet</code> (<code>NSOrderedSet</code> si la relación es ordenada). Nótese que son clases inmutables. Si queremos añadir o eliminar elementos a la relación tendremos que copiar la propiedad en un <code>NSMutableSet</code> o <code>NSMutableOrderedSet</code>, hacer la modificación y luego asignar el nuevo conjunto a la propiedad.</p>
+<p>Afortunadamente hay una forma mucho más sencilla de añadir/eliminar elementos, usar los métodos <code>addToXXX</code> y <code>removeFromXXX</code> obtenidos al generar las clases del modelo.  Por ejemplo:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">//c1 y u son objetos gestionados por Core Data</span>
+<span class="kd">var</span> <span class="nv">c1</span> <span class="p">:</span> <span class="n">Conversacion</span>
+<span class="kd">var</span> <span class="nv">u</span> <span class="p">:</span> <span class="n">Usuario</span>
+<span class="c1">//Supongamos que aquí los creamos en el contexto de persistencia</span>
+<span class="p">...</span>
+<span class="c1">//c1 es un objeto gestionado por Core Data</span>
+<span class="n">c1</span><span class="p">.</span><span class="n">comienzo</span> <span class="p">=</span> <span class="n">Date</span><span class="p">();</span>
+<span class="c1">//El usuario empieza a participar en una conversación</span>
+<span class="c1">//Usamos el método de acceso generado por Core Data</span>
+<span class="n">u</span><span class="p">.</span><span class="n">addToConversaciones</span><span class="p">(</span><span class="n">c1</span><span class="p">);</span>
+<span class="p">...</span>
+</code></pre></div>
+<h2 id="lectura">Lectura<a class="headerlink" href="#lectura" title="Permanent link">&para;</a></h2>
+<p>Para recuperar un objeto gestionado por Core Data normalmente se usan <em>fetch requests</em>, que en un entorno de BD se correspondería con las consultas. En la siguiente sesión veremos con más detalle la sintaxis, pero por ejemplo obtener todas las instancias de una determinada entidad es sencillo, ya que no hay que especificar condición alguna, solo crear y ejecutar una <em>fetch request</em> del tipo deseado:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">//Creamos la fetch request y decimos que devuelve usuarios</span>
+<span class="kd">let</span> <span class="nv">request</span> <span class="p">:</span> <span class="bp">NSFetchRequest</span><span class="p">&lt;</span><span class="n">Usuario</span><span class="p">&gt;</span> <span class="p">=</span> <span class="bp">NSFetchRequest</span><span class="p">(</span><span class="n">entityName</span><span class="p">:</span><span class="s">&quot;Usuario&quot;</span><span class="p">)</span>
+<span class="c1">//La ejecutamos (deberíamos detectar errores con do...catch, es para acortar el ejemplo)</span>
+<span class="kd">let</span> <span class="nv">usuarios</span> <span class="p">=</span> <span class="k">try</span><span class="p">!</span> <span class="n">miContexto</span><span class="p">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+<span class="c1">//recorremos los resultados</span>
+<span class="k">for</span> <span class="n">usuario</span> <span class="k">in</span> <span class="n">usuarios</span> <span class="p">{</span>
+    <span class="bp">print</span><span class="p">(</span><span class="n">usuario</span><span class="p">.</span><span class="n">login</span><span class="p">!)</span>
+<span class="p">}</span>
+</code></pre></div>
+<blockquote>
+<p>En las clases generadas por Xcode tenemos un método de utilidad llamado <code>fetchRequest</code> que simplifica el trabajo de la primera línea del ejemplo anterior. Así, podemos hacer simplemente <code>let request = Usuario.fetchRequest()</code></p>
+</blockquote>
+<h2 id="borrado">Borrado<a class="headerlink" href="#borrado" title="Permanent link">&para;</a></h2>
+<p>Podemos eliminar un objeto del contexto llamando a <code>delete</code> sobre el contexto y pasándole el objeto a eliminar</p>
+<div class="highlight"><pre><span></span><code><span class="n">miContexto</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="n">usuario</span><span class="p">)</span>
+</code></pre></div>
+<p>Cuidado, <code>delete</code> no elimina el objeto del almacén persistente. Para eso tendremos que ejecutar <code>save</code>, como cuando modificamos el objeto y queremos guardar los cambios.</p>
+<p>Eliminar el objeto del contexto implica que se ejecuten las reglas de borrado. Así, si por ejemplo hubiéramos usado la regla <code>Cascade</code> para la relación que va desde <code>Conversacion</code> a <code>Mensaje</code> esto implicaría que al borrar una conversación del contexto también se eliminarían todos sus mensajes. </p>
+<p>No obstante, es posible que tras ejecutar <code>delete</code> las actualizaciones no se propaguen de manera inmediata por el grafo de objetos del contexto. Para forzar esta propagación simplemente hay que llamar al método <code>processPendingChanges()</code> del contexto.</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs
+          </a>
+        
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copiar al portapapeles", "clipboard.copied": "Copiado al portapapeles", "search.config.lang": "es", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "B\u00fasqueda", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.term.missing": "Falta", "select.version.title": "Seleccionar versi\u00f3n"}, "search": "../../assets/javascripts/workers/search.e99e714c.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.bc35569b.min.js"></script>
+      
+    
+  </body>
+</html>

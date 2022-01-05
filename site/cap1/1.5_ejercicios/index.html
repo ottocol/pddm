@@ -1,0 +1,458 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.3.2">
+    
+    
+      
+        <title>1.5 ejercicios - PDDM-iOS</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.24c991ad.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f5d1f46.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#009485">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#interfaz-grafico-025-puntos" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="PDDM-iOS" class="md-header__button md-logo" aria-label="PDDM-iOS" data-md-component="logo">
+      
+  <img src="../../logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PDDM-iOS
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              1.5 ejercicios
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Limpiar" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="PDDM-iOS" class="md-nav__button md-logo" aria-label="PDDM-iOS" data-md-component="logo">
+      
+  <img src="../../logo.png" alt="logo">
+
+    </a>
+    PDDM-iOS
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1">
+          Persistencia básica
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Persistencia básica" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          Persistencia básica
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1.0_introduccion/" class="md-nav__link">
+        Introducción
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1.1_sistema_de_archivos/" class="md-nav__link">
+        Sistema de archivos
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1.2_serializacion/" class="md-nav__link">
+        Serialización
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1.3_property_lists/" class="md-nav__link">
+        Property lists
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1.4_preferencias/" class="md-nav__link">
+        Preferencias
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#interfaz-grafico-025-puntos" class="md-nav__link">
+    Interfaz gráfico (0,25 puntos)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#almacenamiento-y-recuperacion-de-datos-075-puntos" class="md-nav__link">
+    Almacenamiento y recuperación de datos (0,75 puntos)
+  </a>
+  
+    <nav class="md-nav" aria-label="Almacenamiento y recuperación de datos (0,75 puntos)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fecha-de-edicion" class="md-nav__link">
+    Fecha de edición
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#guardar-los-datos" class="md-nav__link">
+    Guardar los datos
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recuperar-los-datos-al-cargar-la-aplicacion" class="md-nav__link">
+    Recuperar los datos al cargar la aplicación
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  <h1>1.5 ejercicios</h1>
+                
+                <div class="admonition info">
+<p class="admonition-title">Leer primero</p>
+<p>Para hacer este ejercicio necesitarás leerte primero al menos el apartado 1.4 de los apuntes, que habla de <a href="../1.4_preferencias/">"Preferencias de usuario"</a></p>
+</div>
+<p>Vamos a realizar una pequeña aplicación en la que los datos se guarden usando algunos de los mecanismos vistos en la sesión. Desde el punto de vista del usuario consistirá en una única "pantalla" con un <code>Text View</code> para editar un mensaje y un <code>Label</code> que mostrará la fecha y hora de edición. Los datos deben conservarse aunque salgamos de la aplicación.</p>
+<p>Llama al proyecto <code>PersistenciaBasica</code>.</p>
+<h3 id="interfaz-grafico-025-puntos">Interfaz gráfico (0,25 puntos)<a class="headerlink" href="#interfaz-grafico-025-puntos" title="Permanent link">&para;</a></h3>
+<p>Crea la interfaz:</p>
+<ul>
+<li>Inserta un <code>Text View</code>, un <code>Label</code> y un <code>Button</code> que ponga "guardar" en el <em>storyboard</em></li>
+<li>En el <code>ViewController</code><ul>
+<li>Crea dos <em>outlet</em> para acceder al contenido de text view y label. Recuerda que tienes que hacer <code>Ctrl+arrastrar</code>.</li>
+</ul>
+</li>
+<li>Cra un <em>action</em> que responda a pulsaciones sobre el botón "guardar"  </li>
+<li>Crea una propiedad opcional llamada <code>fechaEdicion</code> de tipo <code>Date</code>, que representará la fecha y hora en que se haya editado el texto. </li>
+</ul>
+<h2 id="almacenamiento-y-recuperacion-de-datos-075-puntos">Almacenamiento y recuperación de datos (0,75 puntos)<a class="headerlink" href="#almacenamiento-y-recuperacion-de-datos-075-puntos" title="Permanent link">&para;</a></h2>
+<h3 id="fecha-de-edicion">Fecha de edición<a class="headerlink" href="#fecha-de-edicion" title="Permanent link">&para;</a></h3>
+<p>Queremos que cuando se pulse el botón "guardar" (por tanto tendrás que hacer esto en el <em>action</em> del botón):</p>
+<ul>
+<li>La <code>fechaEdicion</code> se ponga a la fecha y hora actuales</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kc">self</span><span class="p">.</span><span class="n">fechaEdicion</span> <span class="p">=</span> <span class="n">Date</span><span class="p">()</span>
+</code></pre></div>
+<ul>
+<li>La fecha se muestre en modo texto en el <em>label</em>. Como el formato por defecto es un poco engorroso, mejor la formatearemos nosotros</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1">//SUPONEMOS que el outlet del label se llama &quot;fechaLabel&quot;</span>
+<span class="c1">//CAMBIALO por lo que sea necesario</span>
+<span class="kc">self</span><span class="p">.</span><span class="n">fechaLabel</span><span class="p">.</span><span class="n">text</span> <span class="p">=</span> <span class="n">DateFormatter</span><span class="p">.</span><span class="n">localizedString</span><span class="p">(</span>
+             <span class="n">from</span><span class="p">:</span><span class="kc">self</span><span class="p">.</span><span class="n">fechaEdicion</span><span class="p">!,</span> 
+             <span class="n">dateStyle</span><span class="p">:</span> <span class="p">.</span><span class="n">short</span><span class="p">,</span> <span class="n">timeStyle</span><span class="p">:</span> <span class="p">.</span><span class="n">medium</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>Comprobar que lo anterior funciona correctamente</strong>, que al pulsar sobre el botón,se muestra la fecha y hora de edición en el <em>label</em>.</p>
+<h3 id="guardar-los-datos">Guardar los datos<a class="headerlink" href="#guardar-los-datos" title="Permanent link">&para;</a></h3>
+<p>En el <em>action</em> del botón añade el código Swift que necesites para almacenar el texto y la fecha como  dos preferencias de usuario llamadas "texto" y "fecha" respectivamente (en la fecha guarda la propiedad de tipo <code>Date</code>, no la fecha convertida a texto, esa es solo para visualización). Tendrás que mirar los apuntes para ver cómo hacerlo (apartado "<a href="../1.4_preferencias#modificar_prefs">Modificar los valores de las preferencias</a>")</p>
+<h3 id="recuperar-los-datos-al-cargar-la-aplicacion">Recuperar los datos al cargar la aplicación<a class="headerlink" href="#recuperar-los-datos-al-cargar-la-aplicacion" title="Permanent link">&para;</a></h3>
+<p>En el <code>viewDidLoad</code> del <em>controller</em> recupera las dos preferencias que guardaste y muestra su contenido en pantalla, a través de los correspondientes <em>outlets</em>.</p>
+<p>Consulta el apartado <a href="../1.4_preferencias#acceso_prefs">"Acceder a las preferencias"</a>. Para recuperar la fecha:</p>
+<ul>
+<li>Como no hay un método específico para recuperar fechas, tendrás que usar el de objetos: <code>object(forKey:)</code> de <code>UserDefaults</code> </li>
+<li>Para convertirlo de objeto en fecha tendrás que hacer un <em>cast</em> a <code>Date</code> (<code>as! Date</code>).</li>
+</ul>
+<p>Para comprobar si las preferencias se guardan:</p>
+<blockquote>
+<p>En el simulador el sistema de carpetas y archivos de cada <em>app</em> se guarda en un directorio un poco "perdido" en el disco, un poco difícil de localizar manualmente. 
+Hay aplicaciones que nos permiten encontrarlo más fácilmente para así poder comprobar si nuestro código está creando los archivos correctamente. Una de estas aplicaciones, de libre distribución es <a href="https://github.com/dsmelov/simsim/blob/master/Release/SimSim_latest.zip?raw=true">SimSim</a>. <strong>Bájatela, descomprímela y arrastra el <code>.app</code> a la carpeta de aplicaciones</strong>. Al arrancar creará un icono en la barra superior de menú del Mac donde podemos ver las apps que tenemos en el simulador y abrir la carpeta correspondiente con los datos en el <em>Finder</em> o en una terminal.</p>
+</blockquote>
+<ul>
+<li>Sal de la <em>app</em> como lo haría un usuario en el móvil real (menú <code>Device &gt; Home</code> del simulador). </li>
+<li>Ve a la aplicación SimSim en el menú superior, selecciona la app <code>PersistenciaBasica</code> y luego selecciona <code>Finder</code>: se abrirá una carpeta con el sistema de archivos de la <em>app</em>. </li>
+<li>Las preferencias se guardan en <code>Library/Preferences</code>. Debería haber un fichero <code>.plist</code>. Si lo abres dándole doble clic debería abrirse en Xcode y podrás ver el contenido</li>
+</ul>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs
+          </a>
+        
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copiar al portapapeles", "clipboard.copied": "Copiado al portapapeles", "search.config.lang": "es", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "B\u00fasqueda", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.term.missing": "Falta", "select.version.title": "Seleccionar versi\u00f3n"}, "search": "../../assets/javascripts/workers/search.e99e714c.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.bc35569b.min.js"></script>
+      
+    
+  </body>
+</html>

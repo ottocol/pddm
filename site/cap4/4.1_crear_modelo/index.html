@@ -1,0 +1,462 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.3.2">
+    
+    
+      
+        <title>4.1 crear modelo - PDDM-iOS</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.24c991ad.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f5d1f46.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#009485">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#entidades" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="PDDM-iOS" class="md-header__button md-logo" aria-label="PDDM-iOS" data-md-component="logo">
+      
+  <img src="../../logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PDDM-iOS
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              4.1 crear modelo
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Limpiar" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="PDDM-iOS" class="md-nav__button md-logo" aria-label="PDDM-iOS" data-md-component="logo">
+      
+  <img src="../../logo.png" alt="logo">
+
+    </a>
+    PDDM-iOS
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1">
+          Persistencia básica
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Persistencia básica" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          Persistencia básica
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cap1/1.0_introduccion/" class="md-nav__link">
+        Introducción
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cap1/1.1_sistema_de_archivos/" class="md-nav__link">
+        Sistema de archivos
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cap1/1.2_serializacion/" class="md-nav__link">
+        Serialización
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cap1/1.3_property_lists/" class="md-nav__link">
+        Property lists
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cap1/1.4_preferencias/" class="md-nav__link">
+        Preferencias
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#entidades" class="md-nav__link">
+    Entidades
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atributos-de-la-clase" class="md-nav__link">
+    Atributos de la clase
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fetch-requests" class="md-nav__link">
+    Fetch requests
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#relaciones" class="md-nav__link">
+    Relaciones
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fetched-properties" class="md-nav__link">
+    Fetched properties
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  <h1>4.1 crear modelo</h1>
+                
+                <p>El <strong>modelo de datos</strong> sería más o menos el equivalente al esquema entidad/relación en una base de datos relacional. Con la diferencia de que en Core Data tenemos clases Swift y variables miembro en lugar de tablas y claves ajenas. </p>
+<p>Normalmente en una aplicación hay un solo modelo de datos, que se almacena en un archivo <code>.xcdatamodeld</code>. En Xcode, al crear el proyecto con la casilla de "Use Core Data" marcada nos crea un modelo de datos vacío con el mismo nombre del proyecto. Lo más habitual es editar el modelo con el editor gráfico de Xcode, aunque también hay un API Swift para crearlo/manipularlo.</p>
+<p>El editor tiene dos modos, el modo "tabla" donde vemos las entidades y atributos como listas de valores, y el modo "gráfico" donde podemos ver un diagrama con las entidades y las relaciones entre ellas. Estos modos se cambian con los dos iconos de la esquina inferior derecha del editor (<em>Editor Style</em>). </p>
+<h2 id="entidades">Entidades<a class="headerlink" href="#entidades" title="Permanent link">&para;</a></h2>
+<p>Las entidades comparten ciertas características con las clases de la POO y otras con las tablas de una base de datos. Por ejemplo pueden ser <em>abstractas</em> y por tanto no directamente instanciables, como las clases de cualquier lenguaje OO.  Por otro lado tienen relaciones con otras entidades (uno-a-uno, uno-a-muchos,...) y se puede especificar qué debe pasar cuando uno de los "lados" de la relación se elimina, como es típico de las bases de datos relacionales.</p>
+<p>Si seleccionamos una entidad podemos ver sus propiedades en el "Data Model Inspector", (Cmd+Alt+3 o <em>clic</em> en el tercer icono del panel de la derecha de la pantalla)</p>
+<p><img alt="" src="../img/data_model_inspector_icon.png" /></p>
+<ul>
+<li><code>Abstract entity</code> es análogo a las clases abstractas en POO, indica que la entidad no es directamente instanciable y se usa solo para que otras hereden de ella.</li>
+<li><code>Parent entity</code> indicaría que esta instancia hereda las propiedades de otra</li>
+<li><code>Class</code>: por defecto Xcode creará automáticamente una clase Swift para representar la entidad. Posteriormente veremos dónde está este código y qué estructura tiene.</li>
+</ul>
+<blockquote>
+<p>En versiones antiguas de Xcode el IDE no generaba por defecto las clases y había que generarlas manualmente. Todavía se puede hacer de este modo si queremos personalizar el código Swift, como veremos posteriormente.</p>
+</blockquote>
+<h2 id="atributos-de-la-clase">Atributos de la clase<a class="headerlink" href="#atributos-de-la-clase" title="Permanent link">&para;</a></h2>
+<p>La característica más destacada de un atributo es el <strong>tipo de datos</strong>. Podemos elegir de entre una serie de tipos, que pueden verse en la siguiente imagen del editor. </p>
+<p><img alt="" src="../img/tipos_propiedades.png" /></p>
+<p>La mayoría son bastante autoexplicativos, salvo los dos últimos. El tipo binario se usa típicamente para imágenes, audio, .... En cuanto a <code>Transformable</code> nos permite almacenar cualquier clase Swift/Obj-C. Se parece al binario en el sentido de que en el fondo, los datos se van a almacenar también en binario, pero con <code>Transformable</code> proporcionamos un medio de hacer la conversión y a partir de ahí nos "olvidamos" de que el dato se está convirtiendo, si trabajamos con clases propias solo veremos el tipo original.</p>
+<blockquote>
+<p>Cualquier clase (propia o del sistema) que sea conforme al protocolo <code>NSCoding</code> puede usarse como <code>Transformable</code> e iOS se encargará automáticamente de convertirla a/desde <code>NSData</code>. Veremos más detalles posteriormente.</p>
+</blockquote>
+<p>Además del tipo, las propiedades tienen muchas otras características. Podemos verlas en el "Data Model Inspector", haciendo clic sobre el atributo y luego con el atajo (Cmd+Alt+3) o con <em>clic</em> en el tercer icono del panel de la derecha de la pantalla.</p>
+<p>Veamos algunas de ellas:</p>
+<ul>
+<li><code>Transient</code> significa que no queremos que la propiedad sea persistente. Es típico de los valores que son calculados a partir de otros y que podemos volver a calcular fácilmente (por ejemplo el total de un pedido). Aun no siendo persistentes, estas propiedades también pueden participar en operaciones de “deshacer y rehacer” (<em>undo &amp; redo</em>)</li>
+<li><code>Optional</code> es el contrario del típico "not null" de las bases de datos. Si un campo es opcional, puede ser <code>nil</code>. </li>
+<li><code>Indexed</code> también es el mismo concepto que en BD. Un atributo indexado estará optimizado para las búsquedas que hagamos sobre él pero ocupará más espacio de almacenamiento.</li>
+<li>Reglas de validación: valor mínimo y máximo (si es numérico), longitud mínima y máxima (si es cadena), <code>Reg Exp</code>, la expresión regular con la que deben encajar los valores del atributo.</li>
+<li>Valor por defecto (<code>default</code>) que se asignará automáticamente si no le damos un valor explícito.</li>
+</ul>
+<h2 id="fetch-requests">Fetch requests<a class="headerlink" href="#fetch-requests" title="Permanent link">&para;</a></h2>
+<p>En el editor podemos crear <em>fetch requests</em> predefinidas. Estas <em>requests</em> son lo que en una base de datos llamaríamos <em>consultas</em> o <em>queries</em>. </p>
+<p>Mantenemos pulsado el botón de <code>Add Entity</code> para que aparezca un menú contextual y en él elegimos la opción <code>Add fetch request</code>. Podemos añadir gráficamente las condiciones deseadas. Veremos la sintaxis de las condiciones cuando tratemos las consultas en Core Data.</p>
+<h2 id="relaciones">Relaciones<a class="headerlink" href="#relaciones" title="Permanent link">&para;</a></h2>
+<p>Las relaciones en Core Data son muy similares al concepto equivalente en BD relacionales: vinculan una entidad con otra u otras, generalmente de otro tipo.</p>
+<p>Cuando creamos una relación usando el estilo de "tabla" en el editor visual, las tres características directamente editables son:</p>
+<ul>
+<li><strong>Nombre</strong>: es arbitrario y la única condición es que debe comenzar por minúscula, al igual que las propiedades. No obstante, una práctica común es ponerle el mismo nombre que la entidad a la que vincula pero en minúscula. Por ejemplo si tenemos un <code>Mensaje</code> y queremos establecer una relación con el <code>Usuario</code> que lo ha enviado llamaríamos a la relación simplemente <code>usuario</code>. Si es una relación uno a muchos se suele usar el plural. Así, si tenemos un <code>`Usuario</code> y queremos vincularlo con todos sus mensajes llamaríamos <code>mensajes</code> a la relación.</li>
+<li><strong>Destino</strong>: la entidad vinculada</li>
+<li><strong>Inversa</strong>: Se recomienda que todo vínculo entre entidades tenga su relación inversa, que es la que nos permite "volver al punto de partida". En el ejemplo de mensajes/usuarios, la inversa de la relación <code>usuario</code> sería <code>mensajes</code>.</li>
+</ul>
+<blockquote>
+<p>Las relaciones que no tienen inversa generan <em>warnings</em> en Xcode, ya que Core Data usa la bidireccionalidad para poder mantener la consistencia del grafo de objetos cuando se eliminan entidades.</p>
+</blockquote>
+<p>Al igual que con las entidades y las propiedades, podemos cambiar los atributos de una relación seleccionándola y yendo al “Data Model Inspector”, (recuerda, Cmd+Alt+3 o <em>clic</em> en el tercer icono del panel de la derecha de la pantalla).</p>
+<ul>
+<li><code>Transient</code> y <code>optional</code> son equivalentes a los atributos del mismo nombre usados en las propiedades.</li>
+<li><code>Delete rule</code> es la típica regla a aplicar cuando se borra la entidad “fuente” de la relación: por ejemplo con <code>cascade</code> si se borra la entidad, las relacionadas también lo hacen automáticamente, con <code>deny</code> no se puede borrar la entidad si hay relacionadas, con <code>nullify</code> la relación inversa se pone a <code>nil</code> y con <code>no action</code> la relación inversa queda tal cual (aunque apuntará a un objeto que ya no existe (!))</li>
+<li>con <code>Type</code> podemos indicar si es una relación uno a uno o uno a muchos. Las relaciones muchos a muchos las conseguimos poniendo tanto la relación como la inversa con el tipo “a muchos”.</li>
+</ul>
+<p>En el editor de <em>data models</em> de Xcode, si nos ponemos en modo <code>Graph</code> podemos ver gráficamente las relaciones entre objetos y crearlas con ctrl-click en la entidad "origen" y arrastrando hasta la entidad destino. Las relaciones "uno a uno" aparecen con una única punta de flecha en el destino, y las "uno a muchos" con dos.</p>
+<p><img alt="" src="../img/datamodel.png" /></p>
+<p>En el caso de relaciones “a muchos” podemos especificar: </p>
+<ul>
+<li>Si queremos que sean ordenadas (<code>ordered</code>). Por ejemplo nos dará lo mismo el orden para un <code>Género</code> musical que tiene asociados muchos <code>Disco</code>s, pero no es indiferente en el caso de una <code>Conversacion</code> y los <code>Mensaje</code>s que la componen.</li>
+<li>La cardinalidad mínima y máxima (podemos fijar un límite numérico o dejarlo vacía (<em>unbounded</em>)</li>
+</ul>
+<h2 id="fetched-properties">Fetched properties<a class="headerlink" href="#fetched-properties" title="Permanent link">&para;</a></h2>
+<p>Son similares a las relaciones, pero no son bidireccionales. Cada <em>fetched property</em> está basada en una consulta (<em>fetch request</em>). Por ejemplo podríamos tener una propiedad <code>mensajes_recientes</code> que nos devolviera los mensajes que ha enviado recientemente un usuario.</p>
+<p>Para crear una <em>fetched property</em> mantenemos pulsado el botón de <code>Add attribute</code> hasta que aparezca el menú contextual, donde seleccionamos <code>Add fetched property</code>. Tenemos que especificar su nombre y el <em>predicado</em> (la condición de la “consulta asociada”). Veremos algún ejemplo cuando hablemos de consultas en Core Data. </p>
+<blockquote>
+<p>Cuidado, las <em>fetched properties</em> no son dinámicas, sino <em>lazy</em>, su valor no se recalcula automáticamente cada vez que accedemos a ellas, hay que recalcularlas explícitamente con <code>refreshObject:mergeChanges:</code>.</p>
+</blockquote>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs
+          </a>
+        
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copiar al portapapeles", "clipboard.copied": "Copiado al portapapeles", "search.config.lang": "es", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "B\u00fasqueda", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.term.missing": "Falta", "select.version.title": "Seleccionar versi\u00f3n"}, "search": "../../assets/javascripts/workers/search.e99e714c.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.bc35569b.min.js"></script>
+      
+    
+  </body>
+</html>

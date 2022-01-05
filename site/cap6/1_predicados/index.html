@@ -1,0 +1,463 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.3.2">
+    
+    
+      
+        <title>1 predicados - PDDM-iOS</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.24c991ad.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f5d1f46.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#009485">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#predicados-como-cadenas" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="PDDM-iOS" class="md-header__button md-logo" aria-label="PDDM-iOS" data-md-component="logo">
+      
+  <img src="../../logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PDDM-iOS
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              1 predicados
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Limpiar" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="PDDM-iOS" class="md-nav__button md-logo" aria-label="PDDM-iOS" data-md-component="logo">
+      
+  <img src="../../logo.png" alt="logo">
+
+    </a>
+    PDDM-iOS
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1">
+          Persistencia básica
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Persistencia básica" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          Persistencia básica
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cap1/1.0_introduccion/" class="md-nav__link">
+        Introducción
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cap1/1.1_sistema_de_archivos/" class="md-nav__link">
+        Sistema de archivos
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cap1/1.2_serializacion/" class="md-nav__link">
+        Serialización
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cap1/1.3_property_lists/" class="md-nav__link">
+        Property lists
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cap1/1.4_preferencias/" class="md-nav__link">
+        Preferencias
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#predicados-como-cadenas" class="md-nav__link">
+    Predicados como cadenas
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#templates" class="md-nav__link">
+    Templates
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#predicados-sobre-relaciones" class="md-nav__link">
+    Predicados sobre relaciones
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  <h1>1 predicados</h1>
+                
+                <p>Hasta ahora hemos visto solo como crear <em>fetch request</em> que devuelvan todas las instancias de una entidad, lo que sería el equivalente a un <code>SELECT</code> sin <code>WHERE</code> en SQL. Por supuesto podemos filtrar los resultados de una <em>fetch request</em>, y esto lo haremos con <strong>predicados</strong>, que en el API se representan con la clase <code>NSPredicate</code>. Los predicados son un mecanismo genérico de Cocoa para filtrar colecciones de datos y pueden usarse no solo en Core Data, sino también para filtrar arrays o para buscar en <em>spotlight</em>, el mecanismo de búsqueda estándar de aplicaciones/contactos/documentos dentro de los dispositivos iOS.</p>
+<p>Veamos un ejemplo de <em>fetch request</em> con predicado:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nv">miDelegate</span> <span class="p">=</span> <span class="bp">UIApplication</span><span class="p">.</span><span class="n">shared</span><span class="p">.</span><span class="n">delegate</span> <span class="k">as</span><span class="p">!</span> <span class="n">AppDelegate</span> 
+<span class="kd">let</span> <span class="nv">miContexto</span> <span class="p">=</span> <span class="n">miDelegate</span><span class="p">.</span><span class="n">persistentContainer</span><span class="p">.</span><span class="n">viewContext</span>
+<span class="kd">let</span> <span class="nv">request</span> <span class="p">=</span> <span class="bp">NSFetchRequest</span><span class="p">&lt;</span><span class="n">Mensaje</span><span class="p">&gt;(</span><span class="n">entityName</span><span class="p">:</span> <span class="s">&quot;Mensaje&quot;</span><span class="p">)</span>
+<span class="kd">let</span> <span class="nv">pred</span> <span class="p">=</span> <span class="bp">NSPredicate</span><span class="p">(</span><span class="n">format</span><span class="p">:</span> <span class="s">&quot;texto CONTAINS &#39;iOS&#39;&quot;</span><span class="p">)</span>
+<span class="n">request</span><span class="p">.</span><span class="n">predicate</span> <span class="p">=</span> <span class="n">pred</span>
+<span class="kd">let</span> <span class="nv">resultados</span> <span class="p">=</span> <span class="k">try</span><span class="p">!</span> <span class="n">miContexto</span><span class="p">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+<span class="bp">print</span><span class="p">(</span><span class="s">&quot;Hay </span><span class="si">\(</span><span class="n">resultados</span><span class="p">.</span><span class="bp">count</span><span class="si">)</span><span class="s"> resultados&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">mensaje</span> <span class="k">in</span> <span class="n">resultados</span> <span class="p">{</span>
+    <span class="bp">print</span><span class="p">(</span><span class="n">mensaje</span><span class="p">.</span><span class="n">texto</span><span class="p">!)</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Como vemos, la única diferencia es que instanciamos un <code>NSPredicate</code> con la condición a cumplir y lo asociamos a la propiedad <code>predicate</code> del <em>fetch request</em>.</p>
+<p>Podemos crear <code>NSPredicate</code> de tres formas distintas:</p>
+<ul>
+<li><strong>Definiéndolo como una cadena</strong>, que se <em>parseará</em> y ejecutará como hemos hecho en el ejemplo anterior. En el ejemplo la consulta era "fija" pero también podemos pasar argumentos.</li>
+<li>Con un <strong>template</strong>, que básicamente es un predicado en forma de cadena en el que se incluyen variables, algo así como los parámetros de las <em>queries</em> en SQL. En Core Data podemos crear este tipo de predicados directamente desde el editor del modelo de datos, son las <em>fetch request templates</em> que ya comentamos.</li>
+<li><strong>Directamente en código</strong>. Tenemos una serie de clases que representan diversas partes del predicado. Por ejemplo un <code>NSComparisonPredicate</code> nos permite representar un operador de comparación, un <code>NSExpression</code> una expresión (por ejemplo, como expresiones sencillas tendríamos una variable, un valor constante,…). Con un operador de comparación que una dos expresiones podemos conseguir algo como lo que hemos hecho en el ejemplo de la localidad. Esta forma de trabajar es engorrosa pero tiene su utilidad en algunos casos, por ejemplo cuando queremos generar dinámicamente una consulta partiendo de cero.</li>
+</ul>
+<h3 id="predicados-como-cadenas">Predicados como cadenas<a class="headerlink" href="#predicados-como-cadenas" title="Permanent link">&para;</a></h3>
+<p>Esta es la forma más habitual de definir predicados. El problema es que la cadena se interpreta en tiempo de ejecución, así que los errores de sintaxis no los vamos a detectar hasta entonces. Es algo muy similar a cuando ejecutamos sentencias SQL en nuestro código.</p>
+<h4 id="operadores">Operadores<a class="headerlink" href="#operadores" title="Permanent link">&para;</a></h4>
+<p>Los predicados aceptan diversos tipos de operadores y funciones:</p>
+<ul>
+<li>Los típicos <strong>operadores de comparación</strong>: <code>=</code> (o <code>==</code>) <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>!=</code> …</li>
+<li><strong>Operadores lógicos</strong>: <code>AND</code>, <code>OR</code>, <code>NOT</code> (o también al estilo C, <code>&amp;&amp;</code>, <code>||</code>, <code>!</code>).<ul>
+<li>Operadores de <strong>comparación de cadenas</strong>: <code>BEGINSWITH</code>, <code>ENDSWITH</code>, <code>CONTAINS</code>, <code>LIKE</code> (como <code>CONTAINS</code> pero admite comodines <code>?</code> o <code>*</code>), <code>MATCHES</code> (comprueba si la cadena encaja con una expresión regular en <a href="http://userguide.icu-project.org/strings/regexp">formato ICU</a>). Estos operadores por defecto distinguen entre mayúsculas/minúsculas y símbolos diacríticos (acentos, circunflejos, etc). Si después del operador ponemos un símbolo <code>c</code> entre corchetes indicamos que no queremos distinguir mayúsculas/minúsculas, y <code>d</code> hace lo propio con los diacríticos. Por ejemplo</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">localidad</span> <span class="n">CONTAINS</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="err">&#39;</span><span class="n">san</span><span class="err">&#39;</span>
+</code></pre></div>
+<p>Encajaría con “San vicente”, “Fuensanta”, “Massanassa”,…</p>
+<p>Podéis consultar una referencia más completa en el apartado “<a href="https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/Predicates/Articles/pSyntax.html#//apple_ref/doc/uid/TP40001795-CJBDBHCB">Predicate Format String Syntax</a>” de la  “<a href="https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/Predicates/AdditionalChapters/Introduction.html#//apple_ref/doc/uid/TP40001798-SW1">Predicate Programming Guide</a>” de Apple. </p>
+<h4 id="caracteres-de-formato">Caracteres de formato<a class="headerlink" href="#caracteres-de-formato" title="Permanent link">&para;</a></h4>
+<p>En la cadena de la <em>fetch request</em> podemos emplear caracteres de formato al estilo de los que se usan en el <code>printf</code> de C, lo que nos permite pasarle parámetros. Por ejemplo:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nv">cadena</span> <span class="p">=</span> <span class="s">&quot;iOS&quot;</span>
+<span class="bp">NSPredicate</span><span class="p">(</span><span class="n">format</span><span class="p">:</span> <span class="s">&quot;texto CONTAINS %@ AND fecha&lt;%@&quot;</span><span class="p">,</span> <span class="n">argumentArray</span><span class="p">:</span> <span class="p">[</span><span class="s">&quot;iOS&quot;</span><span class="p">,</span> <span class="n">Date</span><span class="p">()])</span>
+</code></pre></div>
+<p>Los caracteres de formato son <em>placeholders</em> donde se van colocando los argumentos que se pasan en forma de array. Los caracteres <code>%@</code> en concreto representan un <em>objeto</em> (en este caso un <code>String</code>). Al igual que en el <code>printf</code> de C podemos usar <code>%i</code> para enteros, <code>%f</code> para números reales, etc.</p>
+<p>Nótese que, como habíamos visto en la sección anterior, las cadenas buscadas hay que ponerlas entre comillas (sean simples o dobles). El formateo tiene esto en cuenta y cuando un parámetro es de tipo <code>String</code> las inserta automáticamente. Esto, que es adecuado para los valores de las propiedades, no lo sería si queremos especificar dinámicamente la propiedad. Por ejemplo, el siguiente código</p>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nv">atributo</span> <span class="p">=</span> <span class="s">&quot;login&quot;</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nv">subcadena</span> <span class="p">=</span> <span class="s">&quot;pep&quot;</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nv">pred</span> <span class="p">=</span> <span class="bp">NSPredicate</span><span class="p">(</span><span class="n">format</span><span class="p">:</span><span class="s">&quot;%@ CONTAINS[c] %@&quot;</span><span class="p">,</span> <span class="n">argumentArray</span><span class="p">:[</span><span class="n">atributo</span><span class="p">,</span> <span class="n">subcadena</span><span class="p">]);</span>
+</code></pre></div>
+<p>generaría el predicado</p>
+<div class="highlight"><pre><span></span><code><span class="err">&#39;</span><span class="n">login</span><span class="err">&#39;</span> <span class="n">CONTAINS</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="err">&#39;</span><span class="n">usu</span><span class="err">&#39;</span>
+</code></pre></div>
+<p>que no es correcto porque los atributos no se ponen entre comillas. Para especificar que estamos poniendo un nombre de propiedad podemos usar el carácter de formato <code>%K</code>, y así el formateador no pondrá las comillas alrededor. La versión correcta del ejemplo anterior sería</p>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nv">pred</span> <span class="p">=</span> <span class="bp">NSPredicate</span><span class="p">(</span><span class="n">format</span><span class="p">:</span><span class="s">&quot;%K CONTAINS[c] %@&quot;</span><span class="p">,</span> <span class="n">argumentArray</span><span class="p">:[</span><span class="n">atributo</span><span class="p">,</span> <span class="n">subcadena</span><span class="p">]);</span>
+</code></pre></div>
+<h3 id="templates">Templates<a class="headerlink" href="#templates" title="Permanent link">&para;</a></h3>
+<p>Como comentamos en sesiones anteriores, en el editor del modelo de datos de Xcode se pueden crear “<em>fetch request templates”</em> o dicho de otro modo, consultas “predefinidas”. Estas <em>templates</em> también se pueden crear por código, y la diferencia fundamental con las cadenas de formato es que en lugar de usar caracteres genéricos de formato emplean variables, lo que oficialmente se denominan <em>variable expressions</em> (un poco como la diferencia entre los parámetros por posición y con nombre en SQL).</p>
+<p>En el editor del modelo podemos crear un <em>fetch request template</em> pulsando unos segundos (sin soltar) sobre el botón de <code>Add entity</code> para que aparezca el menú contextual, y elegir <code>Add fetch request</code>. El editor permite construir predicados más o menos de forma visual, o tecleando la expresión, que como hemos dicho puede contener variables. Las variables deben ir precedidas del símbolo <code>$</code> (<code>$cadena</code>, <code>$NOMBRE</code>,…)</p>
+<p><img alt="" src="../img/fetch_template.png" /></p>
+<blockquote>
+<p>El editor visual de templates introduce comillas de más en los nombres de las variables, quedando expresiones como <code>nombre BEGINS WITH "$cadena"</code>. En este caso la variable no se reconocería como tal al estar entre comillas. Si vamos a usar variables es mejor usar el editor en modo texto. Podemos pasar a este modo pulsando el segundo de los botones que aparecen en la parte superior derecha del editor. </p>
+</blockquote>
+<p>Para ejecutar la <em>template</em> en nuestro código tenemos que recuperarla por nombre a partir del modelo de datos (el <code>NSManagedObjectModel</code>). Este modelo es accesible en la propiedad <code>managedObjectModel</code> del <code>PersistentContainer</code>. Además necesitaremos un diccionario que especifique nombre y valor para cada variable. Para el ejemplo de la figura anterior:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nv">miDelegate</span> <span class="p">=</span> <span class="bp">UIApplication</span><span class="p">.</span><span class="n">shared</span><span class="p">.</span><span class="n">delegate</span> <span class="k">as</span><span class="p">!</span> <span class="n">AppDelegate</span>
+<span class="kd">let</span> <span class="nv">miModelo</span> <span class="p">=</span> <span class="n">miDelegate</span><span class="p">.</span><span class="n">persistentContainer</span><span class="p">.</span><span class="n">managedObjectModel</span> 
+<span class="kd">let</span> <span class="nv">dictVars</span> <span class="p">=</span> <span class="p">[</span><span class="s">&quot;cadena&quot;</span><span class="p">:</span><span class="s">&quot;iOS&quot;</span><span class="p">]</span>
+<span class="k">if</span> <span class="kd">let</span> <span class="nv">queryTmpl</span> <span class="p">=</span> <span class="n">miModelo</span><span class="p">.</span><span class="n">fetchRequestFromTemplate</span><span class="p">(</span><span class="n">withName</span><span class="p">:</span> <span class="s">&quot;textoContiene&quot;</span><span class="p">,</span> <span class="n">substitutionVariables</span><span class="p">:</span> <span class="n">dictVars</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nv">results</span> <span class="p">=</span> <span class="k">try</span><span class="p">!</span> <span class="n">miContexto</span><span class="p">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">queryTmpl</span><span class="p">)</span> <span class="k">as</span><span class="p">!</span> <span class="p">[</span><span class="n">Mensaje</span><span class="p">]</span>
+    <span class="bp">print</span><span class="p">(</span><span class="s">&quot;Hay </span><span class="si">\(</span><span class="n">results</span><span class="p">.</span><span class="bp">count</span><span class="si">)</span><span class="s"> resultados en la template&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">mensaje</span> <span class="k">in</span> <span class="n">results</span> <span class="p">{</span>
+        <span class="bp">print</span><span class="p">(</span><span class="n">mensaje</span><span class="p">.</span><span class="n">texto</span><span class="p">!)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="predicados-sobre-relaciones">Predicados sobre relaciones<a class="headerlink" href="#predicados-sobre-relaciones" title="Permanent link">&para;</a></h3>
+<p>En los predicados podemos incluir no solo los atributos “simples”, sino también los que representan relaciones entre objetos. Así, buscar en una relación “a uno” es prácticamente igual que buscar en una propiedad convencional. Por ejemplo, vamos a buscar todos los mensajes enviados por un usuario cuyo login comience por <code>m</code> (relación <code>Mensaje</code>-> <code>Usuario</code>). Para ello usaríamos un predicado como el que sigue:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nv">pred</span> <span class="p">=</span> <span class="bp">NSPredicate</span><span class="p">(</span><span class="n">format</span><span class="p">:</span><span class="s">&quot;usuario.login BEGINSWITH[c] &#39;m&#39;&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>Buscar en una relación “a muchos” es ligeramente más complicado, ya que estamos buscando en una colección. Podemos usar el operador <code>ANY</code> para verificar que algún valor de la colección cumple la condición. Por ejemplo podemos buscar todos los usuarios que han participado en alguna conversación en la última hora:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nv">haceUnaHora</span>  <span class="p">=</span> <span class="n">Date</span><span class="p">(</span><span class="n">timeIntervalSinceNow</span><span class="p">:</span> <span class="o">-</span><span class="mi">60</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span>
+<span class="kd">let</span> <span class="nv">predicado</span> <span class="p">=</span> <span class="bp">NSPredicate</span><span class="p">(</span><span class="n">format</span><span class="p">:</span> <span class="s">&quot;ANY conversaciones.comienzo&gt;%@&quot;</span><span class="p">,</span> <span class="n">argumentArray</span><span class="p">:</span> <span class="p">[</span><span class="n">haceUnaHora</span><span class="p">])</span>
+</code></pre></div>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs
+          </a>
+        
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copiar al portapapeles", "clipboard.copied": "Copiado al portapapeles", "search.config.lang": "es", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "B\u00fasqueda", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.term.missing": "Falta", "select.version.title": "Seleccionar versi\u00f3n"}, "search": "../../assets/javascripts/workers/search.e99e714c.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.bc35569b.min.js"></script>
+      
+    
+  </body>
+</html>

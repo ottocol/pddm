@@ -1,0 +1,597 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.3.2">
+    
+    
+      
+        <title>3 persistencia - PDDM-iOS</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.24c991ad.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f5d1f46.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#009485">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#estructurar-los-datos" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="PDDM-iOS" class="md-header__button md-logo" aria-label="PDDM-iOS" data-md-component="logo">
+      
+  <img src="../../logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PDDM-iOS
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              3 persistencia
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Limpiar" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="PDDM-iOS" class="md-nav__button md-logo" aria-label="PDDM-iOS" data-md-component="logo">
+      
+  <img src="../../logo.png" alt="logo">
+
+    </a>
+    PDDM-iOS
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1">
+          Persistencia básica
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Persistencia básica" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          Persistencia básica
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cap1/1.0_introduccion/" class="md-nav__link">
+        Introducción
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cap1/1.1_sistema_de_archivos/" class="md-nav__link">
+        Sistema de archivos
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cap1/1.2_serializacion/" class="md-nav__link">
+        Serialización
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cap1/1.3_property_lists/" class="md-nav__link">
+        Property lists
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cap1/1.4_preferencias/" class="md-nav__link">
+        Preferencias
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#estructurar-los-datos" class="md-nav__link">
+    Estructurar los datos
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referencias" class="md-nav__link">
+    Referencias
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#crear-y-actualizar-datos" class="md-nav__link">
+    Crear y actualizar datos
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consultas" class="md-nav__link">
+    Consultas
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  <h1>3 persistencia</h1>
+                
+                <p>Actualmente hay dos bases de datos disponibles en Firebase: la <em>realtime</em> database, que es la "original" y el <em>cloud firestore</em>, que se introdujo posteriormente. Ambas son bases de datos NoSQL, aunque la <em>realtime</em> tiene una estructura de datos algo más peculiar. Vamos a ver aquí la <em>realtime database</em>, que como su nombre indica es especialmente apropiada para aplicaciones en <em>tiempo real</em>, ya que además de poder hacer las típicas consultas podemos "escuchar" los cambios en los datos. No obstante se puede usar en cualquier tipo de aplicación.</p>
+<p>Podéis consultar <em>online</em> y traducida al español la <a href="https://firebase.google.com/docs/database/ios/start">documentación de los APIs de iOS para la <em>realtime database</em></a>.</p>
+<h2 id="estructurar-los-datos">Estructurar los datos<a class="headerlink" href="#estructurar-los-datos" title="Permanent link">&para;</a></h2>
+<p>Como ya hemos comentado, las dos bases de datos disponibles en Firebase son NoSQL. Esto quiere decir que los datos no tienen la división habitual en tablas a la que estamos acostumbrados en bases de datos relacionales. La base de datos tampoco se ocupa de comprobar automáticamente la consistencia o la integridad de los datos, quedando esta tarea en manos de la aplicación.</p>
+<p>En la <em>realtime database</em> todos los datos están contenidos en un único "árbol" de pares clave-valor. Los valores pueden ser primitivos (números, cadenas o valores booleanos) o pueden ser valores compuestos a su vez de pares clave-valor.  Por ejemplo podríamos tener algo como:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+    <span class="nt">&quot;personas&quot;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;jap2&quot;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;nombre&quot;</span> <span class="p">:</span> <span class="s2">&quot;Juan&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;apellidos&quot;</span><span class="p">:</span> <span class="s2">&quot;Arriquitaun Pérez&quot;</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;ems21&quot;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;nombre&quot;</span> <span class="p">:</span> <span class="s2">&quot;Eva&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;apellidos&quot;</span><span class="p">:</span> <span class="s2">&quot;Marín Salgado&quot;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>En este caso el árbol contiene un único par clave/valor en su nivel superior. El valor asociado a la clave "personas" es compuesto y consiste de dos pares cuyas claves son "jap2" y "ems21", y así sucesivamente. Nótese que la clave se separa del valor por ":", que un par se separa del siguiente con una coma y que los valores compuestos se delimitan entre llaves. Es decir, es un formato de datos muy similar a JSON, aunque en JSON se pueden representar listas de datos con <code>[]</code> y esa posibilidad no existe aquí. </p>
+<p>Nótese que, al contrario que en las bases de datos relacionales <strong>no existe un <em>esquema</em> inicial</strong> que restrinja el formato de los datos. Mientras se respete la estructura básica de pares clave/valor los datos tienen un formato libre. Por ejemplo no necesariamente tendríamos que tener propiedad "nombre" para todas las personas de la BD, o podríamos tener alguna propiedad más para algunas personas sí y para otras no.</p>
+<p>Al no existir tablas ni relaciones entre ellas, la forma más habitual de representar las relaciones entre datos es "embeber" unos datos dentro de otros. Por ejemplo:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+  <span class="nt">&quot;personas&quot;</span> <span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;ems21&quot;</span> <span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;apellidos&quot;</span> <span class="p">:</span> <span class="s2">&quot;Marín Salgado&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;nombre&quot;</span> <span class="p">:</span> <span class="s2">&quot;Eva&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;mensajes&quot;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;m1&quot;</span> <span class="p">:</span> <span class="p">{</span>
+          <span class="nt">&quot;texto&quot;</span> <span class="p">:</span> <span class="s2">&quot;Hola amigos&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;timestamp&quot;</span> <span class="p">:</span> <span class="mi">19029898493</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;m2&quot;</span> <span class="p">:</span> <span class="p">{</span>
+          <span class="nt">&quot;texto&quot;</span> <span class="p">:</span> <span class="s2">&quot;¿No me contesta nadie? :(&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;timestamp&quot;</span> <span class="p">:</span> <span class="mi">20458569556</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;jap2&quot;</span> <span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;apellidos&quot;</span> <span class="p">:</span> <span class="s2">&quot;Arriquitaun Pérez&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;direccion&quot;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;calle&quot;</span> <span class="p">:</span> <span class="s2">&quot;Pez, 25&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;localidad&quot;</span> <span class="p">:</span> <span class="s2">&quot;Madrid&quot;</span>
+      <span class="p">},</span>
+      <span class="nt">&quot;mensajes&quot;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;m3&quot;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;texto&quot;</span><span class="p">:</span> <span class="nt">&quot;Hola, sí!!&quot;</span>
+            <span class="nt">&quot;timestamp&quot;</span> <span class="p">:</span> <span class="mi">21020129382</span>
+        <span class="p">}</span>
+      <span class="p">},</span>
+      <span class="nt">&quot;nombre&quot;</span> <span class="p">:</span> <span class="s2">&quot;Juan&quot;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>En el código anterior podemos ver algunos de ejemplos de lo que en bases de datos relaciones serían precisamente relaciones. Por un lado una relación 1:1 entre "persona" y "direccion", que se reperesenta aquí con la propiedad compuesta "direccion" dentro de la persona. Por otro lado una relación 1:N entre "persona" y "mensajes", que se representa de la misma forma, guardando los "mensajes" dentro de la "persona".</p>
+<p>El problema de las estructuras de datos anidadas es a la hora de sacar la información de la BD. Como veremos, con Firebase podemos listar y filtrar de forma sencilla todos los nodos hijos de un nodo dado (por ejemplo <em>obtener todos los mensajes de la persona "ems21" ordenados por timestamp</em>). El problema lo tendríamos si quisiéramos obtener una lista de todos los mensajes independientemente de quién los ha enviado, que con la estructura de datos anterior requeriría ejecutar una consulta por cada usuario para finalmente unir todos los resultados y ordenarlos.</p>
+<p>Este problema se puede resolver <em>desnormalizando</em> los datos, es decir, duplicando la información. Además de la estructura anterior podríamos tener repetidos por otro lado todos los mensajes dentro de un nodo "mensajes" independientemente de quién los haya enviado:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+  <span class="nt">&quot;personas&quot;</span> <span class="p">:</span> <span class="p">{</span>
+    <span class="err">//Igual</span> <span class="err">que</span> <span class="err">a</span><span class="kc">ntes</span><span class="p">,</span> <span class="err">perso</span><span class="kc">nas</span> <span class="err">co</span><span class="kc">n</span> <span class="err">sus</span> <span class="err">me</span><span class="kc">nsa</span><span class="err">jes</span>
+  <span class="p">}</span>
+  <span class="nt">&quot;mensajes&quot;</span> <span class="p">:</span> <span class="p">{</span>
+    <span class="err">//Aquí</span> <span class="kc">t</span><span class="err">odos</span> <span class="err">los</span> <span class="err">me</span><span class="kc">nsa</span><span class="err">jes</span> <span class="err">de</span> <span class="kc">t</span><span class="err">odos</span> <span class="err">los</span> <span class="err">usuarios</span>
+  <span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="referencias">Referencias<a class="headerlink" href="#referencias" title="Permanent link">&para;</a></h2>
+<p>Un concepto fundamental y necesario para poder leer y escribir datos es el de <em>referencia</em>. Una <em>referencia</em> representa un nodo del árbol de datos. Con los métodos del API podemos obtener directamente una referencia a un nodo cualquiera si conocemos su <em>path</em> desde la raíz. O bien podemos partir de una referencia que ya tengamos a un nodo y movernos a uno de sus hijos. Una vez obtenida la referencia al nodo que nos interesa, podremos leer su estado/modificarlo con otros métodos del API.</p>
+<p>Por ejemplo supongamos que tenemos la estructura de datos en Firebase que vimos en el apartado anterior.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+    <span class="nt">&quot;personas&quot;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;jap2&quot;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;nombre&quot;</span> <span class="p">:</span> <span class="s2">&quot;Juan&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;apellidos&quot;</span><span class="p">:</span> <span class="s2">&quot;Arriquitaun Pérez&quot;</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;ems21&quot;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;nombre&quot;</span> <span class="p">:</span> <span class="s2">&quot;Eva&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;apellidos&quot;</span><span class="p">:</span> <span class="s2">&quot;Marín Salgado&quot;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Para obtener una referencia a un nodo, lo primero es obtener la base de datos en sí, a la que accedemos con <code>Database.database()</code>. A partir de aquí:</p>
+<ul>
+<li>El nodo raíz lo podemos obtener con <code>reference()</code>, y podemos ir bajando por los hijos con <code>child()</code>, por ejemplo:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1">//El árbol completo, dicho de otro modo el nodo raíz</span>
+<span class="kd">let</span> <span class="nv">rootRef</span> <span class="p">=</span> <span class="n">Database</span><span class="p">.</span><span class="n">database</span><span class="p">().</span><span class="n">reference</span><span class="p">()</span>
+<span class="c1">//El nodo &quot;personas&quot;</span>
+<span class="kd">let</span> <span class="nv">personasRef</span> <span class="p">=</span> <span class="n">rootRef</span><span class="p">.</span><span class="n">child</span><span class="p">(</span><span class="s">&quot;personas&quot;</span><span class="p">)</span>
+<span class="c1">//El nodo &quot;nombre&quot; perteneciente a &quot;jap2&quot;</span>
+<span class="kd">let</span> <span class="nv">nombreRef</span> <span class="p">=</span> <span class="n">personasRef</span><span class="p">.</span><span class="n">child</span><span class="p">(</span><span class="s">&quot;jap2&quot;</span><span class="p">).</span><span class="n">child</span><span class="p">(</span><span class="s">&quot;nombre&quot;</span><span class="p">)</span>
+</code></pre></div>
+<ul>
+<li>También podemos acceder a un nodo con su <em>path</em> desde el nodo raíz, para ello usamos el método <code>reference(withPath:)</code>, por ejemplo:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nv">db</span> <span class="p">=</span> <span class="n">Database</span><span class="p">.</span><span class="n">database</span><span class="p">()</span>
+<span class="c1">//El nodo &quot;nombre&quot; perteneciente a &quot;jap2&quot;</span>
+<span class="kd">let</span> <span class="nv">nombreRef</span> <span class="p">=</span> <span class="n">db</span><span class="p">.</span><span class="n">reference</span><span class="p">(</span><span class="n">withPath</span><span class="p">:</span><span class="s">&quot;personas/jap2/nombre&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>Nótese que podemos obtener una referencia a un nodo aunque este no exista todavía en la base de datos. Por ejemplo, esto sería válido en el ejemplo que estamos siguiendo, aunque en la BD no hay nada relativo a pedidos:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nv">ref</span> <span class="p">=</span> <span class="n">db</span><span class="p">.</span><span class="n">reference</span><span class="p">(</span><span class="n">withPath</span><span class="p">(</span><span class="s">&quot;pedidos/1&quot;</span><span class="p">))</span>
+</code></pre></div>
+<p>Esto nos permitirá crear un nuevo pedido cuyos datos sean hijos del nodo "pedidos/1" sin necesidad de haber creado previamente los nodos intermedios.</p>
+<h2 id="crear-y-actualizar-datos">Crear y actualizar datos<a class="headerlink" href="#crear-y-actualizar-datos" title="Permanent link">&para;</a></h2>
+<p>Para <strong>modificar un nodo</strong> usamos <code>setValue(&lt;nuevovalor&gt;)</code> sobre su referencia. Este método es destructivo, ya que sustituye completamente el valor actual del nodo, incluso aunque este tenga otros nodos hijos. Por ejemplo:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nv">db</span> <span class="p">=</span> <span class="n">Database</span><span class="p">.</span><span class="n">database</span><span class="p">()</span>
+<span class="kd">let</span> <span class="nv">nombreRef</span> <span class="p">=</span> <span class="n">db</span><span class="p">.</span><span class="n">reference</span><span class="p">(</span><span class="n">withPath</span><span class="p">:</span><span class="s">&quot;personas/jap2/nombre&quot;</span><span class="p">)</span>
+<span class="c1">//El nombre cambia de Juan a John</span>
+<span class="n">nombreRef</span><span class="p">.</span><span class="n">setValue</span><span class="p">(</span><span class="s">&quot;John&quot;</span><span class="p">)</span>
+<span class="c1">//CUIDADO, sustituye el valor de &quot;personas&quot;, con todo lo que hay por debajo</span>
+<span class="kd">let</span> <span class="nv">personasRef</span> <span class="p">=</span> <span class="n">db</span><span class="p">.</span><span class="n">reference</span><span class="p">(</span><span class="n">withPath</span><span class="p">:</span><span class="s">&quot;personas&quot;</span><span class="p">)</span>
+<span class="n">personasRef</span><span class="p">.</span><span class="n">setValue</span><span class="p">(</span><span class="s">&quot;La que has liao, pollito&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>Nótese que el segundo cambio modifica el valor de un nodo compuesto, sustituyendo todo lo que hay "por debajo", así que el árbol quedaría</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+    <span class="s">&quot;personas&quot;</span> <span class="p">:</span> <span class="s">&quot;La que has liao, pollito&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>También podemos <strong>crear un nodo aunque los nodos intermedios no existan</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kc">self</span><span class="p">.</span><span class="n">db</span> <span class="p">=</span> <span class="n">Database</span><span class="p">.</span><span class="n">database</span><span class="p">()</span>
+<span class="c1">//Este nodo no existe, pero vamos a usar la referencia para crear un valor</span>
+<span class="kd">let</span> <span class="nv">mlmj15</span> <span class="p">=</span> <span class="n">db</span><span class="p">.</span><span class="n">reference</span><span class="p">(</span><span class="n">withPath</span><span class="p">:</span> <span class="s">&quot;personas/mlmj15&quot;</span><span class="p">)</span>
+<span class="n">mlmj15</span><span class="p">.</span><span class="n">setValue</span><span class="p">([</span><span class="s">&quot;nombre&quot;</span><span class="p">:</span><span class="s">&quot;María Luisa&quot;</span><span class="p">,</span> <span class="s">&quot;apellidos&quot;</span><span class="p">:</span><span class="s">&quot;Marín Juárez&quot;</span><span class="p">])</span>
+</code></pre></div>
+<p>El resultado sería:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+  <span class="nt">&quot;personas&quot;</span> <span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;mlmj15&quot;</span> <span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;apellidos&quot;</span> <span class="p">:</span> <span class="s2">&quot;Marín Juárez&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;nombre&quot;</span> <span class="p">:</span> <span class="s2">&quot;María Luisa&quot;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>En los ejemplos anteriores hemos asignado un nuevo valor que es un dato primitivo, pero también podría ser <strong>asignar un valor compuesto, basta con pasar un diccionario</strong>. Por ejemplo, Podríamos cambiar los datos de "mlmj15" con:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nv">db</span> <span class="p">=</span> <span class="n">Database</span><span class="p">.</span><span class="n">database</span><span class="p">()</span>
+<span class="kd">let</span> <span class="nv">ref</span> <span class="p">=</span> <span class="n">db</span><span class="p">.</span><span class="n">reference</span><span class="p">(</span><span class="n">withPath</span><span class="p">:</span><span class="s">&quot;personas/mlmj15&quot;</span><span class="p">)</span>
+<span class="n">ref</span><span class="p">.</span><span class="n">setValue</span><span class="p">([</span><span class="s">&quot;nombre&quot;</span><span class="p">:</span><span class="s">&quot;Mari Loli&quot;</span><span class="p">,</span> <span class="s">&quot;apellidos&quot;</span><span class="p">:</span><span class="s">&quot;Martínez Jaén&quot;</span><span class="p">])</span>
+</code></pre></div>
+<p><strong>En lugar de sobreescribir totalmente un nodo podemos actualizar solo algunas de sus propiedades</strong> con <code>updateChildValues</code></p>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nv">db</span> <span class="p">=</span> <span class="n">Database</span><span class="p">.</span><span class="n">database</span><span class="p">()</span>
+<span class="kd">let</span> <span class="nv">ref</span> <span class="p">=</span> <span class="n">db</span><span class="p">.</span><span class="n">reference</span><span class="p">(</span><span class="n">withPath</span><span class="p">:</span><span class="s">&quot;personas/mlmj15&quot;</span><span class="p">)</span>
+<span class="n">ref</span><span class="p">.</span><span class="n">updateChildValues</span><span class="p">([</span><span class="s">&quot;nombre&quot;</span><span class="p">:</span><span class="s">&quot;M.L.&quot;</span><span class="p">])</span>
+</code></pre></div>
+<p>En este ejemplo estamos usando un identificador generado manualmente para cada persona, pero en muchos casos necesitaremos generar el identificador automáticamente. Podemos hacerlo con <code>childByAutoId</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nv">db</span> <span class="p">=</span> <span class="n">Database</span><span class="p">.</span><span class="n">database</span><span class="p">()</span>
+<span class="kd">let</span> <span class="nv">personasRef</span> <span class="p">=</span> <span class="n">db</span><span class="p">.</span><span class="n">reference</span><span class="p">(</span><span class="n">withPath</span><span class="p">:</span><span class="s">&quot;personas&quot;</span><span class="p">)</span>
+<span class="kd">let</span> <span class="nv">nuevoIdRef</span> <span class="p">=</span> <span class="n">personasRef</span><span class="p">.</span><span class="n">childByAutoId</span><span class="p">()</span>
+<span class="n">nuevoIdRef</span><span class="p">.</span><span class="n">setValue</span><span class="p">([</span><span class="s">&quot;nombre&quot;</span><span class="p">:</span><span class="s">&quot;Luis Ricardo&quot;</span><span class="p">,</span> <span class="s">&quot;apellidos&quot;</span><span class="p">:</span><span class="s">&quot;Borriquero&quot;</span><span class="p">])</span>
+</code></pre></div>
+<p>quedando algo como:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+  <span class="nt">&quot;personas&quot;</span> <span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;L33iv1bhzKkFkQd_ff4&quot;</span> <span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;apellidos&quot;</span> <span class="p">:</span> <span class="s2">&quot;Borriquero&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;nombre&quot;</span> <span class="p">:</span> <span class="s2">&quot;Luis Ricardo&quot;</span>
+    <span class="p">},</span>
+    <span class="err">...</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>El algoritmo de generación de ids asegura que no va a haber colisiones entre los identificadores generados por los distintos clientes. Además el <em>id</em> incluye un <em>timestamp</em>, de modo que si ordenamos por <em>id</em> estamos ordenando implícitamente por orden de inserción en la base de datos.</p>
+<p>Finalmente, podemos <strong>borrar datos</strong> con <code>removeValue()</code>. También podríamos hacer <code>setValue(nil)</code>, o poner a <code>nil</code> alguna propiedad en <code>updateChildValues</code>.</p>
+<h2 id="consultas">Consultas<a class="headerlink" href="#consultas" title="Permanent link">&para;</a></h2>
+<p>La <em>realtime Database</em>, como su propio nombre indica, tiene funcionalidades apropiadas para aplicaciones que necesitan datos en tiempo real. En concreto <strong>podemos <em>escuchar</em> los cambios en los datos</strong>. Como luego veremos podemos usar este API también para hacer consultas al estilo más clásico, que simplemente devuelvan el estado actual de la BD.</p>
+<p>Para observar los cambios en los datos de un nodo, incluyendo también todos los nodos que hay "por debajo", podemos usar <code>observe(_,withBlock:)</code>, donde el último parámetro es una clausura a ejecutar cuando se produzca el evento. Por ejemplo:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nv">db</span> <span class="p">=</span> <span class="n">Database</span><span class="p">.</span><span class="n">database</span><span class="p">()</span>
+<span class="kd">let</span> <span class="nv">personasRef</span> <span class="p">=</span> <span class="n">db</span><span class="p">.</span><span class="n">reference</span><span class="p">(</span><span class="n">withPath</span><span class="p">:</span><span class="s">&quot;personas&quot;</span><span class="p">)</span>
+<span class="n">personasRef</span><span class="p">.</span><span class="n">observe</span><span class="p">(.</span><span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">snapshot</span> <span class="k">in</span>
+    <span class="bp">print</span><span class="p">(</span><span class="s">&quot;Algo ha cambiado en </span><span class="si">\(</span><span class="n">snapshot</span><span class="p">.</span><span class="n">value</span><span class="si">)</span><span class="s">&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>El parámetro de la clausura es un objeto de tipo <code>DataSnapshot</code>, que representa un <em>snapshot</em> de un fragmento de datos en un determinado momento.</p>
+<blockquote>
+<p>Hay que llevar cuidado con el nivel en el que estamos escuchando, ya que se detectará cualquier cambio en los niveles que hay por debajo y esto puede ser costoso para los niveles superiores del árbol.</p>
+</blockquote>
+<p>La clausura se llamará una vez con el valor actual de la BD y a partir de ese momento, de nuevo cada vez que se produzca un cambio. Para dejar de "escuchar" los cambios podemos usar <code>removeObserverWithHandle()</code>. A este método hay que pasarle el <em>handle</em> del listener creado por <code>observe</code>. Este <em>handle</em> lo devuelve el método <em>observe</em>, aunque en el ejemplo anterior hemos ignorado el valor. De modo que haríamos algo como:</p>
+<div class="highlight"><pre><span></span><code><span class="p">...</span>
+<span class="c1">//añadimos el &quot;listener&quot; y nos guardamos el handle</span>
+<span class="kd">let</span> <span class="nv">handle</span> <span class="p">=</span> <span class="n">personasRef</span><span class="p">.</span><span class="n">observe</span><span class="p">(.</span><span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="p">...</span>
+<span class="p">}</span>
+<span class="c1">//eliminamos el &quot;listener&quot; anterior usando el handle</span>
+<span class="n">personasRef</span><span class="p">.</span><span class="n">removeObserver</span><span class="p">(</span><span class="n">withHandle</span><span class="p">:</span> <span class="n">handle</span><span class="p">)</span>
+<span class="c1">//también podríamos hacer esto para eliminar todos los listener sobre personasRef</span>
+<span class="n">personasRef</span><span class="p">.</span><span class="n">removeAllObservers</span><span class="p">()</span>
+</code></pre></div>
+<p>Podemos escuchar otros eventos, no solo los cambios de valor. En concreto, podemos saber cuándo ha cambiado algún hijo de un nodo dado (ha sido añadido, modificado o borrado). En ese caso el <em>snapshot</em> solo contendrá el nodo que ha cambiado. Por ejemplo, así podríamos saber si ha sido insertado un nuevo nodo que sea hijo del nodo "personas":</p>
+<div class="highlight"><pre><span></span><code><span class="kc">self</span><span class="p">.</span><span class="n">db</span> <span class="p">=</span> <span class="n">Database</span><span class="p">.</span><span class="n">database</span><span class="p">()</span>
+<span class="kd">let</span> <span class="nv">personasRef</span> <span class="p">=</span> <span class="n">db</span><span class="p">.</span><span class="n">reference</span><span class="p">(</span><span class="n">withPath</span><span class="p">:</span><span class="s">&quot;personas&quot;</span><span class="p">)</span>
+<span class="n">personasRef</span><span class="p">.</span><span class="n">observe</span><span class="p">(.</span><span class="n">childAdded</span><span class="p">)</span> <span class="p">{</span>
+   <span class="n">snapshot</span> <span class="k">in</span>
+   <span class="bp">print</span><span class="p">(</span><span class="s">&quot;</span><span class="si">\(</span><span class="n">snapshot</span><span class="p">.</span><span class="n">key</span><span class="si">)</span><span class="s">=</span><span class="si">\(</span><span class="n">snapshot</span><span class="p">.</span><span class="n">value</span><span class="si">)</span><span class="s">&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>También podemos hacer consultas más clásicas, en las que simplemente queremos conocer el estado actual de la base de datos pero no nos interesan los sucesivos cambios. Podemos hacerlo sustituyendo <code>observe</code> por <code>observeSingleEvent</code>. Por lo demás el código es igual:</p>
+<div class="highlight"><pre><span></span><code><span class="kc">self</span><span class="p">.</span><span class="n">db</span> <span class="p">=</span> <span class="n">Database</span><span class="p">.</span><span class="n">database</span><span class="p">()</span>
+<span class="kd">let</span> <span class="nv">personasRef</span> <span class="p">=</span> <span class="n">db</span><span class="p">.</span><span class="n">reference</span><span class="p">(</span><span class="n">withPath</span><span class="p">:</span><span class="s">&quot;personas&quot;</span><span class="p">)</span>
+<span class="n">personasRef</span><span class="p">.</span><span class="n">observeSingleEvent</span><span class="p">(.</span><span class="n">childAdded</span><span class="p">)</span> <span class="p">{</span>
+   <span class="n">snapshot</span> <span class="k">in</span>
+   <span class="bp">print</span><span class="p">(</span><span class="s">&quot;</span><span class="si">\(</span><span class="n">snapshot</span><span class="p">.</span><span class="n">key</span><span class="si">)</span><span class="s">=</span><span class="si">\(</span><span class="n">snapshot</span><span class="p">.</span><span class="n">value</span><span class="si">)</span><span class="s">&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs
+          </a>
+        
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copiar al portapapeles", "clipboard.copied": "Copiado al portapapeles", "search.config.lang": "es", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "B\u00fasqueda", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.term.missing": "Falta", "select.version.title": "Seleccionar versi\u00f3n"}, "search": "../../assets/javascripts/workers/search.e99e714c.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.bc35569b.min.js"></script>
+      
+    
+  </body>
+</html>

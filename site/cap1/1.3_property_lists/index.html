@@ -1,0 +1,569 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.3.2">
+    
+    
+      
+        <title>Property lists - PDDM-iOS</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.24c991ad.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f5d1f46.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#009485">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#el-formato-de-las-property-lists" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="PDDM-iOS" class="md-header__button md-logo" aria-label="PDDM-iOS" data-md-component="logo">
+      
+  <img src="../../logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PDDM-iOS
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Property lists
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Limpiar" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="PDDM-iOS" class="md-nav__button md-logo" aria-label="PDDM-iOS" data-md-component="logo">
+      
+  <img src="../../logo.png" alt="logo">
+
+    </a>
+    PDDM-iOS
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1">
+          Persistencia básica
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Persistencia básica" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          Persistencia básica
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1.0_introduccion/" class="md-nav__link">
+        Introducción
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1.1_sistema_de_archivos/" class="md-nav__link">
+        Sistema de archivos
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1.2_serializacion/" class="md-nav__link">
+        Serialización
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Property lists
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Property lists
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#el-formato-de-las-property-lists" class="md-nav__link">
+    El formato de las property lists
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#leer-una-property-list" class="md-nav__link">
+    Leer una property list
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#guardar-una-property-list" class="md-nav__link">
+    Guardar una property list
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ejercicio-de-la-seccion-05-puntos" class="md-nav__link">
+    Ejercicio de la sección (0.5 puntos)
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1.4_preferencias/" class="md-nav__link">
+        Preferencias
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#el-formato-de-las-property-lists" class="md-nav__link">
+    El formato de las property lists
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#leer-una-property-list" class="md-nav__link">
+    Leer una property list
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#guardar-una-property-list" class="md-nav__link">
+    Guardar una property list
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ejercicio-de-la-seccion-05-puntos" class="md-nav__link">
+    Ejercicio de la sección (0.5 puntos)
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  <h1>Property lists</h1>
+                
+                <div class="admonition info">
+<p class="admonition-title">Ejercicio</p>
+<p>Al final de esta sección hay un ejercicio puntuado con <strong>0.5 puntos</strong> del total de <strong>1.5 puntos</strong> de todos los ejercicios de hoy.</p>
+</div>
+<p>Las <em>property list</em> son estructuras de datos tipo pares de clave-valor ampliamente utilizadas en iOS para almacenar datos de configuración. </p>
+<p>Las <em>property list</em> tienen dos limitaciones prácticas fundamentales:</p>
+<ul>
+<li>No se puede almacenar cualquier tipo de datos, solo algunos: <code>String</code>, valores numéricos, <code>Data</code>, <code>Date</code> o <code>Boolean</code>. Y como colecciones de datos <code>Array</code> y <code>Dictionary</code>.</li>
+<li>No son modificables, es decir, no tenemos un API para cambiar un único dato en el archivo. Hay que serializar de nuevo toda la estructura y generar el archivo partiendo de cero. Por ello no son adecuadas para almacenar grandes cantidades de datos.</li>
+</ul>
+<h2 id="el-formato-de-las-property-lists">El formato de las <em>property lists</em><a class="headerlink" href="#el-formato-de-las-property-lists" title="Permanent link">&para;</a></h2>
+<p>Las <em>property lists</em> se pueden almacenar en archivos en modo texto o binario. En los ejemplos usaremos sobre todo el modo texto. En este modo se usa el formato XML, aquí tenemos un ejemplo:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="cp">&lt;!DOCTYPE plist PUBLIC &quot;-//Apple//DTD PLIST 1.0//EN&quot; &quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;</span>
+<span class="nt">&lt;plist</span> <span class="na">version=</span><span class="s">&quot;1.0&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;dict&gt;</span>
+    <span class="nt">&lt;key&gt;</span>colorFondo<span class="nt">&lt;/key&gt;</span>
+    <span class="nt">&lt;array&gt;</span>
+        <span class="nt">&lt;integer&gt;</span>255<span class="nt">&lt;/integer&gt;</span>
+        <span class="nt">&lt;integer&gt;</span>255<span class="nt">&lt;/integer&gt;</span>
+        <span class="nt">&lt;integer&gt;</span>0<span class="nt">&lt;/integer&gt;</span>
+    <span class="nt">&lt;/array&gt;</span>
+    <span class="nt">&lt;key&gt;</span>fuente<span class="nt">&lt;/key&gt;</span>
+    <span class="nt">&lt;string&gt;</span>System<span class="nt">&lt;/string&gt;</span>
+<span class="nt">&lt;/dict&gt;</span>
+<span class="nt">&lt;/plist&gt;</span>
+</code></pre></div>
+<p>La <em>raíz</em> de la estructura de datos puede ser un diccionario, como en nuestro caso, o un array.</p>
+<p>Xcode incluye un editor de <em>property lists</em> con el que podemos editar los datos de forma "asistida" sin tener que tocar directamente el XML. Creamos una nueva lista con <code>File &gt; New</code> y entre las plantillas elegimos evidentemente <code>Property list</code>. La extensión típica para estos archivos es <code>.plist</code>. Lo primero que hacemos es elegir qué va a ser la <em>raíz</em> (array o diccionario) y luego vamos creando "nodos". Para cada uno tecleamos un nombre, elegimos el tipo y tecleamos el valor.</p>
+<p><img alt="" src="../img/nodos_plist.gif" /></p>
+<p>En el caso de los arrays añadimos valores "desplegando" el nodo (con la flechita que aparece a la izquierda, y pulsando sobre el botón del <code>+</code>)</p>
+<p><img alt="" src="../img/array_plist.gif" /></p>
+<blockquote>
+<p>Podemos también editar el XML en modo texto pulsando con botón derecho sobre el archivo y eligiendo en el menú contextual "Open as &gt; Source Code"</p>
+</blockquote>
+<h2 id="leer-una-property-list">Leer una property list<a class="headerlink" href="#leer-una-property-list" title="Permanent link">&para;</a></h2>
+<p>Leer una <em>property list</em> de un archivo es muy sencillo usando el <em>encoding/decoding</em> de Swift. En el <em>framework</em> Foundation se define un <code>PropertyListDecoder</code> que sirve para deserializar estos archivos.</p>
+<p>Por ejemplo supongamos una <code>plist</code> cuya raíz es un diccionario y con dos propiedades, <code>nombre</code> de tipo <code>String</code> y <code>puntuacion</code> de tipo entero. Una vez deserializados, podemos almacenar los datos en un <code>struct</code> de Swift como este</p>
+<div class="highlight"><pre><span></span><code><span class="kd">struct</span> <span class="nc">Props</span> <span class="p">:</span> <span class="n">Codable</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nv">nombre</span> <span class="p">:</span> <span class="nb">String</span>
+    <span class="kd">var</span> <span class="nv">puntuacion</span> <span class="p">:</span> <span class="nb">Int</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Cuando se crea una <code>plist</code> con Xcode se añade al <em>bundle</em> de la aplicación. Suponiendo que está en dicho <em>bundle</em> podríamos leerla con el siguiente código, que como se ve es muy sencillo gracias a <code>Codable</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="kd">let</span> <span class="nv">plistURL</span> <span class="p">=</span> <span class="n">Bundle</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">url</span><span class="p">(</span><span class="n">forResource</span><span class="p">:</span><span class="s">&quot;mi_plist&quot;</span><span class="p">,</span> 
+                                  <span class="n">withExtension</span><span class="p">:</span><span class="s">&quot;plist&quot;</span><span class="p">)</span> <span class="p">{</span>
+   <span class="kd">let</span> <span class="nv">data</span> <span class="p">=</span> <span class="k">try</span> <span class="n">Data</span><span class="p">(</span><span class="n">contentsOf</span><span class="p">:</span> <span class="n">plistURL</span><span class="p">)</span>
+   <span class="kd">let</span> <span class="nv">decoder</span> <span class="p">=</span> <span class="n">PropertyListDecoder</span><span class="p">()</span>
+   <span class="kd">let</span> <span class="nv">misProps</span> <span class="p">=</span> <span class="k">try</span> <span class="n">decoder</span><span class="p">.</span><span class="n">decode</span><span class="p">(</span><span class="n">Props</span><span class="p">.</span><span class="kc">self</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="n">data</span><span class="p">)</span>
+   <span class="bp">print</span><span class="p">(</span><span class="n">misProps</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+<blockquote>
+<p>En versiones anteriores de Swift la forma de leer/guardar <em>property list</em> era distinta, algo más engorrosa (aunque tampoco excesivamente complicada). Podéis consultar un ejemplo comparando el método antiguo y el nuevo <a href="https://useyourloaf.com/blog/using-swift-codable-with-property-lists/">en este blog</a>.</p>
+</blockquote>
+<h2 id="guardar-una-property-list">Guardar una <em>property list</em><a class="headerlink" href="#guardar-una-property-list" title="Permanent link">&para;</a></h2>
+<p>Veamos cómo haríamos el paso inverso: almacenar en un archivo una estructura de datos compatible con una <em>property list</em>. </p>
+<blockquote>
+<p>Recordemos que el <em>bundle</em> de la aplicación es solo de lectura, por lo que un .plist almacenado en esta localización no será modificable. Si necesitáramos modificar el .plist del <em>bundle</em> la estrategia habitual es que cuando arranque la aplicación se realice una copia en otro directorio con permisos de escritura, típicamente <code>Documents</code>, y que a partir de entonces se trabaje con esa copia.</p>
+</blockquote>
+<p>Suponiendo que tenemos definido el mismo <code>struct Props</code> del ejemplo anterior, haríamos uso de un <code>PropertyListEncoder</code> como sigue:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span> <span class="nv">urlDocs</span> <span class="p">=</span> <span class="n">FileManager</span><span class="p">.</span><span class="k">default</span><span class="p">.</span><span class="n">urls</span><span class="p">(</span><span class="k">for</span><span class="p">:.</span><span class="n">documentDirectory</span><span class="p">,</span>
+                                       <span class="k">in</span><span class="p">:.</span><span class="n">userDomainMask</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="kd">let</span> <span class="nv">urlPlist</span> <span class="p">=</span> <span class="n">urlDocs</span><span class="p">.</span><span class="n">appendingPathComponent</span><span class="p">(</span><span class="s">&quot;result.plist&quot;</span><span class="p">)</span>
+<span class="kd">let</span> <span class="nv">encoder</span> <span class="p">=</span> <span class="n">PropertyListEncoder</span><span class="p">()</span>
+<span class="n">encoder</span><span class="p">.</span><span class="n">outputFormat</span> <span class="p">=</span> <span class="p">.</span><span class="n">xml</span>
+<span class="kd">let</span> <span class="nv">misProps</span> <span class="p">=</span> <span class="n">Props</span><span class="p">(</span><span class="n">nombre</span><span class="p">:</span><span class="s">&quot;John&quot;</span><span class="p">,</span> <span class="n">puntuacion</span><span class="p">:</span><span class="mi">100</span><span class="p">)</span>
+<span class="kd">let</span> <span class="nv">data</span> <span class="p">=</span> <span class="k">try</span> <span class="n">encoder</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="n">misProps</span><span class="p">)</span>
+<span class="k">try</span> <span class="n">data</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">to</span><span class="p">:</span> <span class="n">urlPlist</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="ejercicio-de-la-seccion-05-puntos">Ejercicio de la sección (0.5 puntos)<a class="headerlink" href="#ejercicio-de-la-seccion-05-puntos" title="Permanent link">&para;</a></h2>
+<p>Tomando como base los ejemplos de código de la sección, define una estructura de datos propia y guárdala en un fichero .plist. Luego con la aplicación SimSim comprueba que se ha guardado correctamente. Paso a paso:</p>
+<ol>
+<li>Crea un <code>struct</code> Swift llamado <code>Alumno</code> que sea conforme al protocolo <code>Codable</code> y que tenga dos campos:
+   - un String llamado <code>nombre</code>
+   - un array de <code>Float</code> con las <code>notas</code></li>
+<li>Crea dos alumnos y añádelos a un array
+<div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nv">a1</span> <span class="p">=</span> <span class="n">Alumno</span><span class="p">(</span><span class="n">nombre</span><span class="p">:</span> <span class="s">&quot;Pepe&quot;</span><span class="p">,</span> <span class="n">notas</span><span class="p">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mf">8.5</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
+<span class="kd">let</span> <span class="nv">a2</span> <span class="p">=</span> <span class="n">Alumno</span><span class="p">(</span><span class="n">nombre</span><span class="p">:</span> <span class="s">&quot;Eva&quot;</span><span class="p">,</span> <span class="n">notas</span><span class="p">:</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">9</span><span class="p">])</span>
+<span class="kd">let</span> <span class="nv">alumnos</span> <span class="p">=</span> <span class="p">[</span><span class="n">a1</span><span class="p">,</span><span class="n">a2</span><span class="p">]</span>
+</code></pre></div></li>
+<li>Basándote en el último ejemplo de código de esta sección, haz que se guarde el array <code>alumnos</code> en un fichero de tipo <code>.plist</code> llamado <code>alumnos.plist</code>. Puedes incluir el código en el <code>viewDidLoad</code> del <code>ViewController</code> para que se ejecute al cargar el <em>controller</em> de la <em>app</em>.</li>
+<li>Comprueba mediante la aplicación SimSim que se ha creado el archivo dentro del <code>Documents</code> del <em>sandbox</em> de la <em>app</em>. Abre el archivo con algún editor de texto y comprueba su contenido. Incluye el archivo en las respuestas de los ejercicios.</li>
+</ol>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Pie">
+      
+        
+        <a href="../1.2_serializacion/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Serialización" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              Serialización
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../1.4_preferencias/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Preferencias" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Siguiente
+              </span>
+              Preferencias
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs
+          </a>
+        
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copiar al portapapeles", "clipboard.copied": "Copiado al portapapeles", "search.config.lang": "es", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "B\u00fasqueda", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.term.missing": "Falta", "select.version.title": "Seleccionar versi\u00f3n"}, "search": "../../assets/javascripts/workers/search.e99e714c.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.bc35569b.min.js"></script>
+      
+    
+  </body>
+</html>

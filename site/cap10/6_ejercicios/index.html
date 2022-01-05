@@ -1,0 +1,443 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.3.2">
+    
+    
+      
+        <title>6 ejercicios - PDDM-iOS</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.24c991ad.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f5d1f46.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#009485">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#carpetas-para-los-fuentes" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="PDDM-iOS" class="md-header__button md-logo" aria-label="PDDM-iOS" data-md-component="logo">
+      
+  <img src="../../logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PDDM-iOS
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              6 ejercicios
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Limpiar" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="PDDM-iOS" class="md-nav__button md-logo" aria-label="PDDM-iOS" data-md-component="logo">
+      
+  <img src="../../logo.png" alt="logo">
+
+    </a>
+    PDDM-iOS
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1">
+          Persistencia básica
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Persistencia básica" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          Persistencia básica
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cap1/1.0_introduccion/" class="md-nav__link">
+        Introducción
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cap1/1.1_sistema_de_archivos/" class="md-nav__link">
+        Sistema de archivos
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cap1/1.2_serializacion/" class="md-nav__link">
+        Serialización
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cap1/1.3_property_lists/" class="md-nav__link">
+        Property lists
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cap1/1.4_preferencias/" class="md-nav__link">
+        Preferencias
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#carpetas-para-los-fuentes" class="md-nav__link">
+    Carpetas para los fuentes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ensamblaje-de-vista-modelo-y-viewmodel-1-punto" class="md-nav__link">
+    Ensamblaje de vista, modelo y viewmodel (1 punto)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mostrar-la-descripcion-del-tiempo-2-puntos" class="md-nav__link">
+    Mostrar la descripción del tiempo (2 puntos)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mostrar-el-icono-del-tiempo-2-puntos" class="md-nav__link">
+    Mostrar el icono del tiempo (2 puntos)
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  <h1>6 ejercicios</h1>
+                
+                <p>Tenemos la aplicación para consultar el tiempo que ya usamos en el módulo de <em>tecnologías de desarrollo</em> y queremos cambiarla para que en lugar de usar MVC use MVVM.</p>
+<blockquote>
+<p>IMPORTANTE: <strong>Abre el <code>.xcworkspace</code></strong>, no el <code>.xcodeproj</code> como habitualmente. Tras abrirlo deberías ver dos proyectos: el principal <code>Eltiempo</code> y otro "secundario" <code>Pods</code> con las librerías necesarias. Haz un <code>build</code> del proyecto antes de empezar a trabajar con él, para que se compile la librería Bond y las otras dependencias.</p>
+</blockquote>
+<h3 id="carpetas-para-los-fuentes">Carpetas para los fuentes<a class="headerlink" href="#carpetas-para-los-fuentes" title="Permanent link">&para;</a></h3>
+<p>Lo primero será crear las "carpetas" necesarias para los fuentes (o <em>groups</em> como se llaman en Xcode)</p>
+<ul>
+<li>Crea un <em>group</em> llamado <code>Vista</code> (<code>File &gt; New group...</code>) y mueve a él la clase <code>ViewController</code>, ya que en MVVM el <code>ViewController</code> es parte de la vista.</li>
+<li>Crear otro <em>group</em> llamado <code>ViewModel</code> y en él crear un archivo <code>TiempoViewModel</code> con una clase del mismo nombre vacía por el momento</li>
+</ul>
+<h3 id="ensamblaje-de-vista-modelo-y-viewmodel-1-punto">Ensamblaje de vista, modelo y viewmodel (1 punto)<a class="headerlink" href="#ensamblaje-de-vista-modelo-y-viewmodel-1-punto" title="Permanent link">&para;</a></h3>
+<p>En la clase de la vista (el <code>ViewController</code>) añadir una propiedad que represente al viewmodel</p>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nv">viewModel</span> <span class="p">=</span> <span class="n">TiempoViewModel</span><span class="p">()</span>
+</code></pre></div>
+<p>En el <code>TiempoViewModel</code> añadir una propiedad que represente al modelo</p>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nv">modelo</span> <span class="p">=</span> <span class="n">TiempoModelo</span><span class="p">()</span>
+</code></pre></div>
+<h3 id="mostrar-la-descripcion-del-tiempo-2-puntos">Mostrar la descripción del tiempo (2 puntos)<a class="headerlink" href="#mostrar-la-descripcion-del-tiempo-2-puntos" title="Permanent link">&para;</a></h3>
+<p>En este apartado conseguiremos que al pulsar en el botón "consultar tiempo" la descripción en modo texto (p.ej. "sol") aparezca en la pantalla del dispositivo.</p>
+<p>En el <code>TiempoViewModel</code></p>
+<ul>
+<li>Añade un <code>import Bond</code></li>
+<li>Crear un <code>observable</code> de tipo <code>String</code> llamado <code>estado</code>, con valor inicial la cadena vacía (mira la sintaxis en transparencias/apuntes)</li>
+<li>Crea un método <code>consultarTiempo</code> que admita como parámetro un <code>String</code> con el nombre de la localidad a consultar</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kd">func</span> <span class="nf">consultarTiempo</span><span class="p">(</span><span class="n">de</span> <span class="n">localidad</span> <span class="p">:</span> <span class="nb">String</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">//AQUI</span>
+  <span class="mf">1.</span> <span class="n">LLama</span> <span class="n">a</span> <span class="n">consultarTiempo</span> <span class="n">del</span> <span class="n">modelo</span><span class="p">.</span> <span class="n">Pásale</span> <span class="n">la</span> <span class="n">localidad</span> <span class="n">y</span> <span class="n">como</span> <span class="n">segundo</span> <span class="n">parámetro</span> <span class="n">una</span> <span class="n">clausura</span> <span class="n">a</span> <span class="n">la</span> <span class="n">que</span> <span class="n">el</span> <span class="n">modelo</span> <span class="n">llamará</span> <span class="n">cuando</span> <span class="n">el</span> <span class="n">servidor</span> <span class="n">devuelva</span> <span class="n">el</span> <span class="n">estado</span> <span class="n">del</span> <span class="n">tiempo</span><span class="p">.</span> <span class="n">Esta</span> <span class="n">clausura</span> <span class="n">recibe</span> <span class="n">dos</span> <span class="n">parámetros</span><span class="p">,</span> <span class="n">el</span> <span class="n">estado</span> <span class="n">del</span> <span class="n">tiempo</span> <span class="n">como</span> <span class="n">una</span> <span class="n">cadena</span><span class="p">,</span> <span class="n">y</span> <span class="n">otra</span> <span class="n">cadena</span> <span class="n">con</span> <span class="n">la</span> <span class="n">url</span> <span class="n">del</span> <span class="n">icono</span> <span class="n">que</span> <span class="n">lo</span> <span class="n">representa</span>
+  <span class="mf">2.</span> <span class="n">Dentro</span> <span class="n">de</span> <span class="n">esa</span> <span class="n">clausura</span> <span class="n">actualiza</span> <span class="n">el</span> <span class="n">observable</span> <span class="s">&quot;estado&quot;</span> <span class="n">con</span> <span class="n">el</span> <span class="n">valor</span> <span class="n">del</span> <span class="n">primer</span> <span class="n">parámetro</span><span class="p">,</span> <span class="n">más</span> <span class="n">tarde</span> <span class="n">nos</span> <span class="n">ocuparemos</span> <span class="n">del</span> <span class="n">icono</span> 
+<span class="p">}</span>
+</code></pre></div>
+<p>Ahora en la vista</p>
+<ul>
+<li>en el método consultarTiempoPulsado sustituir la llamada al modelo por</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kc">self</span><span class="p">.</span><span class="n">viewModel</span><span class="p">.</span><span class="n">consultarTiempo</span><span class="p">(</span><span class="n">de</span><span class="p">:</span> <span class="n">loc</span><span class="p">)</span>
+</code></pre></div>
+<ul>
+<li>en el <code>viewDidLoad()</code> vincular la propiedad <code>estado</code> del <code>viewModel</code> al texto de la etiqueta <code>estadoLabel</code></li>
+</ul>
+<h2 id="mostrar-el-icono-del-tiempo-2-puntos">Mostrar el icono del tiempo (2 puntos)<a class="headerlink" href="#mostrar-el-icono-del-tiempo-2-puntos" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Haz lo mismo para el icono del tiempo, solo que será más complicado ya que vinculamos un String con un icono (<code>UIImage</code>)</li>
+<li>Para convertir una String en un icono:</li>
+<li>Filtrar los Strings con <code>filter</code> solo dejando pasar los distintos de la cadena vacía</li>
+<li>Una vez filtrados, usar <code>map</code> para transformar de String-&gt;URL-&gt;Data-&gt;UIImage. En Swift puedes:<ul>
+<li>llamar al inicializador <code>URL(string:)</code>    </li>
+<li>obtener los datos binarios de una URL con <code>Data(contentsOf:)</code></li>
+<li>crear un UIImage a partir de datos binarios con <code>UIIMage(data:)</code></li>
+</ul>
+</li>
+</ul>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs
+          </a>
+        
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copiar al portapapeles", "clipboard.copied": "Copiado al portapapeles", "search.config.lang": "es", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "B\u00fasqueda", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.term.missing": "Falta", "select.version.title": "Seleccionar versi\u00f3n"}, "search": "../../assets/javascripts/workers/search.e99e714c.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.bc35569b.min.js"></script>
+      
+    
+  </body>
+</html>

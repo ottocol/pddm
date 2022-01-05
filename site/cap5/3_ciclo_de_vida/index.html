@@ -1,0 +1,415 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.3.2">
+    
+    
+      
+        <title>3 ciclo de vida - PDDM-iOS</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.24c991ad.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f5d1f46.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#009485">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#notificaciones-del-ciclo-de-vida" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="PDDM-iOS" class="md-header__button md-logo" aria-label="PDDM-iOS" data-md-component="logo">
+      
+  <img src="../../logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PDDM-iOS
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              3 ciclo de vida
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Limpiar" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="PDDM-iOS" class="md-nav__button md-logo" aria-label="PDDM-iOS" data-md-component="logo">
+      
+  <img src="../../logo.png" alt="logo">
+
+    </a>
+    PDDM-iOS
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1">
+          Persistencia básica
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Persistencia básica" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          Persistencia básica
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cap1/1.0_introduccion/" class="md-nav__link">
+        Introducción
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cap1/1.1_sistema_de_archivos/" class="md-nav__link">
+        Sistema de archivos
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cap1/1.2_serializacion/" class="md-nav__link">
+        Serialización
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cap1/1.3_property_lists/" class="md-nav__link">
+        Property lists
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cap1/1.4_preferencias/" class="md-nav__link">
+        Preferencias
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#notificaciones-del-ciclo-de-vida" class="md-nav__link">
+    Notificaciones del ciclo de vida
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  <h1>3 ciclo de vida</h1>
+                
+                <h2 id="notificaciones-del-ciclo-de-vida">Notificaciones del ciclo de vida<a class="headerlink" href="#notificaciones-del-ciclo-de-vida" title="Permanent link">&para;</a></h2>
+<p>Los objetos gestionados van pasando por distintos cambios. Primero son creados u obtenidos de la base de datos con un <em>fetch</em>, luego se modifican sus valores y en algún momento se guardan. En muchos casos nos interesará enterarnos de cuándo se realizan estas operaciones. Por ejemplo saber cuándo se crea un objeto puede ser útil para inicializar valores por defecto, o saber cuándo se modifica un atributo para actualizar la interfaz de usuario.</p>
+<p><strong>Cuando se crea un nuevo objeto gestionado</strong>, Core Data llama a su método <code>awakeFromInsert</code>. El uso típico de este método, como ya hemos comentado, es el de fijar valores por defecto que no se pueden fijar a través de la interfaz gráfica de Xcode, ya que esta solo permite especificar valores constantes. Por ejemplo, vamos a ver cómo haríamos para asignar la fecha actual a un <code>Mensaje</code> al crearlo.</p>
+<p>Para no tocar las clases de entidades generadas por Xcode, y que podría ser necesario borrar y volver a crear, lo hacemos en una extensión propia a la clase <code>Mensaje</code>. El nombre del archivo es arbitrario.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">//Archivo Mensaje+Custom.swift</span>
+<span class="kd">import</span> <span class="nc">Foundation</span>
+<span class="kd">import</span> <span class="nc">CoreData</span>
+
+<span class="kd">extension</span> <span class="nc">Mensaje</span> <span class="p">{</span>
+    <span class="kr">override</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">awakeFromInsert</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">fecha</span> <span class="p">=</span> <span class="n">Date</span><span class="p">()</span> <span class="k">as</span> <span class="bp">NSDate</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<blockquote>
+<p>El <em>cast</em> con <code>as NSDate</code> lo usamos porque al generar las clases para las entidades con Xcode es el tipo que usa por defecto para fechas. Podríamos modificar manualmente el archivo <code>Mensaje+CoreDataProperties.swift</code> y cambiar el <code>NSDate</code> por un <code>Date</code> para ahorrarnos el <em>cast</em>, pero tendríamos que hacer el cambio cada vez que generáramos la clase.</p>
+</blockquote>
+<p>Aunque suele ser menos útil que el anterior, también podemos enterarnos de <strong>cuándo se ha instanciado un objeto a través de un <em>fetch</em></strong> sobreescribiendo el método <code>awakeFromFetch()</code>.</p>
+<p>Core Data propiamente dicho no incorpora ningún mecanismo para saber <strong>cuándo se ha modificado un atributo</strong> de un objeto gestionado, pero no lo necesita, porque iOS ya tiene un mecanismo genérico: el KVO o <em>Key Value Observing</em>. Con este mecanismo podemos detectar cambios en las propiedades de cualquier objeto que herede de <code>NSObject</code>. Además las propiedades a observar deben estar marcadas como <code>dynamic</code> (<a href="https://developer.apple.com/library/content/documentation/Swift/Conceptual/BuildingCocoaApps/InteractingWithObjective-CAPIs.html#//apple_ref/doc/uid/TP40014216-CH4-ID57">explicación en la documentación de Apple</a>. Estos son requerimientos que limita su utilidad para trabajar con objetos genéricos Swift. Como <code>NSManagedObject</code> ya hereda de éste y sus propiedades son <code>dynamic</code>, no tenemos que hacer ningún esfuerzo adicional para usar KVO con objetos gestionados.</p>
+<p>KVO es una implementación del patrón de diseño <em>Observer</em>. Para usar KVO necesitamos un objeto que pueda ser observado (el objeto gestionado) y otro que actúe como observador. El observador está "suscrito" a cambios en una propiedad del objeto observado.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">//decimos que queremos observar al objeto gestionado</span>
+<span class="n">usuario</span><span class="p">.</span><span class="n">addObserver</span><span class="p">(</span><span class="kc">self</span><span class="p">,</span> <span class="n">forKeyPath</span><span class="p">:</span><span class="s">&quot;password&quot;</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="p">.</span><span class="n">new</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span><span class="kc">nil</span><span class="p">)</span>
+</code></pre></div>
+<p>Los parámetros indican lo siguiente:</p>
+<ul>
+<li>El primero es el objeto que va a actuar de observador. En el ejemplo anterior, <code>self</code>, o sea el objeto donde reside este código que se estaba ejecutando. Aunque puede ser cualquiera</li>
+<li>El segundo indica la propiedad que queremos observar</li>
+<li>El tercero es un conjunto de <em>flags</em> que se pueden combinar con <code>|</code> y que indican qué valores quiere recibir el observador. En el ejemplo estamos diciendo que solo queremos conocer el nuevo <code>password</code>, pero ya no sabremos cuál era el antiguo. Si por ejemplo quisiéramos ambos podríamos pasar <code>.old | .new</code></li>
+<li>El último parámetro se usa raras veces. Se recomienda consultar la documentación de Apple.</li>
+</ul>
+<p>El objeto observador debe también heredar de <code>NSObject</code>. Los eventos observables los recibirá como llamadas al método <code>observeValue(forKeyPath:of:change:context:)</code>.</p>
+<ul>
+<li>El primer parámetro es la propiedad que ha cambiado</li>
+<li>El segundo el objeto para el que ha cambiado la propiedad. Estos datos son necesarios porque un mismo observador podría estar observando varios objetos, y varias propiedades de cada uno</li>
+<li>El tercero es el más complejo, y es un diccionario con los valores del cambio. Las claves son constantes que indican el tipo de valor. Por ejemplo, <code>NSKeyValueChangeKey.newKey</code> indica el nuevo valor de la propiedad, y <code>NSKeyValueChangeKey.oldKey</code> indica el antiguo. Los valores que tengamos o no en el diccionario dependerán de lo que habíamos especificado en el parámetro <code>options</code> al suscribirnos.</li>
+</ul>
+<p>Por ejemplo:</p>
+<div class="highlight"><pre><span></span><code><span class="kr">override</span> <span class="kd">func</span> <span class="nf">observeValue</span><span class="p">(</span><span class="n">forKeyPath</span> <span class="n">keyPath</span><span class="p">:</span> <span class="nb">String</span><span class="p">?,</span> <span class="n">of</span> <span class="n">object</span><span class="p">:</span> <span class="nb">Any</span><span class="p">?,</span> <span class="n">change</span><span class="p">:</span> <span class="p">[</span><span class="n">NSKeyValueChangeKey</span> <span class="p">:</span> <span class="nb">Any</span><span class="p">]?,</span> <span class="n">context</span><span class="p">:</span> <span class="n">UnsafeMutableRawPointer</span><span class="p">?)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="n">keyPath</span> <span class="p">==</span> <span class="s">&quot;password&quot;</span> <span class="p">{</span>
+        <span class="kd">let</span> <span class="nv">nuevoPassword</span> <span class="p">=</span> <span class="n">change</span><span class="p">?[.</span><span class="n">newKey</span><span class="p">]</span>
+        <span class="bp">print</span><span class="p">(</span><span class="s">&quot;El nuevo password es </span><span class="si">\(</span><span class="n">nuevoPassword</span><span class="si">)</span><span class="s">&quot;</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Otra posibilidad para observar el ciclo de vida de los objetos gestionados es usar <strong>notificaciones</strong>. Por ejemplo, cada vez que un objeto se inserta, actualiza o borra en un contexto de persistencia, emite una notificación de tipo <code>NSManagedObjectContextObjectsDidChangeNotification</code>. Más sobre esto en <a href="https://cocoacasts.com/how-to-observe-a-managed-object-context/">este tutorial</a>.</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs
+          </a>
+        
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copiar al portapapeles", "clipboard.copied": "Copiado al portapapeles", "search.config.lang": "es", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "B\u00fasqueda", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.term.missing": "Falta", "select.version.title": "Seleccionar versi\u00f3n"}, "search": "../../assets/javascripts/workers/search.e99e714c.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.bc35569b.min.js"></script>
+      
+    
+  </body>
+</html>

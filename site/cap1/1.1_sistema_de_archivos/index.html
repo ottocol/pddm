@@ -1,0 +1,722 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.3.2">
+    
+    
+      
+        <title>Sistema de archivos - PDDM-iOS</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.24c991ad.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f5d1f46.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#009485">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#introduccion" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="PDDM-iOS" class="md-header__button md-logo" aria-label="PDDM-iOS" data-md-component="logo">
+      
+  <img src="../../logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PDDM-iOS
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Sistema de archivos
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Limpiar" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="PDDM-iOS" class="md-nav__button md-logo" aria-label="PDDM-iOS" data-md-component="logo">
+      
+  <img src="../../logo.png" alt="logo">
+
+    </a>
+    PDDM-iOS
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1">
+          Persistencia básica
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Persistencia básica" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          Persistencia básica
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1.0_introduccion/" class="md-nav__link">
+        Introducción
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Sistema de archivos
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Sistema de archivos
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduccion" class="md-nav__link">
+    Introducción
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#el-sistema-de-archivos-de-cada-aplicacion" class="md-nav__link">
+    El sistema de archivos de cada aplicación
+  </a>
+  
+    <nav class="md-nav" aria-label="El sistema de archivos de cada aplicación">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#paths-y-urls" class="md-nav__link">
+    Paths y URLs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#el-bundle-de-la-aplicacion" class="md-nav__link">
+    El bundle de la aplicación
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#los-directorios-tipicos" class="md-nav__link">
+    Los directorios “típicos”
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#el-directorio-temporal" class="md-nav__link">
+    El directorio temporal
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operaciones-con-archivos-y-directorios" class="md-nav__link">
+    Operaciones con archivos y directorios
+  </a>
+  
+    <nav class="md-nav" aria-label="Operaciones con archivos y directorios">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#listar-el-contenido-de-un-directorio" class="md-nav__link">
+    Listar el contenido de un directorio
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#operaciones-con-archivos-y-directorios-copiar-mover-borrar" class="md-nav__link">
+    Operaciones con archivos y directorios: copiar, mover, borrar
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ejercicio-de-la-seccion-025-puntos" class="md-nav__link">
+    Ejercicio de la sección (0.25 puntos)
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1.2_serializacion/" class="md-nav__link">
+        Serialización
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1.3_property_lists/" class="md-nav__link">
+        Property lists
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1.4_preferencias/" class="md-nav__link">
+        Preferencias
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduccion" class="md-nav__link">
+    Introducción
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#el-sistema-de-archivos-de-cada-aplicacion" class="md-nav__link">
+    El sistema de archivos de cada aplicación
+  </a>
+  
+    <nav class="md-nav" aria-label="El sistema de archivos de cada aplicación">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#paths-y-urls" class="md-nav__link">
+    Paths y URLs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#el-bundle-de-la-aplicacion" class="md-nav__link">
+    El bundle de la aplicación
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#los-directorios-tipicos" class="md-nav__link">
+    Los directorios “típicos”
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#el-directorio-temporal" class="md-nav__link">
+    El directorio temporal
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operaciones-con-archivos-y-directorios" class="md-nav__link">
+    Operaciones con archivos y directorios
+  </a>
+  
+    <nav class="md-nav" aria-label="Operaciones con archivos y directorios">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#listar-el-contenido-de-un-directorio" class="md-nav__link">
+    Listar el contenido de un directorio
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#operaciones-con-archivos-y-directorios-copiar-mover-borrar" class="md-nav__link">
+    Operaciones con archivos y directorios: copiar, mover, borrar
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ejercicio-de-la-seccion-025-puntos" class="md-nav__link">
+    Ejercicio de la sección (0.25 puntos)
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  <h1>Sistema de archivos</h1>
+                
+                <div class="admonition info">
+<p class="admonition-title">Ejercicio</p>
+<p>Al final de esta sección hay un "mini-ejercicio" puntuado con <strong>0.25 puntos</strong> del total de <strong>1.5 puntos</strong> de todos los ejercicios de hoy.</p>
+</div>
+<h2 id="introduccion">Introducción<a class="headerlink" href="#introduccion" title="Permanent link">&para;</a></h2>
+<p>En iOS el sistema de archivos del dispositivo no es visible al completo para una aplicación cualquiera por motivos de seguridad. iOS en realidad es un sistema UNIX por lo que el disco tiene la típica estructura de directorios de estos sistemas. No obstante, cada aplicación está contenida en lo que se denomina un <em>sandbox</em>, es decir un conjunto de directorios del que "no puede salirse" y fuera del que no puede acceder a ninguna información del disco. A la inversa otras aplicaciones tampoco pueden acceder al <em>sandbox</em> de nuestra aplicación.</p>
+<p>El <em>sandbox</em> tiene una estructura de directorios estandarizada, donde cada directorio tiene un papel específico reservado en la aplicación. Nuestra aplicación puede crear y modificar libremente archivos y directorios, aunque siempre debería respetar el papel que el sistema le asigna a cada directorio.</p>
+<p>Primero veremos cuál es la estructura “estándar” del <em>sandbox</em> y luego el API para abrir, crear y modificar archivos y directorios.</p>
+<h2 id="el-sistema-de-archivos-de-cada-aplicacion">El sistema de archivos de cada aplicación<a class="headerlink" href="#el-sistema-de-archivos-de-cada-aplicacion" title="Permanent link">&para;</a></h2>
+<p>Cuando se instala una aplicación en un dispositivo iOS el sistema crea una estructura de directorios como la que aparece en la siguiente figura.</p>
+<p><img alt="" src="../img/ios_filesystem.png" /></p>
+<p>Los directorios más importantes son los siguientes:</p>
+<ul>
+<li><em>nombre_de_la_aplicacion</em><code>.app/</code>: aunque por la extensión podría parecer que es un archivo se trata de un directorio, que contiene lo que se denomina el <em>bundle</em> de la aplicación: el ejecutable, los iconos, imágenes, sonidos, etc.</li>
+<li><code>Documents/</code>: es el directorio reservado para el contenido creado por el usuario. Si por ejemplo nuestra aplicación es un editor de textos, aquí es donde deberíamos almacenarlos.</li>
+<li><code>Library/</code>: no suele contener directamente archivos sino solamente dos subdirectorios:<ul>
+<li><code>Caches/</code>: donde almacenamos los datos que se pueden volver a recrear sin problemas si es necesario. Por ejemplo índices de datos de nuestra aplicación que sirvan para hacer las búsquedas más rápidas. Por ello iOS no hace copia de seguridad de este directorio cuando hacemos un <em>backup</em> del dispositivo.</li>
+<li><code>Preferences/</code>: las preferencias de configuración de la aplicación, que posteriormente veremos con más detalle.</li>
+<li><code>Application Support/</code>: contenido generado por la aplicación pero que no ha sido creado directamente por el usuario.</li>
+</ul>
+</li>
+<li><code>tmp/</code>: como puede deducirse está indicado para archivos y directorios temporales, de los que iOS tampoco hará copia de seguridad.</li>
+</ul>
+<h3 id="paths-y-urls">Paths y URLs<a class="headerlink" href="#paths-y-urls" title="Permanent link">&para;</a></h3>
+<p>Antes de poder realizar cualquier operación sobre un archivo o directorio, tenemos primero que <em>localizarlo</em> en el sistema de archivos, es decir, encontrar su <em>path</em> absoluto - desde la raíz del sistema de archivos. Aunque en iOS no podemos “salirnos fuera” del <em>sandbox</em> este paso sigue siendo necesario. </p>
+<p>En iOS podemos dar cualquier trayectoria de un archivo de dos formas distintas: como <em>path</em> local (un <code>String</code>) o  como URLs, que uniformizan el tratamiento de las rutas y nos permite también especificar la localización de recursos remotos. Los nombres de los métodos en ambos casos suelen ser iguales, salvo que los que trabajan con <em>paths</em> generalmente acaban en <code>Path</code> y los que trabajan con URLs en <code>URL</code>.</p>
+<blockquote>
+<p>Apple recomienda usar URLs en lugar de <em>paths</em>, ya que uniformizan el tratamiento de los recursos, sean locales o no.</p>
+</blockquote>
+<p>La clase básica que se usa para interactuar con el sistema de archivos es el <code>FileManager</code>. No es necesario crear una instancia, podemos obtener la instancia por defecto con <code>FileManager.default</code></p>
+<h3 id="el-bundle-de-la-aplicacion">El <em>bundle</em> de la aplicación<a class="headerlink" href="#el-bundle-de-la-aplicacion" title="Permanent link">&para;</a></h3>
+<p>Acceder al directorio con el <em>bundle</em> de la aplicación (el <code>.app</code>) es sencillo:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nv">bundleURL</span> <span class="p">=</span> <span class="n">Bundle</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">bundleURL</span>
+</code></pre></div>
+<p>Ya hemos visto antes este tipo de código cuando accedíamos a imágenes y otros archivos distribuidos junto a la aplicación.</p>
+<p>Con <code>bundlePath</code> en lugar de <code>bundleURL</code> podemos obtener también el <em>path</em> en forma local (sin el <code>file://</code> delante).</p>
+<h3 id="los-directorios-tipicos">Los directorios “típicos”<a class="headerlink" href="#los-directorios-tipicos" title="Permanent link">&para;</a></h3>
+<p>Para obtener la URL de un directorio del <em>sandbox</em> se usa el método <code>urls(for:in:)</code>, de la clase <code>FileManager</code>. Al método le pasamos un par de constantes:</p>
+<ul>
+<li>La clase de directorio que estamos buscando, como un valor enumerado del tipo <code>FileManager.SearchPathDirectory</code> (por ejemplo para <code>Library/</code> el valor es <code>libraryDirectory</code>, para <code>Documents</code> es <code>documentDirectory</code> y para <code>Cache</code>, <code>cachesDirectory</code>). Se puede consultar la <a href="https://developer.apple.com/reference/foundation/filemanager.searchpathdirectory">lista completa</a>, aunque la mayoría de valores solo tienen sentido en OSX.</li>
+<li>El "dominio" o ámbito de la búsqueda, un valor enumerado del tipo <code>FileManager.SearchPathDomainMask</code>. En iOS siempre usaremos el valor <code>userDomainMask</code>, que en OSX indica el directorio del usuario, pero en iOS en realidad se refiere al ámbito de la aplicación actual. </li>
+</ul>
+<p>Por ejemplo, así obtendríamos la URL del directorio <code>Documents</code> de la aplicación actual:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nv">urls</span> <span class="p">=</span> <span class="n">FileManager</span><span class="p">.</span><span class="k">default</span><span class="p">.</span><span class="n">urls</span><span class="p">(</span><span class="k">for</span><span class="p">:.</span><span class="n">documentDirectory</span><span class="p">,</span> <span class="k">in</span><span class="p">:.</span><span class="n">userDomainMask</span><span class="p">)</span>
+<span class="c1">//Nótese que el método devuelve un array de URLs</span>
+<span class="c1">//Casi siempre nos interesa solo la primera</span>
+<span class="k">if</span><span class="p">(</span><span class="n">urls</span><span class="p">.</span><span class="bp">count</span><span class="p">&gt;</span><span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nv">docDir</span> <span class="p">=</span> <span class="n">urls</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="bp">print</span><span class="p">(</span><span class="s">&quot;El directorio &#39;Documents&#39; es </span><span class="si">\(</span><span class="n">docDir</span><span class="si">)</span><span class="s">&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="k">else</span> <span class="p">{</span>
+    <span class="bp">print</span><span class="p">(</span><span class="s">&quot;error al buscar el directorio &#39;Documents&#39;&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Si ejecutamos el código anterior en un dispositivo real nos aparecerá una URL del estilo <code>file:///var/mobile/Containers/Data/Application/id_de_la_aplicacion/Documents</code>.</p>
+<p>En el simulador la URL será similar pero la primera parte de la trayectoria cambia ya que se refiere a donde se está ejecutando la app dentro del simulador, algo como <code>file:///Users/[nombre_usuario]/Library/Developer/CoreSimulator/Devices/[id_del_dispositivo]/data/Containers/Data/Application/[id_de_la_aplicacion]/Documents/</code>. Para complicar un poco más el asunto, el identificador de la app cambiará cada vez que pongamos en marcha el simulador.</p>
+<blockquote>
+<p>En el simulador, el sistema de carpetas y archivos de cada <em>app</em> se guardan en un directorio un poco "perdido" en el disco y difícil de localizar manualmente. Hay aplicaciones que nos permiten encontrarlo más fácilmente para así poder depurar la app viendo su <em>sandbox</em>. Una de estas aplicaciones, de libre distribución es <a href="https://github.com/dsmelov/simsim/blob/master/Release/SimSim_latest.zip?raw=true">SimSim</a>. Recomendamos su uso para poder depurar las aplicaciones viendo cómo se crean los datos. En el ejercicio al final de la sección se describe brevemente su uso.</p>
+</blockquote>
+<h3 id="el-directorio-temporal">El directorio temporal<a class="headerlink" href="#el-directorio-temporal" title="Permanent link">&para;</a></h3>
+<p>Podemos obtener el <em>path</em> del directorio para archivos temporales con la propiedad <code>temporaryDirectory</code> del <em>file manager</em></p>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nv">tmpDir</span> <span class="p">=</span> <span class="n">FileManager</span><span class="p">.</span><span class="k">default</span><span class="p">.</span><span class="n">temporaryDirectory</span>
+<span class="bp">print</span><span class="p">(</span><span class="s">&quot;Dir. archivos temporales: </span><span class="si">\(</span><span class="n">tmpDir</span><span class="si">)</span><span class="s">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="operaciones-con-archivos-y-directorios">Operaciones con archivos y directorios<a class="headerlink" href="#operaciones-con-archivos-y-directorios" title="Permanent link">&para;</a></h2>
+<h3 id="listar-el-contenido-de-un-directorio">Listar el contenido de un directorio<a class="headerlink" href="#listar-el-contenido-de-un-directorio" title="Permanent link">&para;</a></h3>
+<p>Sabiendo la URL de un determinado directorio podemos listar sus contenidos con el método <code>contentsOfDirectory(at:includingPropertiesForKeys:options:)</code></p>
+<p>El siguiente ejemplo toma el directorio donde está el <em>bundle</em> de la aplicación y lista sus contenidos, mostrando para cada elemento la fecha de creación y si es o no un directorio. </p>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nv">urlBundle</span> <span class="p">=</span> <span class="n">Bundle</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">bundleURL</span>
+<span class="kd">let</span> <span class="nv">contenidos</span> <span class="p">=</span> <span class="k">try</span><span class="p">!</span> <span class="n">FileManager</span><span class="p">.</span><span class="k">default</span><span class="p">.</span><span class="n">contentsOfDirectory</span><span class="p">(</span><span class="n">at</span><span class="p">:</span> <span class="n">urlBundle</span><span class="p">,</span> 
+              <span class="n">includingPropertiesForKeys</span><span class="p">:</span> <span class="p">[.</span><span class="n">creationDateKey</span><span class="p">,</span> <span class="p">.</span><span class="n">isDirectoryKey</span><span class="p">],</span> 
+              <span class="n">options</span><span class="p">:</span> <span class="p">.</span><span class="n">skipsHiddenFiles</span><span class="p">)</span>
+<span class="bp">print</span><span class="p">(</span><span class="s">&quot;Hay </span><span class="si">\(</span><span class="n">contenidos</span><span class="p">.</span><span class="bp">count</span><span class="si">)</span><span class="s"> elementos&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">url</span> <span class="k">in</span> <span class="n">contenidos</span> <span class="p">{</span>
+    <span class="bp">print</span><span class="p">(</span><span class="n">url</span><span class="p">.</span><span class="n">lastPathComponent</span><span class="p">,</span> <span class="n">terminator</span><span class="p">:</span><span class="s">&quot;&quot;</span><span class="p">)</span>
+    <span class="kd">let</span> <span class="nv">rv</span> <span class="p">=</span> <span class="k">try</span><span class="p">!</span> <span class="n">url</span><span class="p">.</span><span class="n">resourceValues</span><span class="p">(</span><span class="n">forKeys</span><span class="p">:</span> <span class="p">[.</span><span class="n">creationDateKey</span><span class="p">,</span> <span class="p">.</span><span class="n">isDirectoryKey</span><span class="p">])</span>
+    <span class="bp">print</span><span class="p">(</span><span class="s">&quot; </span><span class="si">\(</span><span class="n">rv</span><span class="p">.</span><span class="n">creationDate</span><span class="p">!</span><span class="si">)</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">terminator</span><span class="p">:</span><span class="s">&quot;&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">rv</span><span class="p">.</span><span class="n">isDirectory</span><span class="p">!</span> <span class="p">{</span>
+        <span class="bp">print</span><span class="p">(</span><span class="s">&quot; (DIR)&quot;</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="k">else</span>  <span class="p">{</span>
+       <span class="bp">print</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<ul>
+<li>El parámetro <code>includingPropertiesForKeys</code> es un array de constantes de la clase <code>URLResourceKey</code> donde especificamos la "meta-información" a obtener para cada item (por ejemplo tamaño, fecha de creación, si es o no un directorio, etc).</li>
+<li><code>options</code> puede ser 0 o bien <code>.skipsHiddenFiles</code>para indicar que no queremos obtener los archivos o directorios ocultos.</li>
+</ul>
+<p>Una vez obtenemos los items con <code>contentsOfDirectory</code>, mostramos sus datos, incluyendo la información obtenida. La "meta-información" sobre el archivo/directorio se obtiene con el método de la clase <code>URL</code> llamado <code>resourceValues</code>. Este nos devuelve un objeto <code>URLResourceValues</code> con propiedades que se corresponden con los datos de la "meta-información"</p>
+<p>Una versión simplificada del listado de directorios nos la da el método <code>contentsOfDirectory(atPath:)</code> que trabaja a partir de un <em>path</em> en forma de <code>String</code> y no permite obtener propiedades de los items, solo nos devuelve array de <code>String</code> con los nombres.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nv">pathBundle</span> <span class="p">=</span> <span class="n">Bundle</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">bundlePath</span>
+<span class="kd">let</span> <span class="nv">contenidos</span> <span class="p">=</span> <span class="k">try</span><span class="p">!</span> <span class="n">FileManager</span><span class="p">.</span><span class="k">default</span><span class="p">.</span><span class="n">contentsOfDirectory</span><span class="p">(</span><span class="n">atPath</span><span class="p">:</span> <span class="n">pathBundle</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">nombre</span> <span class="k">in</span> <span class="n">contenidos</span> <span class="p">{</span>
+    <span class="bp">print</span><span class="p">(</span><span class="n">nombre</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="operaciones-con-archivos-y-directorios-copiar-mover-borrar">Operaciones con archivos y directorios: copiar, mover, borrar<a class="headerlink" href="#operaciones-con-archivos-y-directorios-copiar-mover-borrar" title="Permanent link">&para;</a></h3>
+<p>Básicamente tenemos disponibles estas operaciones a través de métodos del <code>FileManager</code>. Como venimos diciendo, por defecto se recomienda usar <em>URLs</em>. Si usamos <em>paths</em> en su lugar, genralmente el método se llamará igual pero el nombre de los parámetros será lo acabado en <em>Path</em>. En general también se puede operar indistintamente sobre archivos o directorios. Así por ejemplo podemos:</p>
+<ul>
+<li>copiar un item (archivo o directorio) en otro con <code>copyItem(at:to:)</code> o <code>copyItem(atPath:toPath:)</code></li>
+<li>mover un item con <code>moveItem(at:to:)</code> o <code>moveItem(atPath:toPath:)</code></li>
+<li>eliminar un item con <code>removeItem(at:)</code></li>
+</ul>
+<p>Se recomienda consultar la documentación del <a href="https://developer.apple.com/documentation/foundation/filemanager">API de FileManager</a> para más detalles sobre estas y otras operaciones.</p>
+<h2 id="ejercicio-de-la-seccion-025-puntos">Ejercicio de la sección (0.25 puntos)<a class="headerlink" href="#ejercicio-de-la-seccion-025-puntos" title="Permanent link">&para;</a></h2>
+<p>El objetivo del ejercicio es simplemente "echarle un vistazo" al <em>sandbox</em> de una aplicación. Como hemos dicho, en el simulador el <em>sandbox</em> de una <em>app</em> se guarda en un subdirectorio "un poco perdido" dentro del disco del Mac. Para comprobar en fase de desarrollo si la app está guardando bien los datos necesitamos tener acceso a este <em>sandbox</em>. La herramienta <em>SimSim</em> nos permite accceder a él de forma sencilla.</p>
+<ol>
+<li><strong>Bájate el <a href="https://github.com/dsmelov/simsim/blob/master/Release/SimSim_latest.zip?raw=true">.zip con la app</a> SimSim</strong>, descomprímelo y arrástralo a la carpeta de <code>Aplicaciones</code> del Mac</li>
+<li><strong>Ejecuta la aplicación SimSim</strong>. En la barra superior del Mac aparecerá un icono con esta forma <img alt="" src="../img/icono_simsim.png" />. Si lo pulsas verás una lista con las <em>apps</em> móviles que hayas simulado recientemente. Si eliges una de ellas verás un submenú con varias opciones, entre ellas:<ul>
+<li><code>Finder</code> abre una ventana del administrador de archivos en el <em>sandbox</em> de la <em>app</em> simulada</li>
+<li><code>Terminal</code> hace lo mismo pero con una terminal </li>
+</ul>
+</li>
+<li><strong>Abre una ventana del Finder</strong> en alguna <em>app</em> simulada de las que aparezcan en el menú de SimSim (no importa cuál). Comprueba que la estructura de directorios se corresponde con la del <em>sandbox</em> típico de una <em>app</em> iOS. Haz un volcado de pantalla de la ventana del Finder e inclúyelo en la entrega de ejercicios como parter de la respuesta a este ejercicio.</li>
+<li><strong>Crea un nuevo proyecto de Xcode, llamado PruebaArchivos</strong>, en el método <code>viewDidLoad</code> de la clase <code>ViewController</code> añade este código, que escribe un mensaje de texto dentro de un fichero "prueba.txt" en el <code>Documents</code> del <em>sandbox</em>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nv">file</span> <span class="p">=</span> <span class="s">&quot;prueba.txt&quot;</span>  <span class="c1">//nombre del archivo</span>
+<span class="kd">let</span> <span class="nv">text</span> <span class="p">=</span> <span class="s">&quot;hola iOS&quot;</span>    <span class="c1">//texto que escribiremos en él</span>
+
+<span class="c1">//obtenemos la URL del directorio Documents</span>
+<span class="k">if</span> <span class="kd">let</span> <span class="nv">dir</span> <span class="p">=</span> <span class="n">FileManager</span><span class="p">.</span><span class="k">default</span><span class="p">.</span><span class="n">urls</span><span class="p">(</span><span class="k">for</span><span class="p">:</span> <span class="p">.</span><span class="n">documentDirectory</span><span class="p">,</span> <span class="k">in</span><span class="p">:</span> <span class="p">.</span><span class="n">userDomainMask</span><span class="p">).</span><span class="bp">first</span> <span class="p">{</span>
+    <span class="c1">//le añadimos detrás el &quot;/prueba.txt&quot;</span>
+    <span class="kd">let</span> <span class="nv">fileURL</span> <span class="p">=</span> <span class="n">dir</span><span class="p">.</span><span class="n">appendingPathComponent</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+    <span class="c1">//guardamos el String en el archivo</span>
+    <span class="k">try</span><span class="p">!</span> <span class="n">text</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">to</span><span class="p">:</span> <span class="n">fileURL</span><span class="p">,</span> <span class="n">atomically</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="n">encoding</span><span class="p">:</span> <span class="p">.</span><span class="n">utf8</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></li>
+<li><strong>Ejecuta la app pruebaArchivos</strong> y con la aplicación SimSim comprueba visualmente que el archivo "prueba.txt" se ha creado correctamente, ábrelo haciendo doble clic y comprueba su contenido. Haz un volcado de pantalla de la ventana del Finder donde se vea que el archivo existe, e inclúyelo en la entrega de ejercicios como parte de la respuesta a este ejercicio.</li>
+</ol>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Pie">
+      
+        
+        <a href="../1.0_introduccion/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Introducción" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              Introducción
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../1.2_serializacion/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Serialización" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Siguiente
+              </span>
+              Serialización
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs
+          </a>
+        
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copiar al portapapeles", "clipboard.copied": "Copiado al portapapeles", "search.config.lang": "es", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "B\u00fasqueda", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.term.missing": "Falta", "select.version.title": "Seleccionar versi\u00f3n"}, "search": "../../assets/javascripts/workers/search.e99e714c.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.bc35569b.min.js"></script>
+      
+    
+  </body>
+</html>

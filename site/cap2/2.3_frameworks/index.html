@@ -1,0 +1,440 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.3.2">
+    
+    
+      
+        <title>2.3 frameworks - PDDM-iOS</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.24c991ad.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f5d1f46.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#009485">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#frameworks-de-terceros" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="PDDM-iOS" class="md-header__button md-logo" aria-label="PDDM-iOS" data-md-component="logo">
+      
+  <img src="../../logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PDDM-iOS
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              2.3 frameworks
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Limpiar" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="PDDM-iOS" class="md-nav__button md-logo" aria-label="PDDM-iOS" data-md-component="logo">
+      
+  <img src="../../logo.png" alt="logo">
+
+    </a>
+    PDDM-iOS
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1">
+          Persistencia básica
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Persistencia básica" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          Persistencia básica
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cap1/1.0_introduccion/" class="md-nav__link">
+        Introducción
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cap1/1.1_sistema_de_archivos/" class="md-nav__link">
+        Sistema de archivos
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cap1/1.2_serializacion/" class="md-nav__link">
+        Serialización
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cap1/1.3_property_lists/" class="md-nav__link">
+        Property lists
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cap1/1.4_preferencias/" class="md-nav__link">
+        Preferencias
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#frameworks-de-terceros" class="md-nav__link">
+    Frameworks de terceros
+  </a>
+  
+    <nav class="md-nav" aria-label="Frameworks de terceros">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#uso-de-fmdb-en-proyectos-swift" class="md-nav__link">
+    Uso de FMDB en proyectos Swift
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  <h1>2.3 frameworks</h1>
+                
+                <h2 id="frameworks-de-terceros">Frameworks de terceros<a class="headerlink" href="#frameworks-de-terceros" title="Permanent link">&para;</a></h2>
+<p>Ya hemos visto que no hay un API en Swift (ni en Objective-C) para usar SQLite y que tampoco es de esperar que aparezca ninguno, dado el énfasis que Apple hace en Core Data para las tareas de persistencia. No obstante esto no ha impedido que aparezcan librerías de terceros implementando un API para SQLite que sea de más alto nivel y más sencillo de usar en iOS.</p>
+<p>Hay multitud de <em>wrappers</em> de SQLite en Swift. De ellos uno de los más conocidos es <a href="https://github.com/stephencelis/SQLite.swift">SQLite.swift</a>.</p>
+<p>No obstante los <em>frameworks</em> más usados para SQLite siguen siendo Objective-C, el más conocido es probablemente <a href="https://github.com/ccgus/fmdb">FMDB</a>. Vamos a ver una introducción muy básica a este <em>framework</em></p>
+<h3 id="uso-de-fmdb-en-proyectos-swift">Uso de FMDB en proyectos Swift<a class="headerlink" href="#uso-de-fmdb-en-proyectos-swift" title="Permanent link">&para;</a></h3>
+<p>Swift es una librería hecha en Objective-C pero ya sabemos que podemos mezclar Objective-C con Swift en un proyecto.</p>
+<h4 id="instalacion-de-la-libreria">Instalación de la librería<a class="headerlink" href="#instalacion-de-la-libreria" title="Permanent link">&para;</a></h4>
+<p>Aunque la forma recomendada para instalar FMDB en un proyecto es a través del uso de CocoaPods probablemente es más simple importar directamente los fuentes. Para eso nos podemos <a href="https://github.com/ccgus/fmdb/archive/master.zip">bajar directamente el .zip de FMDB</a> de su <a href="https://github.com/ccgus/fmdb">repositorio de Github</a>.</p>
+<p>Una vez descomprimido el .zip vamos al directorio <code>fmdb-master/src/fmdb</code> e importamos todos los archivos de este directorio a nuestro proyecto (menos el <code>.plist</code>, que no es necesario). Al importarlos, Xcode detectará que son archivos en Objective-C y nos preguntará si queremos crear el "bridging header". Le decimos que sí y se creará el fichero vacío <code>&lt;nombre-del-proyecto&gt;-Bridging-Header.h</code>, en el que añadiremos la siguiente línea:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">#import &quot;FMDB.h&quot;</span>
+</code></pre></div>
+<p>A partir de este momento ya podemos usar las clases de FMDB dentro de nuestro código Swift</p>
+<h4 id="el-api-de-fmdb">El API de FMDB<a class="headerlink" href="#el-api-de-fmdb" title="Permanent link">&para;</a></h4>
+<p>Vamos a ver unos cuantos ejemplos de uso de la librería FMDB para que se vea que es bastante más fácil de usar que el API C. La librería tiene varias clases básicas (podéis consultar <em>online</em> la <a href="http://ccgus.github.io/fmdb/html/index.html">referencia del API</a>). De ellas las dos más usadas en un código típico son:</p>
+<ul>
+<li><code>FMDatabase</code>, que es un objeto que representa a la base de datos. Es la clase más importante y con la que se va a interactuar la mayor parte del tiempo. Se usa para abrir/cerrar la conexión y también para ejecutar las consultas.</li>
+<li><code>FMResultSet</code>, que encapsula un conjunto de registros resultado de una consulta de selección. Podemos ir iterando por el conjunto y obtener los campos del registro actual, al igual que con el API C, pero de forma mucho más sencilla: por ejemplo podemos obtener el valor de un campo por nombre, y las llamadas están bastante simplificadas para adaptarse mejor a los casos de uso más típicos.</li>
+</ul>
+<p>Por ejemplo, veamos cómo se abriría una base de datos, se ejecutaría una consulta de selección y se iría iterando por el conjunto de registros resultante</p>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nv">dbPath</span> <span class="p">=</span> <span class="n">Bundle</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">path</span><span class="p">(</span><span class="n">forResource</span><span class="p">:</span> <span class="s">&quot;prueba&quot;</span><span class="p">,</span> <span class="n">ofType</span><span class="p">:</span> <span class="s">&quot;db&quot;</span><span class="p">)</span>
+<span class="k">if</span> <span class="kd">let</span> <span class="nv">db</span> <span class="p">=</span> <span class="n">FMDatabase</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="n">dbPath</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">db</span><span class="p">.</span><span class="n">open</span><span class="p">())</span> <span class="p">{</span>
+        <span class="bp">print</span><span class="p">(</span><span class="s">&quot;Error al abrir la bd: </span><span class="si">\(</span><span class="n">db</span><span class="p">.</span><span class="n">lastErrorMessage</span><span class="si">())</span><span class="s">&quot;</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="kd">let</span> <span class="nv">resultSet</span> <span class="p">=</span> <span class="k">try</span><span class="p">?</span> <span class="n">db</span><span class="p">.</span><span class="n">executeQuery</span><span class="p">(</span><span class="s">&quot;SELECT * FROM Personas&quot;</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">while</span> <span class="p">(</span><span class="n">resultSet</span><span class="p">.</span><span class="n">next</span><span class="p">())</span> <span class="p">{</span>
+               <span class="bp">print</span><span class="p">(</span><span class="n">resultSet</span><span class="p">.</span><span class="n">string</span><span class="p">(</span><span class="n">forColumn</span><span class="p">:</span> <span class="s">&quot;nombre&quot;</span><span class="p">))</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<ul>
+<li>Para inicializar la BD necesitamos el <em>path</em> y usamos el método de clase <code>databaseWithPath</code></li>
+<li>Abrir y cerrar la BD es tan sencillo como llamar a <code>open</code> y <code>close</code>. El método <code>open</code> devuelve un valor <em>booleano</em> que indica si se ha abierto o no correctamente. En caso de error en una operación de BD podemos acceder a más información sobre el mismo con los métodos <code>lastErrorMessage</code> o <code>lastErrorCode</code>.</li>
+</ul>
+<blockquote>
+<p>Cuando se abre una BD que no existe, FMDB la crea automáticamente, se puede cambiar este comportamiento llamando a <code>openWithFlags</code> con los parámetros adecuados, en lugar de a <code>open</code>. También se puede usar una BD en memoria si se le pasa <code>NULL</code> como <em>path</em> a <code>databaseWithPath</code></p>
+</blockquote>
+<ul>
+<li>Las consultas se ejecutan con <code>executeQuery</code> y devuelven una instancia de la clase <code>FMResultSet</code>. Para iterar por el <em>resultset</em> usamos el método <code>next</code>.</li>
+<li>Podemos obtener los campos del registro actual con una serie de métodos <code>XXXForColumn:</code>, donde la parte inicial del nombre es el tipo de datos de la columna (<code>string</code>, <code>int</code>, <code>long</code>, <code>date</code>,…). Obsérvese además que se accede a la columna por nombre y no por posición (aunque también se puede acceder por posición con <code>XXXForColumnIndex:</code>).</li>
+</ul>
+<p>Por supuesto podemos ejecutar consultas con parámetros. El método <code>executeQuery:</code> admite una lista de argumentos con los valores, por ejemplo:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nv">rs</span> <span class="p">=</span> <span class="n">db</span><span class="p">.</span><span class="n">executeQuery</span><span class="p">(</span><span class="s">&quot;SELECT * FROM alumnos</span>
+<span class="s">                       where fecha_nacimiento&lt;?&quot;</span><span class="p">,</span> <span class="n">values</span><span class="p">:[</span><span class="n">fecha_ref</span><span class="p">];</span>
+</code></pre></div>
+<p>Para ejecutar una consulta de actualización se usa <code>executeUpdate:</code> en lugar de <code>executeQuery</code>.</p>
+<p>También podemos usar de forma sencilla parámetros por nombre (algo que en el API C es un poco tedioso). Basta con crear un diccionario con los nombres de los parámetros como claves y los valores deseados</p>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nv">query</span> <span class="p">=</span> <span class="s">&quot;INSERT INTO personas (dni, nombre) VALUES (:dni, :nombre)&quot;</span>
+<span class="kd">let</span> <span class="nv">datos</span> <span class="p">=</span> <span class="p">[</span>
+    <span class="s">&quot;dni&quot;</span> <span class="p">:</span> <span class="s">&quot;1222333K&quot;</span><span class="p">,</span>
+    <span class="s">&quot;nombre&quot;</span><span class="p">:</span> <span class="s">&quot;Pepito&quot;</span>
+<span class="p">]</span>
+<span class="n">db</span><span class="p">.</span><span class="n">executeUpdate</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">withParameterDictionary</span><span class="p">:</span> <span class="n">datos</span><span class="p">)</span>
+</code></pre></div>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs
+          </a>
+        
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copiar al portapapeles", "clipboard.copied": "Copiado al portapapeles", "search.config.lang": "es", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "B\u00fasqueda", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.term.missing": "Falta", "select.version.title": "Seleccionar versi\u00f3n"}, "search": "../../assets/javascripts/workers/search.e99e714c.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.bc35569b.min.js"></script>
+      
+    
+  </body>
+</html>
