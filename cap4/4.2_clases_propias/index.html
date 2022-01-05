@@ -14,7 +14,7 @@
     
     
       
-        <title>4.2 clases propias - PDDM-iOS</title>
+        <title>Modelar las entidades en código Swift - PDDM-iOS</title>
       
     
     
@@ -96,7 +96,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              4.2 clases propias
+              Modelar las entidades en código Swift
             
           </span>
         </div>
@@ -278,6 +278,273 @@
   
 
     
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          ¡Hola Core Data!. Una aplicación de ejemplo
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="¡Hola Core Data!. Una aplicación de ejemplo" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          ¡Hola Core Data!. Una aplicación de ejemplo
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cap3/3.1_intro/" class="md-nav__link">
+        Introducción a Core Data
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cap3/3.2_stack/" class="md-nav__link">
+        Crear el stack de Core Data en iOS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cap3/3.3_entidades/" class="md-nav__link">
+        Ejercicio parte I. almacenar datos
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cap3/3.4_recuperar_datos/" class="md-nav__link">
+        Ejercicio parte II. recuperar los datos
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cap3/apendice_ver_almacenamiento/" class="md-nav__link">
+        Apéndice. Cómo examinar el almacenamiento persistente
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Modelos de datos en Core Data
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Modelos de datos en Core Data" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Modelos de datos en Core Data
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4.1_crear_modelo/" class="md-nav__link">
+        Crear y editar modelos
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Modelar las entidades en código Swift
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Modelar las entidades en código Swift
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#generacion-automatica-de-las-clases" class="md-nav__link">
+    Generación automática de las clases
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generacion-semiautomatica-de-las-clases" class="md-nav__link">
+    Generación "semiautomática" de las clases
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4.3_CRUD/" class="md-nav__link">
+        CRUD en Core Data
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4.4_validaciones/" class="md-nav__link">
+        Validaciones
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4.5_transformables/" class="md-nav__link">
+        Transformables
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4.6_ejercicios/" class="md-nav__link">
+        Ejercicios de modelos de datos
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -328,7 +595,7 @@
               
                 
                 
-                  <h1>4.2 clases propias</h1>
+                  <h1>Modelar las entidades en código Swift</h1>
                 
                 <p>Desde el punto de vista del código Swift las entidades del modelo serán instancias de clases Swift. Así, dada la entidad Usuario con ciertos atributos lo que tendremos en Swift es una clase con el mismo nombre y las correspondientes propiedades.</p>
 <h2 id="generacion-automatica-de-las-clases">Generación automática de las clases<a class="headerlink" href="#generacion-automatica-de-las-clases" title="Permanent link">&para;</a></h2>
@@ -421,6 +688,41 @@
       
         
 <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Pie">
+      
+        
+        <a href="../4.1_crear_modelo/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Crear y editar modelos" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              Crear y editar modelos
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../4.3_CRUD/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: CRUD en Core Data" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Siguiente
+              </span>
+              CRUD en Core Data
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
