@@ -665,7 +665,7 @@
 <span class="c1">//ACLARACION: &quot;miContexto&quot; es el contexto de Core Data </span>
 <span class="c1">//FALTA el código que obtiene &quot;miContexto&quot;, como se ha hecho en ejemplos anteriores</span>
 <span class="c1">//Ejecutamos la &quot;query&quot;</span>
-<span class="kd">let</span> <span class="nv">notas</span> <span class="p">=</span> <span class="k">try</span><span class="p">!</span> <span class="n">miContexto</span><span class="p">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">request</span><span class="p">)</span> <span class="p">{</span>
+<span class="kd">let</span> <span class="nv">notas</span> <span class="p">=</span> <span class="k">try</span><span class="p">!</span> <span class="n">miContexto</span><span class="p">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">request</span><span class="p">)</span> 
 <span class="k">for</span> <span class="n">nota</span> <span class="k">in</span> <span class="n">notas</span> <span class="p">{</span>
    <span class="bp">print</span><span class="p">(</span><span class="n">nota</span><span class="p">.</span><span class="n">texto</span><span class="p">!)</span>
 <span class="p">}</span>
