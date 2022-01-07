@@ -468,8 +468,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#generacion-semiautomatica-de-las-clases" class="md-nav__link">
-    Generación "semiautomática" de las clases
+  <a href="#generacion-manual-de-las-clases" class="md-nav__link">
+    Generación manual de las clases
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generacion-semi-automatica-de-las-clases" class="md-nav__link">
+    Generación "semi-automática" de las clases
   </a>
   
 </li>
@@ -576,8 +583,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#generacion-semiautomatica-de-las-clases" class="md-nav__link">
-    Generación "semiautomática" de las clases
+  <a href="#generacion-manual-de-las-clases" class="md-nav__link">
+    Generación manual de las clases
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generacion-semi-automatica-de-las-clases" class="md-nav__link">
+    Generación "semi-automática" de las clases
   </a>
   
 </li>
@@ -599,26 +613,28 @@
                 
                 <p>Desde el punto de vista del código Swift las entidades del modelo serán instancias de clases Swift. Así, dada la entidad Usuario con ciertos atributos lo que tendremos en Swift es una clase con el mismo nombre y las correspondientes propiedades.</p>
 <h2 id="generacion-automatica-de-las-clases">Generación automática de las clases<a class="headerlink" href="#generacion-automatica-de-las-clases" title="Permanent link">&para;</a></h2>
-<p>Desde Xcode 8 las clases de nuestro modelo de datos se pueden generar automáticamente y de modo transparente para el desarrollador cada vez que guardemos el modelo de datos (el <code>.xcdatamodeld</code>). </p>
+<p>Las clases de nuestro modelo de datos se pueden generar automáticamente y de modo transparente para el desarrollador cada vez que guardemos el modelo de datos (el <code>.xcdatamodeld</code>). </p>
 <p>En el editor del modelo de datos, si seleccionamos una entidad y accedemos a sus atributos en el panel de la derecha, veremos que hay una sección titulada <code>Class</code> que se ocupa del código generado, podemos cambiar:</p>
 <ul>
 <li>El nombre de la clase generada (por defecto el de la entidad)</li>
 <li>El módulo de Swift donde se crea la clase (por defecto pone <code>Global Namespace</code>, lo que significa que no hará falta ningún <code>import</code> para referenciar la clase)</li>
-<li>En <code>codegen</code> por defecto aparece seleccionada la opción  <code>Class definition</code>, que indica que Xcode va a generar por defecto la clase asociada a la entidad. Con "Manual" habría que hacer la generación explícitamente.</li>
+<li>La estrategia de generación de código o <code>codegen</code>. Aquí por defecto aparece seleccionada la opción  <code>Class definition</code>, que indica que Xcode va a generar automáticamente todo el código asociado a la entidad. Con <code>Manual/None</code> habría que generar el código explícitamente. Con <code>Category/Extension</code> parte del código se generará automáticamente y parte de forma manual.</li>
 </ul>
 <p>Las clases se vuelven a generar si ha habido cambios cada vez que guardamos el modelo de datos (<code>File&gt;Save</code> o <code>Cmd-S</code>). No se generan en el directorio del proyecto, de modo que no son visibles directamente, sino en un directorio aparte denominado <code>Derived Data</code>, donde Xcode coloca típicamente el código auxiliar generado por él. Este directorio por defecto está en otro lugar totalmente distinto del proyecto, podemos ver dónde está en la opción <code>File&gt;Project Settings</code>, aunque no es necesario verlo ni recomendable modificar el contenido generado.</p>
 <blockquote>
 <p>Si queremos "echarle un vistazo" al fuente de las clases generadas sin tener que ir a la carpeta podemos usar el "truco" de hacer <code>Cmd-Click</code> sobre el nombre de una clase que tengamos en el código. Xcode abre automáticamente el archivo en el que se define. Esto funciona con las clases de nuestro proyecto, con las autogeneradas y almacenadas en <code>Derived Data</code> e incluso con clases del sistema, como por ejemplo <code>UIViewController</code>.</p>
 </blockquote>
 <p>Cuando una entidad tiene relaciones a uno o a muchos podemos manipular estas relaciones a través de propiedades y métodos de la clase generada. Veremos esto en la sección dedicada a CRUD.</p>
-<h2 id="generacion-semiautomatica-de-las-clases">Generación "semiautomática" de las clases<a class="headerlink" href="#generacion-semiautomatica-de-las-clases" title="Permanent link">&para;</a></h2>
-<blockquote>
-<p>Desde la versión 8 de Xcode el modo "automático" es el activo por defecto. No obstante en algunos casos nos interesará personalizar el código generado por Xcode y para esto no podemos usar la generación automática, ya que Xcode sobreescribiría los cambios hechos manualmente.</p>
-</blockquote>
+<h2 id="generacion-manual-de-las-clases">Generación manual de las clases<a class="headerlink" href="#generacion-manual-de-las-clases" title="Permanent link">&para;</a></h2>
+<p>Desde la versión 8 de Xcode el modo "automático" es el activo por defecto. No obstante en algunos casos nos interesará personalizar el código generado por Xcode añadiendo métodos y/o propiedades, y para esto no podemos usar la generación automática, ya que por un lado el código no es directamente visible en el proyecto y por otro Xcode sobreescribiría los cambios hechos manualmente.</p>
 <p>Xcode tiene un asistente que puede crear las clases que representan a las entidades. Teniendo seleccionada una entidad cualquiera en el  editor del modelo de datos, elegimos la opción <code>Editor &gt; Create NSManagedObject Subclass...</code> en el menú de Xcode. Se activará el asistente, que es bastante sencillo de usar. Solo tenemos que elegir el modelo de datos (si es que tenemos más de uno) y las entidades para las que vamos a generar clases.</p>
-<p>Por cada entidad Xcode generará dos archivos. Uno de ellos es una clase con el mismo nombre que la entidad (aunque el nombre se puede cambiar, en la sección <code>Configuration</code> del editor del modelo de datos). El otro es una extensión de esta clase. En esta extensión se definen las propiedades de la entidad y un conjunto de métodos que nos facilitarán el trabajo con las relaciones entre entidades.</p>
+<p>Por cada entidad Xcode generará dos archivos:</p>
+<ul>
+<li>Una clase con el mismo nombre que la entidad (aunque el nombre se puede cambiar). Esta clase se declara como una subclase de <code>NSManagedObject</code>, que es la que proporciona la funcionalidad básica a las entidades</li>
+<li>Una extensión Swift de esta clase. En ésta se definen las propiedades de la entidad y un conjunto de métodos que nos facilitarán el trabajo con las relaciones entre entidades.</li>
+</ul>
 <blockquote>
-<p>Si tras generar las clases modificamos las entidades tendremos que borrar manualmente las clases generadas y volver a generarlas. Esto se ha solucionado en Xcode 8, como veremos en la siguiente sección.</p>
+<p>IMPORTANTE: En este modo de funcionamiento, Xcode no mantiene automáticamente sincronizado el modelo de datos y el código Swift. Si tras generar las clases modificamos las entidades, tendremos que borrar las clases generadas y volver a generarlas</p>
 </blockquote>
 <p>Vamos a ver un ejemplo del tipo de código que genera Xcode. Si tuviéramos el modelo de datos de la figura</p>
 <p><img alt="" src="../img/graph_datamodel_2.png" /></p>
@@ -673,6 +689,10 @@
 <span class="n">u</span><span class="p">.</span><span class="n">addToMensajes</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
 <span class="k">try</span><span class="p">!</span> <span class="n">miContexto</span><span class="p">.</span><span class="n">save</span><span class="p">()</span> 
 </code></pre></div>
+<h2 id="generacion-semi-automatica-de-las-clases">Generación "semi-automática" de las clases<a class="headerlink" href="#generacion-semi-automatica-de-las-clases" title="Permanent link">&para;</a></h2>
+<p>En este modo se generaría automáticamente solo la extensión Swift donde se definen las propiedades y las relaciones, permitiendo que se mantenga una sincronización automática entre los atributos del modelo de datos y el código Swift. </p>
+<p>Por otro lado la clase "principal" que hereda de <code>NSManagedObject</code> debemos generarla manualmente como en el apartado anterior, lo que nos permite añadir código propio a la clase (por ejemplo métodos de lógica de negocio o métodos auxiliares) sin problemas de que Xcode nos sobreescriba el código.</p>
+<p>Este modo se elige en el editor del modelo de datos yendo a las propiedades de la entidad y seleccionando la opción <code>Category/Extension</code> del desplegable <code>Codegen</code>.</p>
                 
               
               

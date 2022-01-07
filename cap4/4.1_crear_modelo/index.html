@@ -461,13 +461,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#fetch-requests" class="md-nav__link">
-    Fetch requests
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#relaciones" class="md-nav__link">
     Relaciones
   </a>
@@ -477,6 +470,13 @@
         <li class="md-nav__item">
   <a href="#fetched-properties" class="md-nav__link">
     Fetched properties
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fetch-requests" class="md-nav__link">
+    Fetch requests
   </a>
   
 </li>
@@ -604,13 +604,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#fetch-requests" class="md-nav__link">
-    Fetch requests
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#relaciones" class="md-nav__link">
     Relaciones
   </a>
@@ -620,6 +613,13 @@
         <li class="md-nav__item">
   <a href="#fetched-properties" class="md-nav__link">
     Fetched properties
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fetch-requests" class="md-nav__link">
+    Fetch requests
   </a>
   
 </li>
@@ -640,7 +640,8 @@
                   <h1>Crear y editar modelos</h1>
                 
                 <p>El <strong>modelo de datos</strong> sería más o menos el equivalente al esquema entidad/relación en una base de datos relacional. Con la diferencia de que en Core Data tenemos clases Swift y variables miembro en lugar de tablas y claves ajenas. </p>
-<p>Normalmente en una aplicación hay un solo modelo de datos, que se almacena en un archivo <code>.xcdatamodeld</code>. En Xcode, al crear el proyecto con la casilla de "Use Core Data" marcada nos crea un modelo de datos vacío con el mismo nombre del proyecto. Lo más habitual es editar el modelo con el editor gráfico de Xcode, aunque también hay un API Swift para crearlo/manipularlo.</p>
+<p>Normalmente en una aplicación hay un solo modelo de datos, que se almacena en un archivo <code>.xcdatamodeld</code> (aunque no es habitual, nada nos impide crear varios si la aplicación lo necesitara). </p>
+<p>En Xcode, al crear el proyecto con la casilla de "Use Core Data" marcada, el asistente nos crea un modelo de datos vacío con el mismo nombre del proyecto. Lo más habitual es editar el modelo con el editor gráfico de Xcode, aunque también hay un API Swift para crearlo/manipularlo.</p>
 <p>El editor tiene dos modos, el modo "tabla" donde vemos las entidades y atributos como listas de valores, y el modo "gráfico" donde podemos ver un diagrama con las entidades y las relaciones entre ellas. Estos modos se cambian con los dos iconos de la esquina inferior derecha del editor (<em>Editor Style</em>). </p>
 <h2 id="entidades">Entidades<a class="headerlink" href="#entidades" title="Permanent link">&para;</a></h2>
 <p>Las entidades comparten ciertas características con las clases de la POO y otras con las tablas de una base de datos. Por ejemplo pueden ser <em>abstractas</em> y por tanto no directamente instanciables, como las clases de cualquier lenguaje OO.  Por otro lado tienen relaciones con otras entidades (uno-a-uno, uno-a-muchos,...) y se puede especificar qué debe pasar cuando uno de los "lados" de la relación se elimina, como es típico de las bases de datos relacionales.</p>
@@ -664,15 +665,17 @@
 <p>Además del tipo, las propiedades tienen muchas otras características. Podemos verlas en el "Data Model Inspector", haciendo clic sobre el atributo y luego con el atajo (Cmd+Alt+3) o con <em>clic</em> en el tercer icono del panel de la derecha de la pantalla.</p>
 <p>Veamos algunas de ellas:</p>
 <ul>
-<li><code>Transient</code> significa que no queremos que la propiedad sea persistente. Es típico de los valores que son calculados a partir de otros y que podemos volver a calcular fácilmente (por ejemplo el total de un pedido). Aun no siendo persistentes, estas propiedades también pueden participar en operaciones de “deshacer y rehacer” (<em>undo &amp; redo</em>)</li>
-<li><code>Optional</code> es el contrario del típico "not null" de las bases de datos. Si un campo es opcional, puede ser <code>nil</code>. </li>
+<li><code>Transient</code> significa que no queremos que la propiedad sea persistente. Es típico de los valores que son calculados a partir de otros y que podemos volver a calcular fácilmente (por ejemplo el total de un pedido).</li>
+<li><code>Optional</code> es el contrario del típico "not null" de las bases de datos. Si un atributo es opcional, puede ser <code>nil</code>. </li>
+</ul>
+<blockquote>
+<p>Hay que distinguir entre un atributo opcional en una entidad y una variable opcional en Swift. Que un atributo de una entidad sea no opcional significa que <strong>en el momento de guardar el objeto en el almacenamiento persistente éste debe tener un valor no nulo</strong> pero en memoria puede haber un intervalo de tiempo mientras vamos "rellenando" todas las propiedades en que sea <code>nil</code>. Sin embargo una variable Swift no opcional <strong>en ningún momento</strong> puede tener <code>nil</code>.</p>
+</blockquote>
+<ul>
 <li><code>Indexed</code> también es el mismo concepto que en BD. Un atributo indexado estará optimizado para las búsquedas que hagamos sobre él pero ocupará más espacio de almacenamiento.</li>
 <li>Reglas de validación: valor mínimo y máximo (si es numérico), longitud mínima y máxima (si es cadena), <code>Reg Exp</code>, la expresión regular con la que deben encajar los valores del atributo.</li>
 <li>Valor por defecto (<code>default</code>) que se asignará automáticamente si no le damos un valor explícito.</li>
 </ul>
-<h2 id="fetch-requests">Fetch requests<a class="headerlink" href="#fetch-requests" title="Permanent link">&para;</a></h2>
-<p>En el editor podemos crear <em>fetch requests</em> predefinidas. Estas <em>requests</em> son lo que en una base de datos llamaríamos <em>consultas</em> o <em>queries</em>. </p>
-<p>Mantenemos pulsado el botón de <code>Add Entity</code> para que aparezca un menú contextual y en él elegimos la opción <code>Add fetch request</code>. Podemos añadir gráficamente las condiciones deseadas. Veremos la sintaxis de las condiciones cuando tratemos las consultas en Core Data.</p>
 <h2 id="relaciones">Relaciones<a class="headerlink" href="#relaciones" title="Permanent link">&para;</a></h2>
 <p>Las relaciones en Core Data son muy similares al concepto equivalente en BD relacionales: vinculan una entidad con otra u otras, generalmente de otro tipo.</p>
 <p>Cuando creamos una relación usando el estilo de "tabla" en el editor visual, las tres características directamente editables son:</p>
@@ -703,6 +706,9 @@
 <blockquote>
 <p>Cuidado, las <em>fetched properties</em> no son dinámicas, sino <em>lazy</em>, su valor no se recalcula automáticamente cada vez que accedemos a ellas, hay que recalcularlas explícitamente con <code>refreshObject:mergeChanges:</code>.</p>
 </blockquote>
+<h2 id="fetch-requests">Fetch requests<a class="headerlink" href="#fetch-requests" title="Permanent link">&para;</a></h2>
+<p>En el editor podemos crear <em>fetch requests</em> predefinidas. Estas <em>requests</em> son lo que en una base de datos llamaríamos <em>consultas</em> o <em>queries</em>. </p>
+<p>Si mantenemos pulsado el botón de <code>Add Entity</code> unos segundos aparecerá un menú contextual y en él podemos elegir la opción <code>Add fetch request</code>. Podemos añadir gráficamente las condiciones deseadas. Veremos la sintaxis de las condiciones y más detalles sobre este tema en la sesión sobre consultas en Core Data.</p>
                 
               
               

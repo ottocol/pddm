@@ -602,6 +602,19 @@
 <p>Esta sección es un ejercicio a seguir paso a paso que vale <strong>0,5 puntos</strong> de la nota del bloque de iOS</p>
 </div>
 <p>Vamos a añadir una pantalla donde se puedan consultar las notas que tenemos almacenadas. Las listaremos en una <em>table view</em> y por el momento se verán todas, no se podrán filtrar (añadiremos esa posibilidad cuando veamos la sintaxis de las "consultas" o <em>fetch requests</em>).</p>
+<p>Para recuperar todas las instancias de una entidad como un array debemos crear y ejecutar una <em>fetch request</em> sin "predicado" (sin condiciones, como si fuera un <code>SELECT</code> sin <code>WHERE</code>), por ejemplo para listar todas las <code>Nota</code>s haríamos algo como:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">//IMPORTANTE: estamos poniendo los tipos de request y results para que se vea cuáles son</span>
+<span class="c1">//pero el compilador no nos obligará a ponerlos</span>
+<span class="kd">let</span> <span class="nv">request</span> <span class="p">:</span> <span class="bp">NSFetchRequest</span><span class="p">&lt;</span><span class="n">Nota</span><span class="p">&gt;</span> <span class="p">=</span> <span class="n">Nota</span><span class="p">.</span><span class="n">fetchRequest</span><span class="p">()</span>
+<span class="c1">//la línea anterior la podríamos poner también como</span>
+<span class="c1">//let request = NSFetchRequest(entityName:&quot;Nota&quot;)</span>
+<span class="c1">//es probable que lo veáis así en muchos libros/ejemplos de código</span>
+
+<span class="c1">//ejecutamos la query</span>
+<span class="c1">//suponiendo que &quot;miContexto&quot; sea el contexto de persistencia</span>
+<span class="kd">let</span> <span class="nv">results</span> <span class="p">:</span> <span class="p">[</span><span class="n">Nota</span><span class="p">]</span> <span class="p">=</span> <span class="k">try</span><span class="p">!</span> <span class="n">miContexto</span><span class="p">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+</code></pre></div>
+<p>Vamos a hacer esto en nuestra app, aunque necesitaremos enlazar este código con la parte de UI.</p>
 <h2 id="la-interfaz-de-usuario">La interfaz de usuario<a class="headerlink" href="#la-interfaz-de-usuario" title="Permanent link">&para;</a></h2>
 <p>Sigue estos pasos:</p>
 <ul>
@@ -648,13 +661,13 @@
 <span class="p">}</span>
 </code></pre></div>
 <p>Vamos a rellenarlo de código. Para recuperar datos de Core Data se usa un <em>fetch request</em>, que sería algo así como una consulta. para crearlo, inicializamos una instancia pasándole el nombre de la entidad resultado de la consulta. Para ejecutarlo, llamamos al método <code>fetch</code> del contexto. Veamos un ejemplo. <strong>Escribe el siguiente código en el <code>viewWillAppear</code></strong> (Recuerda que debes sacar de algún lado el contexto de Core Data (<code>miContexto</code>)). Este código todavía no mostrará las notas en la tabla pero al menos sí por la consola.</p>
-<div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nv">request</span> <span class="p">:</span> <span class="bp">NSFetchRequest</span><span class="p">&lt;</span><span class="n">Nota</span><span class="p">&gt;</span> <span class="p">=</span> <span class="bp">NSFetchRequest</span><span class="p">(</span><span class="n">entityName</span><span class="p">:</span><span class="s">&quot;Nota&quot;</span><span class="p">)</span>
-<span class="c1">//&quot;miContexto&quot; es el contexto de Core Data </span>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nv">request</span> <span class="p">=</span> <span class="n">Nota</span><span class="p">.</span><span class="n">fetchRequest</span><span class="p">()</span>
+<span class="c1">//ACLARACION: &quot;miContexto&quot; es el contexto de Core Data </span>
 <span class="c1">//FALTA el código que obtiene &quot;miContexto&quot;, como se ha hecho en ejemplos anteriores</span>
-<span class="k">if</span> <span class="kd">let</span> <span class="nv">notas</span> <span class="p">=</span> <span class="k">try</span><span class="p">?</span> <span class="n">miContexto</span><span class="p">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">request</span><span class="p">)</span> <span class="k">as</span><span class="p">!</span> <span class="p">[</span><span class="n">Nota</span><span class="p">]</span> <span class="p">{</span>
-   <span class="k">for</span> <span class="n">nota</span> <span class="k">in</span> <span class="n">notas</span> <span class="p">{</span>
-       <span class="bp">print</span><span class="p">(</span><span class="n">nota</span><span class="p">.</span><span class="n">texto</span><span class="p">)</span>
-   <span class="p">}</span>
+<span class="c1">//Ejecutamos la &quot;query&quot;</span>
+<span class="kd">let</span> <span class="nv">notas</span> <span class="p">=</span> <span class="k">try</span><span class="p">!</span> <span class="n">miContexto</span><span class="p">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">request</span><span class="p">)</span> <span class="p">{</span>
+<span class="k">for</span> <span class="n">nota</span> <span class="k">in</span> <span class="n">notas</span> <span class="p">{</span>
+   <span class="bp">print</span><span class="p">(</span><span class="n">nota</span><span class="p">.</span><span class="n">texto</span><span class="p">!)</span>
 <span class="p">}</span>
 </code></pre></div>
 <p>Nótese que los <em>fetch request</em> usan tipos. Es decir, devuelven un conjunto de elementos de una clase determinada, en nuestro caso <code>Nota</code>.</p>

@@ -715,10 +715,10 @@
 <p>Para <strong>crear un nuevo objeto</strong> necesitamos relacionarlo con el contexto de persistencia. La clase <code>Nota</code> generada por Xcode tendrá un inicializador que acepta como parámetro el contexto:</p>
 <div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nv">nuevaNota</span> <span class="p">=</span> <span class="n">Nota</span><span class="p">(</span><span class="n">context</span><span class="p">:</span><span class="n">miContexto</span><span class="p">)</span>
 <span class="n">nuevaNota</span><span class="p">.</span><span class="n">fecha</span> <span class="p">=</span> <span class="n">Date</span><span class="p">()</span>
-<span class="n">nuevoNota</span><span class="p">.</span><span class="n">texto</span> <span class="p">=</span> <span class="s">&quot;&lt;asignar aquí el contenido del text view&gt;&quot;</span>
+<span class="n">nuevaNota</span><span class="p">.</span><span class="n">texto</span> <span class="p">=</span> <span class="s">&quot;&lt;asignar aquí el contenido del text view&gt;&quot;</span>
 </code></pre></div>
 <blockquote>
-<p>Si Xcode da error con el código anterior y no reconoce la clase <code>Nota</code> puedes probar a recompilar el proyecto con <code>Product &gt; Clean Build Folder</code> y luego <code>Product &gt; Build</code>. A veces se genera el código para <code>Nota</code> pero no se compila o a veces no se ha generado. También ayuda a veces ir al <code>.xcdatamodel</code> y guardarlo: (<code>File &gt; Save</code>)</p>
+<p>Si Xcode da error con el código anterior y no reconoce la clase <code>Nota</code> puedes probar a recompilar el proyecto con <code>Product &gt; Clean Build Folder</code> y luego <code>Product &gt; Build</code>. A veces se genera el código para <code>Nota</code> pero no se compila o a veces no se ha generado. También ayuda a veces ir al <code>.xcdatamodel</code> y guardarlo: (<code>File &gt; Save</code>). Como último recurso puedes salir de Xcode y volver a entrar (<code>Xcode &gt; Quit Xcode</code>).</p>
 </blockquote>
 <p>Finalmente <strong>guardamos el objeto en el almacenamiento persistente</strong>. Esto se hace guardando el contexto, que guardará todos los objetos pendientes. El método <code>save</code> puede lanzar una excepción que debemos tratar de algún modo, en este ejemplo usamos un <code>do...catch</code></p>
 <div class="highlight"><pre><span></span><code><span class="k">do</span> <span class="p">{</span>
