@@ -61,11 +61,11 @@ Recuerda que para que se actualicen los datos visibles debes llamar a `tableView
 
 Una vez comprobado que funciona, **mejora la fetch request para que las notas aparezcan en orden inverso por fecha**, de más reciente a más antigua.
 
-### *Throttling* de las búsquedas (0.25 puntos) 
+### *Throttling* de las búsquedas (0.25 puntos)
 
 Lanzar una nueva *fetch request* por cada carácter tecleado es muy ineficiente, sobre todo si el usuario teclea rápido y ni siquiera da tiempo a ver los resultados intermedios. Una implementación mejor haría *throttling* de la búsqueda, es decir, impediría que se repita la operación si todavía no ha pasado un mínimo de tiempo desde la anterior.
 
-La idea es que si se intenta repetir la operación y todavía no ha pasado un tiempo prefijado por nosotros, la nueva operación se retrase hasta que pase el intervalo de tiempo. Esto no está implementado en los APIs de iOS pero en Internet vpodéis encontrar diversas implementaciones. La siguiente clase, tomada de [este tutorial](https://www.craftappco.com/blog/2018/5/30/simple-throttling-in-swift), implementa esta funcionalidad.
+La idea es que si se intenta repetir la operación y todavía no ha pasado un tiempo prefijado por nosotros, la nueva operación se retrase hasta que pase el intervalo de tiempo. Esto no está implementado en los APIs de iOS pero en Internet podéis encontrar diversas implementaciones. La siguiente clase, tomada de [este tutorial](https://www.craftappco.com/blog/2018/5/30/simple-throttling-in-swift), implementa esta funcionalidad.
 
 ```swift
 import Foundation

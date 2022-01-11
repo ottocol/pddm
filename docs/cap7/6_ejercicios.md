@@ -15,9 +15,9 @@ Recuerda hacer en el *storyboard* que esta clase sea el *controller* de esta pan
 
 ![](img/set_controller.png)
 
-## Listar notas (0.5 puntos)
+## Listar notas (0.25 puntos)
 
-### Listar provisionalmente en la consola 
+### Listar provisionalmente en la consola
 
 Siguiendo el código de los apuntes y las transparencias **usa un *fetched results controller* para mostrar todas las notas en la tabla**. De momento cuando se inserten notas nuevas la lista no se actualizará. Primero simplemente haz que los datos aparezcan en la consola (consulta el apartado ["inicializar el fetched results..."](2_configuracion_basica.html)). 
 
@@ -25,7 +25,7 @@ Siguiendo el código de los apuntes y las transparencias **usa un *fetched resul
 
 Una vez hecho esto, ya puedes listar las notas en la tabla. Consulta la sección [mostrar los datos en la tabla](3_tabla.html). El problema es que cuando insertes una nueva nota esta no se reflejará en la tabla, solo verás las que había al arrancar la *app*.
 
-## Refrescar las notas de la tabla (0.5 puntos)
+## Refrescar las notas de la tabla (0.25 puntos)
 
 Para esto **hay que implementar lo que aparece en la sección ["Refrescar la tabla"](4_refrescar_tabla.html)** de los apuntes. Una vez hecho, comprueba que cuando insertamos una nota nueva en la pantalla de notas se muestra en la lista del *fetched results controller*
  
