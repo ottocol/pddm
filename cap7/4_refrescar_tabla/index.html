@@ -14,7 +14,7 @@
     
     
       
-        <title>4 refrescar tabla - PDDM-iOS</title>
+        <title>Refrescar la tabla - PDDM-iOS</title>
       
     
     
@@ -91,7 +91,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              4 refrescar tabla
+              Refrescar la tabla
             
           </span>
         </div>
@@ -495,6 +495,210 @@
   
 
     
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Búsquedas en Core Data
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Búsquedas en Core Data" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Búsquedas en Core Data
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cap6/1_predicados/" class="md-nav__link">
+        Predicados
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cap6/2_ordenacion/" class="md-nav__link">
+        Ordenación
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cap6/3_ejercicios/" class="md-nav__link">
+        Ejercicios
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          Tablas en Core Data
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Tablas en Core Data" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Tablas en Core Data
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1_el_frc/" class="md-nav__link">
+        El "fetched results controller"
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2_configuracion_basica/" class="md-nav__link">
+        Inicializar el "fetched results controller"
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3_tabla/" class="md-nav__link">
+        Mostrar los datos en la tabla
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Refrescar la tabla
+      </a>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5_secciones/" class="md-nav__link">
+        Secciones de tabla automáticas
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6_ejercicios/" class="md-nav__link">
+        Ejercicios
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -508,7 +712,7 @@
               
                 
                 
-                  <h1>4 refrescar tabla</h1>
+                  <h1>Refrescar la tabla</h1>
                 
                 <p>Tal y como está ahora el código si creamos un nuevo mensaje este no aparece en la tabla. Pero podemos resolverlo de forma sencilla con el <em>fetched results controller</em>, ya que este está “suscrito” a los cambios que se producen en el contexto de persistencia, siempre que afecten a los contenidos en su <em>fetch request</em>. </p>
 <p>El <em>fetched results controller</em> avisará a su vez de estos cambios a su <em>delegate</em>. Para simplificar, haremos que este sea el <em>view controller</em>, aunque podría ser cualquier clase.</p>
@@ -578,6 +782,41 @@
       
         
 <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Pie">
+      
+        
+        <a href="../3_tabla/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Mostrar los datos en la tabla" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              Mostrar los datos en la tabla
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../5_secciones/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Secciones de tabla automáticas" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Siguiente
+              </span>
+              Secciones de tabla automáticas
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">

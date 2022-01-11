@@ -14,7 +14,7 @@
     
     
       
-        <title>5 secciones - PDDM-iOS</title>
+        <title>Secciones de tabla automáticas - PDDM-iOS</title>
       
     
     
@@ -91,7 +91,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              5 secciones
+              Secciones de tabla automáticas
             
           </span>
         </div>
@@ -495,6 +495,210 @@
   
 
     
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Búsquedas en Core Data
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Búsquedas en Core Data" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Búsquedas en Core Data
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cap6/1_predicados/" class="md-nav__link">
+        Predicados
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cap6/2_ordenacion/" class="md-nav__link">
+        Ordenación
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cap6/3_ejercicios/" class="md-nav__link">
+        Ejercicios
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          Tablas en Core Data
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Tablas en Core Data" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Tablas en Core Data
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1_el_frc/" class="md-nav__link">
+        El "fetched results controller"
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2_configuracion_basica/" class="md-nav__link">
+        Inicializar el "fetched results controller"
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3_tabla/" class="md-nav__link">
+        Mostrar los datos en la tabla
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4_refrescar_tabla/" class="md-nav__link">
+        Refrescar la tabla
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Secciones de tabla automáticas
+      </a>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6_ejercicios/" class="md-nav__link">
+        Ejercicios
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -508,7 +712,7 @@
               
                 
                 
-                  <h1>5 secciones</h1>
+                  <h1>Secciones de tabla automáticas</h1>
                 
                 <p>Podemos conseguir generar secciones de modo automático basándonos en alguna propiedad de la entidad sobre la que se hace la <em>fetch request</em>. Tiene que ser la misma propiedad que se usa para ordenar o alguna basada en ella, ya que elementos que siguen el orden del listado no pueden ir alternando de sección (las secciones no se repiten).</p>
 <p>Al crear el <em>fetched results controller</em> especificamos  en el parámetro <code>sectionNameKeyPath</code> la propiedad a usar para generar secciones. Por ejemplo, podríamos agrupar los mensajes por el título de la conversación a la que pertenecen.</p>
@@ -534,6 +738,41 @@
       
         
 <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Pie">
+      
+        
+        <a href="../4_refrescar_tabla/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Refrescar la tabla" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              Refrescar la tabla
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../6_ejercicios/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Ejercicios" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Siguiente
+              </span>
+              Ejercicios
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
