@@ -26,17 +26,17 @@ nav:
   #   - Gestión de usuarios en Firebase: 'cap11/2_gestion_usuarios.md'
   #   - Persistencia en Firebase: 'cap11/3_persistencia.md'
   #   - Ejercicios: 'cap11/4_ejercicios.md'   
-  # - Búsquedas en Core Data: 
-  #   - Predicados: 'cap6/1_predicados.md'
-  #   - Ordenación: 'cap6/2_ordenacion.md'
-  #   - Ejercicios: 'cap6/3_ejercicios.md'
-  # - Tablas en Core Data: 
-  #   - El "fetched results controller": 'cap7/1_el_frc.md'
-  #   - Inicializar el "fetched results controller": 'cap7/2_configuracion_basica.md'
-  #   - Mostrar los datos en la tabla: 'cap7/3_tabla.md'
-  #   - Refrescar la tabla: 'cap7/4_refrescar_tabla.md'
-  #   - Secciones de tabla automáticas: 'cap7/5_secciones.md'
-  #   - Ejercicios: 'cap7/6_ejercicios.md'
+  - Búsquedas en Core Data: 
+    - Predicados: 'cap6/1_predicados.md'
+    - Ordenación: 'cap6/2_ordenacion.md'
+    - Ejercicios: 'cap6/3_ejercicios.md'
+  - Tablas en Core Data: 
+    - El "fetched results controller": 'cap7/1_el_frc.md'
+    - Inicializar el "fetched results controller": 'cap7/2_configuracion_basica.md'
+    - Mostrar los datos en la tabla: 'cap7/3_tabla.md'
+    - Refrescar la tabla: 'cap7/4_refrescar_tabla.md'
+    - Secciones de tabla automáticas: 'cap7/5_secciones.md'
+    - Ejercicios: 'cap7/6_ejercicios.md'
   # - Migraciones de datos: 
   #   - Qué son las migraciones de datos: 'cap8/1_intro.md'
   #   - Versiones del modelo de datos: 'cap8/2_versiones.md'
