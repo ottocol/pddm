@@ -1046,12 +1046,23 @@
 </ul>
 <blockquote>
 <p><strong>Simplificaciones</strong>: en realidad se deberían usar tipos <code>Decimal</code> en los precios para evitar errores de redondeo, pero usaremos <code>Double</code> por simplicidad de uso. Además, el tipo del plato debería ser un enumerado, pero estos no se pueden almacenar directamente en Core Data. Tendríamos que generar manualmente el código de las entidades para poder representar los datos externamente como <em>enums</em> e internamente como otro tipo.</p>
+<p><strong>Consejo:</strong> para ver si el modelo de datos se corresponde con los requerimientos lo más intuitivo es verlo en modo gráfico (<code>Editor Style</code> en el editor del <em>data model</em>) para poder compararlo con la figura del enunciado. No obstante esa figura no muestra si la relación es ordenada o no ni las reglas de borrado, por lo que también habrá que consultar las propiedades de las relaciones.</p>
 </blockquote>
 <h2 id="inicializar-los-datos-025-puntos">Inicializar los datos (0,25 puntos)<a class="headerlink" href="#inicializar-los-datos-025-puntos" title="Permanent link">&para;</a></h2>
 <p>Los datos de los platos del restaurante están en un archivo <code>platos.json</code>.  En el <code>AppDelegate</code> hay una función <code>importPlatos</code> que lee el JSON, lo almacena en un array de <code>structs</code> de tipo <code>DatosPlato</code> con los datos correspondientes, y pone una preferencia de usuario llamada <code>platosImportados</code> a <code>true</code>. El JSON solo se lee si la preferencia está a <code>false</code> (valor por defecto)</p>
 <p><strong>Añade código Swift que copie los datos de los structs a entidades <code>Plato</code> y guarde el contexto de persistencia para hacer efectivos los cambios</strong>. Tendrás que introducir el código en el <code>AppDelegate</code>, donde está el comentario de <code>TODO:</code>. El array de structs de tipo <code>DatosPlato</code> se llama <code>datos</code>. Copia todos sus datos a Core Data. </p>
-<p>Tras esto, con la ayuda de la aplicación <a href="https://github.com/dsmelov/simsim/blob/master/Release/SimSim_latest.zip?raw=true"><code>SimSim</code></a> puedes echarle un vistazo a la base de datos de SQLite creada por Core Data para ver si están los registros. En <code>SimSim</code> selecciona la app <code>Restaurante</code> y luego la opción <code>Finder</code> para abrir la carpeta donde se guardan sus datos en el emulador. La base de datos de SQLite se almacena en <code>Library/Application Support</code>. Luego con la ayuda de algún visor de SQLite puedes ver el contenido de la BD. Si no tienes ninguno instalado puedes usar <a href="https://sqliteonline.com/">https://sqliteonline.com/</a>.</p>
-<p>Para forzar la recarga de los datos también puedes usar también la aplicación <code>SimSim</code> . Tendrás que borrar las preferencias y la base de datos. Las preferencias están en <code>Library/Preferences</code>.</p>
+<p>Tras esto, con la ayuda de la aplicación <a href="https://github.com/dsmelov/simsim/blob/master/Release/SimSim_latest.zip?raw=true"><code>SimSim</code></a> puedes echarle un vistazo a la base de datos de SQLite creada por Core Data para ver si están los registros. En <code>SimSim</code> selecciona la app <code>Restaurante</code> y luego la opción <code>Terminal</code> para abrir una terminal en la carpeta de la <em>app</em> en el emulador. Para ver a base de datos SQLite puedes hacer en esta terminal:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span> <span class="s2">&quot;Library/Application Support&quot;</span>
+sqlite3 Restaurante.sqlite
+<span class="c1">##Debería aparecer el prompt de sqlite -&gt; &quot;sqlite&gt;&quot;</span>
+<span class="c1">##Con esta orden puedes ver la estructura de la BD</span>
+.schema
+<span class="c1">##Las tablas tendrán el mismo nombre que las entidades de Core Data con una &quot;Z&quot; delante</span>
+<span class="c1">##Por tanto puedes ver los platos con</span>
+<span class="k">select</span> * from ZPLATO<span class="p">;</span>
+<span class="c1">##Puedes salir de sqlite con Ctrl-Z, o cerrar la terminal, ya no te hace falta </span>
+</code></pre></div>
+<p>Si hay algún error, para forzar la recarga de los datos puedes usar también la aplicación <code>SimSim</code> . Tendrás que borrar las preferencias y la base de datos. Puedes borrarlo todo automáticamente con la opción <code>Reset Application Data</code>. Si quieres borrarlo a mano, las preferencias están en <code>Library/Preferences</code> y recuerda que la BD está en <code>Library/Application Support</code>.</p>
 <p>A partir de ahora implementaremos las funcionalidades de la <em>app</em>. La mayor parte de la interfaz ya está creada (salvo la última pantalla), tú tienes que implementar las funcionalidades relacionadas con Core Data.</p>
 <h2 id="funcionalidad-la-carta-075-puntos">Funcionalidad: La Carta (0,75 puntos)<a class="headerlink" href="#funcionalidad-la-carta-075-puntos" title="Permanent link">&para;</a></h2>
 <p>Esta parte de la <em>app</em> es la que muestra los platos y nos permite añadirlos al pedido.</p>
