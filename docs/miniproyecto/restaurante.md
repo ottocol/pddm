@@ -43,15 +43,29 @@ Cada entidad debe tener las siguientes propiedades y relaciones
 
 > **Simplificaciones**: en realidad se deberían usar tipos `Decimal` en los precios para evitar errores de redondeo, pero usaremos `Double` por simplicidad de uso. Además, el tipo del plato debería ser un enumerado, pero estos no se pueden almacenar directamente en Core Data. Tendríamos que generar manualmente el código de las entidades para poder representar los datos externamente como *enums* e internamente como otro tipo.
 
+> **Consejo:** para ver si el modelo de datos se corresponde con los requerimientos lo más intuitivo es verlo en modo gráfico (`Editor Style` en el editor del *data model*) para poder compararlo con la figura del enunciado. No obstante esa figura no muestra si la relación es ordenada o no ni las reglas de borrado, por lo que también habrá que consultar las propiedades de las relaciones.
+
 ## Inicializar los datos (0,25 puntos)
 
 Los datos de los platos del restaurante están en un archivo `platos.json`.  En el `AppDelegate` hay una función `importPlatos` que lee el JSON, lo almacena en un array de `structs` de tipo `DatosPlato` con los datos correspondientes, y pone una preferencia de usuario llamada `platosImportados` a `true`. El JSON solo se lee si la preferencia está a `false` (valor por defecto)
 
 **Añade código Swift que copie los datos de los structs a entidades `Plato` y guarde el contexto de persistencia para hacer efectivos los cambios**. Tendrás que introducir el código en el `AppDelegate`, donde está el comentario de `TODO:`. El array de structs de tipo `DatosPlato` se llama `datos`. Copia todos sus datos a Core Data. 
 
-Tras esto, con la ayuda de la aplicación [`SimSim`](https://github.com/dsmelov/simsim/blob/master/Release/SimSim_latest.zip?raw=true) puedes echarle un vistazo a la base de datos de SQLite creada por Core Data para ver si están los registros. En `SimSim` selecciona la app `Restaurante` y luego la opción `Finder` para abrir la carpeta donde se guardan sus datos en el emulador. La base de datos de SQLite se almacena en `Library/Application Support`. Luego con la ayuda de algún visor de SQLite puedes ver el contenido de la BD. Si no tienes ninguno instalado puedes usar [https://sqliteonline.com/](https://sqliteonline.com/).
+Tras esto, con la ayuda de la aplicación [`SimSim`](https://github.com/dsmelov/simsim/blob/master/Release/SimSim_latest.zip?raw=true) puedes echarle un vistazo a la base de datos de SQLite creada por Core Data para ver si están los registros. En `SimSim` selecciona la app `Restaurante` y luego la opción `Terminal` para abrir una terminal en la carpeta de la *app* en el emulador. Para ver a base de datos SQLite puedes hacer en esta terminal:
 
-Para forzar la recarga de los datos también puedes usar también la aplicación `SimSim` . Tendrás que borrar las preferencias y la base de datos. Las preferencias están en `Library/Preferences`.
+```bash
+cd "Library/Application Support"
+sqlite3 Restaurante.sqlite
+##Debería aparecer el prompt de sqlite -> "sqlite>"
+##Con esta orden puedes ver la estructura de la BD
+.schema
+##Las tablas tendrán el mismo nombre que las entidades de Core Data con una "Z" delante
+##Por tanto puedes ver los platos con
+select * from ZPLATO;
+##Puedes salir de sqlite con Ctrl-Z, o cerrar la terminal, ya no te hace falta 
+```
+
+Si hay algún error, para forzar la recarga de los datos puedes usar también la aplicación `SimSim` . Tendrás que borrar las preferencias y la base de datos. Puedes borrarlo todo automáticamente con la opción `Reset Application Data`. Si quieres borrarlo a mano, las preferencias están en `Library/Preferences` y recuerda que la BD está en `Library/Application Support`.
 
 
 A partir de ahora implementaremos las funcionalidades de la *app*. La mayor parte de la interfaz ya está creada (salvo la última pantalla), tú tienes que implementar las funcionalidades relacionadas con Core Data.
