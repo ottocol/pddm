@@ -70,7 +70,7 @@ Si hay algún error, para forzar la recarga de los datos puedes usar también la
 
 A partir de ahora implementaremos las funcionalidades de la *app*. La mayor parte de la interfaz ya está creada (salvo la última pantalla), tú tienes que implementar las funcionalidades relacionadas con Core Data.
 
-## Funcionalidad: La Carta (0,75 puntos)
+## Funcionalidad: La Carta (0,5 puntos)
 
 Esta parte de la *app* es la que muestra los platos y nos permite añadirlos al pedido.
 
@@ -80,26 +80,41 @@ En la pantalla de "Carta" se deben mostrar los datos de los platos. Está contro
 
 Usa un `NSFetchedResultsController` para **listar los platos** en la tabla. Haz que los platos se agrupen en secciones según su tipo.
 
-+ Es mucho mejor que al crear el `NSFetchedResultsController` no use una cache (pasar el parámetro `cacheName` a `nil`) , ya que al escribir en la barra de búsqueda cambiamos la *fetch request* y por tanto invalidamos la cache, por lo que en este caso no tiene apenas utilidad. 
-+ Las celdas de la tabla son de la clase `PlatoTableViewCell`, aquí ya están definidos los *outlets* para poder rellenar los datos.
++ Declara e inicializa el `NSFetchedResultsController` en el `PlatosViewController`.  Es como los de la sesión anterior con la diferencia de que no debería usar una cache (pasar el parámetro `cacheName` a `nil`) , ya que al escribir en la barra de búsqueda cambiamos la *fetch request* y por tanto invalidamos la cache, por lo que en este caso no tiene utilidad.
+
+!!! info "Ayuda"
+    Para lo anterior, puedes usar como guía el código de ejemplo del apartado *["inicializar el Fetched Results Controller"](../../cap7/2_configuracion_basica/)*. Pero con diferencias, algunas evidentes:
+
+    + Recuerda poner el nombre de cache a `nil` 
+    + La entidad es `Plato` en lugar de `Mensaje`
+    + Hay que ordenar por "tipo" en vez de por "fecha"
+    + Hay que crear secciones automáticas basándose en el tipo (mira el apartado [*"secciones de tabla automáticas "*](../../cap7/5_secciones/))
+
++ Rellena el código de los métodos que devuelven el número de secciones, de filas en cada sección y que devuelven las celdas rellenadas de la tabla. Estas celdas son de la clase `PlatoTableViewCell`, aquí ya están definidos los *outlets* para poder rellenar los datos.
+
+!!! info "Ayuda"
+    Para lo anterior, puedes usar como guía el código de ejemplo del apartado *["Mostrar los datos en la tabla"](../../cap7/3_tabla/)*. Para saber cómo obtener el título de cada sección de la tabla consulta el apartado ["Secciones de tabla automáticas"](../../cap7/5_secciones/) 
 
 ### Búsqueda/Filtrado de platos
 
 Implementa una **búsqueda/filtrado de platos** como hiciste en la aplicación de notas, que busque texto en el nombre o en la descripción del plato. Para aplicar el "filtro":
 
-Define un `UISearchController` en el `PlatosViewController`
+Declara un `UISearchController` en el `PlatosViewController` e inicialízalo en el `viewDidLoad`
 
 ```swift
-let searchController = UISearchController(searchResultsController: nil)
+self.searchController = UISearchController(searchResultsController: nil)
 ```
 
 Añade `UISearchResultsUpdating ` a la cabecera del controller para que se ocupe de los resultados de la búsqueda, debe quedar como:
 
 ```swift
-class PlatosViewController: UIViewController, UITableViewDataSource, PlatoTableViewCellDelegate, NSFetchedResultsControllerDelegate, UISearchResultsUpdating  {
+class PlatosViewController: UIViewController, UITableViewDataSource, PlatoTableViewCellDelegate, UISearchResultsUpdating  {
     ...
 }
 ```
+
+!!! warning "Xcode"
+    Al añadir el `UISearchResultsUpdating` Xcode se "quejará"" de que falta implementar el método `updateSearchResults`. Lo haremos en un momento. 
 
 Configura el *search controller* y añádelo a la tabla en el `viewDidLoad`
 ```swift
@@ -118,7 +133,7 @@ Opcionalmente puedes usar un [Throttler](Throttler.swift) para que no busque en 
 let throttler = Throttler(minimumDelay: 0.5)
 ```
 
-Añade el método `ùpdateSearchResults` al `PlatosViewController`, **aquí es donde realmente tienes que implementar el filtrado**
+Añade el método `updateSearchResults` al `PlatosViewController`, **aquí es donde realmente tienes que implementar el filtrado**
 
 ```swift
 func updateSearchResults(for searchController: UISearchController) {
@@ -131,14 +146,25 @@ func updateSearchResults(for searchController: UISearchController) {
 }
 ```
 
-- Ya hemos comentado que el `NSFetchedResultsController` no debería tener cache, pero si la tiene, en este momento se debería borrar con el método `NSFetchedResultsController.deleteCache(withName:)`
-- Crear un predicado (`NSPredicate`) con la condición de búsqueda (repásate la sesión de búsquedas en Core Data para ver la sintaxis de la *query*, será muy similar a la que hiciste en el ejercicio de esa sesión) y asignárselo a la propiedad `fetchRequest.predicate` del `NSFetchedResultsController`. 
-- Para que se actualicen los datos tendrás que hacer:
+!!! warning "Borrar la cache"
+    Ya hemos comentado que el `NSFetchedResultsController` no necesita cache, pero si la tuviera, en este momento se debería borrar con el método `NSFetchedResultsController.deleteCache(withName:)` para evitar un error al cambiar la *fetch request*.
+
+**Crea un predicado (`NSPredicate`) con la condición de búsqueda apropiada** para buscar el `textoBuscado` en el nombre o la descripción (no debe distinguir mayúsculas/minúsculas ni acentos) y **asígnaselo a la propiedad `fetchRequest.predicate`** del `NSFetchedResultsController`. 
+
+
+!!! info "Ayuda"
+    Para lo anterior, puedes usar como guía el apartado *["Predicados como cadenas"](../../cap6/1_predicados/#predicados-como-cadenas/)* del tema de búsquedas en Core Data.
+
+Para que se actualicen los datos tendrás que hacer:
 
 ```swift
 try! self.frc.performFetch()
 self.tabla.reloadData()
 ```
+Tras hacer esto ya debería funcionar el filtrado de platos, compruébalo.
+
+!!! warning "Problema con las búsquedas"
+    Si pruebas la búsqueda verás que con el cuadro de búsqueda inicialmente vacío se muestran todos los platos, cuando escribes algo se filtran pero **cuando vuelves a borrar y lo dejas vacío no se ve ningún plato**. Esto es porque aunque `textoBuscado`sea vacío sigue actuando el predicado de búsqueda. ¿Se te ocurre cómo podrías arreglarlo? Inténtalo.
 
 ### Añadir al pedido actual
 
@@ -146,40 +172,67 @@ Las celdas de la tabla tienen un *delegate* al que  avisarán de que se ha pulsa
 
 Para avisar al *controller* de que se ha pulsado sobre "Añadir" se llama al **método `platoAñadido`. En este método tienes que obtener la entidad `Plato` elegida (la que está en la fila y sección seleccionadas)** para que el código restante (ya implementado) se lo pase al controller de la pantalla siguiente.
 
-## Funcionalidad: El pedido actual (0,5 puntos)
+!!! warning Líneas por descomentar
+    Tendrás que descomentar además la línea 99 del `PlatosViewController` y la 21 del `PedidoActualViewController`. Estaban comentadas para que el código compilara en el estado inicial del proyecto, antes de que existiera la entidad "Plato"
+
+Para probar que está bien, en el `viewDidLoad` del `PedidoActualViewController` imprime en la consola con `print` algún dato de la propiedad `platoElegido`, para comprobar que se corresponde con el seleccionado. De momento el plato no aparece todavía en la pantalla del móvil, de eso nos ocuparemos en el siguiente apartado.
+
+## Funcionalidad: El pedido actual (0,75 puntos)
 
 Esta parte de la *app* muestra los datos del pedido actual, añade los platos seleccionados al pedido y permite hacer el pedido o cancelarlo. La pantalla está controlada por el `PedidoActualViewController`.
 
-El *controller* recibe el plato elegido desde el controller anterior en la propiedad `platoElegido`, hay que añadir una entidad `LineaPedido` que vincule este plato con el pedido actual.
-
-El pedido actual no se puede guardar en el propio *controller* ya que por la navegación entre pantallas este se destruiría al salir de ella. Por eso se debe guardar aparte, en la variable `pedidoActual` del *singleton* `StateSingleton.shared`. **Esta variable estaba comentada para que no diera error** ya que hasta ahora no existía la entidad `Pedido`, **descoméntala**. 
+El pedido actual no se puede guardar en el propio *controller* ya que por la navegación entre pantallas este se destruiría al salir de ella. Por eso se debe guardar aparte, en la variable `pedidoActual` del *singleton* `StateSingleton.shared`. **Esta variable estaba comentada para que no diera error** ya que hasta que no creaste el modelo de datos no existía la entidad `Pedido`, **descoméntala**. 
 
 ### Añadir el plato elegido al pedido
 
 En el `viewDidLoad` de `PedidoActualViewController` nos tenemos que ocupar de añadir el plato elegido al pedido actual
 
-- Primero **comprueba si ya existe un `Pedido` actual (`StateSingleton.shared.pedidoActual!=nil`), y si no existe créalo en Core Data, guárdalo en el `StateSingleton` y haz save() del contexto de persistencia**
+- Primero **comprueba si no hay en memoria un `Pedido` actual (`StateSingleton.shared.pedidoActual==nil`), y si es así créalo en Core Data, guárdalo en el `StateSingleton` y haz save() del contexto de persistencia**
 - **Crea un nuevo `LineaPedido`**
     - Asígnale cantidad 1
     - Asócialo con el plato elegido. Recuerda que el plato elegido debería estar en la propiedad `platoElegido` del controller.
-    - Asócialo con el pedido. Xcode debería haber generado un método de `Pedido` llamado `addToLineasPedido` para añadir una línea de pedido a un pedido.
+    - Asócialo con el pedido
+    
+### Listar los platos del pedido
+
+Como puedes ver en el código del `PedidoActualViewController` éste hace de `UITableViewDataSource`, es decir es el responsable de darle a iOS los datos para pintar la tabla que muestre el pedido actual.
+
+**Tendrás que completar el código de los métodos** `tableView(_ tableView: UITableView, numberOfRowsInSection section: Int)` y `tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath)` para que la tabla se vea en pantalla. La celda es de la clase `LineaPedidoTableViewCell` y como podrás ver en ella tiene un `nombreLabel` y un `cantidadLabel` que son los datos que tendrás que rellenar con el nombre del plato y la cantidad de la línea de pedido respectivamente.
 
 ### Cambiar la cantidad de un plato
 
 En esta pantalla también se puede cambiar el número de unidades que queremos pedir de un plato. 
 
-> Para simplificar solo podemos movernos entre 1 y 100, no podemos bajar las unidades a 0 y eliminar el plato
+> Para simplificar se supondrá que solo podemos movernos entre 1 y 100, no podemos bajar las unidades a 0 y eliminar el plato
 
 Al igual que en la pantalla anterior se usa la idea de *delegate* para saber qué celda se está seleccionando. Las celdas son de la clase `LineaPedidoTableviewCell`, y cada vez que se pulsa en un `+` o un `-` se avisa al *delegate* (en este caso el controller), pasándole el número de la fila.
 
-El método `cantidadCambiada` del controller se llamará cada vez que el usuario cambie la cantidad de un plato. **Añade código que obtenga la línea de pedido correspondiente, cambie la cantidad y guarde los cambios**
+La interfaz ya está configurada para que el método `cantidadCambiada` del controller se llame cada vez que el usuario cambia la cantidad de un plato. **Añádele código que obtenga la línea de pedido correspondiente, cambie la cantidad y guarde el contexto de persistencia**
 
 ### Realizar y cancelar pedido
 
 En la pantalla tienes dos botones para realizar y cancelar el pedido. 
 
 - Si se pulsa a "realizar" bastará con que le asignes la fecha actual al pedido, crees un nuevo pedido en `StateSingleton.shared.pedidoActual` y muestres un mensaje al usuario indicando que "su pedido está en camino" o algo similar
-- Si se pulsa a "cancelar" deberías borrar en Core Data el pedido actual. Si la regla de borrado en cascada está puesta correctamente, al borrar un pedido deberían borrarse automáticamente todas sus líneas.
+- Si se pulsa a "cancelar" deberías borrar en Core Data el pedido actual. Si la regla de borrado en cascada está puesta correctamente, al borrar un pedido deberían borrarse 
+automáticamente todas sus líneas.
+
+
+### Diseño alternativo
+
+Como has visto, el pedido actual se guarda en memoria (en el `StateSingleton`) y también en Core Data, mientras que los anteriores solo están en Core Data. **¿Cómo cambiarías el proyecto si no quisieras usar el `StateSingleton` y solo usaras datos guardados en Core Data?**. Ten en cuenta que tendrías que distinguir de alguna forma entre el pedido actual y los anteriores. 
+
+No es necesario que cambies el proyecto pero incluye un archivo de texto en el proyecto llamado "modificaciones.rtf" (puedes crearlo con `File > New > File...` y en la sección "Resource" tienes el tipo "rich text file") y en él explica:
+
+- Qué modificaciones harías al modelo de datos
+- Qué tendrías que cambiar en el código de `PedidoActualViewController` 
+    + En el `viewDidLoad`
+    + Al obtener los datos para la tabla
+    + Al realizar el pedido
+    + Al cancelar el pedido
+    
+Evidentemente, dependiendo de tu diseño es posible que alguna de estas cosas no tuvieras que modificarla, en cuyo caso simplemente pon que no habría cambios.
+
 
 ## Funcionalidad: Tu historial (hasta 0,5 puntos)
 
