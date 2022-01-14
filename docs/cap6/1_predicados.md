@@ -50,7 +50,6 @@ Podéis consultar una referencia más completa en el apartado “[Predicate Form
 En la cadena de la *fetch request* podemos emplear caracteres de formato al estilo de los que se usan en el `printf` de C, lo que nos permite pasarle parámetros. Por ejemplo:
 
 ```swift
-let cadena = "iOS"
 NSPredicate(format: "texto CONTAINS %@ AND fecha<%@", argumentArray: ["iOS", Date()])
 ```
 
