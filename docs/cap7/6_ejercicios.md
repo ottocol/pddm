@@ -34,7 +34,7 @@ Para esto **hay que implementar lo que aparece en la sección ["Refrescar la tab
 Para ver cómo se modifican las filas "en directo", haz que se puedan borrar notas haciendo *swipe to delete* en la tabla. Para que funcione este gesto, hay que implementar el método:
 
 ```swift
-override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let miDelegate = UIApplication.shared.delegate as! AppDelegate
             let miContexto = miDelegate.persistentContainer.viewContext
