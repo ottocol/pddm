@@ -93,7 +93,7 @@ Podemos establecer también una **vinculación bidireccional** de modo que cuand
 self.campoTexto.reactive.text.bidirectionalBind(to:viewModel.textoBusqueda)
 ```
 
-#### "Ensamblaje" de modelo, *viewmodel* y vista 
+#### "Ensamblaje" de modelo, *viewmodel* y vista
 
 Al igual que en el caso de MVP, hay que conectar las "piezas": modelo, *viewmodel* y vista. Como según el esquema del patrón la vista "posee" al *viewmodel*, definiremos este como una propiedad de la vista:
 

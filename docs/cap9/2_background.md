@@ -45,6 +45,6 @@ nuevoContexto.perform() {
 }
 ```
 
-`perform` es asíncrono. La versión asíncrona es `performAndWait`
+`perform` es asíncrono. La versión síncrona es `performAndWait`
 
 > Crear el contexto tal cual se ha visto en este último ejemplo no tiene sentido de manera aislada. Para que funcione, el contexto de persistencia tiene que estar conectado a otras "piezas" del *stack* de Core Data, típicamente a un `NSPersistentStoreCoordinator`. Omitiremos esa parte para simplificar, pero para ello podrías adaptar el código generado por Xcode en versiones anteriores a la 8 que se vio en la primera sesión de Core Data.
