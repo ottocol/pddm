@@ -14,7 +14,7 @@
     
     
       
-        <title>4 ejercicios - PDDM-iOS</title>
+        <title>Ejercicio - PDDM-iOS</title>
       
     
     
@@ -65,7 +65,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#contextos-multiples-para-operaciones-en-background-2-puntos" class="md-skip">
+        <a href="#ejercicio-contextos-multiples-para-operaciones-en-background-1-punto" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -96,7 +96,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              4 ejercicios
+              Ejercicio
             
           </span>
         </div>
@@ -852,12 +852,14 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" checked>
       
       
       
@@ -916,6 +918,56 @@
 
             
           
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Ejercicio
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Ejercicio
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ejercicio-contextos-multiples-para-operaciones-en-background-1-punto" class="md-nav__link">
+    Ejercicio: contextos múltiples para operaciones en background (1 punto)
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -946,8 +998,8 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#contextos-multiples-para-operaciones-en-background-2-puntos" class="md-nav__link">
-    Contextos múltiples para operaciones en background (2 puntos)
+  <a href="#ejercicio-contextos-multiples-para-operaciones-en-background-1-punto" class="md-nav__link">
+    Ejercicio: contextos múltiples para operaciones en background (1 punto)
   </a>
   
 </li>
@@ -965,13 +1017,13 @@
               
                 
                 
-                  <h1>4 ejercicios</h1>
+                  <h1>Ejercicio</h1>
                 
-                <p>En las plantillas de la sesión hay un proyecto llamado <code>PruebaContextosMultiples</code> que servirá como base para los ejercicios de la sesión. La aplicación solo tiene una pantalla con un listado de notas (no se pueden crear ni modificar). Hay dos operaciones costosas: exportar las notas y refrescar el listado con datos que vengan del servidor. En ambos casos el coste es simulado ya que ni se exportan de verdad ni se actualizan desde ningún servidor (ejem). El coste se simula "durmiendo" al hilo actual con la instrucción <code>usleep</code>.</p>
+                <h2 id="ejercicio-contextos-multiples-para-operaciones-en-background-1-punto">Ejercicio: contextos múltiples para operaciones en <em>background</em> <em>(1 punto)</em><a class="headerlink" href="#ejercicio-contextos-multiples-para-operaciones-en-background-1-punto" title="Permanent link">&para;</a></h2>
+<p>En el moodle de la sesión hay un proyecto llamado <code>PruebaContextosMultiples</code> que servirá como base para los ejercicios de la sesión. La aplicación solo tiene una pantalla con un listado de notas (no se pueden crear ni modificar). Hay dos operaciones costosas: exportar las notas y refrescar el listado con datos que vengan del servidor. En ambos casos el coste es simulado ya que ni se exportan de verdad ni se actualizan desde ningún servidor (ejem). El coste se simula "durmiendo" al hilo actual con la instrucción <code>usleep</code>.</p>
 <p>Cuando la aplicación se carga, si no hay datos automáticamente inserta 500 objetos en la base de datos.</p>
-<h3 id="contextos-multiples-para-operaciones-en-background-2-puntos">Contextos múltiples para operaciones en <em>background</em> (2 puntos)<a class="headerlink" href="#contextos-multiples-para-operaciones-en-background-2-puntos" title="Permanent link">&para;</a></h3>
 <p>Pulsa sobre el botón de "exportar". Verás que la operación tarda 2-3 segundos. Si intentas hacer <em>scroll</em> de la pantalla durante este tiempo no podrás, ya que se queda bloqueada. Hay que solucionar esto.</p>
-<p>verás que en el método <code>botonExportarPulsado</code> del <em>view controller</em> se llama a un método que (de modo simulado) exporta las notas y que es el "culpable" del bloqueo. El método admite como parámetro el contexto de persistencia. <strong>Cambia el código para que esta operación se haga en un nuevo contexto en background</strong>. Recuerda que las operaciones de interfaz (como mostrar el alert tras la exportación) deben hacerse en el <em>thread</em> principal.</p>
+<p>Verás que en el método <code>botonExportarPulsado</code> del <em>view controller</em> se llama a un método que (de modo simulado) exporta las notas y que es el "culpable" del bloqueo. El método admite como parámetro el contexto de persistencia. <strong>Cambia el código para que esta operación se haga en un nuevo contexto en background</strong>. Recuerda que las operaciones de interfaz (como mostrar el alert tras la exportación) deben hacerse en el <em>thread</em> principal y que este se puede obtener con <code>OperationQueue.main</code>.</p>
                 
               
               
@@ -987,6 +1039,26 @@
       
         
 <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Pie">
+      
+        
+        <a href="../3_contextos_anidados/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Contextos anidados" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              Contextos anidados
+            </div>
+          </div>
+        </a>
+      
+      
+    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
