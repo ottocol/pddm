@@ -463,6 +463,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#restricciones" class="md-nav__link">
+    Restricciones
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#relaciones" class="md-nav__link">
     Relaciones
   </a>
@@ -607,6 +614,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#restricciones" class="md-nav__link">
+    Restricciones
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#relaciones" class="md-nav__link">
     Relaciones
   </a>
@@ -671,6 +685,7 @@
 <p>Veamos algunas de ellas:</p>
 <ul>
 <li><code>Transient</code> significa que no queremos que la propiedad sea persistente. Es típico de los valores que son calculados a partir de otros y que podemos volver a calcular fácilmente (por ejemplo el total de un pedido).</li>
+<li><code>Derived</code> significa que la propiedad va a ser un valor calculado a partir de otros atributos, hay una serie de primitivas que podemos aplicar, por ejemplo podemos tener un atributo que cuente la cardinalidad de una relación (ver apartado siguiente para ver cómo se modelan las relaciones), que transforme un atributo de tipo <code>String</code> a formatos como "todo mayúculas", "todo minúsculas", y alguna cosa más. Se recomienda consultar la <a href="https://www.avanderlee.com/core-data/derived-attributes-optimise-fetch-performance/">documentación de Apple</a> sobre la cuestión, aunque no es demasiado detallada.</li>
 <li><code>Optional</code> es el contrario del típico "not null" de las bases de datos. Si un atributo es opcional, puede ser <code>nil</code>. </li>
 </ul>
 <blockquote>
@@ -681,6 +696,24 @@
 <li>Reglas de validación: valor mínimo y máximo (si es numérico), longitud mínima y máxima (si es cadena), <code>Reg Exp</code>, la expresión regular con la que deben encajar los valores del atributo.</li>
 <li>Valor por defecto (<code>default</code>) que se asignará automáticamente si no le damos un valor explícito.</li>
 </ul>
+<h2 id="restricciones">Restricciones<a class="headerlink" href="#restricciones" title="Permanent link">&para;</a></h2>
+<p>Las restricciones o <em>constraints</em> nos permiten especificar uno o más campos en los que no  queremos que se puedan repetir valores, es decir la típica restricción de <em>unique</em> de las bases de datos relacionales. </p>
+<blockquote>
+<p>De momento en Core Data no existe otro tipo de restricción que la de valores únicos. Se pueden especificar condiciones que deben cumplir los atributos, como por ejemplo longitud mínima y máxima para un <code>String</code>, pero eso es lo que se denominan <em>validaciones</em> y se explica en otro apartado del tema.</p>
+</blockquote>
+<p>Para añadir restricciones, en el editor del modelo de datos, seleccionar la entidad, y en el recuadro de <code>Constraints</code> del <code>Data model inspector</code> (panel derecho de Xcode):</p>
+<ol>
+<li>Pulsar sobre <code>+</code>. Aparecerá una línea que pone <code>comma, separated, properties</code>, indicando que aquí podemos teclear una lista de atributos separados por comas</li>
+<li>Clicar sobre esa línea, y pulsar ENTER para hacerla editable</li>
+<li>Escribir el atributo o lista de atributos separados por comas</li>
+</ol>
+<p>La restricción de valores únicos se chequea en el momento de guardar el contexto de persistencia, por lo que tenemos que indicar qué sucederá si ya hay un objeto persistente con un determinado valor único y estamos guardando otro con el mismo valor: ¿debería ser un error, el nuevo debería sobreescribir al antiguo?... Es decir, debemos definir lo que se conoce como la <em>merge policy</em> de Core Data. Esta política se define por código Swift cuando se crea el <em>stack</em> de Core Data, de modo que si usamos la plantilla estándar generada por Xcode, tendremos que irnos al <code>AppDelegate</code> y modificar el método <code>loadPersistentStores()</code> definiendo una <code>mergePolicy</code>, ya que por defecto no se define ninguna:</p>
+<div class="highlight"><pre><span></span><code><span class="p">...</span>
+<span class="n">container</span><span class="p">.</span><span class="n">loadPersistentStores</span><span class="p">(</span><span class="n">completionHandler</span><span class="p">:</span> <span class="p">{</span> <span class="p">(</span><span class="n">storeDescription</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span> <span class="k">in</span>
+     <span class="n">container</span><span class="p">.</span><span class="n">viewContext</span><span class="p">.</span><span class="n">mergePolicy</span> <span class="p">=</span> <span class="bp">NSMergePolicy</span><span class="p">.</span><span class="n">mergeByPropertyObjectTrump</span>
+<span class="p">...</span>
+</code></pre></div>
+<p>en el ejemplo, estamos aplicando la política de que en caso de conflicto por valores únicos, el nuevo objeto "machaca" el que ya hay en el <em>store</em>. También existe la política inversa, y algunas otras distintas, se recomienda consultar la documentación de <a href="https://developer.apple.com/documentation/coredata/nsmergepolicy"><code>NSMergePolicy</code></a> para más información.</p>
 <h2 id="relaciones">Relaciones<a class="headerlink" href="#relaciones" title="Permanent link">&para;</a></h2>
 <p>Las relaciones en Core Data son muy similares al concepto equivalente en BD relacionales: vinculan una entidad con otra u otras, generalmente de otro tipo.</p>
 <p>Cuando creamos una relación usando el estilo de "tabla" en el editor visual, las tres características directamente editables son:</p>
