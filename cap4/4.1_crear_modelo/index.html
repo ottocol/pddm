@@ -664,7 +664,7 @@
 <p>El editor tiene dos modos, el modo "tabla" donde vemos las entidades y atributos como listas de valores, y el modo "gráfico" donde podemos ver un diagrama con las entidades y las relaciones entre ellas. Estos modos se cambian con los dos iconos de la esquina inferior derecha del editor (<em>Editor Style</em>). </p>
 <h2 id="entidades">Entidades<a class="headerlink" href="#entidades" title="Permanent link">&para;</a></h2>
 <p>Las entidades comparten ciertas características con las clases de la POO y otras con las tablas de una base de datos. Por ejemplo pueden ser <em>abstractas</em> y por tanto no directamente instanciables, como las clases de cualquier lenguaje OO.  Por otro lado tienen relaciones con otras entidades (uno-a-uno, uno-a-muchos,...) y se puede especificar qué debe pasar cuando uno de los "lados" de la relación se elimina, como es típico de las bases de datos relacionales.</p>
-<p>Si seleccionamos una entidad podemos ver sus propiedades en el "Data Model Inspector", (Cmd+Alt+3 o <em>clic</em> en el tercer icono del panel de la derecha de la pantalla)</p>
+<p>Si seleccionamos una entidad podemos ver sus propiedades en el "Data Model Inspector", (Cmd+Alt+4 o <em>clic</em> en el cuarto icono del panel de la derecha de la pantalla)</p>
 <p><img alt="" src="../img/data_model_inspector_icon.png" /></p>
 <ul>
 <li><code>Abstract entity</code> es análogo a las clases abstractas en POO, indica que la entidad no es directamente instanciable y se usa solo para que otras hereden de ella.</li>
@@ -681,7 +681,7 @@
 <blockquote>
 <p>Cualquier clase (propia o del sistema) que sea conforme al protocolo <code>NSCoding</code> puede usarse como <code>Transformable</code> e iOS se encargará automáticamente de convertirla a/desde <code>NSData</code>. Veremos más detalles posteriormente.</p>
 </blockquote>
-<p>Además del tipo, las propiedades tienen muchas otras características. Podemos verlas en el "Data Model Inspector", haciendo clic sobre el atributo y luego con el atajo (Cmd+Alt+3) o con <em>clic</em> en el tercer icono del panel de la derecha de la pantalla.</p>
+<p>Además del tipo, las propiedades tienen muchas otras características. Podemos verlas en el "Data Model Inspector", haciendo clic sobre el atributo y luego con el atajo (Cmd+Alt+4) o con <em>clic</em> en el cuarto icono del panel de la derecha de la pantalla.</p>
 <p>Veamos algunas de ellas:</p>
 <ul>
 <li><code>Transient</code> significa que no queremos que la propiedad sea persistente. Es típico de los valores que son calculados a partir de otros y que podemos volver a calcular fácilmente (por ejemplo el total de un pedido).</li>
@@ -725,12 +725,15 @@
 <blockquote>
 <p>Las relaciones que no tienen inversa generan <em>warnings</em> en Xcode, ya que Core Data usa la bidireccionalidad para poder mantener la consistencia del grafo de objetos cuando se eliminan entidades.</p>
 </blockquote>
-<p>Al igual que con las entidades y las propiedades, podemos cambiar los atributos de una relación seleccionándola y yendo al “Data Model Inspector”, (recuerda, Cmd+Alt+3 o <em>clic</em> en el tercer icono del panel de la derecha de la pantalla).</p>
+<p>Al igual que con las entidades y las propiedades, podemos cambiar los atributos de una relación seleccionándola y yendo al “Data Model Inspector”, (recuerda, Cmd+Alt+4 o <em>clic</em> en el cuarto icono del panel de la derecha de la pantalla).</p>
 <ul>
 <li><code>Transient</code> y <code>optional</code> son equivalentes a los atributos del mismo nombre usados en las propiedades.</li>
 <li><code>Delete rule</code> es la típica regla a aplicar cuando se borra la entidad “fuente” de la relación: por ejemplo con <code>cascade</code> si se borra la entidad, las relacionadas también lo hacen automáticamente, con <code>deny</code> no se puede borrar la entidad si hay relacionadas, con <code>nullify</code> la relación inversa se pone a <code>nil</code> y con <code>no action</code> la relación inversa queda tal cual (aunque apuntará a un objeto que ya no existe (!))</li>
 <li>con <code>Type</code> podemos indicar si es una relación uno a uno o uno a muchos. Las relaciones muchos a muchos las conseguimos poniendo tanto la relación como la inversa con el tipo “a muchos”.</li>
 </ul>
+<blockquote>
+<p>En Xcode 14 se ha eliminado el modo <code>Graph</code> del editor de <em>data models</em>. En el momento de la redacción de esta nota no está claro si esta eliminación es o no permanente, por lo que de momento no se ha eliminado la parte de los apuntes que se refiere a este modo de representación/edición en forma de grafo.</p>
+</blockquote>
 <p>En el editor de <em>data models</em> de Xcode, si nos ponemos en modo <code>Graph</code> podemos ver gráficamente las relaciones entre objetos y crearlas con ctrl-click en la entidad "origen" y arrastrando hasta la entidad destino. Las relaciones "uno a uno" aparecen con una única punta de flecha en el destino, y las "uno a muchos" con dos.</p>
 <p><img alt="" src="../img/datamodel.png" /></p>
 <p>En el caso de relaciones “a muchos” podemos especificar: </p>
