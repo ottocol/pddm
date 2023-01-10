@@ -7,11 +7,17 @@ Al crear el *fetched results controller* especificamos  en el parámetro `sectio
 self.frc = NSFetchedResultsController<Mensaje>(fetchRequest: consulta, managedObjectContext: miContexto, sectionNameKeyPath: "conversacion.titulo", cacheName: "miCache")
 ```
 
-En el *datasource* de la tabla tenemos también que implementar el método que genera los títulos de las secciones. El *fetched results controller* los generará por nosotros, de modo que simplemente podemos obtenerlos de él.
+En el *datasource* de la tabla tenemos también que implementar algunos métodos relativos al manejo de secciones. El *fetched results controller* es el que se ocupa de ello, por lo que delegaremos en él. En la clase que actúe como *datasource* de la tabla haríamos:
 
 ```swift
-override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-    return self.frc.sections![section].name
+/* obtener el título de una sección dada */
+func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return self.frc.sections?[section].name
+}
+
+/* obtener el número de secciones de la tabla */    
+func numberOfSections(in tableView: UITableView) -> Int {
+        return frc.sections!.count
 }
 ```
 
