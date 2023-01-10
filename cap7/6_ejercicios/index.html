@@ -925,8 +925,7 @@
     <span class="c1">//Devuelve una subcadena solo con la primera letra del texto</span>
     <span class="kr">@objc</span> <span class="kd">var</span> <span class="nv">inicial</span><span class="p">:</span> <span class="nb">String</span><span class="p">?</span> <span class="p">{</span>
         <span class="k">if</span> <span class="kd">let</span> <span class="nv">textoNoNil</span> <span class="p">=</span> <span class="kc">self</span><span class="p">.</span><span class="n">texto</span> <span class="p">{</span>
-            <span class="kd">let</span> <span class="nv">pos2</span> <span class="p">=</span> <span class="n">textoNoNil</span><span class="p">.</span><span class="n">index</span><span class="p">(</span><span class="n">after</span><span class="p">:</span> <span class="n">textoNoNil</span><span class="p">.</span><span class="n">startIndex</span><span class="p">)</span>
-            <span class="k">return</span> <span class="n">textoNoNil</span><span class="p">.</span><span class="n">substring</span><span class="p">(</span><span class="n">to</span><span class="p">:</span><span class="n">pos2</span><span class="p">)</span>
+            <span class="k">return</span> <span class="nb">String</span><span class="p">(</span><span class="n">textoNoNil</span><span class="p">.</span><span class="bp">first</span><span class="p">!)</span>
         <span class="p">}</span>
         <span class="k">else</span> <span class="p">{</span>
             <span class="k">return</span> <span class="kc">nil</span>
