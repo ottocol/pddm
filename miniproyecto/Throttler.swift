@@ -1,5 +1,6 @@
-
 //De https://www.craftappco.com/blog/2018/5/30/simple-throttling-in-swift
+import Foundation 
+
 class Throttler {
     private var workItem: DispatchWorkItem = DispatchWorkItem(block: {})
     private var previousRun: Date = Date.distantPast
