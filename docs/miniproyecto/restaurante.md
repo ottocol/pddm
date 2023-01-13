@@ -266,4 +266,9 @@ En esta pantalla se deberían mostrar todos los pedidos realizados por el usuari
 
 - (0,25 puntos) Si en el `viewWillAppear` muestras los datos de todos los pedidos en la consola con `print`, solo para ver que efectivamente se han almacenado correctamente
 - (0,5 puntos) Si en lugar de lo anterior muestras en una tabla una línea con el resumen de cada pedido (fecha, total y número de platos pedidos)
+
+
+## Apéndice: diagrama UML de las clases del proyecto
+
+![](uml_restaurante.svg)
    
