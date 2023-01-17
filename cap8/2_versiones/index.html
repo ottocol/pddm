@@ -13,7 +13,7 @@
     
     
       
-        <title>2 versiones - PDDM-iOS</title>
+        <title>Versiones del modelo de datos - PDDM-iOS</title>
       
     
     
@@ -93,7 +93,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              2 versiones
+              Versiones del modelo de datos
             
           </span>
         </div>
@@ -738,6 +738,210 @@
   
 
     
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7">
+          Migraciones de datos
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Migraciones de datos" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          Migraciones de datos
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1_intro/" class="md-nav__link">
+        Qué son las migraciones de datos
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Versiones del modelo de datos
+      </a>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3_migraciones_ligeras/" class="md-nav__link">
+        Migraciones ligeras
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4_migraciones_pesadas/" class="md-nav__link">
+        Migraciones pesadas
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5_ejercicios/" class="md-nav__link">
+        Ejercicios
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_8">
+          Concurrencia. Contextos múltiples
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Concurrencia. Contextos múltiples" data-md-level="1">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          Concurrencia. Contextos múltiples
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cap9/1_background/" class="md-nav__link">
+        Múltiples contextos para trabajos en background
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cap9/2_comunicacion/" class="md-nav__link">
+        Comunicación entre contextos
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cap9/3_contextos_anidados/" class="md-nav__link">
+        Contextos anidados
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cap9/4_ejercicios/" class="md-nav__link">
+        Ejercicio
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -769,10 +973,15 @@
                   
 
 
-  <h1>2 versiones</h1>
+  <h1>Versiones del modelo de datos</h1>
 
 <p>Siendo la evolución progresiva del modelo de datos algo tan común en cualquier desarrollo de aplicación iOS es lógico que Core Data tenga algún mecanismo de <em>control de versiones</em>, para que sea accesible el historial de los sucesivos cambios. No estamos hablando del control de versiones general del proyecto, (<code>git</code> o el que sea que usemos), ya que con el "tradicional" Core Data no tiene acceso más que a la última versión del modelo.</p>
 <p>Hasta ahora cuando hemos hecho cualquier modificación del modelo en nuestros proyectos simplemente la hemos hecho sin más y en su caso hemos guardado los cambios con <code>Cmd-S</code>. Pero esta no es la forma más adecuada de hacerlo. Lo que debemos hacer es especificar que queremos <em>crear una nueva versión</em> del modelo.</p>
+<div class="admonition warning">
+<p class="admonition-title">Migraciones sin versionado</p>
+<p>En realidad, hasta el momento la estrategia de ir modificando el modelo de datos "sobre la marcha" nos ha funcionado porque el <em>stack</em> de Core Data que crea la plantilla por defecto de Xcode usa la clase <code>NSPersistentContainer</code> que al arrancar la <em>app</em> verifica que el modelo de datos sea el mismo que el usado para crear la BD actual, y si no lo es, efectúa automáticamente la migración. 
+Si estuviéramos usando una inicialización del <em>stack</em> de Core Data propia que no usara <code>NSPersistentContainer</code> es posible que al cambiar el modelo y arrancar la <em>app</em> nos encontráramos con un error que dice <code>"The model used to open the store is incompatible with the one used to create the store"</code>. Para resolverlo tendríamos que cambiar a <code>NSPersistentContainer</code> o bien borrar manualmente la base de datos para forzar a Core Data a crearla de cero (en este caso perderíamos todos los datos).</p>
+</div>
 <p>En cualquier momento dado podemos crear una nueva versión del modelo de datos y tener varias almacenadas en nuestro proyecto (varios archivos <code>xcdatamodeld</code>) aunque en cada momento solo una de ellas se tomará como la “actual”.</p>
 <p>Para crear una nueva versión, seleccionar el <code>.xcdatamodeld</code> y en el menú de Xcode elegir <code>Editor &gt; Add Model Version</code>. Aparecerá un cuadro de diálogo que nos pedirá el nombre para la nueva versión y qué versión actual toma como base. A partir de este momento podremos ver en el árbol de ficheros del proyecto una especie de <em>subárbol</em> con todas las versiones del <code>.xcdatamodeld</code>. La versión actual o activa en este momento aparece con una pequeña marca verde de verificación.</p>
 <p><img alt="" src="../img/versiones_modelos.png" /></p>
@@ -793,6 +1002,42 @@
       </main>
       
         <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Pie" >
+      
+        
+        <a href="../1_intro/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Qué son las migraciones de datos" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              Qué son las migraciones de datos
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../3_migraciones_ligeras/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Migraciones ligeras" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Siguiente
+              </span>
+              Migraciones ligeras
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
