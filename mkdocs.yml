@@ -19,7 +19,7 @@ nav:
     - Modelar las entidades en código Swift: 'cap4/4.2_clases_propias.md'
     - CRUD en Core Data: 'cap4/4.3_CRUD.md'
     - Validaciones: 'cap4/4.4_validaciones.md'
-    - Transformables: 'cap4/4.5_transformables.md'
+    - Otros tipos de datos: 'cap4/4.5_otros_tipos.md'
     - Ejercicios de modelos de datos: 'cap4/4.6_ejercicios.md'
   # - Persistencia como servicio: 
   #   - Backend as a Service: 'cap11/1_introduccion_BAAS.md'
@@ -38,7 +38,7 @@ nav:
     - Secciones de tabla automáticas: 'cap7/5_secciones.md'
     - Ejercicios: 'cap7/6_ejercicios.md'
   - Miniproyecto:
-      - Enunciado: 'miniproyecto/restaurante.md'  
+    - Enunciado: 'miniproyecto/restaurante.md'  
   - Migraciones de datos: 
     - Qué son las migraciones de datos: 'cap8/1_intro.md'
     - Versiones del modelo de datos: 'cap8/2_versiones.md'
