@@ -8,8 +8,15 @@
       
       
       
+      
+        <link rel="prev" href="../3.2_stack/">
+      
+      
+        <link rel="next" href="../3.4_recuperar_datos/">
+      
+      
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.1, mkdocs-material-8.5.6">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.14">
     
     
       
@@ -17,19 +24,17 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.20d9efc8.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.10ba22f1.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.cbb835fc.min.css">
-        
-          
-          
-          <meta name="theme-color" content="#009485">
-        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
+
     
+    
+      
     
     
       
@@ -56,9 +61,8 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="teal" data-md-color-accent="teal">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="Teal" data-md-color-accent="Teal">
   
-    
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -78,7 +82,9 @@
     
       
 
-<header class="md-header" data-md-component="header">
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Cabecera">
     <a href="../.." title="PDDM-iOS" class="md-header__button md-logo" aria-label="PDDM-iOS" data-md-component="logo">
       
@@ -86,6 +92,7 @@
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
+      
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
     </label>
     <div class="md-header__title" data-md-component="header-title">
@@ -105,9 +112,13 @@
       </div>
     </div>
     
+      
+    
+    
     
     
       <label class="md-header__button md-icon" for="__search">
+        
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
       </label>
       <div class="md-search" data-md-component="search" role="dialog">
@@ -116,12 +127,15 @@
     <form class="md-search__form" name="search">
       <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
+        
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
       </label>
-      <nav class="md-search__options" aria-label="Search">
+      <nav class="md-search__options" aria-label="Buscar">
         
         <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
         </button>
       </nav>
@@ -133,7 +147,7 @@
           <div class="md-search-result__meta">
             Inicializando búsqueda
           </div>
-          <ol class="md-search-result__list"></ol>
+          <ol class="md-search-result__list" role="presentation"></ol>
         </div>
       </div>
     </div>
@@ -163,6 +177,7 @@
                     
 
 
+
 <nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../.." title="PDDM-iOS" class="md-nav__button md-logo" aria-label="PDDM-iOS" data-md-component="logo">
@@ -177,186 +192,263 @@
     
       
       
-      
-
+  
   
   
   
     
+    
+    
+    
     <li class="md-nav__item md-nav__item--nested">
       
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_1">
-          Persistencia básica
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Persistencia básica" data-md-level="1">
-        <label class="md-nav__title" for="__nav_1">
-          <span class="md-nav__icon md-icon"></span>
-          Persistencia básica
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
           
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Persistencia básica
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Persistencia básica
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../cap1/1.0_introduccion/" class="md-nav__link">
-        Introducción
+        
+  
+  <span class="md-ellipsis">
+    Introducción
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../cap1/1.1_sistema_de_archivos/" class="md-nav__link">
-        Sistema de archivos
+        
+  
+  <span class="md-ellipsis">
+    Sistema de archivos
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../cap1/1.2_serializacion/" class="md-nav__link">
-        Serialización
+        
+  
+  <span class="md-ellipsis">
+    Serialización
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../cap1/1.3_property_lists/" class="md-nav__link">
-        Property lists
+        
+  
+  <span class="md-ellipsis">
+    Property lists
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../cap1/1.4_preferencias/" class="md-nav__link">
-        Preferencias
+        
+  
+  <span class="md-ellipsis">
+    Preferencias
+  </span>
+  
+
       </a>
     </li>
   
 
+              
             
-          
-        </ul>
-      </nav>
+          </ul>
+        </nav>
+      
     </li>
   
 
     
       
       
-      
-
   
   
     
   
   
+  
+    
+    
+    
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_2">
-          ¡Hola Core Data!. Una aplicación de ejemplo
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="¡Hola Core Data!. Una aplicación de ejemplo" data-md-level="1">
-        <label class="md-nav__title" for="__nav_2">
-          <span class="md-nav__icon md-icon"></span>
-          ¡Hola Core Data!. Una aplicación de ejemplo
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
           
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    ¡Hola Core Data!. Una aplicación de ejemplo
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            ¡Hola Core Data!. Una aplicación de ejemplo
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../3.1_intro/" class="md-nav__link">
-        Introducción a Core Data
+        
+  
+  <span class="md-ellipsis">
+    Introducción a Core Data
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../3.2_stack/" class="md-nav__link">
-        Crear el stack de Core Data en iOS
+        
+  
+  <span class="md-ellipsis">
+    Añadir soporte de core data al proyecto
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
   
   
     
   
   
+  
     <li class="md-nav__item md-nav__item--active">
       
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Ejercicio parte I. almacenar datos
+          
+  
+  <span class="md-ellipsis">
+    Ejercicio parte I. almacenar datos
+  </span>
+  
+
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Ejercicio parte I. almacenar datos
+        
+  
+  <span class="md-ellipsis">
+    Ejercicio parte I. almacenar datos
+  </span>
+  
+
       </a>
       
         
@@ -374,14 +466,18 @@
       
         <li class="md-nav__item">
   <a href="#crear-las-entidades-025-puntos" class="md-nav__link">
-    Crear las entidades (0,25 puntos)
+    <span class="md-ellipsis">
+      Crear las entidades (0,25 puntos)
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#crear-datos-persistentes-025-puntos" class="md-nav__link">
-    Crear datos persistentes (0,25 puntos)
+    <span class="md-ellipsis">
+      Crear datos persistentes (0,25 puntos)
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="Crear datos persistentes (0,25 puntos)">
@@ -389,21 +485,27 @@
         
           <li class="md-nav__item">
   <a href="#la-interfaz-de-usuario-para-crear-notas" class="md-nav__link">
-    La interfaz de usuario para crear notas
+    <span class="md-ellipsis">
+      La interfaz de usuario para crear notas
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#el-codigo-que-implementa-crear-nueva-nota" class="md-nav__link">
-    El código que implementa “crear nueva nota”
+    <span class="md-ellipsis">
+      El código que implementa “crear nueva nota”
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#el-codigo-que-implementa-el-guardado" class="md-nav__link">
-    El código que implementa el guardado
+    <span class="md-ellipsis">
+      El código que implementa el guardado
+    </span>
   </a>
   
 </li>
@@ -420,592 +522,830 @@
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../3.4_recuperar_datos/" class="md-nav__link">
-        Ejercicio parte II. recuperar los datos
+        
+  
+  <span class="md-ellipsis">
+    Ejercicio parte II. recuperar los datos
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../apendice_ver_almacenamiento/" class="md-nav__link">
-        Apéndice. Cómo examinar el almacenamiento persistente
+        
+  
+  <span class="md-ellipsis">
+    Apéndice. Cómo examinar el almacenamiento persistente
+  </span>
+  
+
       </a>
     </li>
   
 
+              
             
-          
-        </ul>
-      </nav>
+          </ul>
+        </nav>
+      
     </li>
   
 
     
       
       
-      
-
+  
   
   
   
     
+    
+    
+    
     <li class="md-nav__item md-nav__item--nested">
       
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_3">
-          Modelos de datos en Core Data
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Modelos de datos en Core Data" data-md-level="1">
-        <label class="md-nav__title" for="__nav_3">
-          <span class="md-nav__icon md-icon"></span>
-          Modelos de datos en Core Data
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
           
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Modelos de datos en Core Data
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Modelos de datos en Core Data
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../cap4/4.1_crear_modelo/" class="md-nav__link">
-        Crear y editar modelos
+        
+  
+  <span class="md-ellipsis">
+    Crear y editar modelos
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../cap4/4.2_clases_propias/" class="md-nav__link">
-        Modelar las entidades en código Swift
+        
+  
+  <span class="md-ellipsis">
+    Modelar las entidades en código Swift
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../cap4/4.3_CRUD/" class="md-nav__link">
-        CRUD en Core Data
+        
+  
+  <span class="md-ellipsis">
+    CRUD en Core Data
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../cap4/4.4_validaciones/" class="md-nav__link">
-        Validaciones
+        
+  
+  <span class="md-ellipsis">
+    Validaciones
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../cap4/4.5_otros_tipos/" class="md-nav__link">
-        Otros tipos de datos
+        
+  
+  <span class="md-ellipsis">
+    Otros tipos de datos
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../cap4/4.6_ejercicios/" class="md-nav__link">
-        Ejercicios de modelos de datos
+        
+  
+  <span class="md-ellipsis">
+    Ejercicios de modelos de datos
+  </span>
+  
+
       </a>
     </li>
   
 
+              
             
-          
-        </ul>
-      </nav>
+          </ul>
+        </nav>
+      
     </li>
   
 
     
       
       
-      
-
+  
   
   
   
     
+    
+    
+    
     <li class="md-nav__item md-nav__item--nested">
       
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_4">
-          Búsquedas en Core Data
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Búsquedas en Core Data" data-md-level="1">
-        <label class="md-nav__title" for="__nav_4">
-          <span class="md-nav__icon md-icon"></span>
-          Búsquedas en Core Data
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
           
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Búsquedas en Core Data
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Búsquedas en Core Data
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../cap6/1_predicados/" class="md-nav__link">
-        Predicados
+        
+  
+  <span class="md-ellipsis">
+    Predicados
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../cap6/2_ordenacion/" class="md-nav__link">
-        Ordenación
+        
+  
+  <span class="md-ellipsis">
+    Ordenación
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../cap6/3_ejercicios/" class="md-nav__link">
-        Ejercicios
+        
+  
+  <span class="md-ellipsis">
+    Ejercicios
+  </span>
+  
+
       </a>
     </li>
   
 
+              
             
-          
-        </ul>
-      </nav>
+          </ul>
+        </nav>
+      
     </li>
   
 
     
       
       
-      
-
+  
   
   
   
     
+    
+    
+    
     <li class="md-nav__item md-nav__item--nested">
       
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_5">
-          Tablas en Core Data
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Tablas en Core Data" data-md-level="1">
-        <label class="md-nav__title" for="__nav_5">
-          <span class="md-nav__icon md-icon"></span>
-          Tablas en Core Data
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
           
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Tablas en Core Data
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Tablas en Core Data
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../cap7/1_el_frc/" class="md-nav__link">
-        El "fetched results controller"
+        
+  
+  <span class="md-ellipsis">
+    El "fetched results controller"
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../cap7/2_configuracion_basica/" class="md-nav__link">
-        Inicializar el "fetched results controller"
+        
+  
+  <span class="md-ellipsis">
+    Inicializar el "fetched results controller"
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../cap7/3_tabla/" class="md-nav__link">
-        Mostrar los datos en la tabla
+        
+  
+  <span class="md-ellipsis">
+    Mostrar los datos en la tabla
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../cap7/4_refrescar_tabla/" class="md-nav__link">
-        Refrescar la tabla
+        
+  
+  <span class="md-ellipsis">
+    Refrescar la tabla
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../cap7/5_secciones/" class="md-nav__link">
-        Secciones de tabla automáticas
+        
+  
+  <span class="md-ellipsis">
+    Secciones de tabla automáticas
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../cap7/6_ejercicios/" class="md-nav__link">
-        Ejercicios
+        
+  
+  <span class="md-ellipsis">
+    Ejercicios
+  </span>
+  
+
       </a>
     </li>
   
 
+              
             
-          
-        </ul>
-      </nav>
+          </ul>
+        </nav>
+      
     </li>
   
 
     
       
       
-      
-
+  
   
   
   
     
+    
+    
+    
     <li class="md-nav__item md-nav__item--nested">
       
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_6">
-          Miniproyecto
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Miniproyecto" data-md-level="1">
-        <label class="md-nav__title" for="__nav_6">
-          <span class="md-nav__icon md-icon"></span>
-          Miniproyecto
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
           
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Miniproyecto
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Miniproyecto
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../miniproyecto/restaurante/" class="md-nav__link">
-        Enunciado
+        
+  
+  <span class="md-ellipsis">
+    Enunciado
+  </span>
+  
+
       </a>
     </li>
   
 
+              
             
-          
-        </ul>
-      </nav>
+          </ul>
+        </nav>
+      
     </li>
   
 
     
       
       
-      
-
+  
   
   
   
     
+    
+    
+    
     <li class="md-nav__item md-nav__item--nested">
       
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_7">
-          Migraciones de datos
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Migraciones de datos" data-md-level="1">
-        <label class="md-nav__title" for="__nav_7">
-          <span class="md-nav__icon md-icon"></span>
-          Migraciones de datos
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
           
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Migraciones de datos
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Migraciones de datos
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../cap8/1_intro/" class="md-nav__link">
-        Qué son las migraciones de datos
+        
+  
+  <span class="md-ellipsis">
+    Qué son las migraciones de datos
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../cap8/2_versiones/" class="md-nav__link">
-        Versiones del modelo de datos
+        
+  
+  <span class="md-ellipsis">
+    Versiones del modelo de datos
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../cap8/3_migraciones_ligeras/" class="md-nav__link">
-        Migraciones ligeras
+        
+  
+  <span class="md-ellipsis">
+    Migraciones ligeras
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../cap8/4_migraciones_pesadas/" class="md-nav__link">
-        Migraciones pesadas
+        
+  
+  <span class="md-ellipsis">
+    Migraciones pesadas
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../cap8/5_ejercicios/" class="md-nav__link">
-        Ejercicios
+        
+  
+  <span class="md-ellipsis">
+    Ejercicios
+  </span>
+  
+
       </a>
     </li>
   
 
+              
             
-          
-        </ul>
-      </nav>
+          </ul>
+        </nav>
+      
     </li>
   
 
     
       
       
-      
-
+  
   
   
   
     
+    
+    
+    
     <li class="md-nav__item md-nav__item--nested">
       
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_8">
-          Concurrencia. Contextos múltiples
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Concurrencia. Contextos múltiples" data-md-level="1">
-        <label class="md-nav__title" for="__nav_8">
-          <span class="md-nav__icon md-icon"></span>
-          Concurrencia. Contextos múltiples
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
           
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Concurrencia. Contextos múltiples
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Concurrencia. Contextos múltiples
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../cap9/1_background/" class="md-nav__link">
-        Múltiples contextos para trabajos en background
+        
+  
+  <span class="md-ellipsis">
+    Múltiples contextos para trabajos en background
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../cap9/2_comunicacion/" class="md-nav__link">
-        Comunicación entre contextos
+        
+  
+  <span class="md-ellipsis">
+    Comunicación entre contextos
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../cap9/3_contextos_anidados/" class="md-nav__link">
-        Contextos anidados
+        
+  
+  <span class="md-ellipsis">
+    Contextos anidados
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../cap9/4_ejercicios/" class="md-nav__link">
-        Ejercicio
+        
+  
+  <span class="md-ellipsis">
+    Ejercicio
+  </span>
+  
+
       </a>
     </li>
   
 
+              
             
-          
-        </ul>
-      </nav>
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -1036,14 +1376,18 @@
       
         <li class="md-nav__item">
   <a href="#crear-las-entidades-025-puntos" class="md-nav__link">
-    Crear las entidades (0,25 puntos)
+    <span class="md-ellipsis">
+      Crear las entidades (0,25 puntos)
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#crear-datos-persistentes-025-puntos" class="md-nav__link">
-    Crear datos persistentes (0,25 puntos)
+    <span class="md-ellipsis">
+      Crear datos persistentes (0,25 puntos)
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="Crear datos persistentes (0,25 puntos)">
@@ -1051,21 +1395,27 @@
         
           <li class="md-nav__item">
   <a href="#la-interfaz-de-usuario-para-crear-notas" class="md-nav__link">
-    La interfaz de usuario para crear notas
+    <span class="md-ellipsis">
+      La interfaz de usuario para crear notas
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#el-codigo-que-implementa-crear-nueva-nota" class="md-nav__link">
-    El código que implementa “crear nueva nota”
+    <span class="md-ellipsis">
+      El código que implementa “crear nueva nota”
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#el-codigo-que-implementa-el-guardado" class="md-nav__link">
-    El código que implementa el guardado
+    <span class="md-ellipsis">
+      El código que implementa el guardado
+    </span>
   </a>
   
 </li>
@@ -1108,12 +1458,12 @@
 <p>IMPORTANTE: Los nombres de las entidades deben comenzar por mayúscula y los nombres de los atributos por minúscula. El editor no nos dejará hacer lo contrario.</p>
 </blockquote>
 <p><img alt="" src="../img/crear_entidad.gif" /></p>
-<p>Selecciona la entidad <code>Nota</code> en el editor y selecciona el <code>Data Model Inspector</code> en el panel de la derecha de Xcode (el cuarto icono en Xcode 12 <img alt="" src="../img/datamodel_inspector_icon.png" />, tercer icono en Xcode 11 y anteriores <img alt="" src="../img/datamodel_inspector_icon_11.png" />). En el apartado <code>Class</code> verás los datos de la clase Swift que Xcode va a autogenerar para representar a tu entidad. </p>
+<p>Selecciona la entidad <code>Nota</code> en el editor y selecciona el <code>Data Model Inspector</code> en el panel de la derecha de Xcode (el cuarto icono <img alt="" src="../img/datamodel_inspector_icon.png" />). En el apartado <code>Class</code> verás los datos de la clase Swift que Xcode va a autogenerar para representar a tu entidad. </p>
 <p>Por defecto:</p>
 <ul>
-<li>El nombre es el mismo que la entidad</li>
-<li>La clase se crea en el "Global Namespace", lo que quiere decir que no te harán falta <code>import</code>s para usarla</li>
-<li>En el campo <code>codegen</code> debería aparecer seleccionado <code>Class definition</code>, ese es el método que usa Xcode para generar el código , lo veremos con más detalle en la siguiente sesión.</li>
+<li><code>Name</code>: El nombre de la clase va a ser el mismo que la entidad</li>
+<li><code>Module</code>: por defecto no se crea en un módulo sino en el "Global Namespace", lo que quiere decir que no te harán falta <code>import</code> para usarla</li>
+<li><code>Codegen</code>: aquí debería aparecer seleccionado <code>Class definition</code>, ese es el método que usa Xcode para generar el código , lo veremos con más detalle en la siguiente sesión.</li>
 </ul>
 <blockquote>
 <p>Para terminar, asegúrate de guardar el <code>.xcdatamodel</code> (<code>File &gt; Save</code>). Hay veces que no se genera la clase Swift correspondiente a la entidad si no se hace esto</p>
@@ -1126,12 +1476,11 @@
 <li>Un campo de texto de varias líneas (<code>text view</code>) para escribir la nota en sí.</li>
 <li>Una etiqueta (<code>label</code>) para mostrar la fecha y hora de la nota </li>
 <li>Un par de botones, uno para <strong>crear</strong> una nueva nota en blanco y otro para <strong>guardar</strong> la nota actual</li>
-<li>Una etiqueta (<code>label</code>) para mostrar mensajes al usuario</li>
 </ul>
-<p>Una vez añadidos los componentes, hay que <strong>crear un <em>outlet</em> para las dos etiquetas y el campo de texto</strong> y así poder acceder a/cambiar su contenido por código. Recordad que hay que hacer <code>Ctrl+Arrastrar</code> desde el componente hasta el archivo donde queremos crear la propiedad (en nuestro caso <code>ViewController.swift</code>).</p>
+<p>Una vez añadidos los componentes, hay que <strong>crear un <em>outlet</em> para la  etiqueta y el campo de texto</strong> y así poder acceder a/cambiar su contenido por código. Recordad que hay que hacer <code>Ctrl+Arrastrar</code> desde el componente hasta el archivo donde queremos crear la propiedad (en nuestro caso <code>ViewController.swift</code>).</p>
 <p>Además hay que <strong>crear un <em>action</em> para cada botón</strong>, para poder ejecutar nuestro código cuando se pulsen (con <code>Ctrl+Arrastrar</code> igual que antes). Debemos vincular los <em>action</em> al evento <code>Touch up inside</code>, que es el que aparece por defecto.</p>
 <h3 id="el-codigo-que-implementa-crear-nueva-nota">El código que implementa “crear nueva nota”<a class="headerlink" href="#el-codigo-que-implementa-crear-nueva-nota" title="Permanent link">&para;</a></h3>
-<p>Debes <strong>implementar el código del <em>action</em> del botón de "crear"</strong>.  Este código simplemente limpiará la etiqueta de la fecha, el campo de texto de varias líneas y la etiqueta para mensajes al usuario, asignándoles a las tres la cadena vacía. </p>
+<p>Debes <strong>implementar el código del <em>action</em> del botón de "crear"</strong>.  Este código simplemente limpiará la etiqueta de la fecha y el campo de texto de varias líneas asignándoles a las tres la cadena vacía. </p>
 <h3 id="el-codigo-que-implementa-el-guardado">El código que implementa el guardado<a class="headerlink" href="#el-codigo-que-implementa-el-guardado" title="Permanent link">&para;</a></h3>
 <p>En el código del <em>action</em> asociado al botón de “guardar” debemos tomar el valor del campo de texto, crear una nueva nota con  este texto y la fecha y hora actual y hacerla persistente. Además actualizaremos la etiqueta con la fecha y hora actual para que muestre cuándo se ha guardado la nota. Vamos a verlo paso a paso.</p>
 <p>Para <strong>crear un nuevo objeto persistente</strong> debemos solicitárselo al contexto, ya que este debe gestionar su ciclo de vida y si lo creáramos nosotros llamando al inicializador el contexto desconocería de su existencia.</p>
@@ -1169,12 +1518,28 @@
 <span class="p">}</span>
 </code></pre></div>
 <blockquote>
-<p>El método de utilidad llamado <code>saveContext</code> de la plantilla generada por Xcode hace algo muy similar a lo anterior, aunque genera un error fatal que causa la terminación inmediata de la aplicación.</p>
+<p>El método de utilidad llamado <code>saveContext</code> de la plantilla generada por Xcode hace algo muy similar a lo anterior, aunque si falla genera un error fatal que causa la terminación inmediata de la aplicación.</p>
 </blockquote>
-<p>Faltaría <strong>actualizar la etiqueta con la fecha y hora de la nota</strong> para que refleje la fecha asignada, y también <strong>actualizar la etiqueta con el mensaje al usuario que indique "nota guardada" o algo similar</strong>. <strong>Escribe el código necesario para hacer esto</strong>.</p>
+<p>Faltaría <strong>actualizar la etiqueta con la fecha y hora de la nota</strong> para que refleje la fecha asignada, y también <strong>mostrar un mensaje al usuario</strong> indicando que la nota se ha guardado. <strong>Escribe el código necesario para hacer esto</strong>:</p>
+<ul>
+<li>Puedes convertir la fecha a texto de modo simple con el método de la clase <code>Date</code> llamado <code>formatted()</code> (si quisieras más control sobre el formato, que aquí no es necesario, podrías usar la clase <code>DateFormatter</code>).</li>
+<li>Puedes mostrar un mensaje al usuario con un <code>UIAlertController</code></li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1">//En el view controller</span>
+<span class="kd">let</span> <span class="nv">alerta</span> <span class="p">=</span> <span class="bp">UIAlertController</span><span class="p">(</span><span class="n">title</span><span class="p">:</span> <span class="s">&quot;Título&quot;</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="s">&quot;Mensaje&quot;</span><span class="p">,</span> <span class="n">preferredStyle</span><span class="p">:</span> <span class="p">.</span><span class="n">alert</span><span class="p">)</span>
+<span class="n">alerta</span><span class="p">.</span><span class="n">addAction</span><span class="p">(</span><span class="bp">UIAlertAction</span><span class="p">(</span><span class="n">title</span><span class="p">:</span> <span class="s">&quot;Aceptar&quot;</span><span class="p">,</span> <span class="n">style</span><span class="p">:</span> <span class="p">.</span><span class="k">default</span><span class="p">))</span>
+<span class="n">present</span><span class="p">(</span><span class="n">alerta</span><span class="p">,</span> <span class="n">animated</span><span class="p">:</span> <span class="kc">true</span><span class="p">)</span>
+</code></pre></div>
 <blockquote>
 <p>Tal y como está ahora el código, cada vez que pulses sobre <code>Guardar</code> se creará una <strong>nueva nota</strong>, así que aunque no modifiques el texto si pulsas varias veces tendrás varias notas, que serán iguales en contenido, aunque no con la misma fecha/hora). No es necesario que soluciones esto, déjalo así por el momento.</p>
 </blockquote>
+
+
+
+
+
+
+
 
 
 
@@ -1185,47 +1550,12 @@
             </div>
           
           
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
       </main>
       
         <footer class="md-footer">
-  
-    
-    <nav class="md-footer__inner md-grid" aria-label="Pie" >
-      
-        
-        <a href="../3.2_stack/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Crear el stack de Core Data en iOS" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Anterior
-              </span>
-              Crear el stack de Core Data en iOS
-            </div>
-          </div>
-        </a>
-      
-      
-        
-        <a href="../3.4_recuperar_datos/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Ejercicio parte II. recuperar los datos" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Siguiente
-              </span>
-              Ejercicio parte II. recuperar los datos
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -1248,10 +1578,11 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.5bf1dace.min.js", "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.config.lang": "es", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "B\u00fasqueda", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version.title": "Seleccionar versi\u00f3n"}}</script>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.078830c0.min.js"></script>
+      <script src="../../assets/javascripts/bundle.bd41221c.min.js"></script>
       
     
   </body>
