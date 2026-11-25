@@ -1,0 +1,14 @@
+Migraciones
+
+El punto de restauración ya no va en el AppDelegate, sino en el init del PersistenceController. Además, se salta cuando inMemory es true, para que nunca toque la base de datos de las previews.
+El aviso de los nombres en cadenas: ahora dice que los key paths que usan en SwiftUI (NSSortDescriptor(keyPath:) y el sectionIdentifier) sí los comprueba el compilador. El predicado de búsqueda, en cambio, es una cadena y se cerrará en tiempo de ejecución, que es justo la trampa del ejercicio.
+El ejercicio aprovecha lo anterior. Las 10.000 notas importadas en concurrencia sirven de datos de prueba: tienen varias líneas y algunas están vacías. Las notas importadas después de la migración también tienen que llevar título, así que hay que tocar las funciones de importar. Y he añadido una nota: con miles de notas, la migración manual tarda unos segundos en arrancar, lo que demuestra en la práctica que es más costosa que la ligera.
+
+SwiftData (7_swiftdata.md, ampliación sin ejercicios)
+
+El modelo de mensajería escrito con @Model, .modelContainer, @Query con #Predicate, y una consulta que depende de un parámetro con el mismo patrón _mensajes = Query(...) que ya conocen.
+Migraciones (VersionedSchema) y concurrencia (@ModelActor, PersistentIdentifier), en un párrafo cada una.
+Una tabla de equivalencias Core Data ↔ SwiftData.
+Un “¿cuál elegir?” con lo que me preocupaba: es solo iOS 17+, la primera versión es inmadura, no tiene secciones y @Attribute(.unique) sobrescribe el objeto existente en vez de dar error. Pongo como ejemplo concreto el ejercicio de libretas, que cambiaría por completo.
+
+Para revisar: el #Predicate con encadenamiento opcional ($0.usuario?.login == login) en iOS 17. Es ampliación y no afecta a ningún ejercicio, pero el #Predicate de la primera versión tenía limitaciones con los opcionales, y prefiero que lo sepas.

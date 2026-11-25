@@ -1,0 +1,299 @@
+--- uikit/1.1_sistema_de_archivos.md
++++ swiftui/1.1_sistema_de_archivos.md
+@@ -46,7 +46,7 @@
+ let bundleURL = Bundle.main.bundleURL
+ ```
+ 
+-Ya hemos visto antes este tipo de código cuando accedíamos a imágenes y otros archivos distribuidos junto a la aplicación.
++Las imágenes del catálogo de *assets* que usamos con `Image("...")` en SwiftUI también van dentro del *bundle*, compiladas en un único archivo.
+ 
+ Con `bundlePath` en lugar de `bundleURL` podemos obtener también el *path* en forma local (sin el `file://` delante).
+ 
+@@ -176,20 +176,48 @@
+     - `Finder` abre una ventana del administrador de archivos en el *sandbox* de la *app* simulada
+     - `Terminal` hace lo mismo pero con una terminal 
+ 3. **Abre una ventana del Finder** en alguna *app* simulada de las que aparezcan en el menú de SimSim (no importa cuál). Comprueba que la estructura de directorios se corresponde con la del *sandbox* típico de una *app* iOS. Haz un volcado de pantalla de la ventana del Finder e inclúyelo en la entrega de ejercicios como parte de la respuesta a este ejercicio.
+-4. **Crea un nuevo proyecto de Xcode, llamado PruebaArchivos** (plantilla `iOS > App`, con `Interface: Storyboard` y `Language: Swift`; si eliges SwiftUI no tendrás clase `ViewController`). En el método `viewDidLoad` de la clase `ViewController` añade este código, que escribe un mensaje de texto dentro de un fichero "prueba.txt" en el `Documents` del *sandbox*
++4. **Crea un nuevo proyecto de Xcode, llamado PruebaArchivos** (plantilla `iOS > App`, con `Interface: SwiftUI`). Sustituye el contenido de `ContentView.swift` por el siguiente código. Al pulsar el botón, se escribe un mensaje de texto dentro de un fichero "prueba.txt" en el `Documents` del *sandbox*
+ ```swift
+-let file = "prueba.txt"  //nombre del archivo
+-let text = "hola iOS"    //texto que escribiremos en él
++import SwiftUI
+ 
+-//obtenemos la URL del directorio Documents
+-if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+-    //le añadimos detrás el "/prueba.txt"
+-    let fileURL = dir.appendingPathComponent(file)
+-    //guardamos el String en el archivo
+-    try! text.write(to: fileURL, atomically: true, encoding: .utf8)
++struct ContentView: View {
++    @State private var mensaje = ""
++
++    var body: some View {
++        VStack(spacing: 20) {
++            Button("Escribir archivo") {
++                escribirArchivo()
++            }
++            .buttonStyle(.borderedProminent)
++            Text(mensaje)
++        }
++        .padding()
++    }
++
++    func escribirArchivo() {
++        let file = "prueba.txt"  //nombre del archivo
++        let text = "hola iOS"    //texto que escribiremos en él
++
++        //obtenemos la URL del directorio Documents
++        if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
++            //le añadimos detrás el "/prueba.txt"
++            let fileURL = dir.appendingPathComponent(file)
++            //guardamos el String en el archivo
++            do {
++                try text.write(to: fileURL, atomically: true, encoding: .utf8)
++                mensaje = "Archivo guardado"
++            } catch {
++                mensaje = "Error: \(error.localizedDescription)"
++            }
++        }
++    }
++}
++
++#Preview {
++    ContentView()
+ }
+ ```
+-5. **Ejecuta la app PruebaArchivos** y con la aplicación SimSim comprueba visualmente que el archivo "prueba.txt" se ha creado correctamente, ábrelo haciendo doble clic y comprueba su contenido. Haz un volcado de pantalla de la ventana del Finder donde se vea que el archivo existe, e inclúyelo en la entrega de ejercicios como parte de la respuesta a este ejercicio.
++5. **Ejecuta la app PruebaArchivos en el simulador**, pulsa el botón y con la aplicación SimSim comprueba visualmente que el archivo "prueba.txt" se ha creado correctamente, ábrelo haciendo doble clic y comprueba su contenido. Haz un volcado de pantalla de la ventana del Finder donde se vea que el archivo existe, e inclúyelo en la entrega de ejercicios como parte de la respuesta a este ejercicio.
+ 
+ !!! tip "Si SimSim no funciona en tu Mac"
+     SimSim es una herramienta de terceros que lleva tiempo sin actualizarse. Si no te funciona, puedes abrir el *sandbox* de la app desde la Terminal con `simctl`, que viene con Xcode. Con el simulador arrancado y la app instalada, escribe (cambiando el identificador por el *bundle identifier* de tu app, que aparece en la pestaña `General` del *target*):
+--- uikit/1.3_property_lists.md
++++ swiftui/1.3_property_lists.md
+@@ -102,7 +102,7 @@
+ 
+ Tomando como base los ejemplos de código de la sección, define una estructura de datos propia y guárdala en un fichero .plist. Luego con la aplicación SimSim comprueba que se ha guardado correctamente. Paso a paso:
+ 
+-1. Crea un nuevo proyecto (plantilla `iOS > App`, `Interface: Storyboard`, `Language: Swift`) o reutiliza el de la sección anterior.
++1. Reutiliza el proyecto del ejercicio de la sección de archivos (o crea uno nuevo con la plantilla `iOS > App` e `Interface: SwiftUI`).
+ 2. Crea un `struct` Swift llamado `Alumno` que sea conforme al protocolo `Codable` y que tenga dos campos:
+    - un `String` llamado `nombre`
+    - un array de `Float` con las `notas`
+@@ -112,5 +112,5 @@
+ let a2 = Alumno(nombre: "Eva", notas: [10, 9])
+ let alumnos = [a1,a2]
+ ```
+-4. Basándote en el último ejemplo de código de esta sección, haz que se guarde el array `alumnos` en un fichero de tipo `.plist` llamado `alumnos.plist`, en formato XML. Puedes incluir el código en el `viewDidLoad` del `ViewController` para que se ejecute al cargar el *controller* de la *app*. Recuerda que las operaciones que pueden fallar deben ir dentro de un `do`/`catch` (o con `try!`).
++4. Basándote en el último ejemplo de código de esta sección, haz que se guarde el array `alumnos` en un fichero de tipo `.plist` llamado `alumnos.plist`, en formato XML. Pon el código en una función que se llame al pulsar un botón "Guardar alumnos", como en el ejercicio de la sección de archivos. Recuerda que las operaciones que pueden fallar deben ir dentro de un `do`/`catch`.
+ 5. Comprueba mediante la aplicación SimSim que se ha creado el archivo dentro del `Documents` del *sandbox* de la *app*. Abre el archivo con algún editor de texto y comprueba su contenido. Incluye el archivo en las respuestas de los ejercicios.
+--- uikit/1.4_preferencias.md
++++ swiftui/1.4_preferencias.md
+@@ -10,7 +10,7 @@
+ 
+ iOS nos ofrece un mecanismo estándar para almacenar estas preferencias de modo permanente. El API es bastante sencillo y nos permite establecer unos valores por defecto, modificarlos según lo que indique el usuario y leer los valores previamente fijados. 
+ 
+-Hay que destacar que iOS solo nos da el API para leer/almacenar las preferencias, pero no la interfaz de usuario para mostrarlas/modificarlas, que es nuestra responsabilidad. Hay una excepción: si queremos que nuestras preferencias aparezcan dentro de la app `Ajustes` del sistema, el propio iOS se encargará de la interfaz.
++Hay que destacar que iOS solo nos da el API para leer/almacenar las preferencias, pero no la interfaz de usuario para mostrarlas/modificarlas, que es nuestra responsabilidad (aunque, como veremos, en SwiftUI conectar una preferencia a un control es muy sencillo). Hay una excepción: si queremos que nuestras preferencias aparezcan dentro de la app `Ajustes` del sistema, el propio iOS se encargará de la interfaz.
+ 
+ ### Qué se puede guardar en las preferencias
+ 
+@@ -65,7 +65,25 @@
+ ])
+ ```
+ 
+-Hay que destacar que *los valores registrados por defecto no son permanentes*, no se guardan en el `.plist`. Es decir, que hay que registrarlos cada vez que arranque la aplicación (típicamente en el `application(_:didFinishLaunchingWithOptions:)` del `AppDelegate`).
++Hay que destacar que *los valores registrados por defecto no son permanentes*, no se guardan en el `.plist`. Es decir, que hay que registrarlos cada vez que arranque la aplicación. En una app SwiftUI el sitio habitual es el inicializador de la estructura principal de la app, la marcada con `@main`, que se ejecuta al arrancar:
++
++```swift
++@main
++struct MiJuegoApp: App {
++    init() {
++        UserDefaults.standard.register(defaults: [
++            "nick" : "anonimo",
++            "nivel" : 1
++        ])
++    }
++
++    var body: some Scene {
++        WindowGroup {
++            ContentView()
++        }
++    }
++}
++```
+ 
+ Si registramos un valor por defecto y este ya ha sido fijado por código (en la siguiente sección veremos cómo) el valor por defecto no “machacará” al ya fijado. Cuando iOS busca el valor para una preferencia sigue un esquema de “dominios”, en el que si no encuentra la clave en un dominio la busca en el siguiente. De este modo, primero busca en el dominio de los valores fijados por la aplicación y si lo encuentra aquí lo devuelve. Es solo si no lo encuentra aquí cuando pasa a consultar los valores por defecto.
+ 
+@@ -99,6 +117,34 @@
+ 
+ > Fijar una preferencia es una operación barata, así que podemos hacerlo en el momento en que el usuario cambie el valor. **No** es buena idea retrasarlo hasta justo antes de salir de la aplicación, ya que el sistema puede terminar nuestra app sin avisar y perderíamos los cambios.
+ 
++### Preferencias en SwiftUI: `@AppStorage`<a name="appstorage"></a>
++
++Todo lo anterior funciona igual en cualquier app iOS. Pero en SwiftUI tenemos además una forma mucho más cómoda de trabajar con preferencias: el *property wrapper* `@AppStorage`. Se usa como `@State`, pero en lugar de guardar el valor en la memoria de la vista lo guarda en las preferencias de usuario, con la clave que le indiquemos:
++
++```swift
++struct AjustesView: View {
++    @AppStorage("nick") private var nick = "anonimo"
++    @AppStorage("sonido") private var sonido = true
++
++    var body: some View {
++        VStack {
++            TextField("Nick", text: $nick)
++            Toggle("Sonido", isOn: $sonido)
++        }
++        .padding()
++    }
++}
++```
++
++Al leer la propiedad `nick` se lee la preferencia `"nick"`, y al modificarla (en este caso, al escribir en el `TextField`) se guarda. No hay que escribir código para cargar ni para guardar. Además, igual que con `@State`, cuando la preferencia cambia la vista se redibuja.
++
++Algunas cosas a tener en cuenta:
++
++- El valor que asignamos en la declaración (`"anonimo"`, `true`) es el que se usa si la preferencia no tiene ningún valor guardado. Si usamos la misma clave en varias vistas, conviene que el valor por defecto sea el mismo en todas, o mejor, registrarlo con `register(defaults:)` como hemos visto antes.
++- Es la misma preferencia que si la usáramos con el API de `UserDefaults`: `@AppStorage("nick")` y `UserDefaults.standard.string(forKey: "nick")` acceden al mismo valor, en el mismo `.plist`.
++- Solo admite algunos tipos: `Bool`, `Int`, `Double`, `String`, `URL`, `Data`, y enumeraciones cuyo valor asociado (`rawValue`) sea `Int` o `String`. **No admite directamente `Date` ni arrays.** Para estos tipos usaremos el API de `UserDefaults` o los convertiremos a uno de los admitidos.
++- Es ideal para **ajustes ligados a un control** (un interruptor, un tamaño de letra, un tema de color...), que se guardan en cuanto el usuario los cambia. Si queremos guardar un dato en un momento concreto (por ejemplo, al pulsar un botón "Guardar"), suele quedar más claro usar directamente el API de `UserDefaults`.
++
+ ### Material complementario: ubicar las preferencias en los ajustes del sistema
+ 
+ !!! info "Nota"
+@@ -129,64 +175,100 @@
+ 
+ ## Ejercicio (0.75 puntos)
+ 
+-Vamos a realizar una pequeña aplicación en la que los datos se guarden usando algunos de los mecanismos vistos en la sesión. Desde el punto de vista del usuario consistirá en una única "pantalla" con un `Text View` para editar un mensaje y un `Label` que mostrará la fecha y hora de edición. Los datos deben conservarse aunque salgamos de la aplicación.
+-
+-Llama al proyecto `PersistenciaBasica` (plantilla `iOS > App`, `Interface: Storyboard`, `Language: Swift`).
++Vamos a realizar una pequeña aplicación en la que los datos se guarden usando las preferencias de usuario. Consistirá en una única pantalla con un área de texto para editar un mensaje, la fecha y hora en que se guardó, y un botón para guardarlo. Los datos deben conservarse aunque salgamos de la aplicación.
+ 
+-### Interfaz gráfica
++Crea un proyecto llamado `PersistenciaBasica` (plantilla `iOS > App`, `Interface: SwiftUI`).
+ 
+-Crea la interfaz:
++### La interfaz
+ 
+-- Inserta un `Text View`, un `Label` y un `Button` que ponga "guardar" en el *storyboard*
+-- En el `ViewController`
+-    * Crea dos *outlets* para acceder al contenido del text view y del label. Recuerda que tienes que hacer `Ctrl+arrastrar`.
+-    * Crea un _action_ que responda a pulsaciones sobre el botón "guardar"  
+-    * Crea una propiedad opcional llamada `fechaEdicion` de tipo `Date`, que representará la fecha y hora en que se haya editado el texto. 
++Sustituye el contenido de `ContentView.swift` por este esqueleto:
+ 
+-### Formatear la fecha de edición
++```swift
++import SwiftUI
+ 
+-Queremos que cuando se pulse el botón "guardar" (por tanto tendrás que hacer esto en el *action* del botón):
++struct ContentView: View {
++    @State private var texto = ""
++    @State private var fechaEdicion: Date?
++
++    var body: some View {
++        VStack(alignment: .leading, spacing: 16) {
++            //área de texto de varias líneas
++            TextEditor(text: $texto)
++                .border(.secondary)
++
++            //fecha y hora de la última vez que se guardó
++            if let fecha = fechaEdicion {
++                Text("Guardado: \(fecha.formatted(date: .abbreviated, time: .standard))")
++                    .foregroundStyle(.secondary)
++            } else {
++                Text("Sin guardar")
++                    .foregroundStyle(.secondary)
++            }
++
++            Button("Guardar") {
++                //AQUÍ irá el código para guardar
++            }
++            .buttonStyle(.borderedProminent)
++        }
++        .padding()
++    }
++}
+ 
+-  - La `fechaEdicion` se ponga a la fecha y hora actuales
+-  
+-  ```swift
+-  self.fechaEdicion = Date()
+-  ```
++#Preview {
++    ContentView()
++}
++```
+ 
+-  - La fecha se muestre en modo texto en el _label_. Como el formato por defecto es un poco engorroso, mejor la formatearemos nosotros
++> `TextEditor` es la versión de varias líneas de `TextField`. Igual que este, se conecta a una variable de estado mediante un *binding* (`$texto`).
+ 
+-```swift
+-//SUPONEMOS que el outlet del label se llama "fechaLabel"
+-//CAMBIALO por lo que sea necesario
+-self.fechaLabel.text = DateFormatter.localizedString(
+-             from: self.fechaEdicion!, 
+-             dateStyle: .short, timeStyle: .medium)
+-```
++> `formatted(date:time:)` convierte la fecha en texto según el idioma y la región del dispositivo. Fíjate en que la fecha la guardamos como `Date` y solo la convertimos a texto para mostrarla.
+ 
+-**Comprueba que lo anterior funciona correctamente**, que al pulsar sobre el botón se muestra la fecha y hora de edición en el *label*.
++Comprueba en la preview o en el simulador que puedes escribir en el área de texto.
+ 
+-### Guardar los datos
++### Guardar los datos (0.25 puntos)
+ 
+-En el _action_ del botón añade el código Swift que necesites para almacenar el texto y la fecha como dos preferencias de usuario llamadas "texto" y "fecha" respectivamente (en la fecha guarda la propiedad de tipo `Date`, no la fecha convertida a texto, esa es solo para visualización). Tendrás que mirar los apuntes para ver cómo hacerlo (apartado "[Modificar los valores de las preferencias](#modificar_prefs)")
++En la acción del botón "Guardar":
+ 
+-### Recuperar los datos al cargar la aplicación
++- Pon `fechaEdicion` a la fecha y hora actuales (`Date()`). Como es una variable de estado, el texto con la fecha se actualizará solo.
++- Guarda el texto y la fecha como dos preferencias de usuario llamadas "texto" y "fecha" respectivamente, usando el API de `UserDefaults` (apartado "[Modificar los valores de las preferencias](#modificar_prefs)"). Guarda la fecha como `Date`, no convertida a texto.
+ 
+-En el `viewDidLoad` del _controller_ recupera las dos preferencias que guardaste y muestra su contenido en pantalla, a través de los correspondientes *outlets*.
++### Recuperar los datos al arrancar (0.25 puntos)
+ 
+-Consulta el apartado ["Acceder a las preferencias"](#acceso_prefs). Para recuperar la fecha:
+-  
+-  - Como no hay un método específico para recuperar fechas, tendrás que usar el de objetos: `object(forKey:)` de `UserDefaults` 
+-  - Para convertirlo de objeto en fecha tendrás que hacer un _cast_ a `Date`. Ten en cuenta que **la primera vez que se ejecuta la app todavía no hay nada guardado** y `object(forKey:)` devolverá `nil`, así que usa un *cast* condicional (`as? Date`) dentro de un `if let`, no un `as! Date`, que haría que la app se cerrara en el primer arranque:
++Cuando aparezca la pantalla, recupera las dos preferencias y asígnalas a `texto` y `fechaEdicion`. Para ejecutar código cuando aparece una vista, se usa el modificador `.onAppear`, el equivalente en SwiftUI al `viewDidLoad`/`viewWillAppear` de UIKit. Añádelo al `VStack`:
+ 
+ ```swift
+-if let fecha = UserDefaults.standard.object(forKey: "fecha") as? Date {
+-    //aquí ya puedes usar "fecha"
++VStack(alignment: .leading, spacing: 16) {
++    //...
++}
++.padding()
++.onAppear {
++    //AQUÍ el código para recuperar las preferencias
+ }
+ ```
+ 
++Consulta el apartado ["Acceder a las preferencias"](#acceso_prefs). Para recuperar la fecha, como no hay un método específico para fechas, tendrás que usar `object(forKey:)` y convertir el resultado a `Date` con un *cast* condicional (`as? Date`). Ten en cuenta que **la primera vez que se ejecuta la app todavía no hay nada guardado** y `object(forKey:)` devolverá `nil`. Como `fechaEdicion` es opcional, puedes asignarle directamente el resultado del *cast*: si no hay nada guardado, quedará a `nil` y se mostrará "Sin guardar".
++
+ Para comprobar si las preferencias se guardan:
+ 
++-  Escribe algo y pulsa "Guardar".
+ -  Sal de la _app_ como lo haría un usuario en el móvil real (menú `Device > Home` del simulador). 
+ -  Ve a la aplicación SimSim en el menú superior, selecciona la app `PersistenciaBasica` y luego selecciona `Finder`: se abrirá una carpeta con el sistema de archivos de la *app*. 
+--  Las preferencias se guardan en `Library/Preferences`. Debería haber un fichero `.plist`. Si lo abres dándole doble clic debería abrirse en Xcode y podrás ver el contenido
++-  Las preferencias se guardan en `Library/Preferences`. Debería haber un fichero `.plist`. Si lo abres dándole doble clic debería abrirse en Xcode y podrás ver el contenido.
+ -  Detén la app en Xcode y vuelve a ejecutarla: deberían aparecer el texto y la fecha guardados.
++
++### Tamaño de letra con `@AppStorage` (0.25 puntos)
++
++Vamos a permitir que el usuario elija el tamaño de letra del área de texto. El tamaño elegido es una preferencia típica, que debe conservarse entre ejecuciones, pero esta vez usaremos `@AppStorage` (apartado "[Preferencias en SwiftUI](#appstorage)").
++
++- Declara en `ContentView` una propiedad `tamanoLetra` de tipo `Double`, con `@AppStorage`, y con un valor por defecto de 17.
++- Añade debajo del botón un `Stepper`, un control con dos botones para aumentar y disminuir un valor, que modifique el tamaño entre 12 y 30 puntos:
++
++```swift
++Stepper("Tamaño de letra: \(Int(tamanoLetra))", value: $tamanoLetra, in: 12...30)
++```
++
++- Aplica el tamaño al área de texto con el modificador `.font(.system(size: tamanoLetra))`.
++
++Fíjate en que esta vez no has tenido que escribir código para guardar ni para recuperar la preferencia. Comprueba que el tamaño se conserva al detener la app y volver a ejecutarla, y que en el `.plist` de las preferencias aparece la nueva clave.
++
++Para terminar, prueba a declarar `fechaEdicion` con `@AppStorage` en lugar de `@State`. ¿Qué ocurre? En la entrega, explica en dos o tres líneas por qué, y cómo podrías guardar la fecha si quisieras usar `@AppStorage` (no hace falta que lo implementes). Después deja el código como estaba.

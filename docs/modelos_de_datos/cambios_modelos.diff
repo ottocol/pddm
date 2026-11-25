@@ -1,0 +1,767 @@
+--- original/4.1_crear_modelo.md
++++ corregido/4.1_crear_modelo.md
+@@ -3,116 +3,120 @@
+ 
+ Normalmente en una aplicación hay un solo modelo de datos, que se almacena en un archivo `.xcdatamodeld` (aunque no es habitual, nada nos impide crear varios si la aplicación lo necesitara). 
+ 
+-En Xcode, al crear el proyecto con la casilla de "Use Core Data" marcada, el asistente nos crea un modelo de datos vacío con el mismo nombre del proyecto. Lo más habitual es editar el modelo con el editor gráfico de Xcode, aunque también hay un API Swift para crearlo/manipularlo.
++En Xcode, al crear el proyecto eligiendo `Core Data` en el desplegable `Storage`, el asistente nos crea un modelo de datos vacío con el mismo nombre del proyecto. Lo más habitual es editar el modelo con el editor visual de Xcode, aunque también hay un API Swift para crearlo/manipularlo.
+ 
+-El editor tiene dos modos, el modo "tabla" donde vemos las entidades y atributos como listas de valores, y el modo "gráfico" donde podemos ver un diagrama con las entidades y las relaciones entre ellas. Estos modos se cambian con los dos iconos de la esquina inferior derecha del editor (*Editor Style*). 
++> Hasta Xcode 13 el editor tenía dos modos: el modo "tabla", donde vemos las entidades y atributos como listas, y el modo "gráfico" (*Graph*), que mostraba un diagrama con las entidades y las relaciones entre ellas. **Desde Xcode 14 el modo gráfico ya no existe** y todo se edita en modo tabla. Los diagramas que aparecen en estos apuntes sirven para entender los modelos de ejemplo, pero no los verás así en Xcode 15.
+ 
+ ## Entidades
+ 
+-Las entidades comparten ciertas características con las clases de la POO y otras con las tablas de una base de datos. Por ejemplo pueden ser *abstractas* y por tanto no directamente instanciables, como las clases de cualquier lenguaje OO.  Por otro lado tienen relaciones con otras entidades (uno-a-uno, uno-a-muchos,...) y se puede especificar qué debe pasar cuando uno de los "lados" de la relación se elimina, como es típico de las bases de datos relacionales.
++Las entidades comparten ciertas características con las clases de la POO y otras con las tablas de una base de datos. Por ejemplo pueden ser *abstractas* y por tanto no directamente instanciables, como las clases de cualquier lenguaje OO. Por otro lado tienen relaciones con otras entidades (uno-a-uno, uno-a-muchos,...) y se puede especificar qué debe pasar cuando uno de los "lados" de la relación se elimina, como es típico de las bases de datos relacionales.
+ 
+-Si seleccionamos una entidad podemos ver sus propiedades en el "Data Model Inspector", (Cmd+Alt+4 o *clic* en el cuarto icono del panel de la derecha de la pantalla)
++Si seleccionamos una entidad podemos ver sus propiedades en el "Data Model Inspector" (`Cmd+Alt+4` o *clic* en el cuarto icono del panel de la derecha de la pantalla)
+ 
+ ![](img/data_model_inspector_icon.png)
+ 
+-- `Abstract entity` es análogo a las clases abstractas en POO, indica que la entidad no es directamente instanciable y se usa solo para que otras hereden de ella.
+-- `Parent entity` indicaría que esta instancia hereda las propiedades de otra
+-- `Class`: por defecto Xcode creará automáticamente una clase Swift para representar la entidad. Posteriormente veremos dónde está este código y qué estructura tiene.
++- `Abstract Entity` es análogo a las clases abstractas en POO, indica que la entidad no es directamente instanciable y se usa solo para que otras hereden de ella.
++- `Parent Entity` indicaría que esta entidad hereda las propiedades de otra
++- `Class`: por defecto Xcode creará automáticamente una clase Swift para representar la entidad. En la siguiente sección veremos dónde está este código y qué estructura tiene.
+ 
+-> En versiones antiguas de Xcode el IDE no generaba por defecto las clases y había que generarlas manualmente. Todavía se puede hacer de este modo si queremos personalizar el código Swift, como veremos posteriormente.
++> Con el almacenamiento SQLite, todas las entidades de una misma jerarquía de herencia se guardan en **una única tabla**, que tiene columnas para los atributos de todas ellas. Si la jerarquía es grande esto puede afectar al rendimiento, así que conviene no abusar de la herencia entre entidades.
+ 
+-## Atributos de la clase
++## Atributos de la entidad
+ 
+ La característica más destacada de un atributo es el **tipo de datos**. Podemos elegir de entre una serie de tipos, que pueden verse en la siguiente imagen del editor. 
+ 
+ ![](img/tipos_propiedades.png)
+ 
+-La mayoría son bastante autoexplicativos, salvo los dos últimos. El tipo binario se usa típicamente para imágenes, audio, .... En cuanto a `Transformable` nos permite almacenar cualquier clase Swift/Obj-C. Se parece al binario en el sentido de que en el fondo, los datos se van a almacenar también en binario, pero con `Transformable` proporcionamos un medio de hacer la conversión y a partir de ahí nos "olvidamos" de que el dato se está convirtiendo, si trabajamos con clases propias solo veremos el tipo original.
++La mayoría son bastante autoexplicativos (`UUID` y `URI` sirven para identificadores únicos y URLs respectivamente), salvo `Binary Data` y `Transformable`. El tipo binario se usa típicamente para imágenes, audio, .... En cuanto a `Transformable` nos permite almacenar objetos de otras clases. Se parece al binario en el sentido de que en el fondo, los datos se van a almacenar también en binario, pero con `Transformable` proporcionamos un medio de hacer la conversión y a partir de ahí nos "olvidamos" de que el dato se está convirtiendo: en el código solo veremos el tipo original.
+ 
+-> Cualquier clase (propia o del sistema) que sea conforme al protocolo `NSCoding` puede usarse como `Transformable` e iOS se encargará automáticamente de convertirla a/desde `NSData`. Veremos más detalles posteriormente.
++> Las clases conformes al protocolo `NSSecureCoding` (por ejemplo los arrays y diccionarios de tipos básicos) pueden usarse como `Transformable` sin escribir código de conversión. Veremos los detalles en la sección dedicada a otros tipos de datos.
+ 
+-Además del tipo, las propiedades tienen muchas otras características. Podemos verlas en el "Data Model Inspector", haciendo clic sobre el atributo y luego con el atajo (Cmd+Alt+4) o con *clic* en el cuarto icono del panel de la derecha de la pantalla.
++Además del tipo, los atributos tienen muchas otras características. Podemos verlas en el "Data Model Inspector", haciendo clic sobre el atributo y luego con el atajo (`Cmd+Alt+4`) o con *clic* en el cuarto icono del panel de la derecha de la pantalla.
+ 
+ Veamos algunas de ellas:
+ 
+-- `Transient` significa que no queremos que la propiedad sea persistente. Es típico de los valores que son calculados a partir de otros y que podemos volver a calcular fácilmente (por ejemplo el total de un pedido).
+-- `Derived` significa que la propiedad va a ser un valor calculado a partir de otros atributos, hay una serie de primitivas que podemos aplicar, por ejemplo podemos tener un atributo que cuente la cardinalidad de una relación (ver apartado siguiente para ver cómo se modelan las relaciones), que transforme un atributo de tipo `String` a formatos como "todo mayúculas", "todo minúsculas", y alguna cosa más. Se recomienda consultar la [documentación de Apple](https://www.avanderlee.com/core-data/derived-attributes-optimise-fetch-performance/) sobre la cuestión, aunque no es demasiado detallada.
+-- `Optional` es el contrario del típico "not null" de las bases de datos. Si un atributo es opcional, puede ser `nil`. 
++- `Optional` es el contrario del típico "not null" de las bases de datos. Si un atributo es opcional, puede ser `nil`. Por defecto los atributos nuevos son opcionales.
+ 
+-> Hay que distinguir entre un atributo opcional en una entidad y una variable opcional en Swift. Que un atributo de una entidad sea no opcional significa que **en el momento de guardar el objeto en el almacenamiento persistente éste debe tener un valor no nulo** pero en memoria puede haber un intervalo de tiempo mientras vamos "rellenando" todas las propiedades en que sea `nil`. Sin embargo una variable Swift no opcional **en ningún momento** puede tener `nil`.
++> Hay que distinguir entre un atributo opcional en una entidad y una variable opcional en Swift. Que un atributo de una entidad sea no opcional significa que **en el momento de guardar el objeto en el almacenamiento persistente éste debe tener un valor no nulo** pero en memoria puede haber un intervalo de tiempo mientras vamos "rellenando" todas las propiedades en que sea `nil`. Sin embargo una variable Swift no opcional **en ningún momento** puede tener `nil`. Por eso las clases que genera Xcode declaran los atributos de tipo objeto (`String`, `Date`, `Data`...) como opcionales de Swift aunque en el modelo no lo sean.
+ 
+-- `Indexed` también es el mismo concepto que en BD. Un atributo indexado estará optimizado para las búsquedas que hagamos sobre él pero ocupará más espacio de almacenamiento.
+-- Reglas de validación: valor mínimo y máximo (si es numérico), longitud mínima y máxima (si es cadena), `Reg Exp`, la expresión regular con la que deben encajar los valores del atributo.
+-- Valor por defecto (`default`) que se asignará automáticamente si no le damos un valor explícito.
++- `Transient` significa que no queremos que la propiedad sea persistente. Es típico de los valores que son calculados a partir de otros y que podemos volver a calcular fácilmente (por ejemplo el total de un pedido).
++- `Derived` (desde iOS 13) significa que la propiedad va a ser un valor calculado a partir de otros atributos y que Core Data mantiene actualizado en la base de datos. Hay una serie de primitivas que podemos aplicar, por ejemplo podemos tener un atributo que cuente el número de elementos de una relación (ver apartado siguiente para ver cómo se modelan las relaciones), que transforme un atributo de tipo `String` a "todo mayúsculas", "todo minúsculas", o que guarde la fecha de la última modificación. El valor se recalcula al guardar el contexto, no en el momento en que cambian los datos. La documentación de Apple sobre el tema es escasa; podéis consultar [este artículo](https://www.avanderlee.com/core-data/derived-attributes-optimise-fetch-performance/) para ver ejemplos.
++- `Indexed` también es el mismo concepto que en BD. Un atributo indexado estará optimizado para las búsquedas que hagamos sobre él pero ocupará más espacio de almacenamiento. En el editor de Xcode 15 los índices se definen a nivel de entidad, en la sección `Indexes`.
++- Reglas de validación: valor mínimo y máximo (si es numérico o fecha), longitud mínima y máxima (si es cadena), `Reg. Ex.`, la expresión regular con la que deben encajar los valores del atributo.
++- Valor por defecto (`Default Value`) que se asignará automáticamente si no le damos un valor explícito.
+ 
+ ## Restricciones
+ 
+-Las restricciones o *constraints* nos permiten especificar uno o más campos en los que no  queremos que se puedan repetir valores, es decir la típica restricción de *unique* de las bases de datos relacionales. 
++Las restricciones o *constraints* nos permiten especificar uno o más campos en los que no queremos que se puedan repetir valores, es decir la típica restricción de *unique* de las bases de datos relacionales. 
+ 
+-> De momento en Core Data no existe otro tipo de restricción que la de valores únicos. Se pueden especificar condiciones que deben cumplir los atributos, como por ejemplo longitud mínima y máxima para un `String`, pero eso es lo que se denominan *validaciones* y se explica en otro apartado del tema.
++> En Core Data no existe otro tipo de restricción que la de valores únicos. Se pueden especificar condiciones que deben cumplir los atributos, como por ejemplo longitud mínima y máxima para un `String`, pero eso es lo que se denominan *validaciones* y se explica en otro apartado del tema.
+ 
+-Para añadir restricciones, en el editor del modelo de datos, seleccionar la entidad, y en el recuadro de `Constraints` del `Data model inspector` (panel derecho de Xcode):
++Para añadir restricciones, en el editor del modelo de datos, seleccionar la entidad, y en el recuadro de `Constraints` del `Data Model Inspector` (panel derecho de Xcode):
+ 
+-1. Pulsar sobre `+`. Aparecerá una línea que pone `comma, separated, properties`, indicando que aquí podemos teclear una lista de atributos separados por comas
+-2. Clicar sobre esa línea, y pulsar ENTER para hacerla editable
++1. Pulsar sobre `+`. Aparecerá una línea que pone `comma,separated,properties`, indicando que aquí podemos teclear una lista de atributos separados por comas
++2. Hacer doble clic sobre esa línea para hacerla editable
+ 3. Escribir el atributo o lista de atributos separados por comas
+ 
+-La restricción de valores únicos se chequea en el momento de guardar el contexto de persistencia, por lo que tenemos que indicar qué sucederá si ya hay un objeto persistente con un determinado valor único y estamos guardando otro con el mismo valor: ¿debería ser un error, el nuevo debería sobreescribir al antiguo?... Es decir, debemos definir lo que se conoce como la *merge policy* de Core Data. Esta política se define por código Swift cuando se crea el *stack* de Core Data, de modo que si usamos la plantilla estándar generada por Xcode, tendremos que irnos al `AppDelegate` y modificar el método `loadPersistentStores()` definiendo una `mergePolicy`, ya que por defecto no se define ninguna:
++La restricción de valores únicos se chequea en el momento de guardar el contexto de persistencia, por lo que tenemos que indicar qué sucederá si ya hay un objeto persistente con un determinado valor único y estamos guardando otro con el mismo valor: ¿debería ser un error, el nuevo debería sobreescribir al antiguo?... Es decir, debemos definir lo que se conoce como la *merge policy* del contexto. Por defecto la política es `NSErrorMergePolicy`, es decir, `save()` lanzará un error. Si queremos otro comportamiento, la política se define por código Swift. Si usamos la plantilla estándar generada por Xcode, podemos hacerlo en el `AppDelegate`, justo después de cargar los *stores*:
+ 
+ ```swift
+-...
+-container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+-     container.viewContext.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
+-...
++lazy var persistentContainer: NSPersistentContainer = {
++    let container = NSPersistentContainer(name: "NotasCoreData")
++    container.loadPersistentStores(completionHandler: { (storeDescription, error) in
++        //...código generado por Xcode
++    })
++    //AÑADIMOS esta línea
++    container.viewContext.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
++    return container
++}()
+ ```
+ 
+-en el ejemplo, estamos aplicando la política de que en caso de conflicto por valores únicos, el nuevo objeto "machaca" el que ya hay en el *store*. También existe la política inversa, y algunas otras distintas, se recomienda consultar la documentación de [`NSMergePolicy`](https://developer.apple.com/documentation/coredata/nsmergepolicy) para más información.
++En el ejemplo, estamos aplicando la política de que en caso de conflicto por valores únicos, los valores del objeto que estamos guardando "machacan" a los del que ya hay en el *store*. También existe la política inversa (`mergeByPropertyStoreTrump`), y algunas otras distintas, se recomienda consultar la documentación de [`NSMergePolicy`](https://developer.apple.com/documentation/coredata/nsmergepolicy) para más información.
+ 
+ ## Relaciones
+ 
+ Las relaciones en Core Data son muy similares al concepto equivalente en BD relacionales: vinculan una entidad con otra u otras, generalmente de otro tipo.
+ 
+-Cuando creamos una relación usando el estilo de "tabla" en el editor visual, las tres características directamente editables son:
++Para crear una relación, seleccionamos la entidad origen y pulsamos el `+` de la sección `Relationships` (o el botón `Add Relationship`, manteniendo pulsado `Add Attribute`). Las tres características directamente editables en la tabla son:
+ 
+-- **Nombre**: es arbitrario y la única condición es que debe comenzar por minúscula, al igual que las propiedades. No obstante, una práctica común es ponerle el mismo nombre que la entidad a la que vincula pero en minúscula. Por ejemplo si tenemos un `Mensaje` y queremos establecer una relación con el `Usuario` que lo ha enviado llamaríamos a la relación simplemente `usuario`. Si es una relación uno a muchos se suele usar el plural. Así, si tenemos un ``Usuario` y queremos vincularlo con todos sus mensajes llamaríamos `mensajes` a la relación.
+-- **Destino**: la entidad vinculada
+-- **Inversa**: Se recomienda que todo vínculo entre entidades tenga su relación inversa, que es la que nos permite "volver al punto de partida". En el ejemplo de mensajes/usuarios, la inversa de la relación `usuario` sería `mensajes`.
++- **Nombre**: es arbitrario y la única condición es que debe comenzar por minúscula, al igual que los atributos. No obstante, una práctica común es ponerle el mismo nombre que la entidad a la que vincula pero en minúscula. Por ejemplo si tenemos un `Mensaje` y queremos establecer una relación con el `Usuario` que lo ha enviado llamaríamos a la relación simplemente `usuario`. Si es una relación uno a muchos se suele usar el plural. Así, si tenemos un `Usuario` y queremos vincularlo con todos sus mensajes llamaríamos `mensajes` a la relación.
++- **Destino** (`Destination`): la entidad vinculada
++- **Inversa** (`Inverse`): Se recomienda que todo vínculo entre entidades tenga su relación inversa, que es la que nos permite "volver al punto de partida". En el ejemplo de mensajes/usuarios, la inversa de la relación `usuario` sería `mensajes`. Para establecerla, primero hay que crear las dos relaciones (una en cada entidad) y luego elegir la inversa en el desplegable de cualquiera de ellas; Xcode rellenará automáticamente la de la otra.
+ 
+ > Las relaciones que no tienen inversa generan *warnings* en Xcode, ya que Core Data usa la bidireccionalidad para poder mantener la consistencia del grafo de objetos cuando se eliminan entidades.
+ 
+-Al igual que con las entidades y las propiedades, podemos cambiar los atributos de una relación seleccionándola y yendo al “Data Model Inspector”, (recuerda, Cmd+Alt+4 o *clic* en el cuarto icono del panel de la derecha de la pantalla).
+-
+-- `Transient` y `optional` son equivalentes a los atributos del mismo nombre usados en las propiedades.
+-- `Delete rule` es la típica regla a aplicar cuando se borra la entidad “fuente” de la relación: por ejemplo con `cascade` si se borra la entidad, las relacionadas también lo hacen automáticamente, con `deny` no se puede borrar la entidad si hay relacionadas, con `nullify` la relación inversa se pone a `nil` y con `no action` la relación inversa queda tal cual (aunque apuntará a un objeto que ya no existe (!))
+-- con `Type` podemos indicar si es una relación uno a uno o uno a muchos. Las relaciones muchos a muchos las conseguimos poniendo tanto la relación como la inversa con el tipo “a muchos”.
+-
+-
+-> En Xcode 14 se ha eliminado el modo `Graph` del editor de *data models*. En el momento de la redacción de esta nota no está claro si esta eliminación es o no permanente, por lo que de momento no se ha eliminado la parte de los apuntes que se refiere a este modo de representación/edición en forma de grafo.
++Al igual que con las entidades y los atributos, podemos cambiar las características de una relación seleccionándola y yendo al “Data Model Inspector” (recuerda, `Cmd+Alt+4` o *clic* en el cuarto icono del panel de la derecha de la pantalla).
+ 
+-En el editor de *data models* de Xcode, si nos ponemos en modo `Graph` podemos ver gráficamente las relaciones entre objetos y crearlas con ctrl-click en la entidad "origen" y arrastrando hasta la entidad destino. Las relaciones "uno a uno" aparecen con una única punta de flecha en el destino, y las "uno a muchos" con dos.
++- `Transient` y `Optional` son equivalentes a las características del mismo nombre de los atributos.
++- `Delete Rule` es la típica regla a aplicar cuando se borra el objeto “fuente” de la relación:
++    - `Nullify` (la opción por defecto): la relación inversa de los objetos relacionados se pone a `nil`
++    - `Cascade`: se borran también automáticamente los objetos relacionados
++    - `Deny`: no se puede borrar el objeto si tiene objetos relacionados (dará error al guardar)
++    - `No Action`: la relación inversa queda tal cual (aunque apuntará a un objeto que ya no existe (!)). Prácticamente nunca se usa.
++- Con `Type` podemos indicar si es una relación `To One` o `To Many`. Las relaciones muchos a muchos las conseguimos poniendo tanto la relación como la inversa con el tipo “a muchos”.
+ 
+-![](img/datamodel.png)
++![](img/datamodel.png "Diagrama de un modelo de ejemplo. En los diagramas, las relaciones a uno aparecen con una punta de flecha y las relaciones a muchos con dos")
+ 
+ En el caso de relaciones “a muchos” podemos especificar: 
+ 
+-- Si queremos que sean ordenadas (`ordered`). Por ejemplo nos dará lo mismo el orden para un `Género` musical que tiene asociados muchos `Disco`s, pero no es indiferente en el caso de una `Conversacion` y los `Mensaje`s que la componen.
+-- La cardinalidad mínima y máxima (podemos fijar un límite numérico o dejarlo vacía (*unbounded*)
++- Si queremos que sean ordenadas (`Ordered`). Por ejemplo nos dará lo mismo el orden para un `Género` musical que tiene asociados muchos `Disco`s, pero no es indiferente en el caso de una `Conversacion` y los `Mensaje`s que la componen.
++- La cardinalidad mínima y máxima (`Count Minimum` y `Count Maximum`): podemos fijar un límite numérico o dejarla vacía (sin límite)
+ 
+-## Fetched properties
++## Material complementario
+ 
+-Son similares a las relaciones, pero no son bidireccionales. Cada *fetched property* está basada en una consulta (*fetch request*). Por ejemplo podríamos tener una propiedad `mensajes_recientes` que nos devolviera los mensajes que ha enviado recientemente un usuario.
++!!! info "Nota"
++    Los dos apartados siguientes describen funcionalidades del editor que se usan poco. No las necesitarás para los ejercicios.
+ 
+-Para crear una *fetched property* mantenemos pulsado el botón de `Add attribute` hasta que aparezca el menú contextual, donde seleccionamos `Add fetched property`. Tenemos que especificar su nombre y el *predicado* (la condición de la “consulta asociada”). Veremos algún ejemplo cuando hablemos de consultas en Core Data. 
++### Fetched properties
+ 
+-> Cuidado, las *fetched properties* no son dinámicas, sino *lazy*, su valor no se recalcula automáticamente cada vez que accedemos a ellas, hay que recalcularlas explícitamente con `refreshObject:mergeChanges:`.
+-
+-## Fetch requests
+-
+-En el editor podemos crear *fetch requests* predefinidas. Estas *requests* son lo que en una base de datos llamaríamos *consultas* o *queries*. 
+-
+-Si mantenemos pulsado el botón de `Add Entity` unos segundos aparecerá un menú contextual y en él podemos elegir la opción `Add fetch request`. Podemos añadir gráficamente las condiciones deseadas. Veremos la sintaxis de las condiciones y más detalles sobre este tema en la sesión sobre consultas en Core Data.
++Son similares a las relaciones, pero no son bidireccionales. Cada *fetched property* está basada en una consulta (*fetch request*). Por ejemplo podríamos tener una propiedad `mensajesRecientes` que nos devolviera los mensajes que ha enviado recientemente un usuario.
+ 
++Para crear una *fetched property* mantenemos pulsado el botón de `Add Attribute` hasta que aparezca el menú contextual, donde seleccionamos `Add Fetched Property` (también está en el menú `Editor`). Tenemos que especificar su nombre y el *predicado* (la condición de la “consulta asociada”). Veremos la sintaxis de los predicados cuando hablemos de consultas en Core Data. 
+ 
++> Cuidado, las *fetched properties* no son dinámicas, sino *lazy*: su valor no se recalcula automáticamente cada vez que accedemos a ellas, hay que refrescar el objeto explícitamente con `miContexto.refresh(objeto, mergeChanges: true)`. En la práctica es más habitual ejecutar directamente una *fetch request* cuando se necesitan los datos.
+ 
++### Fetch requests predefinidas
+ 
++En el editor podemos crear *fetch requests* predefinidas. Estas *requests* son lo que en una base de datos llamaríamos *consultas* o *queries*. 
+ 
++Si mantenemos pulsado el botón de `Add Entity` aparecerá un menú contextual y en él podemos elegir la opción `Add Fetch Request`. Podemos añadir gráficamente las condiciones deseadas. Desde el código se recuperan con el método `fetchRequestTemplate(forName:)` del modelo (`persistentContainer.managedObjectModel`). Veremos la sintaxis de las condiciones y más detalles sobre este tema en la sesión sobre consultas en Core Data.
+--- original/4.2_clases_propias.md
++++ corregido/4.2_clases_propias.md
+@@ -1,42 +1,37 @@
+ 
++Desde el punto de vista del código Swift las entidades del modelo serán instancias de clases Swift. Así, dada la entidad `Usuario` con ciertos atributos lo que tendremos en Swift es una clase con el mismo nombre y las correspondientes propiedades.
+ 
++## Las tres opciones de generación de código
+ 
+-Desde el punto de vista del código Swift las entidades del modelo serán instancias de clases Swift. Así, dada la entidad Usuario con ciertos atributos lo que tendremos en Swift es una clase con el mismo nombre y las correspondientes propiedades.
+-
+-## Generación automática de las clases
+-
+-Las clases de nuestro modelo de datos se pueden generar automáticamente y de modo transparente para el desarrollador cada vez que guardemos el modelo de datos (el `.xcdatamodeld`). 
+-
+-En el editor del modelo de datos, si seleccionamos una entidad y accedemos a sus atributos en el panel de la derecha, veremos que hay una sección titulada `Class` que se ocupa del código generado, podemos cambiar:
++En el editor del modelo de datos, si seleccionamos una entidad y accedemos a sus características en el panel de la derecha, veremos que hay una sección titulada `Class` que se ocupa del código generado. Podemos cambiar:
+ 
+ - El nombre de la clase generada (por defecto el de la entidad)
+-- El módulo de Swift donde se crea la clase (por defecto pone `Global Namespace`, lo que significa que no hará falta ningún `import` para referenciar la clase)
+-- La estrategia de generación de código o `codegen`. Aquí por defecto aparece seleccionada la opción  `Class definition`, que indica que Xcode va a generar automáticamente todo el código asociado a la entidad. Con `Manual/None` habría que generar el código explícitamente. Con `Category/Extension` parte del código se generará automáticamente y parte de forma manual.
++- El módulo de Swift donde se crea la clase (por defecto pone `Global namespace`; no necesitamos cambiarlo)
++- La estrategia de generación de código o `Codegen`, que tiene tres opciones:
+ 
+-Las clases se vuelven a generar si ha habido cambios cada vez que guardamos el modelo de datos (`File>Save` o `Cmd-S`). No se generan en el directorio del proyecto, de modo que no son visibles directamente, sino en un directorio aparte denominado `Derived Data`, donde Xcode coloca típicamente el código auxiliar generado por él. Este directorio por defecto está en otro lugar totalmente distinto del proyecto, podemos ver dónde está en la opción `File>Project Settings`, aunque no es necesario verlo ni recomendable modificar el contenido generado.
++| `Codegen` | Qué genera Xcode | Qué escribimos nosotros | Cuándo usarla |
++|---|---|---|---|
++| `Class Definition` (por defecto) | Todo: la clase y sus propiedades | Nada | Cuando no necesitamos añadir código propio a la clase |
++| `Category/Extension` | Solo la extensión con las propiedades y los métodos de las relaciones | La clase | Cuando queremos añadir métodos o propiedades propias |
++| `Manual/None` | Nada | Todo (con ayuda de un asistente) | Casos especiales en los que queremos control total |
+ 
+-> Si queremos "echarle un vistazo" al fuente de las clases generadas sin tener que ir a la carpeta podemos usar el "truco" de hacer `Cmd-Click` sobre el nombre de una clase que tengamos en el código. Xcode abre automáticamente el archivo en el que se define. Esto funciona con las clases de nuestro proyecto, con las autogeneradas y almacenadas en `Derived Data` e incluso con clases del sistema, como por ejemplo `UIViewController`.
++Lo vemos con más detalle a continuación.
+ 
+-Cuando una entidad tiene relaciones a uno o a muchos podemos manipular estas relaciones a través de propiedades y métodos de la clase generada. Veremos esto en la sección dedicada a CRUD.
+- 
+-## Generación manual de las clases
++## Generación automática de las clases (`Class Definition`)
+ 
+-Desde la versión 8 de Xcode el modo "automático" es el activo por defecto. No obstante en algunos casos nos interesará personalizar el código generado por Xcode añadiendo métodos y/o propiedades, y para esto no podemos usar la generación automática, ya que por un lado el código no es directamente visible en el proyecto y por otro Xcode sobreescribiría los cambios hechos manualmente.
++Desde la versión 8 de Xcode este es el modo activo por defecto. Las clases de nuestro modelo de datos se generan automáticamente y de modo transparente para el desarrollador, y se vuelven a generar si ha habido cambios en el modelo cada vez que compilamos el proyecto (y normalmente también al guardar el modelo con `File > Save` o `Cmd+S`). 
+ 
+-Xcode tiene un asistente que puede crear las clases que representan a las entidades. Teniendo seleccionada una entidad cualquiera en el  editor del modelo de datos, elegimos la opción `Editor > Create NSManagedObject Subclass...` en el menú de Xcode. Se activará el asistente, que es bastante sencillo de usar. Solo tenemos que elegir el modelo de datos (si es que tenemos más de uno) y las entidades para las que vamos a generar clases.
++No se generan en el directorio del proyecto, de modo que no son visibles en el navegador de archivos, sino en un directorio aparte denominado `DerivedData`, donde Xcode coloca típicamente el código auxiliar generado por él. Este directorio por defecto está en otro lugar totalmente distinto del proyecto (podemos ver dónde en `File > Project Settings...`), aunque no es necesario verlo ni recomendable modificar el contenido generado, ya que Xcode lo sobreescribirá.
+ 
+-Por cada entidad Xcode generará dos archivos:
++> Si queremos "echarle un vistazo" al fuente de las clases generadas sin tener que ir a la carpeta podemos hacer `Cmd+clic` sobre el nombre de la clase en nuestro código (o clic derecho y `Jump to Definition`). Xcode abre automáticamente el archivo en el que se define. Esto funciona con las clases de nuestro proyecto, con las autogeneradas y almacenadas en `DerivedData` e incluso con clases del sistema, como por ejemplo `UIViewController`.
+ 
+-- Una clase con el mismo nombre que la entidad (aunque el nombre se puede cambiar). Esta clase se declara como una subclase de `NSManagedObject`, que es la que proporciona la funcionalidad básica a las entidades
+-- Una extensión Swift de esta clase. En ésta se definen las propiedades de la entidad y un conjunto de métodos que nos facilitarán el trabajo con las relaciones entre entidades.
++### El código generado
+ 
+-> IMPORTANTE: En este modo de funcionamiento, Xcode no mantiene automáticamente sincronizado el modelo de datos y el código Swift. Si tras generar las clases modificamos las entidades, tendremos que borrar las clases generadas y volver a generarlas
+-
+-Vamos a ver un ejemplo del tipo de código que genera Xcode. Si tuviéramos el modelo de datos de la figura
++Vamos a ver un ejemplo del tipo de código que genera Xcode. Supongamos el modelo de datos de la figura
+ 
+ ![](img/graph_datamodel_2.png)
+ 
+-Tras generar clases para todas las entidades, acabaremos con 6 archivos fuente nuevos, dos por cada entidad. Para cada entidad, el primero de ellos tiene el mismo nombre que la entidad terminado en `+CoreDataClass.swift`. Si lo abrimos veremos que es la definición de una clase "vacía", marcada con algunas anotaciones especiales para que funcione correctamente la maquinaria interna de Core Data. Por ejemplo, para la entidad `Usuario` tendríamos algo como:
++Por cada entidad se generan dos archivos. El primero de ellos tiene el mismo nombre que la entidad terminado en `+CoreDataClass.swift`. Es la definición de una clase "vacía", marcada con algunas anotaciones especiales para que funcione correctamente la maquinaria interna de Core Data. Por ejemplo, para la entidad `Usuario` tendríamos algo como:
+ 
+ ```swift
+ //  Usuario+CoreDataClass.swift
+@@ -49,27 +44,29 @@
+ }
+ ```
+ 
+-El segundo de los archivos para cada entidad tiene un nombre terminado en `+CoreDataProperties.swift`. Este archivo contiene una extensión de la clase anterior. El código generado tiene dos partes diferenciadas.
++El segundo de los archivos para cada entidad tiene un nombre terminado en `+CoreDataProperties.swift`. Este archivo contiene una extensión de la clase anterior. Además del método `fetchRequest()`, el código generado tiene dos partes diferenciadas.
+ 
+ En primer lugar tenemos **la definición de las propiedades**, que en el ejemplo serían algo como
+ 
+ ```swift
+ @NSManaged public var login: String?
+ @NSManaged public var creditos: Int16
+-@NSManaged public var password: String?
+ @NSManaged public var mensajes: NSSet?
+ @NSManaged public var conversaciones: NSOrderedSet?
+ ```
+ 
+-Nótese que en la definición de la clase tenemos no solo las propiedades de la entidad en sí sino también **propiedades que representan las relaciones**. Por ejemplo en el diagrama puede verse una relación uno a muchos entre `Usuario` y `Mensaje` llamada `mensajes`, que representaría los mensajes enviados por un usuario. Esta relación se representa en código con la propiedad del mismo nombre. Esto quiere decir que si tenemos un usuario y vamos imprimiendo los objetos contenidos en la propiedad `mensajes` en realidad estaremos accediendo a la entidad `Mensaje`. Esto es mucho más sencillo y "limpio" que andar haciendo JOINs en SQL para obtener los datos relacionados.
++> Fíjate en que los atributos de tipo objeto (`String`, `Date`...) se generan como opcionales de Swift, mientras que los numéricos (`Int16`, `Double`, `Bool`...) no, salvo que en el inspector desmarquemos `Use Scalar Type`.
++
++Nótese que en la definición de la clase tenemos no solo los atributos de la entidad en sí sino también **propiedades que representan las relaciones**. Por ejemplo en el diagrama puede verse una relación uno a muchos entre `Usuario` y `Mensaje` llamada `mensajes`, que representaría los mensajes enviados por un usuario. Esta relación se representa en código con la propiedad del mismo nombre. Esto quiere decir que si tenemos un usuario y vamos recorriendo los objetos contenidos en la propiedad `mensajes` en realidad estaremos accediendo a objetos de la entidad `Mensaje`. Esto es mucho más sencillo y "limpio" que andar haciendo JOINs en SQL para obtener los datos relacionados.
+ 
+ > Que las relaciones se vean en código como propiedades es lo que explica la convención de darle siempre a una relación el nombre de la entidad destino en singular si es "a uno" y en plural si es "a muchos", ya que en código queda bastante natural. Por ejemplo dado un usuario `u` sus mensajes serían accesibles como `u.mensajes`, y dado un mensaje `m` la conversación a la que pertenece estaría en `m.conversacion`. 
+ 
+-Nótese que las relaciones "uno a muchos" se modelan con `NSSet` si no son ordenadas. Con esta estructura de datos no se nos garantiza un orden determinado al ir iterando por ella. En el caso de ser una relación marcada como ordenada Xcode habría generado un `NSOrderedSet`.
++Las relaciones "a muchos" se modelan con `NSSet` si no son ordenadas. Con esta estructura de datos no se nos garantiza un orden determinado al ir iterando por ella. En el caso de ser una relación marcada como ordenada Xcode genera un `NSOrderedSet`.
+ 
+-`NSSet` es el "equivalente" al  tipo `Set` de Swift, pero `NSSet` está definido en la librería `Foundation` y no en la librería estándar de Swift, ya que se desarrolló inicialmente para usarse en Objective C, que no tiene un tipo nativo para definir conjuntos. Hay que tener en cuenta que Core Data se desarrolló originalmente para Objective C, por lo que la infraestructura para implementarlo se ha "heredado" de éste.
++`NSSet` es el "equivalente" al tipo `Set` de Swift, pero está definido en `Foundation` y no en la librería estándar de Swift, ya que se desarrolló inicialmente para usarse en Objective-C. Hay que tener en cuenta que Core Data se desarrolló originalmente para Objective-C, por lo que la infraestructura para implementarlo se ha "heredado" de éste. Dos consecuencias prácticas:
+ 
+-`NSSet` y `NSOrderedSet` complican un poco el trabajo cuando en lugar de simplemente leer datos queremos modificarlos (añadir un nuevo mensaje a una conversación, por ejemplo), ya que en Objective C se diferencia entre colecciones *mutables* e *inmutables*. En Swift lo que hace que una colección sea mutable o no es si la declaramos con `let` o con `var`, como en el resto de tipos, pero en `Foundation` cada colección tiene dos variantes, la "versión" mutable y la inmutable. Así , los `NSSet` son *inmutables*, de modo que no podríamos añadir más elementos a la relación usando directamente la variable. Tendríamos que obtener una copia *mutable* de la colección y trabajar con ella. Una posibilidad para hacer esto es llamar al método `mutableSetValueForKey` de `NSManagedObject`, que nos devolverá un conjunto mutable para una propiedad determinada.
++- Los elementos de un `NSSet` no tienen tipo (son `Any`), así que para trabajar con ellos tendremos que hacer un *cast*, por ejemplo `u.mensajes as? Set<Mensaje>`.
++- `NSSet` y `NSOrderedSet` son *inmutables*, de modo que no podemos añadir o eliminar elementos de la relación modificando directamente la propiedad.
+ 
+ Para facilitar el trabajo con las relaciones "a muchos" Xcode también **genera métodos de acceso para las colecciones, o *accesores***. Estos accesores nos permiten añadir/eliminar elementos de la colección. En el caso del `Usuario`, generará algo como:
+ 
+@@ -91,22 +88,51 @@
+ }
+ ```
+ 
++(para las relaciones ordenadas se generan además métodos para insertar y eliminar en una posición determinada). 
++
+ De este modo en nuestro código podemos establecer una relación entre un determinado usuario y un determinado mensaje sin más que llamar al método `addToMensajes`. Por ejemplo podríamos hacer algo como:
+ 
+ ```swift
+ //omitimos la parte en la que obtenemos una referencia al contexto de Core Data
+-let u = Usuario(context:miContexto)
++let u = Usuario(context: miContexto)
+ u.login = "Pepe"
+-u.password = "123456"
+-let m = Mensaje(context:miContexto)
++let m = Mensaje(context: miContexto)
++m.texto = "Hola"
+ u.addToMensajes(m)
+ try! miContexto.save() 
+ ```
+ 
+-## Generación "semi-automática" de las clases
++Veremos más ejemplos en la sección dedicada a CRUD.
++
++## Añadir código propio a las clases (`Category/Extension`)
++
++En algunos casos nos interesará añadir a las clases de las entidades métodos y/o propiedades propias (por ejemplo métodos de lógica de negocio, propiedades calculadas o validaciones). Con `Class Definition` no podemos modificar el código generado, ya que Xcode lo sobreescribiría.
++
++> En realidad, para añadir métodos o propiedades calculadas basta con escribir una *extensión* de la clase en un archivo propio, y esto funciona también con `Class Definition`. Lo que no podemos hacer con una extensión es añadir propiedades almacenadas, y tampoco es buena práctica sobreescribir en ella métodos de `NSManagedObject` como `awakeFromInsert()`. Para eso necesitamos tener la clase en nuestro código.
++
++Con el modo `Category/Extension` Xcode genera automáticamente solo la extensión donde se definen las propiedades y las relaciones (el archivo `+CoreDataProperties.swift`), de modo que se mantiene la sincronización automática entre el modelo de datos y el código. La clase "principal" que hereda de `NSManagedObject` la escribimos nosotros en un archivo del proyecto, y podemos añadirle el código que queramos sin que Xcode lo sobreescriba:
++
++```swift
++//  Usuario+CoreDataClass.swift (este archivo lo creamos nosotros)
++import Foundation
++import CoreData
++
++@objc(Usuario)
++public class Usuario: NSManagedObject {
++    //aquí podemos añadir nuestro código
++    public override func awakeFromInsert() {
++        super.awakeFromInsert()
++        self.creditos = 10   //valor inicial calculado por código
++    }
++}
++```
++
++Este modo se elige en el editor del modelo de datos yendo a las características de la entidad y seleccionando la opción `Category/Extension` del desplegable `Codegen`.
++
++## Generación manual de las clases (`Manual/None`)
+ 
+-En este modo se generaría automáticamente solo la extensión Swift donde se definen las propiedades y las relaciones, permitiendo que se mantenga una sincronización automática entre los atributos del modelo de datos y el código Swift. 
++En este modo Xcode no genera nada automáticamente, pero tiene un asistente que puede crear los archivos de las clases por nosotros. **Primero hay que poner el `Codegen` de la entidad a `Manual/None`** (si no, la clase estará definida dos veces, la automática y la nuestra, y el proyecto no compilará: *Invalid redeclaration*). Después, teniendo seleccionada la entidad en el editor del modelo de datos, elegimos la opción `Editor > Create NSManagedObject Subclass...` en el menú de Xcode. Solo tenemos que elegir el modelo de datos (si es que tenemos más de uno) y las entidades para las que vamos a generar clases.
+ 
+-Por otro lado la clase "principal" que hereda de `NSManagedObject` debemos generarla manualmente como en el apartado anterior, lo que nos permite añadir código propio a la clase (por ejemplo métodos de lógica de negocio o métodos auxiliares) sin problemas de que Xcode nos sobreescriba el código.
++Por cada entidad Xcode generará los mismos dos archivos que hemos visto antes (`+CoreDataClass.swift` y `+CoreDataProperties.swift`), pero esta vez dentro del proyecto, donde podemos modificarlos.
+ 
+-Este modo se elige en el editor del modelo de datos yendo a las propiedades de la entidad y seleccionando la opción `Category/Extension` del desplegable `Codegen`.
++> IMPORTANTE: En este modo de funcionamiento, Xcode no mantiene automáticamente sincronizado el modelo de datos y el código Swift. Si tras generar las clases modificamos las entidades, tendremos que actualizar el código a mano o volver a generar los archivos (con lo que perderíamos las modificaciones que hubiéramos hecho en ellos). Por eso, si lo único que queremos es añadir código propio, `Category/Extension` suele ser mejor opción.
+--- original/4.3_CRUD.md
++++ corregido/4.3_CRUD.md
+@@ -1,21 +1,23 @@
+ 
+ Las operaciones más básicas con Core Data van a ser las de crear, obtener, actualizar y borrar objetos persistentes, es decir operaciones del tipo `Create/Read/Update/Delete` o CRUD. Aunque ya hemos explicado algo de esto, vamos a verlo aquí de modo más sistemático.
+ 
++> En todos los ejemplos suponemos que `miContexto` es el contexto de persistencia (`persistentContainer.viewContext`), obtenido como en la sesión anterior.
++
+ ## Creación
+ 
+ En nuestro código Swift estamos acostumbrados a crear objetos llamando simplemente al inicializador correspondiente, y podríamos estar tentados de hacer algo parecido con los objetos de Core Data, por ejemplo
+ 
+ ```swift
+-var u = Usuario()
++let u = Usuario()   //¡MAL!
+ u.login = "Pepe"
+ ...
+ ```
+ 
+-Pero **esto no lo podemos hacer con los objetos persistentes, porque Core Data es quien debe gestionar su ciclo de vida** y por tanto los debe "tener controlados" en todo momento, desde su creación. Lo adecuado es pedirle a Core Data que cree el objeto para nosotros. Esto lo hacemos llamando al inicializador que recibe el contexto de persistencia como parámetro: `init(context:)`
++Pero **esto no lo podemos hacer con los objetos persistentes, porque Core Data es quien debe gestionar su ciclo de vida** y por tanto los debe "tener controlados" en todo momento, desde su creación. El código anterior compila, pero al ejecutarse Core Data mostrará un error en la consola (*Failed to call designated initializer on NSManagedObject class*) y la app puede terminar. Lo adecuado es crear el objeto asociado a un contexto. Esto lo hacemos llamando al inicializador que recibe el contexto de persistencia como parámetro: `init(context:)`
+ 
+ ```swift
+ //para insertar un objeto, recordar que necesitamos el contexto de Core Data
+-let u = Usuario(context:miContexto)
++let u = Usuario(context: miContexto)
+ //también se podría hacer con
+ //let u = NSEntityDescription.insertNewObject(forEntityName: "Usuario", into: miContexto) as! Usuario
+ u.login = "Pepe"
+@@ -28,8 +30,8 @@
+ ```swift
+ //suponemos "usuario" objeto gestionado por Core Data
+ //es decir, se ha obtenido con `init(context:)` o una fetch request
+-usuario.login="mastermoviles";
+-usuario.password="123456";
++usuario.login = "mastermoviles"
++usuario.creditos = 100
+ 
+ //AHORA es cuando se guardan las modificaciones de modo persistente
+ try! miContexto.save() 
+@@ -37,9 +39,11 @@
+ 
+ Dicho de otro modo, los cambios que hacemos en los objetos son cambios únicamente dentro del *contexto* (o si se quiere decir así, “en la memoria”). Cuando usamos `save` los cambios se hacen también en el *almacenamiento* (*store*).
+ 
++> Si queremos descartar todos los cambios hechos en el contexto desde el último `save`, podemos llamar a `miContexto.rollback()`. Con la propiedad `miContexto.hasChanges` podemos saber si hay cambios pendientes de guardar.
++
+ ### Relaciones "a uno"
+ 
+-Las relaciones "uno a uno" se representan con propiedades que son objetos "individuales". Por ejemplo un `Mensaje` pertenece a un `Usuario` a través de la relación `usuario`. De este modo, podemos tratar la relación simplemente como una propiedad más.
++Las relaciones "a uno" se representan con propiedades que son objetos "individuales". Por ejemplo un `Mensaje` pertenece a un `Usuario` a través de la relación `usuario`. De este modo, podemos tratar la relación simplemente como una propiedad más.
+ 
+ ```swift
+ mensaje.usuario = nuevoUsuario
+@@ -48,57 +52,71 @@
+ Recordemos que normalmente las relaciones son bidireccionales. Si establecemos una relación entre objetos, **Core Data se encargará automáticamente de actualizar la inversa**. 
+ 
+ ```swift
+-let m = Mensaje(context:miContexto) 
++let m = Mensaje(context: miContexto) 
+ m.texto = "hola amigos"
+ m.fecha = Date()
+ //Supongamos "u" un objeto Usuario gestionado por Core Data
+ //Establecemos una relación Mensaje->Usuario
+-m.usuario = u;
++m.usuario = u
+ //Core Data hace lo propio con Usuario->>Mensaje (1 a N)
+-print("Mensajes del usuario \(u.login)")
+-for mensaje in u.mensajes {
+-    print("\(mensaje.fecha) \(mensaje.texto)")
++print("Mensajes del usuario \(u.login ?? "")")
++//"mensajes" es un NSSet?, tenemos que convertirlo a un Set<Mensaje>
++if let mensajes = u.mensajes as? Set<Mensaje> {
++    for mensaje in mensajes {
++        print("\(mensaje.fecha!) \(mensaje.texto ?? "")")
++    }
+ }
+ ```
+ 
+ En el ejemplo anterior decimos que un mensaje pertenece a un determinado usuario estableciendo la relación que va de Mensaje->Usuario. Core Data hace lo propio con la inversa, que va de Usuario->>Mensaje, de modo que si accedemos al usuario e iteramos por los mensajes, veremos el nuevo mensaje que hemos añadido.
+ 
++> Una alternativa a hacer el *cast* cada vez es añadir a la clase una propiedad calculada que lo haga por nosotros, en una extensión (ver la sección anterior):
++>
++> ```swift
++> extension Usuario {
++>     var listaMensajes: [Mensaje] {
++>         let set = mensajes as? Set<Mensaje> ?? []
++>         return set.sorted { ($0.fecha ?? .distantPast) < ($1.fecha ?? .distantPast) }
++>     }
++> }
++> ```
++
+ ### Relaciones “a muchos”
+ 
+-Como ya vimos al crear el modelo de datos, si usamos clases propias en el modelo, por cada relación del tipo "a muchos" se genera una propiedad del tipo `NSSet` (`NSOrderedSet` si la relación es ordenada). Nótese que son clases inmutables. Si queremos añadir o eliminar elementos a la relación tendremos que copiar la propiedad en un `NSMutableSet` o `NSMutableOrderedSet`, hacer la modificación y luego asignar el nuevo conjunto a la propiedad.
++Como ya vimos en la sección anterior, por cada relación del tipo "a muchos" se genera una propiedad del tipo `NSSet` (`NSOrderedSet` si la relación es ordenada). Nótese que son clases inmutables, por lo que no podemos añadir o eliminar elementos directamente sobre la propiedad.
+ 
+-Afortunadamente hay una forma mucho más sencilla de añadir/eliminar elementos, usar los métodos `addToXXX` y `removeFromXXX` obtenidos al generar las clases del modelo.  Por ejemplo:
++La forma más sencilla de añadir/eliminar elementos es usar los métodos `addToXXX` y `removeFromXXX` generados por Xcode. Por ejemplo:
+ 
+ ```swift
+-//c1 y u son objetos gestionados por Core Data
+-var c1 : Conversacion
+-var u : Usuario
+-//Supongamos que aquí los creamos en el contexto de persistencia
+-...
+-//c1 es un objeto gestionado por Core Data
+-c1.comienzo = Date();
++//"u" es un Usuario gestionado por Core Data
++let c1 = Conversacion(context: miContexto)
++c1.comienzo = Date()
+ //El usuario empieza a participar en una conversación
+-//Usamos el método de acceso generado por Core Data
+-u.addToConversaciones(c1);
+-...
++//Usamos el método de acceso generado por Xcode
++u.addToConversaciones(c1)
++//y deja de participar en otra, "c2"
++u.removeFromConversaciones(c2)
++try! miContexto.save()
+ ```
+ 
++Igual que antes, la relación inversa se actualiza automáticamente.
++
+ ## Lectura
+ 
+ Para recuperar un objeto gestionado por Core Data normalmente se usan *fetch requests*, que en un entorno de BD se correspondería con las consultas. En la siguiente sesión veremos con más detalle la sintaxis, pero por ejemplo obtener todas las instancias de una determinada entidad es sencillo, ya que no hay que especificar condición alguna, solo crear y ejecutar una *fetch request* del tipo deseado:
+ 
+ ```swift
+ //Creamos la fetch request y decimos que devuelve usuarios
+-let request : NSFetchRequest<Usuario> = NSFetchRequest(entityName:"Usuario")
++let request = NSFetchRequest<Usuario>(entityName: "Usuario")
+ //La ejecutamos (deberíamos detectar errores con do...catch, es para acortar el ejemplo)
+ let usuarios = try! miContexto.fetch(request)
+ //recorremos los resultados
+ for usuario in usuarios {
+-    print(usuario.login!)
++    print(usuario.login ?? "")
+ }
+ ```
+ 
+-> En las clases generadas por Xcode tenemos un método de utilidad llamado `fetchRequest` que simplifica el trabajo de la primera línea del ejemplo anterior. Así, podemos hacer simplemente `let request = Usuario.fetchRequest()`
++> En las clases generadas por Xcode tenemos un método de utilidad llamado `fetchRequest()` que simplifica el trabajo de la primera línea del ejemplo anterior. Hay que indicar el tipo de la variable para evitar ambigüedades con el método del mismo nombre de `NSManagedObject`: `let request: NSFetchRequest<Usuario> = Usuario.fetchRequest()`
+ 
+ ## Borrado
+ 
+@@ -110,6 +128,6 @@
+ 
+ Cuidado, `delete` no elimina el objeto del almacén persistente. Para eso tendremos que ejecutar `save`, como cuando modificamos el objeto y queremos guardar los cambios.
+ 
+-Eliminar el objeto del contexto implica que se ejecuten las reglas de borrado. Así, si por ejemplo hubiéramos usado la regla `Cascade` para la relación que va desde `Conversacion` a `Mensaje` esto implicaría que al borrar una conversación del contexto también se eliminarían todos sus mensajes. 
++Eliminar el objeto del contexto implica que se ejecuten las reglas de borrado. Así, si por ejemplo hubiéramos usado la regla `Cascade` para la relación que va desde `Conversacion` a `Mensaje` esto implicaría que al borrar una conversación del contexto también se eliminarían todos sus mensajes. Con la regla `Deny`, si el objeto tiene objetos relacionados el error se producirá al hacer `save`.
+ 
+-No obstante, es posible que tras ejecutar `delete` las actualizaciones no se propaguen de manera inmediata por el grafo de objetos del contexto. Para forzar esta propagación simplemente hay que llamar al método `processPendingChanges()` del contexto.
+\ No newline at end of file
++No obstante, es posible que tras ejecutar `delete` las actualizaciones no se propaguen de manera inmediata por el grafo de objetos del contexto (hasta que se guarde). Para forzar esta propagación sin guardar simplemente hay que llamar al método `processPendingChanges()` del contexto.
+--- original/4.4_validaciones.md
++++ corregido/4.4_validaciones.md
+@@ -1,5 +1,5 @@
+ 
+-Como ya hemos visto, cuando definimos el modelo de datos, para cada entidad podemos especificar una serie de *reglas de validación*, que varían según el tipo de datos: por ejemplo para cadenas podemos indicar una longitud mínima y máxima o una expresión regular, para fechas un rango de fechas válidas, para enteros también un rango, etc.
++Como ya hemos visto, cuando definimos el modelo de datos, para cada atributo podemos especificar una serie de *reglas de validación*, que varían según el tipo de datos: por ejemplo para cadenas podemos indicar una longitud mínima y máxima o una expresión regular, para fechas un rango de fechas válidas, para enteros también un rango, etc. Que un atributo no sea opcional también es una regla de validación.
+ 
+ Eso no quiere decir que no podamos tener un objeto gestionado por Core Data con valores inválidos, ya que de lo único que se asegura el *framework* es que un objeto no válido no se puede guardar en el almacenamiento persistente. Es decir, los errores se disparan al hacer `save` del contexto.
+ 
+@@ -8,17 +8,42 @@
+ ```swift
+ let miDelegate = UIApplication.shared.delegate as! AppDelegate
+ let miContexto = miDelegate.persistentContainer.viewContext
+-let usuario = NSEntityDescription.insertNewObject(forEntityName: "Usuario", into: miContexto) as! Usuario
++let usuario = Usuario(context: miContexto)
++usuario.login = "pepe"
+ usuario.nivel = -1
+ do {
+   try miContexto.save()
+ } catch let miError as NSError {
+-   if (miError.code == NSValidationNumberTooSmallError) {
++   if miError.code == NSValidationNumberTooSmallError {
+         print("El nivel de usuario no es válido")
+    }
++   print(miError.localizedDescription)
+ }
+ ```
+ 
+-El objeto `error` contiene bastante información sobre el error producido: un código de error que en este caso será el 1670 (indicando "número demasiado pequeño") y además un diccionario (propiedad `userInfo`) con múltiples datos sobre el error. En lugar de usar los códigos numéricos de error podemos usar una serie de constantes que comienzan por `NSValidation`, en este caso `NSValidationNumberTooSmallError` indica que es un valor demasiado pequeño.
++El objeto `error` contiene bastante información sobre el error producido: un código de error que en este caso será el 1620 (indicando "número demasiado pequeño") y además un diccionario (propiedad `userInfo`) con múltiples datos sobre el error, por ejemplo el objeto y el atributo que lo han provocado. En lugar de usar los códigos numéricos de error podemos usar una serie de constantes que comienzan por `NSValidation`, en este caso `NSValidationNumberTooSmallError` indica que es un valor demasiado pequeño. Otras habituales son `NSValidationMissingMandatoryPropertyError` (falta un atributo no opcional) o `NSValidationStringTooShortError`.
+ 
+-Podemos escribir nuestros propios validadores añadiéndole a la clase de la entidad un método `validate<nombre_del_atributo>`, o sea si el atributo se llama `texto` el método sería `validateTexto`. Este método debe lanzar una excepción si el objeto no es válido. Podéis ver un ejemplo de este tipo de validación en [este tutorial](https://code.tutsplus.com/tutorials/data-validation-with-core-data-advanced-constraints--cms-26623).
+\ No newline at end of file
++> Cuidado: si hay **más de un** error de validación (por ejemplo, el nivel es negativo y además falta algún atributo obligatorio), el código de error será `NSValidationMultipleErrorsError` y los errores individuales estarán en un array dentro de `userInfo`, con la clave `NSDetailedErrorsKey`. En ese caso la comparación del ejemplo no se cumpliría.
++
++Si queremos comprobar si un objeto es válido antes de guardar, sin necesidad de llamar a `save`, podemos usar los métodos `validateForInsert()` o `validateForUpdate()` del objeto, que lanzan los mismos errores.
++
++## Validaciones propias
++
++Podemos escribir nuestros propios validadores para un atributo añadiéndole a la clase de la entidad un método `validate<NombreDelAtributo>`, o sea si el atributo se llama `texto` el método sería `validateTexto`. Core Data lo llamará automáticamente al guardar. El método debe lanzar un error si el valor no es válido. La signatura del método es un poco "peculiar" por la herencia de Objective-C:
++
++```swift
++extension Nota {
++    @objc func validateTexto(_ value: AutoreleasingUnsafeMutablePointer<AnyObject?>) throws {
++        //"value.pointee" es el valor que se quiere guardar
++        guard let texto = value.pointee as? String,
++              !texto.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
++            throw NSError(domain: "NotasCoreData", code: 1,
++                          userInfo: [NSLocalizedDescriptionKey: "La nota no puede estar vacía"])
++        }
++    }
++}
++```
++
++> Como vimos en la sección de generación de código, podemos escribir la extensión en un archivo propio aunque el `Codegen` de la entidad sea `Class Definition`.
++
++Si la validación depende de varios atributos a la vez (por ejemplo, que una fecha de fin sea posterior a la de inicio), en lugar de validar atributo por atributo hay que sobreescribir `validateForInsert()` y `validateForUpdate()` en la clase de la entidad, llamando siempre primero a la implementación de `super`. Para eso necesitamos tener la clase en nuestro código (`Codegen` a `Category/Extension`).
+--- original/4.5_otros_tipos.md
++++ corregido/4.5_otros_tipos.md
+@@ -1,45 +1,56 @@
+ 
+-Hasta el momento hemos visto que en una entidad de Core Data puede haber atributos de diversos tipos: enteros, reales, cadenas, fechas y algún tipo más como URLs, pero es un número de tipos limitado. 
++Hasta el momento hemos visto que en una entidad de Core Data puede haber atributos de diversos tipos: enteros, reales, cadenas, fechas y algún tipo más como URLs o UUIDs, pero es un número de tipos limitado. 
+ 
+-¿Y si queremos almacenar un atributo de otro tipo, por ejemplo un array, una imagen o una instancia de cualquier otra clase no contemplada en los casos anteriores?. Si es una clase propia siempre podemos convertirla en otra entidad, pero puede haber casos en los que no tenga mucho sentido complicar el modelo de este modo. 
++¿Y si queremos almacenar un atributo de otro tipo, por ejemplo un array, una imagen o una instancia de cualquier otra clase no contemplada en los casos anteriores? Si es una clase propia siempre podemos convertirla en otra entidad, pero puede haber casos en los que no tenga mucho sentido complicar el modelo de este modo. 
+ 
+-Podemos distinguir dos casos: el caso de datos binarios "puros" como audio, video o imágenes, y el de datos que aunque no son binarios son *transformables* a binarios (como ya vimos en la primera sesión del módulo, `Codables`).
++Podemos distinguir dos casos: el caso de datos binarios "puros" como audio, video o imágenes, y el de objetos que se pueden *transformar* a binario.
+ 
+-Para el primer caso podemos usar directamente el tipo "binary data", en el segundo caso tenemos el tipo *transformable*, en el que Core Data transformará a binario (`NSData`) el atributo para hacerlo persistente.
++Para el primer caso podemos usar directamente el tipo `Binary Data`, en el segundo caso tenemos el tipo `Transformable`, en el que Core Data transformará a binario (`Data`) el atributo para hacerlo persistente.
+ 
+ ## Datos binarios
+ 
+-El tipo de datos "binary data" se suele usar para imágenes, audio, video, etc. Por ejemplo supongamos que tenemos la imagen de perfil del usuario y queremos guardarla en un campo "imagen" que  hemos definido como de  tipo `binary data`. Sería tan sencillo como:
++El tipo de datos `Binary Data` se suele usar para imágenes, audio, video, etc. Por ejemplo supongamos que tenemos la imagen de perfil del usuario y queremos guardarla en un atributo `imagen` que hemos definido como de tipo `Binary Data`. Sería tan sencillo como:
+ 
+ ```swift
+ //obtenemos el contexto de persistencia
+ let miDelegate = UIApplication.shared.delegate as! AppDelegate
+ let miContexto = miDelegate.persistentContainer.viewContext
+-/creamos el usuario y asignamos algunos campos
+-let usuario = Usuario(context:miContexto)
++//creamos el usuario y asignamos algunos campos
++let usuario = Usuario(context: miContexto)
+ usuario.login = "pepe"
+-//la imagen la tendríamos que sacar de algún lado. Seria un UIImage
+-let imagen_perfil = ...
+-///así podemos obtener los datos binarios de una UIImage en PNG 
+-//hay un método jpgData() que hace lo mismo con JPG
+-let datos = imagen_perfil.pngData()
++//la imagen la tendríamos que sacar de algún lado. Sería un UIImage
++let imagenPerfil = ...
++//así podemos obtener los datos binarios de una UIImage en PNG 
++//con jpegData(compressionQuality:) obtendríamos los datos en JPEG
++let datos = imagenPerfil.pngData()
+ //ya lo podemos guardar
+ usuario.imagen = datos
+ ```
+ 
+ Para recuperar una `UIImage` a partir de los datos binarios guardados en Core Data bastaría con llamar al inicializador `UIImage(data:)` que crea una imagen a partir de datos binarios.
+ 
++> Guardar datos binarios grandes dentro de la base de datos SQLite la hace crecer mucho y ralentiza las consultas. Si marcamos la opción `Allows External Storage` del atributo en el `Data Model Inspector`, Core Data decidirá automáticamente si guarda los datos en la BD (si son pequeños) o en un archivo aparte (si son grandes), sin que tengamos que cambiar nada en nuestro código.
++
+ ## Datos transformables
+ 
+-Con los atributos transformables tenemos dos casos posibles: el "fácil", en el que no tenemos que escribir código ya que Core Data puede realizar la transformación automáticamente, y el más complejo, en el que tendremos que implementar nosotros mismos la transformación. Todo depende de si el dato a almacenar implementa el protocolo `NSCoding`. Esta es la "versión antigua" del `Codable` de Swift. Las clases que implementan este protocolo son *archivables* o *serializables*. Así que Core Data no hace directamente la transformación sino que recurre a un mecanismo estándar en iOS para archivar/desarchivar objetos.
++Con los atributos transformables Core Data se encarga de convertir automáticamente el objeto a binario al guardar y de vuelta a su tipo original al leer. Para que la conversión sea automática el tipo del atributo debe ser conforme a `NSSecureCoding`, la versión "segura" de `NSCoding`, que es el mecanismo de serialización de Objective-C, anterior al `Codable` de Swift. Los tipos básicos de Foundation lo cumplen, así como los arrays y diccionarios que los contienen. Si no es así, tendremos que escribir nosotros la conversión.
+ 
+-Por ejemplo supongamos que en una entidad de Core Data quisiéramos almacenar un array de String. No podemos crear un atributo de Core Data de este tipo directamente, pero afortunadamente los arrays implementan el protocolo `NSCoding`, así que la transformación va a ser automática. Seguiríamos estos pasos
++Por ejemplo supongamos que en una entidad de Core Data quisiéramos almacenar un array de `String` (por ejemplo, las etiquetas de una nota). No podemos crear un atributo de Core Data de este tipo directamente, pero podemos hacerlo como transformable. En el `Data Model Inspector` del atributo:
+ 
+-- En la entidad, definir el tipo del atributo como `Transformable`.
+-- Generar la clase de la entidad con Xcode de manera manual (con `Editor>Create NSManagedObject subclass...`)
+-- Modificar el archivo fuente generado por Xcode, que habrá puesto la propiedad como `NSObject` y cambiarla por el tipo correspondiente. En este caso `[String]`. De este modo nos ahorraremos el *cast* hacia y desde `NSObject`. La contrapartida es que si volvemos a generar la clase nos tocará volver a editar el archivo.
++- Definir el tipo del atributo como `Transformable`.
++- En `Transformer` elegir o escribir `NSSecureUnarchiveFromData`. Es el transformador estándar para tipos conformes a `NSSecureCoding`.
++- En `Custom Class` escribir el tipo Swift del atributo, en este caso `[String]`. Así la propiedad de la clase generada ya tendrá este tipo y no tendremos que hacer *casts*.
+ 
+ Ya no hay que hacer nada más. Nosotros trataremos con la propiedad como un array de `String` y automáticamente se hará la transformación hacia y desde binario, que es como se almacenan los datos.
+ 
+-En caso de que el tipo de datos del atributo no sea conforme al protocolo `NSCoding` tendremos que escribir una clase propia que haga la transformación a y desde binario. Esto se hace implementando una clase que herede de `ValueTransformer`, e implementando en ella la lógica de transformación. Para ver un ejemplo concreto podéis consultar por ejemplo [este tutorial](https://www.avanderlee.com/swift/valuetransformer-core-data/).
++```swift
++nota.etiquetas = ["trabajo", "urgente"]
++```
++
++> Si no indicamos ningún `Transformer`, Core Data usa uno antiguo considerado inseguro y muestra un aviso en la consola. Conviene indicarlo siempre.
++
++> Cuidado: si modificamos el contenido del objeto transformable "por dentro" (por ejemplo, `nota.etiquetas?.append("nueva")`), Core Data puede no detectar el cambio. Lo más seguro es asignar un valor nuevo completo a la propiedad.
++
++En caso de que el tipo de datos del atributo no sea conforme a `NSSecureCoding` (por ejemplo un `struct` de Swift) tendremos que escribir una clase propia que haga la transformación a y desde binario. Esto se hace implementando una clase que herede de `ValueTransformer` (dentro de la cual podríamos usar, por ejemplo, el `JSONEncoder` que vimos en la sesión de persistencia básica), registrándola al arrancar la app e indicando su nombre en el campo `Transformer`. Para ver un ejemplo concreto podéis consultar [este tutorial](https://www.avanderlee.com/swift/valuetransformer-core-data/).
+ 
++> Una alternativa más sencilla para tipos `Codable` es usar un atributo `Binary Data` y hacer nosotros la conversión con `JSONEncoder`/`JSONDecoder`, por ejemplo en una propiedad calculada definida en una extensión de la clase.
+--- original/4.6_ejercicios.md
++++ corregido/4.6_ejercicios.md
+@@ -3,16 +3,20 @@
+ 
+ Vamos a ampliar el modelo de datos añadiendo una nueva entidad, "Libreta", que tendrá una relación de uno a muchos con "Nota". Cada libreta contendrá muchas notas, pero cada nota solo puede estar en una libreta.
+ 
+-## Añadir la entidad `Libreta` (0,25 puntos)
++## Añadir la entidad `Libreta` (0.25 puntos)
+ 
+-- Añadir la entidad Libreta, con un atributo llamado `nombre` de tipo String
+-- Crear una relación "a muchos" de `Libreta` a `Nota` y "a uno" de `Nota` a `Libreta` (la inversa)
++- Añadir la entidad `Libreta`, con un atributo llamado `nombre` de tipo `String`
++- Crear una relación "a muchos" de `Libreta` a `Nota` y "a uno" de `Nota` a `Libreta`, y establecer cada una como inversa de la otra
++- **Deja las dos relaciones como opcionales** (es la opción por defecto)
+ 
+ > Recuerda que según las convenciones de Core Data, la relación de Libreta a Nota se debería llamar "notas" y la de nota a libreta, "libreta". Así, por ejemplo luego podríamos acceder a las notas de una libreta `miLibreta` con `miLibreta.notas`, lo que resulta intuitivo en el código.
+ 
+-## Crear libretas (0,25 puntos)
++!!! warning "Cambios en el modelo y datos ya existentes"
++    Ya tienes notas guardadas de la sesión anterior, y al cambiar el modelo la base de datos tiene que adaptarse a la nueva estructura (lo que se denomina *migración*). Para cambios sencillos como este, `NSPersistentContainer` realiza la migración automáticamente al arrancar la app. Pero si haces que la relación de `Nota` a `Libreta` sea obligatoria, las notas existentes (que no tienen libreta) no cumplirán el nuevo modelo y la app terminará con un error al arrancar. Si te ocurre algo así durante el desarrollo, la solución más rápida es borrar la app del simulador (mantener pulsado el icono > `Eliminar app`) para empezar con la base de datos vacía.
+ 
+-Para simplificar será un botón "nueva libreta" en la pantalla inicial, que al pulsarlo debe mostrar un *alert* con un campo de texto para escribir el nombre. Tendrás que definirte el *action* correspondiente para detectar que se ha pulsado el botón. En el *action* puedes llamar al siguiente código para mostrar el *alert*:
++## Crear libretas (0.25 puntos)
++
++Para simplificar será un botón "nueva libreta" en la pantalla inicial, que al pulsarlo debe mostrar un *alert* con un campo de texto para escribir el nombre. Tendrás que definirte el *action* correspondiente para detectar que se ha pulsado el botón. En el *action* puedes llamar al siguiente método, que añadirás al `ViewController`, para mostrar el *alert*:
+ 
+ ```swift
+ func nuevaLibreta() {
+@@ -24,33 +28,33 @@
+         let nombre = alert.textFields![0].text!
+         //AQUI FALTA GUARDAR LA LIBRETA CON CORE DATA
+     }
+-    let cancelar = UIAlertAction(title: "Cancelar", style: .cancel) {
+-        action in
+-    }
++    let cancelar = UIAlertAction(title: "Cancelar", style: .cancel)
+     alert.addAction(crear)
+     alert.addAction(cancelar)
+-    alert.addTextField() { $0.placeholder = "Nombre"}
++    alert.addTextField() { $0.placeholder = "Nombre" }
+     self.present(alert, animated: true)
+ }
+ ```
+ 
+-- En el código anterior falta **guardar la libreta** usando Core Data, implementa esta funcionalidad
++- En el código anterior falta **guardar la libreta** usando Core Data, implementa esta funcionalidad. Recuerda que dentro de la clausura tendrás que usar `self.` explícitamente para acceder a las propiedades del `ViewController`.
+ 
+-## Listar libretas (0,25 puntos)
++## Listar libretas (0.25 puntos)
+ 
+-Antes de empezar con esto asegúrate de que las libretas se están creando correctamente en la base de datos. En el `viewWillAppear` de la pantalla de lista de notas puedes poner provisionalmente una consulta que las imprima en la consola (luego acuérdate de quitarlo)
++Antes de empezar con esto asegúrate de que las libretas se están creando correctamente en la base de datos. En el `viewWillAppear` de la pantalla de lista de notas puedes poner provisionalmente una consulta que las imprima en la consola (luego acuérdate de quitarla)
+ 
+ ```swift
+ override func viewWillAppear(_ animated: Bool) {
+-    let queryLibretas = NSFetchRequest<Libreta>(entityName:"Libreta")
++    super.viewWillAppear(animated)
++    let queryLibretas = NSFetchRequest<Libreta>(entityName: "Libreta")
+     guard let miDelegate = UIApplication.shared.delegate as? AppDelegate else {
+         return
+     }
+     let miContexto = miDelegate.persistentContainer.viewContext
+     let libretas = try! miContexto.fetch(queryLibretas)
+     for libreta in libretas {
+-        print(libreta.nombre)
++        print(libreta.nombre ?? "")
+     }
++    //...aquí iría el código que ya tenías para listar las notas
+ }
+ ```
+ 
+@@ -60,11 +64,9 @@
+ - Desde el punto de vista del código, un *picker view* requiere de un *delegate* y de un *datasource* (más o menos como las tablas). Crea una nueva clase `GestorPicker` en un archivo del mismo nombre, así no llenamos de tanto código el `ViewController`
+ 
+ ```swift
+-import Foundation
+ import UIKit
+ import CoreData
+ 
+-
+ class GestorPicker : NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
+     var libretas = [Libreta]()
+     
+@@ -87,19 +89,21 @@
+     func cargarLista() {
+         let miDelegate = UIApplication.shared.delegate as! AppDelegate
+         let miContexto = miDelegate.persistentContainer.viewContext
+-        let request = NSFetchRequest<Libreta>(entityName:"Libreta")
++        let request = NSFetchRequest<Libreta>(entityName: "Libreta")
+         self.libretas = try! miContexto.fetch(request)
+     }
+ }
+ ```
+ 
+-Ahora **en el `ViewController` añade una nueva propiedad **, una instancia de la clase anterior
++Ahora **en el `ViewController` añade una nueva propiedad**, una instancia de la clase anterior
+ 
+ ```swift
+ //Esto es una propiedad del ViewController, va dentro de la clase y FUERA de los métodos
+ let miGestorPicker = GestorPicker()
+ ```
+ 
++> El *picker* no retiene a su *delegate* ni a su *datasource* (son referencias `weak`). Por eso es importante que el gestor sea una propiedad del `ViewController` y no una variable local del `viewDidLoad`: si fuera local, se liberaría al terminar el método y el *picker* se quedaría vacío.
++
+ y en el `viewDidLoad` del `ViewController` conectamos el *picker* con su *delegate/datasource* y cargamos la lista de libretas con Core Data
+ 
+ ```swift
+@@ -111,9 +115,9 @@
+ self.miGestorPicker.cargarLista()
+ ```
+ 
+-Tal como está ahora la aplicación la lista de libretas debe aparecer cuando se arranca, pero si se añade una nueva libreta no aparecerá en el *picker* hasta que se pare la app y se vuelva a arrancar (que es cuando se llama a `cargarLista()`). Puedes arreglarlo haciendo dos cosas justo después de guardar la nueva libreta con core data (en la función `nuevaLibreta` de antes):
++Tal como está ahora la aplicación la lista de libretas debe aparecer cuando se arranca, pero si se añade una nueva libreta no aparecerá en el *picker* hasta que se pare la app y se vuelva a arrancar (que es cuando se llama a `cargarLista()`). Puedes arreglarlo haciendo dos cosas justo después de guardar la nueva libreta con Core Data (en la función `nuevaLibreta` de antes):
+ 
+--  Añadir la nueva libreta a la lista que tiene dentro el `miGestorPicker`: 
++-  Añadir la nueva libreta a la lista que tiene dentro el `miGestorPicker` (aquí `libreta` es el objeto que acabas de crear): 
+ 
+ ```swift
+ self.miGestorPicker.libretas.append(libreta)
+@@ -126,7 +130,7 @@
+ self.picker.reloadAllComponents()
+ ```
+ 
+-## Asociar una libreta a la nota actual (0,25 puntos)
++## Asociar una libreta a la nota actual (0.25 puntos)
+ 
+ Falta que cuando se guarde la nota, se le asocie la libreta que aparece seleccionada en el *picker view*. Igual que asignas el "texto" y la "fecha" de la nota, **asígnale también el objeto libreta usando la relación "a uno" entre `Nota` y `Libreta`**. Para saber qué número de opción está seleccionado actualmente en un *picker* puedes usar su método `selectedRow`:
+ 
+@@ -137,6 +141,10 @@
+ 
+ El objeto `Libreta` en esa posición será la misma posición del array `libretas` del `self.miGestorPicker`.
+ 
++> Si todavía no hay ninguna libreta creada, `selectedRow` devuelve `-1` y acceder al array con ese índice hará que la app se cierre. Comprueba que `numLibreta >= 0` antes de usarlo (y en caso contrario guarda la nota sin libreta).
++
+ ## Mostrar la libreta al listar las notas
+ 
+-Puedes mostrar el nombre de la libreta en la parte del texto de detalle de la celda (es la propiedad `detailTextLabel` de la celda). Primero tendrás que cambiar el tipo de celda de `Basic` a `Left detail` o `Right detail`, según donde quieras que aparezca el nombre.
+\ No newline at end of file
++Puedes mostrar el nombre de la libreta en la parte del texto de detalle de la celda (es la propiedad `detailTextLabel` de la celda). Primero tendrás que cambiar el tipo de celda de `Basic` a `Left Detail` o `Right Detail`, según donde quieras que aparezca el nombre.
++
++> Si en la sesión anterior usaste `defaultContentConfiguration()` en lugar de `textLabel`, el equivalente a `detailTextLabel` es la propiedad `secondaryText` de la configuración.

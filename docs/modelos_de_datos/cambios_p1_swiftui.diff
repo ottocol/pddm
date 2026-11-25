@@ -1,0 +1,852 @@
+--- uikit/3.1_intro.md
++++ swiftui/3.1_intro.md
+@@ -7,7 +7,7 @@
+ 
+ Siendo puristas, Core Data no es un ORM estrictamente hablando, ya que su objetivo no es la persistencia únicamente en bases de datos relacionales. En principio el *backend* de persistencia podría ser cualquiera. Con la implementación actual Core Data admite como única BD relacional para persistencia SQLite, y también puede almacenar datos en un archivo binario, en memoria y en XML (esto último solo en macOS).
+ 
+-> Desde iOS 17 (Xcode 15) Apple ofrece también **SwiftData**, un *framework* más moderno que internamente se apoya en Core Data y que define el modelo directamente en código Swift. Está pensado sobre todo para usarse con SwiftUI. Core Data sigue siendo plenamente soportado y es lo que encontraréis en la inmensa mayoría de aplicaciones existentes, y los conceptos que veremos aquí (modelo, contexto, consultas...) son los mismos en ambos.
++> Desde iOS 17 (Xcode 15) Apple ofrece también **SwiftData**, un *framework* más moderno que internamente se apoya en Core Data y que define el modelo directamente en código Swift. Está pensado para usarse con SwiftUI. En este curso usaremos Core Data, que también se integra perfectamente con SwiftUI: sigue plenamente soportado, es lo que encontraréis en la inmensa mayoría de aplicaciones existentes, y los conceptos que veremos aquí (modelo, contexto, consultas...) son los mismos en ambos. Al final del bloque veremos una introducción a SwiftData.
+ 
+ ## El *stack* de Core Data
+ 
+--- uikit/3.2_stack.md
++++ swiftui/3.2_stack.md
+@@ -5,49 +5,114 @@
+ 
+ Salvo que tengamos necesidades especiales no es necesario escribir el código de inicialización manualmente, Xcode lo puede hacer por nosotros. Para ello, al crear el proyecto hay que elegir Core Data como opción de almacenamiento en la segunda pantalla del asistente, tras elegir la plantilla. 
+ 
+-**Crea un nuevo proyecto `NotasCoreData`** usando como plantilla `iOS > App`. En la segunda pantalla del asistente **selecciona `Interface: Storyboard`, `Language: Swift` y en `Storage` elige `Core Data`**. Deja desmarcada la casilla `Host in CloudKit`.
++**Crea un nuevo proyecto `NotasCoreData`** usando como plantilla `iOS > App`. En la segunda pantalla del asistente **selecciona `Interface: SwiftUI`, `Language: Swift` y en `Storage` elige `Core Data`**. Deja desmarcada la casilla `Host in CloudKit`.
+ 
+ ![](img/use_core_data.png)
+ 
+-> En versiones de Xcode anteriores a la 15, en lugar del desplegable `Storage` había una casilla llamada `Use Core Data`. El efecto es el mismo.
+-
+ Elegir Core Data como almacenamiento tiene los siguientes efectos:
+ 
+-- Crea un archivo con el mismo nombre del proyecto y extensión `.xcdatamodeld` donde se va a almacenar nuestro modelo de datos
+-- Incluye una serie de métodos auxiliares en la clase `AppDelegate` para ayudarnos a trabajar con Core Data sin tener que escribir código partiendo de cero, ya que la parte de inicialización es algo tediosa, o al menos lo era hasta iOS 10.
+-- En el `SceneDelegate`, hace que se guarden los cambios pendientes cuando la aplicación pasa a segundo plano (método `sceneDidEnterBackground`).
++- Crea un archivo con el mismo nombre del proyecto y extensión `.xcdatamodeld` donde se va a almacenar nuestro modelo de datos. Como ejemplo, Xcode crea en él una entidad llamada `Item`.
++- Crea un archivo `Persistence.swift` con el código que inicializa Core Data.
++- Modifica la estructura principal de la app para que todas las vistas tengan acceso a Core Data.
++- Genera un `ContentView` de ejemplo que muestra una lista de objetos `Item`.
++
++El modelo de ejemplo y el `ContentView` los sustituiremos por los nuestros en la siguiente sección. Vamos a ver ahora el código de inicialización, que es el que nos interesa.
+ 
+-Reconociendo que la inicialización del *stack* era laboriosa, desde iOS 10 Apple la ha encapsulado en una clase `NSPersistentContainer` que simplifica considerablemente el código con respecto a las versiones anteriores. Este es (sin los comentarios) el código que genera Xcode en el `AppDelegate`:
++## El `PersistenceController`
++
++Reconociendo que la inicialización del *stack* era laboriosa, desde iOS 10 Apple la ha encapsulado en una clase `NSPersistentContainer` que simplifica considerablemente el código. En el archivo `Persistence.swift` la plantilla define una estructura `PersistenceController` que crea y guarda el `NSPersistentContainer`. Este es su código principal (sin los comentarios):
+ 
+ ```swift
+-lazy var persistentContainer: NSPersistentContainer = {
+-    let container = NSPersistentContainer(name: "NotasCoreData")
+-    container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+-        if let error = error as NSError? {
+-            fatalError("Unresolved error \(error), \(error.userInfo)")
++import CoreData
++
++struct PersistenceController {
++    //instancia compartida, la que usa la app
++    static let shared = PersistenceController()
++
++    let container: NSPersistentContainer
++
++    init(inMemory: Bool = false) {
++        container = NSPersistentContainer(name: "NotasCoreData")
++        if inMemory {
++            container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
+         }
+-    })
+-    return container
+-}()
++        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
++            if let error = error as NSError? {
++                fatalError("Unresolved error \(error), \(error.userInfo)")
++            }
++        })
++        container.viewContext.automaticallyMergesChangesFromParent = true
++    }
++}
++```
+ 
+-// MARK: - Core Data Saving support
+-func saveContext () {
+-    let context = persistentContainer.viewContext
+-    if context.hasChanges {
+-        do {
+-            try context.save()
+-        } catch {
+-            let nserror = error as NSError
+-            fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
++Veamos qué hace:
++
++- Crea un `NSPersistentContainer`. **El nombre que se le pasa debe coincidir con el del archivo `.xcdatamodeld`** (sin la extensión). Si lo renombras, tendrás que cambiarlo también aquí. Ese mismo nombre se usa para el archivo de la base de datos (`NotasCoreData.sqlite`).
++- Con `loadPersistentStores` abre la base de datos, o la crea si no existe. Si hay algún error la app termina inmediatamente con `fatalError`. Es útil durante el desarrollo, pero los comentarios de la propia plantilla advierten de que en una aplicación real deberíamos gestionar el error de otra forma.
++- Si se crea con `inMemory: true`, la base de datos no se guarda en disco (`/dev/null` es un "archivo" que descarta todo lo que se escribe en él). Lo usaremos para las *previews*, como veremos enseguida.
++- La última línea la explicaremos en la sesión de concurrencia.
++
++El `NSPersistentContainer` centraliza todo el manejo de Core Data. Nos da acceso al `NSManagedObjectContext` mediante su propiedad `viewContext`. Esto, que es lo que se denomina el contexto de persistencia, es lo que necesitaremos para guardar y recuperar objetos. El `viewContext` está asociado al hilo principal, por lo que es el que usaremos desde las vistas.
++
++> A diferencia de otras plantillas de Xcode, la de SwiftUI no guarda automáticamente los cambios en ningún momento: **cada vez que hagamos cambios tendremos que guardar nosotros el contexto**, como veremos en la siguiente sección.
++
++## El contexto en las vistas
++
++Las vistas necesitan acceder al contexto para crear, modificar o consultar objetos. En lugar de pasárselo de una vista a otra, la plantilla lo coloca en el **entorno** de la app, en la estructura principal:
++
++```swift
++@main
++struct NotasCoreDataApp: App {
++    let persistenceController = PersistenceController.shared
++
++    var body: some Scene {
++        WindowGroup {
++            ContentView()
++                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+         }
+     }
+ }
+ ```
+ 
+-> El nombre que se pasa a `NSPersistentContainer(name:)` debe coincidir con el del archivo `.xcdatamodeld` (sin la extensión). Si lo renombras, tendrás que cambiarlo también aquí. Ese mismo nombre se usa para el archivo de la base de datos (`NotasCoreData.sqlite`).
++Y cualquier vista que lo necesite lo obtiene del entorno así:
++
++```swift
++struct MiVista: View {
++    @Environment(\.managedObjectContext) private var contexto
++
++    var body: some View {
++        //...aquí podemos usar "contexto"
++    }
++}
++```
++
++!!! note "Nuevo en SwiftUI: el entorno"
++    El **entorno** (*environment*) es un conjunto de valores que SwiftUI pone a disposición de una vista y de todas las vistas que contiene, sin necesidad de pasarlos como parámetro de una a otra. El sistema ya coloca ahí muchos valores, como el modo claro u oscuro (`\.colorScheme`) o el idioma (`\.locale`), y con el modificador `.environment` podemos añadir o cambiar valores para una vista y todas las que contiene. Para leer un valor del entorno, una vista declara una propiedad con `@Environment` y la clave del valor que quiere.
++
++    Como en la estructura principal se ha puesto el contexto en el entorno de `ContentView`, todas las vistas de la app, que están dentro de ella, pueden obtenerlo.
++
++## Core Data en las *previews*
+ 
+-Básicamente, esta es la clase que centraliza todo el manejo de Core Data. Nos permite acceder al `NSManagedObjectContext`, mediante su propiedad `viewContext`. Esto, que es lo que se denomina el contexto de persistencia, es lo que necesitaremos para guardar y recuperar objetos. El `viewContext` está asociado al hilo principal, por lo que es el que usaremos desde el código de la interfaz de usuario (*view controllers*). La función `saveContext` es una función de conveniencia para poder guardar los objetos pendientes en el contexto de forma simple.
++Las *previews* no pasan por la estructura principal de la app, así que el contexto no está en el entorno, y una vista que use Core Data hará que la *preview* falle. Por eso hay que ponerlo también en la *preview*. Para no mezclar los datos de prueba con los de la app, la plantilla define en `PersistenceController` una segunda instancia, `preview`, que crea la base de datos en memoria y le añade algunos objetos de ejemplo:
+ 
+-> Los `fatalError` del código generado hacen que la aplicación termine inmediatamente si hay un error. Son útiles durante el desarrollo, pero los comentarios de la propia plantilla advierten de que en una aplicación real deberíamos gestionar el error de otra forma.
++```swift
++static var preview: PersistenceController = {
++    let result = PersistenceController(inMemory: true)
++    let viewContext = result.container.viewContext
++    //aquí se crean los objetos de ejemplo
++    //...
++    return result
++}()
++```
++
++Así, en la *preview* de una vista que use Core Data haremos:
++
++```swift
++#Preview {
++    MiVista()
++        .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
++}
++```
+ 
+-> También puedes añadir soporte de Core Data a cualquier proyecto ya creado, aunque no lo crearas eligiendo Core Data en el asistente. Simplemente se trata de añadir manualmente el fichero del modelo de datos (`File > New > File...`, plantilla `Data Model`) y también el código de Core Data en el `AppDelegate`. Para todos los detalles, puedes seguir por ejemplo las instrucciones de [este tutorial](https://programmingwithswift.com/add-core-data-to-existing-ios-project/). 
++> También puedes añadir soporte de Core Data a un proyecto ya creado, aunque no lo crearas eligiendo Core Data en el asistente. Se trata de añadir manualmente el fichero del modelo de datos (`File > New > File...`, plantilla `Data Model`), un archivo como `Persistence.swift` y la línea `.environment(...)` de la estructura principal.
+--- uikit/3.3_entidades.md
++++ swiftui/3.3_entidades.md
+@@ -6,11 +6,12 @@
+ 
+ Las entidades son los objetos que queremos hacer persistentes en nuestra aplicación. Debemos especificar sus propiedades (nombre y tipo) y como veremos en sesiones posteriores podemos establecer relaciones con otros objetos.
+ 
+-Para gestionar las entidades debemos editar el archivo `.xcdatamodeld`. En el editor visual de Xcode podemos, entre otras cosas, añadir entidades. Vamos a crear la única entidad que necesitamos en nuestra aplicación: `Nota`. Para ello seguir estos pasos:
++Para gestionar las entidades debemos editar el archivo `.xcdatamodeld`. En el editor visual de Xcode podemos, entre otras cosas, añadir y eliminar entidades. Vamos a eliminar la entidad de ejemplo y crear la única entidad que necesitamos en nuestra aplicación: `Nota`. Para ello seguir estos pasos:
+ 
+ 1. **Abrir el modelo de datos**: por defecto Xcode lo crea con el mismo nombre que el proyecto y extensión `.xcdatamodeld`. 
+-2. **Añadir una entidad** pulsando el botón `Add Entity` de la parte inferior. Creará una nueva entidad llamada por defecto `Entity`. Podemos cambiarle el nombre haciendo doble clic sobre él. **Cambiarle el nombre a la entidad** a `Nota` 
+-3. **Añadir los atributos** pulsando sobre el botón `+` de la sección `Attributes`. Para cada atributo hay que especificar su nombre y tipo. Añadiremos dos atributos, `fecha`, de tipo `Date` y `texto` de tipo `String`
++2. **Eliminar la entidad `Item`**: seleccionarla y pulsar la tecla de borrar.
++3. **Añadir una entidad** pulsando el botón `Add Entity` de la parte inferior. Creará una nueva entidad llamada por defecto `Entity`. Podemos cambiarle el nombre haciendo doble clic sobre él. **Cambiarle el nombre a la entidad** a `Nota` 
++4. **Añadir los atributos** pulsando sobre el botón `+` de la sección `Attributes`. Para cada atributo hay que especificar su nombre y tipo. Añadiremos dos atributos, `fecha`, de tipo `Date` y `texto` de tipo `String`
+ 
+ > IMPORTANTE: Los nombres de las entidades deben comenzar por mayúscula y los nombres de los atributos por minúscula. El editor no nos dejará hacer lo contrario.
+ 
+@@ -26,80 +27,138 @@
+ 
+ > Para terminar, asegúrate de guardar el modelo (`File > Save`). Hay veces que no se genera la clase Swift correspondiente a la entidad si no se hace esto
+ 
+-## Crear datos persistentes (0.25 puntos)
++### Adaptar el código de la plantilla
+ 
+-Aquí nos ocuparemos de crear y guardar una nueva nota. Por el momento no se podrán editar ni borrar notas, para simplificar la aplicación, únicamente crear notas nuevas.
++Como hemos eliminado la entidad `Item`, el código de ejemplo que la usaba ya no compila. Vamos a sustituirlo.
+ 
+-### La interfaz de usuario para crear notas
++- En `Persistence.swift`, dentro de `static var preview`, Xcode crea 10 objetos `Item` de ejemplo con un bucle `for`. Sustituye ese bucle por este otro, que crea 5 notas de ejemplo para las *previews*:
+ 
+-En la (por el momento) única pantalla de la aplicación **añadir los siguientes componentes**:
++```swift
++for i in 1...5 {
++    let nota = Nota(context: viewContext)
++    nota.texto = "Nota de ejemplo \(i)"
++    nota.fecha = Date()
++}
++```
+ 
+-- Un campo de texto de varias líneas (`Text View`) para escribir la nota en sí.
+-- Una etiqueta (`Label`) para mostrar la fecha y hora de la nota 
+-- Un par de botones, uno para **crear** una nueva nota en blanco y otro para **guardar** la nota actual
+-- Una etiqueta (`Label`) para mostrar mensajes al usuario
++- La aplicación tendrá dos pestañas: una para crear notas y otra para listarlas. Sustituye el contenido de `ContentView.swift` por el siguiente:
+ 
+-Una vez añadidos los componentes, hay que **crear un *outlet* para las dos etiquetas y el campo de texto** y así poder acceder a/cambiar su contenido por código. Recordad que hay que hacer `Ctrl+Arrastrar` desde el componente hasta el archivo donde queremos crear la propiedad (en nuestro caso `ViewController.swift`).
++```swift
++import SwiftUI
+ 
+-Además hay que **crear un *action* para cada botón**, para poder ejecutar nuestro código cuando se pulsen (con `Ctrl+Arrastrar` igual que antes). Debemos vincular los *action* al evento `Touch Up Inside`, que es el que aparece por defecto.
++struct ContentView: View {
++    var body: some View {
++        TabView {
++            NuevaNotaView()
++                .tabItem { Label("Nueva", systemImage: "square.and.pencil") }
++            ListaNotasView()
++                .tabItem { Label("Lista", systemImage: "list.bullet") }
++        }
++    }
++}
+ 
+-### El código que implementa “crear nueva nota”
++#Preview {
++    ContentView()
++        .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
++}
++```
+ 
+-Debes **implementar el código del *action* del botón de "crear"**. Este código simplemente limpiará la etiqueta de la fecha, el campo de texto de varias líneas y la etiqueta para mensajes al usuario, asignándoles a las tres la cadena vacía. 
++- Crea dos archivos nuevos (`File > New > File... > SwiftUI View`), `NuevaNotaView.swift` y `ListaNotasView.swift`. De momento basta con el contenido que genera Xcode; la lista la haremos en la siguiente sección.
+ 
++> Si Xcode da error y no reconoce la clase `Nota` puedes probar a recompilar el proyecto con `Product > Clean Build Folder` (`Shift+Cmd+K`) y luego `Product > Build` (`Cmd+B`). A veces se genera el código para `Nota` pero no se compila o a veces no se ha generado. También ayuda a veces ir al `.xcdatamodeld` y guardarlo (`File > Save`). Como último recurso puedes salir de Xcode y volver a entrar (`Xcode > Quit Xcode`).
+ 
+-### El código que implementa el guardado
++Comprueba que el proyecto compila y que al ejecutarlo aparecen las dos pestañas.
+ 
+-En el código del *action* asociado al botón de “guardar” debemos tomar el valor del campo de texto, crear una nueva nota con este texto y la fecha y hora actual y hacerla persistente. Además actualizaremos la etiqueta con la fecha y hora actual para que muestre cuándo se ha guardado la nota. Vamos a verlo paso a paso.
++## Crear datos persistentes (0.25 puntos)
+ 
+-Para **crear un nuevo objeto persistente** debemos asociarlo al contexto, ya que este debe gestionar su ciclo de vida y si lo creáramos de otro modo el contexto desconocería su existencia.
++Aquí nos ocuparemos de crear y guardar una nueva nota. Por el momento no se podrán editar ni borrar notas, para simplificar la aplicación, únicamente crear notas nuevas.
+ 
+-Lo primero por tanto es *obtener la referencia al contexto de persistencia*. Como hemos visto en la sección anterior, en la plantilla de Xcode se guarda todo lo de Core Data en el *application delegate*, por lo que vamos a obtenerlo de ahí.
++### La interfaz de usuario para crear notas
+ 
+-Al principio del archivo `ViewController.swift`, junto al `import UIKit`, añade:
++Sustituye el contenido de `NuevaNotaView.swift` por este esqueleto:
+ 
+ ```swift
++import SwiftUI
+ import CoreData
+-```
+ 
+-Y en el *action* asociado al botón de "guardar" añade el siguiente código:
++struct NuevaNotaView: View {
++    //el contexto de Core Data, que obtenemos del entorno
++    @Environment(\.managedObjectContext) private var contexto
++
++    @State private var texto = ""
++    @State private var fecha: Date?
++    @State private var mensaje = ""
++
++    var body: some View {
++        VStack(alignment: .leading, spacing: 16) {
++            //el texto de la nota
++            TextEditor(text: $texto)
++                .border(.secondary)
++
++            //la fecha y hora de la nota
++            if let fecha {
++                Text(fecha.formatted(date: .abbreviated, time: .standard))
++                    .foregroundStyle(.secondary)
++            }
++
++            HStack {
++                Button("Nueva") {
++                    //a) FALTA el código para crear una nueva nota
++                }
++                Spacer()
++                Button("Guardar") {
++                    guardar()
++                }
++                .buttonStyle(.borderedProminent)
++            }
++
++            //mensajes para el usuario
++            Text(mensaje)
++        }
++        .padding()
++    }
++
++    func guardar() {
++        //b) FALTA el código para guardar la nota
++    }
++}
+ 
+-```swift
+-//obtenemos una referencia al "application delegate" de la aplicación
+-//En nuestro caso es de la clase AppDelegate
+-//si esto fallara no tiene sentido continuar, de ahí el guard...else return
+-guard let miDelegate = UIApplication.shared.delegate as? AppDelegate else {
+-    return
+-}
+-//el acceso al API de core data nos lo da el persistent container
+-//Lo que más usaremos (con mucho) es el contexto de persistencia
+-let miContexto = miDelegate.persistentContainer.viewContext
++#Preview {
++    NuevaNotaView()
++        .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
++}
+ ```
+ 
+-> Hay que recalcar de nuevo que el hecho de que el `persistentContainer` esté dentro del delegate no es propio de Core Data en sí, sino de la plantilla generada por Xcode para inicializar el *stack*.
++### El código que implementa “crear nueva nota”
+ 
+-Para **crear un nuevo objeto** necesitamos relacionarlo con el contexto de persistencia. La clase `Nota` generada por Xcode tendrá un inicializador que acepta como parámetro el contexto:
++Debes **implementar el código de la acción del botón "Nueva"**. Este código simplemente dejará vacíos el texto de la nota y el mensaje para el usuario, y pondrá la fecha a `nil`. Como son variables de estado, la pantalla se actualizará sola.
++
++### El código que implementa el guardado
++
++En la función `guardar()` debemos tomar el texto escrito, crear una nueva nota con este texto y la fecha y hora actual y hacerla persistente. Además actualizaremos la fecha que se muestra en pantalla para que muestre cuándo se ha guardado la nota. Vamos a verlo paso a paso.
++
++Para **crear un nuevo objeto persistente** debemos asociarlo al contexto, ya que este debe gestionar su ciclo de vida y si lo creáramos de otro modo el contexto desconocería su existencia. El contexto ya lo tenemos: es la propiedad `contexto`, que la vista obtiene del entorno.
++
++La clase `Nota` generada por Xcode tiene un inicializador que acepta como parámetro el contexto:
+ 
+ ```swift
+-let nuevaNota = Nota(context: miContexto)
++let nuevaNota = Nota(context: contexto)
+ nuevaNota.fecha = Date()
+-nuevaNota.texto = "<asignar aquí el contenido del text view>"
++nuevaNota.texto = texto
+ ```
+ 
+-> Si Xcode da error con el código anterior y no reconoce la clase `Nota` puedes probar a recompilar el proyecto con `Product > Clean Build Folder` (`Shift+Cmd+K`) y luego `Product > Build` (`Cmd+B`). A veces se genera el código para `Nota` pero no se compila o a veces no se ha generado. También ayuda a veces ir al `.xcdatamodeld` y guardarlo (`File > Save`). Como último recurso puedes salir de Xcode y volver a entrar (`Xcode > Quit Xcode`).
+-
+ Finalmente **guardamos el objeto en el almacenamiento persistente**. Esto se hace guardando el contexto, que guardará todos los objetos pendientes. El método `save` puede lanzar una excepción que debemos tratar de algún modo, en este ejemplo usamos un `do...catch`
+ 
+ ```swift
+ do {
+-   try miContexto.save()
++   try contexto.save()
+ } catch {
+    print("Error al guardar el contexto: \(error)")
+ }
+ ```
+ 
+-> El método de utilidad llamado `saveContext` de la plantilla generada por Xcode hace algo muy similar a lo anterior, aunque en caso de error genera un error fatal que causa la terminación inmediata de la aplicación.
+-    
+-Faltaría **actualizar la etiqueta con la fecha y hora de la nota** para que refleje la fecha asignada, y también **actualizar la etiqueta con el mensaje al usuario que indique "nota guardada" o algo similar**. **Escribe el código necesario para hacer esto**. Para mostrar la fecha puedes usar el mismo `DateFormatter.localizedString(from:dateStyle:timeStyle:)` de la sesión de persistencia básica.
++Faltaría **actualizar la fecha que se muestra en pantalla** para que refleje la fecha asignada a la nota, y también **mostrar un mensaje al usuario que indique "nota guardada" o algo similar** (o el error, si se ha producido). **Escribe el código necesario para hacer esto**.
+ 
+ > Tal y como está ahora el código, cada vez que pulses sobre `Guardar` se creará una **nueva nota**, así que aunque no modifiques el texto si pulsas varias veces tendrás varias notas, que serán iguales en contenido, aunque no con la misma fecha/hora. No es necesario que soluciones esto, déjalo así por el momento.
++
++Todavía no podemos ver las notas guardadas desde la app: lo haremos en la siguiente sección.
+--- uikit/3.4_recuperar_datos.md
++++ swiftui/3.4_recuperar_datos.md
+@@ -2,114 +2,70 @@
+ !!! info "Ejercicios"
+     Esta sección es un ejercicio a seguir paso a paso que vale **0.5 puntos** de la nota del bloque de iOS
+ 
+-Vamos a añadir una pantalla donde se puedan consultar las notas que tenemos almacenadas. Las listaremos en una *table view* y por el momento se verán todas, no se podrán filtrar (añadiremos esa posibilidad cuando veamos la sintaxis de las "consultas" o *fetch requests*).
++Vamos a completar la pestaña donde se pueden consultar las notas que tenemos almacenadas. Las listaremos en una lista (`List`) y por el momento se verán todas, no se podrán filtrar (añadiremos esa posibilidad cuando veamos la sintaxis de las consultas).
+ 
+-Para recuperar todas las instancias de una entidad como un array debemos crear y ejecutar una *fetch request* sin "predicado" (sin condiciones, como si fuera un `SELECT` sin `WHERE`), por ejemplo para listar todas las `Nota`s haríamos algo como:
++## *Fetch requests*
++
++Para recuperar objetos de Core Data se usa una ***fetch request***, que sería algo así como una consulta. Por ejemplo, para obtener todas las instancias de una entidad debemos crear y ejecutar una *fetch request* sin condiciones (como si fuera un `SELECT` sin `WHERE`). Para obtener todas las notas haríamos algo como:
+ 
+ ```swift
+-let request : NSFetchRequest<Nota> = Nota.fetchRequest()
++let request: NSFetchRequest<Nota> = Nota.fetchRequest()
+ //la línea anterior la podríamos poner también como
+ //let request = NSFetchRequest<Nota>(entityName: "Nota")
+-//es probable que lo veáis así en muchos libros/ejemplos de código
+ 
+-//ejecutamos la query
+-//suponiendo que "miContexto" sea el contexto de persistencia
+-let results : [Nota] = try! miContexto.fetch(request)
++//ejecutamos la consulta
++//suponiendo que "contexto" sea el contexto de persistencia
++let notas = try contexto.fetch(request)
++for nota in notas {
++    print(nota.texto ?? "")
++}
+ ```
+ 
+-!!! warning "Indica siempre el tipo de la *fetch request*"
+-    En la primera línea es importante poner el tipo `NSFetchRequest<Nota>`. Si escribimos solo `let request = Nota.fetchRequest()`, el compilador puede dar un error de ambigüedad (*Ambiguous use of 'fetchRequest()'*) o tomar la versión de `NSManagedObject`, que devuelve resultados genéricos con los que no podremos acceder a `texto` o `fecha`. En cambio el tipo de `results` sí lo podemos omitir, el compilador lo deduce.
+-
+-Vamos a hacer esto en nuestra app, aunque necesitaremos enlazar este código con la parte de UI.
+-
+-## La interfaz de usuario
+-
+-Sigue estos pasos:
+-
+-- **Crear el Tab Bar Controller**: teniendo seleccionada la única pantalla de la aplicación, ve al menú y selecciona `Editor > Embed In > Tab Bar Controller`. Se creará el *tab bar controller*, por el momento con una única "solapa" que será la pantalla de creación de notas
+-- En la pantalla de creación de notas, pulsa sobre el item de la barra inferior para editarlo, y ponle como `Title` por ejemplo `Nueva`, para que se vea que es la pantalla de creación de notas
+-- **Crear la pantalla para listar notas**: arrastrar al *storyboard* un `Table View Controller`. Recuerda que es una especie de tabla a “pantalla completa”.
+-- **Vincular la nueva pantalla al *tab bar controller***: hacer `Ctrl+Arrastrar` desde la pantalla del *tab bar* hasta la de listado de notas. En el menú contextual elegir como tipo del *segue* el de `view controllers` (bajo `Relationship Segue`).
+-    + Cambia el título del item de la barra inferior para que ponga "Lista" o algo similar. 
+-- Vamos a configurar la interfaz de la nueva pantalla
+-    - Cambia el aspecto del prototipo de la tabla: pulsa sobre la celda prototipo de la tabla, y en las propiedades cambia el `Style` a `Basic`
+-    - Pon un *reuse identifier*: pon algún `Identifier`, por ejemplo `MiCelda` (recuerda que este identificador se emplea luego en el código para solicitar al sistema instancias reutilizables de celdas)
+-- Ahora vamos a configurar el controlador de la pantalla
+-    - Primero tenemos que crear un controlador (`File > New > File...`). De las plantillas que aparecen usa `Cocoa Touch Class`, así Xcode generará código por nosotros. La clase se debe llamar `ListaNotasController` y heredará de `UITableViewController`. 
++Al ejecutar la *fetch request* con el método `fetch` del contexto obtenemos un array con los resultados, en este caso de tipo `[Nota]`.
+ 
+-![](img/crear_listanotascontroller.png)
+-
+-- Ahora hacer que la nueva clase sea el controlador de la pantalla de listado de notas: 
+-    - en el _storyboard_ tienes que seleccionar la pantalla de listado de notas (primero de los iconos de la barra superior, el de fondo amarillo) 
+-    - En el `Identity Inspector` (cuarto de los iconos del panel de la derecha de Xcode, ![](img/identity_inspector_icon.png)), como `Class` poner `ListaNotasController`
+-
+-Pon un `print("hola soy ListaNotasController")` en el `viewDidLoad` del `ListaNotasController` para comprobar que efectivamente se usa esta clase como controlador de la nueva pantalla.
+-
+-Prueba a ejecutar el proyecto para ver que funciona el cambio de pantallas en el *tab bar controller* y que efectivamente en la pantalla de lista aparece el `print` hecho por `ListaNotasController`.
+-
+-## El código de la pantalla de listado
+-
+-En la tabla vamos a mostrar un *array* de notas. Lo primero será definir una propiedad para almacenarlas en la clase `ListaNotasController`
++!!! warning "Indica siempre el tipo de la *fetch request*"
++    En la primera línea es importante poner el tipo `NSFetchRequest<Nota>`. Si escribimos solo `let request = Nota.fetchRequest()`, el compilador puede dar un error de ambigüedad (*Ambiguous use of 'fetchRequest()'*) o tomar la versión de `NSManagedObject`, que devuelve resultados genéricos con los que no podremos acceder a `texto` o `fecha`.
+ 
+-```swift
+-//RECUERDA que hace falta este import al principio del archivo
+-import CoreData
++> Los atributos de las entidades se generan como opcionales (`texto` es `String?`, `fecha` es `Date?`), aunque en el modelo no los hayamos marcado como tales. Por eso usamos `?? ""` en lugar de desempaquetar con `!`.
+ 
+-class ListaNotasController: UITableViewController {
+-   var listaNotas : [Nota] = []
++Ejecutar una *fetch request* con `fetch` es útil cuando necesitamos los datos en nuestro código. Pero si lo que queremos es **mostrar los resultados en una vista**, SwiftUI nos ofrece una forma mucho más cómoda.
+ 
+-}
+-```
++## `@FetchRequest`
+ 
+-Solo nos queda rellenar el array de notas. **En `ListaNotasController` crea un método**
++En una vista de SwiftUI podemos declarar una *fetch request* con el *property wrapper* `@FetchRequest`:
+ 
+ ```swift
+-override func viewWillAppear(_ animated: Bool) {
+-    super.viewWillAppear(animated)
+-
++struct MiLista: View {
++    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Nota.fecha, ascending: false)])
++    private var notas: FetchedResults<Nota>
++
++    var body: some View {
++        List(notas) { nota in
++            Text(nota.texto ?? "")
++        }
++    }
+ }
+ ```
+ 
+-> Usamos `viewWillAppear` y no `viewDidLoad` porque este último solo se ejecuta una vez, la primera vez que se carga la pantalla. Con el *tab bar* la pantalla de lista no se destruye al cambiar de solapa, así que si cargáramos las notas en `viewDidLoad` no veríamos las que creemos después. `viewWillAppear` se ejecuta cada vez que la pantalla va a mostrarse.
+-
+-Vamos a rellenarlo de código. Para recuperar datos de Core Data se usa una *fetch request*, que sería algo así como una consulta. Para crearla, usamos el método `fetchRequest()` de la clase generada para la entidad (o el inicializador, pasándole el nombre de la entidad resultado de la consulta). Para ejecutarla, llamamos al método `fetch` del contexto. Veamos un ejemplo. **Escribe el siguiente código en el `viewWillAppear`** (Recuerda que debes sacar de algún lado el contexto de Core Data (`miContexto`)). Este código todavía no mostrará las notas en la tabla pero al menos sí por la consola.
++Con esto:
+ 
+-```swift
+-let request : NSFetchRequest<Nota> = Nota.fetchRequest()
+-//ACLARACION: "miContexto" es el contexto de Core Data 
+-//FALTA el código que obtiene "miContexto", como se ha hecho en ejemplos anteriores
+-//Ejecutamos la "query"
+-let notas = try! miContexto.fetch(request) 
+-for nota in notas {
+-   print(nota.texto ?? "")
+-}
+-```
++- SwiftUI ejecuta la consulta usando el contexto que hay en el entorno, y deja los resultados en la propiedad `notas`. Su tipo es `FetchedResults<Nota>`, pero podemos usarla como si fuera un array: recorrerla, acceder a un elemento por su posición, ver cuántos hay con `count`...
++- Los resultados se ordenan según los criterios que indicamos en `sortDescriptors`: en el ejemplo, por fecha de más reciente a más antigua. Veremos la ordenación con detalle en la sesión de consultas. Si no queremos ordenar, podemos pasar un array vacío (`[]`), aunque entonces el orden no está garantizado.
++- **La vista se actualiza sola cuando cambian los datos**. Si se crea, modifica o borra una nota en el contexto, desde esta vista o desde cualquier otra, la lista se vuelve a dibujar con los datos actualizados. No hay que volver a ejecutar la consulta ni avisar a la vista.
+ 
+-Nótese que las *fetch requests* usan tipos. Es decir, devuelven un conjunto de elementos de una clase determinada, en nuestro caso `Nota`.
++Esto último es muy importante, y encaja perfectamente con la filosofía de SwiftUI: igual que una vista se redibuja cuando cambia una variable `@State`, una vista con `@FetchRequest` se redibuja cuando cambian los datos de Core Data que muestra.
+ 
+-> Los atributos de las entidades se generan como opcionales (`texto` es `String?`, `fecha` es `Date?`), aunque en el modelo no los hayamos marcado como tales. Por eso usamos `?? ""` en lugar de desempaquetar con `!`.
++> Como en `List(notas)` no hemos indicado ningún `id`, te puedes preguntar cómo distingue SwiftUI unas filas de otras. Los objetos gestionados por Core Data son `Identifiable`: cada uno tiene un identificador único que asigna el propio Core Data.
+ 
+-Si pruebas el proyecto, al navegar a la pantalla de lista, los textos de las notas deberían aparecer en la consola de Xcode (aunque no en la pantalla del simulador).
++## El código de la pantalla de listado
+ 
+-**Para que los datos de las notas aparezcan en la tabla**, debes:
++**Implementa `ListaNotasView`** para que muestre todas las notas en una lista, de más reciente a más antigua, usando `@FetchRequest`. De cada nota mostraremos por ahora solo el texto.
+ 
+-- Asignar el valor devuelto por `miContexto.fetch` a la propiedad `self.listaNotas`, que has creado antes
+-- Forzar el refresco de la tabla para que aparezcan los datos. Tras asignar el valor a `listaNotas`, haz `self.tableView.reloadData()` (En un `UITableViewController` la propiedad `tableView` referencia a la tabla, no hace falta crear el *outlet*)
+-- Modificar los métodos que ha creado Xcode:
+-    + `numberOfSections` debe devolver 1 en vez de 0, ya que la tabla tiene 1 sección
+-    + `tableView(_ tableView: UITableView, numberOfRowsInSection section: Int)` debe devolver el tamaño del array `listaNotas` (propiedad `count`)
+-    + El siguiente método, `tableView(_:cellForRowAt:)`, que está comentado, debes descomentarlo, y hacer un par de modificaciones:
+-        + Donde hace el `dequeueReusableCell...`, cambia el identificador de la celda por el que hayas elegido tú antes al crear esta pantalla (aquí se sugería `MiCelda`)
+-        + Donde pone el comentario `Configure the cell...` hacer que como texto de la celda aparezca el texto de la nota correspondiente
++Para comprobar que funciona:
+ 
+-```swift
+-cell.textLabel?.text = self.listaNotas[indexPath.row].texto
+-```
++1. Ejecuta la app, crea una nota en la pestaña "Nueva" y cambia a la pestaña "Lista": la nota debería aparecer sin necesidad de hacer nada más. Las notas que creaste en la sección anterior también deberían estar.
++2. Vuelve a la pestaña "Nueva", crea otra nota y vuelve a la lista: debe aparecer la primera, ya que es la más reciente.
++3. Detén la app y vuelve a ejecutarla: las notas siguen ahí.
++4. Escribe la *preview* de `ListaNotasView`, con el contexto de `PersistenceController.preview` en el entorno, como se explica en la sección anterior. En la *preview* deberían aparecer las 5 notas de ejemplo. Fíjate en que estas notas no aparecen al ejecutar la app, ya que la *preview* usa una base de datos distinta, en memoria.
+ 
+-> Apple recomienda desde iOS 14 configurar el contenido de las celdas mediante *content configurations* en lugar de con `textLabel`, que acabará quedando obsoleto (aunque en Xcode 15 todavía funciona sin avisos). La forma equivalente sería:
+->
+-> ```swift
+-> var contenido = cell.defaultContentConfiguration()
+-> contenido.text = self.listaNotas[indexPath.row].texto
+-> cell.contentConfiguration = contenido
+-> ```
++> Si la *preview* falla con un mensaje sobre que no encuentra la entidad (*NSFetchRequest could not locate an NSEntityDescription for entity name 'Nota'*), es que no has puesto el contexto en su entorno.
+--- uikit/apendice_ver_almacenamiento.md
++++ swiftui/apendice_ver_almacenamiento.md
+@@ -1,7 +1,7 @@
+ 
+ > **No es necesario que sigas estos pasos** en el ejercicio, pero sí es interesante que los leas para poder entender mejor el funcionamiento interno de Core Data.
+ 
+-Podemos examinar el almacenamiento persistente, que, como hemos visto en el código Swift del *delegate*, se configura por defecto como una base de datos SQLite con el mismo nombre del proyecto (en nuestro caso `NotasCoreData.sqlite`). La base de datos se crea por defecto en el directorio `Library/Application Support` del *sandbox*.
++Podemos examinar el almacenamiento persistente, que, como hemos visto en el código del `PersistenceController`, se configura por defecto como una base de datos SQLite con el mismo nombre del proyecto (en nuestro caso `NotasCoreData.sqlite`). La base de datos se crea por defecto en el directorio `Library/Application Support` del *sandbox*.
+ 
+ Para localizar el archivo tenemos varias opciones:
+ 
+@@ -12,10 +12,10 @@
+ find ~/Library/Developer/CoreSimulator/Devices -name "NotasCoreData.sqlite"
+ ```
+ 
+-- Imprimir la URL desde la propia app, por ejemplo en el `application(_:didFinishLaunchingWithOptions:)` del `AppDelegate`:
++- Imprimir la URL desde la propia app, por ejemplo en el `init` del `PersistenceController`, después de `loadPersistentStores`:
+ 
+ ```swift
+-print(persistentContainer.persistentStoreDescriptions.first?.url ?? "sin URL")
++print(container.persistentStoreDescriptions.first?.url ?? "sin URL")
+ ```
+ 
+ > Un truco muy útil para depurar es activar los mensajes de *log* de Core Data: en Xcode ve a `Product > Scheme > Edit Scheme...`, sección `Run`, pestaña `Arguments`, y en `Arguments Passed On Launch` añade `-com.apple.CoreData.SQLDebug 1`. Al ejecutar la app verás en la consola la ruta de la base de datos y todas las sentencias SQL que Core Data va ejecutando.
+--- uikit/4.1_crear_modelo.md
++++ swiftui/4.1_crear_modelo.md
+@@ -1,7 +1,7 @@
+ 
+ El **modelo de datos** sería más o menos el equivalente al esquema entidad/relación en una base de datos relacional. Con la diferencia de que en Core Data tenemos clases Swift y variables miembro en lugar de tablas y claves ajenas. 
+ 
+-Normalmente en una aplicación hay un solo modelo de datos, que se almacena en un archivo `.xcdatamodeld`. Al crear el proyecto eligiendo `Core Data` en el desplegable `Storage`, Xcode nos crea un modelo vacío con el mismo nombre del proyecto, que editaremos con el editor visual de Xcode.
++Normalmente en una aplicación hay un solo modelo de datos, que se almacena en un archivo `.xcdatamodeld`. Al crear el proyecto eligiendo `Core Data` en el desplegable `Storage`, Xcode nos crea un modelo con el mismo nombre del proyecto (con una entidad de ejemplo, `Item`, que normalmente eliminaremos), que editaremos con el editor visual de Xcode.
+ 
+ > Hasta Xcode 13 el editor tenía, además del modo "tabla", un modo "gráfico" (*Graph*) que mostraba un diagrama con las entidades y sus relaciones. **Desde Xcode 14 el modo gráfico ya no existe** y todo se edita en modo tabla. Los diagramas de estos apuntes sirven para entender los modelos, pero no los verás así en Xcode.
+ 
+@@ -107,18 +107,19 @@
+ - Por defecto la política es `NSErrorMergePolicy`: `save()` lanza un error y no se guarda nada. Es lo adecuado en nuestro ejemplo, ya que dos personas distintas no pueden tener el mismo `login`: hay que avisar al usuario para que elija otro. Veremos cómo tratar el error en la sección de CRUD.
+ - Con `NSMergePolicy.mergeByPropertyObjectTrump`, en lugar de dar error los dos objetos se fusionan en uno solo, y los valores del objeto que estamos guardando "machacan" a los que había en el almacén. Es útil por ejemplo cuando descargamos datos de un servidor y queremos que si un objeto ya existía se actualice en lugar de duplicarse. También existe la política inversa, `mergeByPropertyStoreTrump`, en la que prevalecen los valores ya almacenados.
+ 
+-Si queremos cambiar la política, se hace por código. Con la plantilla generada por Xcode podemos hacerlo en el `AppDelegate`, justo después de cargar los *stores*:
++Si queremos cambiar la política, se hace por código. Con la plantilla generada por Xcode podemos hacerlo en el inicializador del `PersistenceController` (archivo `Persistence.swift`), justo después de cargar los *stores*:
+ 
+ ```swift
+-lazy var persistentContainer: NSPersistentContainer = {
+-    let container = NSPersistentContainer(name: "Mensajeria")
++init(inMemory: Bool = false) {
++    container = NSPersistentContainer(name: "Mensajeria")
++    //...código generado por Xcode
+     container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+         //...código generado por Xcode
+     })
++    container.viewContext.automaticallyMergesChangesFromParent = true
+     //AÑADIMOS esta línea
+     container.viewContext.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
+-    return container
+-}()
++}
+ ```
+ 
+ Se puede consultar la documentación de [`NSMergePolicy`](https://developer.apple.com/documentation/coredata/nsmergepolicy) para más información.
+--- uikit/4.3_CRUD.md
++++ swiftui/4.3_CRUD.md
+@@ -1,7 +1,7 @@
+ 
+ Las operaciones más básicas con Core Data son las de crear, obtener, actualizar y borrar objetos persistentes, es decir operaciones del tipo `Create/Read/Update/Delete` o CRUD. Ya vimos algo de esto en la sesión anterior; aquí lo veremos de modo más sistemático y aplicado a objetos relacionados entre sí.
+ 
+-> En todos los ejemplos suponemos que `miContexto` es el contexto de persistencia (`persistentContainer.viewContext`), obtenido como en la sesión anterior.
++> En todos los ejemplos suponemos que `miContexto` es el contexto de persistencia (el `viewContext`), que en una vista obtenemos del entorno con `@Environment(\.managedObjectContext)`, como en la sesión anterior.
+ 
+ ## Creación
+ 
+@@ -130,6 +130,8 @@
+ 
+ > Recuerda que hay que indicar el tipo de la variable `request` (`NSFetchRequest<Usuario>`) cuando usamos `Usuario.fetchRequest()`, para evitar ambigüedades con el método del mismo nombre de `NSManagedObject`.
+ 
++> Ejecutar la *fetch request* con `fetch` es lo que haremos cuando necesitemos los datos en el código. Para mostrar los resultados de una consulta en una vista usaremos `@FetchRequest`, como vimos en la sesión anterior.
++
+ Una vez tenemos un objeto, a los objetos relacionados con él accedemos directamente a través de las relaciones, sin necesidad de más *fetch requests*: los mensajes de cada usuario estarán en `usuario.mensajes`.
+ 
+ ## Borrado
+--- uikit/4.5_ampliacion.md
++++ swiftui/4.5_ampliacion.md
+@@ -18,7 +18,7 @@
+ usuario.imagen = imagenPerfil.pngData()
+ ```
+ 
+-Para recuperar la `UIImage` a partir de los datos guardados usaríamos el inicializador `UIImage(data:)`.
++Para recuperar la `UIImage` a partir de los datos guardados usaríamos el inicializador `UIImage(data:)`, y para mostrarla en SwiftUI, `Image(uiImage:)`.
+ 
+ > Guardar datos binarios grandes dentro de la base de datos SQLite la hace crecer mucho y ralentiza las consultas. Si marcamos la opción `Allows External Storage` del atributo en el `Data Model Inspector`, Core Data decidirá automáticamente si guarda los datos en la BD (si son pequeños) o en un archivo aparte (si son grandes), sin que tengamos que cambiar nada en nuestro código.
+ 
+@@ -60,4 +60,4 @@
+ 
+ ## Fetch requests predefinidas
+ 
+-En el editor del modelo también podemos definir *fetch requests* (consultas) con nombre, manteniendo pulsado el botón `Add Entity` y eligiendo `Add Fetch Request`. Las condiciones se definen gráficamente. Desde el código se recuperan con el método `fetchRequestTemplate(forName:)` del modelo (`persistentContainer.managedObjectModel`). Veremos las consultas en detalle en la siguiente sesión.
++En el editor del modelo también podemos definir *fetch requests* (consultas) con nombre, manteniendo pulsado el botón `Add Entity` y eligiendo `Add Fetch Request`. Las condiciones se definen gráficamente. Desde el código se recuperan con el método `fetchRequestTemplate(forName:)` del modelo (`PersistenceController.shared.container.managedObjectModel`). Veremos las consultas en detalle en la siguiente sesión.
+--- uikit/4.6_ejercicios.md
++++ swiftui/4.6_ejercicios.md
+@@ -19,156 +19,113 @@
+ 
+ ## Crear libretas (0.15 puntos)
+ 
+-Para simplificar será un botón "nueva libreta" en la pantalla inicial, que al pulsarlo debe mostrar un *alert* con un campo de texto para escribir el nombre. Tendrás que definirte el *action* correspondiente para detectar que se ha pulsado el botón. En el *action* puedes llamar al siguiente método, que añadirás al `ViewController`, para mostrar el *alert*:
++Para simplificar, añadiremos a la pantalla de nueva nota un botón "Nueva libreta" que, al pulsarlo, mostrará un cuadro de diálogo (*alert*) con un campo de texto para escribir el nombre.
+ 
+-```swift
+-func nuevaLibreta() {
+-    let alert = UIAlertController(title: "Nueva libreta",
+-                                  message: "Escribe el nombre para la nueva libreta",
+-                                  preferredStyle: .alert)
+-    let crear = UIAlertAction(title: "Crear", style: .default) {
+-        action in
+-        let nombre = alert.textFields![0].text!
+-        //AQUI FALTA GUARDAR LA LIBRETA CON CORE DATA
+-    }
+-    let cancelar = UIAlertAction(title: "Cancelar", style: .cancel)
+-    alert.addAction(crear)
+-    alert.addAction(cancelar)
+-    alert.addTextField() { $0.placeholder = "Nombre" }
+-    self.present(alert, animated: true)
+-}
+-```
++!!! note "Nuevo en SwiftUI: `.alert`"
++    En SwiftUI, un cuadro de diálogo no se "muestra" llamando a un método, sino que se **declara** asociado a una variable `Bool` de estado: el diálogo aparece cuando la variable se pone a `true`, y SwiftUI la vuelve a poner a `false` automáticamente cuando el usuario pulsa cualquiera de sus botones. Es la misma idea de siempre: no modificamos la pantalla, modificamos una variable.
+ 
+-- En el código anterior falta **guardar la libreta** usando Core Data, implementa esta funcionalidad. Recuerda que dentro de la clausura tendrás que usar `self.` explícitamente para acceder a las propiedades del `ViewController`.
++    ```swift
++    .alert("Título", isPresented: $mostrando) {
++        //los campos de texto y los botones del diálogo
++    } message: {
++        Text("Mensaje que aparece debajo del título")
++    }
++    ```
+ 
+-## Listar libretas (0.15 puntos)
++    Dentro del diálogo podemos poner campos de texto (`TextField`) y botones. Un botón con `role: .cancel` es el de cancelar.
+ 
+-Antes de empezar con esto asegúrate de que las libretas se están creando correctamente en la base de datos. En el `viewWillAppear` de la pantalla de lista de notas puedes poner provisionalmente una consulta que las imprima en la consola (luego acuérdate de quitarla)
++En `NuevaNotaView`, añade estas dos variables de estado:
+ 
+ ```swift
+-override func viewWillAppear(_ animated: Bool) {
+-    super.viewWillAppear(animated)
+-    let queryLibretas = NSFetchRequest<Libreta>(entityName: "Libreta")
+-    guard let miDelegate = UIApplication.shared.delegate as? AppDelegate else {
+-        return
+-    }
+-    let miContexto = miDelegate.persistentContainer.viewContext
+-    let libretas = try! miContexto.fetch(queryLibretas)
+-    for libreta in libretas {
+-        print(libreta.nombre ?? "")
+-    }
+-    //...aquí iría el código que ya tenías para listar las notas
+-}
++@State private var mostrandoNuevaLibreta = false
++@State private var nombreLibreta = ""
+ ```
+ 
+-Para que el usuario pueda seleccionar la libreta en la pantalla de creación de notas vamos a usar un *picker view*, la típica "rueda" para seleccionar valores de una lista.
+-
+-- Añade un componente *picker view* a la pantalla de creación de notas. Crea un *outlet* para poder acceder a él desde Swift. Dale el nombre que quieras.
+-- Desde el punto de vista del código, un *picker view* requiere de un *delegate* y de un *datasource* (más o menos como las tablas). Crea una nueva clase `GestorPicker` en un archivo del mismo nombre, así no llenamos de tanto código el `ViewController`
++y este botón dentro del `VStack`, por ejemplo justo encima del área de texto:
+ 
+ ```swift
+-import UIKit
+-import CoreData
+-
+-class GestorPicker : NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
+-    var libretas = [Libreta]()
+-    
+-    //devuelve el número de columnas del picker. En nuestro caso solo 1
+-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+-        return 1
+-    }
+-    
+-    //devuelve el número de filas del picker (== número de libretas)
+-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+-        return self.libretas.count
+-    }
+-    
+-    //devuelve el título de una fila determinada
+-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+-        return self.libretas[row].nombre
+-    }
+-    
+-    //para cargar la lista de libretas desde Core Data
+-    func cargarLista() {
+-        let miDelegate = UIApplication.shared.delegate as! AppDelegate
+-        let miContexto = miDelegate.persistentContainer.viewContext
+-        let request = NSFetchRequest<Libreta>(entityName: "Libreta")
+-        self.libretas = try! miContexto.fetch(request)
+-    }
++Button("Nueva libreta") {
++    nombreLibreta = ""
++    mostrandoNuevaLibreta = true
++}
++.alert("Nueva libreta", isPresented: $mostrandoNuevaLibreta) {
++    TextField("Nombre", text: $nombreLibreta)
++    Button("Crear") {
++        crearLibreta()
++    }
++    Button("Cancelar", role: .cancel) { }
++} message: {
++    Text("Escribe el nombre para la nueva libreta")
+ }
+ ```
+ 
+-Ahora **en el `ViewController` añade una nueva propiedad**, una instancia de la clase anterior
++- Escribe la función `crearLibreta()`, que debe **crear la libreta** con el nombre escrito y **guardarla** usando Core Data. Muestra en el `mensaje` de la pantalla si se ha creado correctamente o el error que se haya producido.
+ 
+-```swift
+-//Esto es una propiedad del ViewController, va dentro de la clase y FUERA de los métodos
+-let miGestorPicker = GestorPicker()
+-```
++## Seleccionar la libreta (0.15 puntos)
+ 
+-> El *picker* no retiene a su *delegate* ni a su *datasource* (son referencias `weak`). Por eso es importante que el gestor sea una propiedad del `ViewController` y no una variable local del `viewDidLoad`: si fuera local, se liberaría al terminar el método y el *picker* se quedaría vacío.
++Para que el usuario pueda elegir en qué libreta guardar la nota vamos a usar un selector (`Picker`).
+ 
+-y en el `viewDidLoad` del `ViewController` conectamos el *picker* con su *delegate/datasource* y cargamos la lista de libretas con Core Data
++!!! note "Nuevo en SwiftUI: `Picker`"
++    Un `Picker` muestra una serie de opciones y deja seleccionar una. Se conecta mediante un *binding* a una variable de estado, la *selección*, que contiene la opción elegida. Cada opción se identifica con el modificador `.tag`, que indica qué valor tomará la selección si el usuario la elige:
+ 
+-```swift
+-//Aquí, "picker" es el outlet que representa al "picker view"
+-//CAMBIALO por el nombre que le hayas dado
+-self.picker.delegate = self.miGestorPicker
+-self.picker.dataSource = self.miGestorPicker
+-//cargamos las libretas con Core Data
+-self.miGestorPicker.cargarLista()
+-```
++    ```swift
++    @State private var color = "rojo"
+ 
+-Tal como está ahora la aplicación la lista de libretas debe aparecer cuando se arranca, pero si se añade una nueva libreta no aparecerá en el *picker* hasta que se pare la app y se vuelva a arrancar (que es cuando se llama a `cargarLista()`). Puedes arreglarlo haciendo dos cosas justo después de guardar la nueva libreta con Core Data (en la función `nuevaLibreta` de antes):
++    Picker("Color", selection: $color) {
++        Text("Rojo").tag("rojo")
++        Text("Verde").tag("verde")
++    }
++    ```
+ 
+--  Añadir la nueva libreta a la lista que tiene dentro el `miGestorPicker` (aquí `libreta` es el objeto que acabas de crear): 
++    **El valor de `.tag` debe ser exactamente del mismo tipo que la selección**. Si no lo es, el compilador no se queja, pero al elegir una opción la selección no cambia. Es un error muy habitual.
+ 
+-```swift
+-self.miGestorPicker.libretas.append(libreta)
+-```
++    Cuando las opciones salen de una colección de datos usamos `ForEach`, que genera una vista por cada elemento, igual que hace `List` con las filas.
+ 
+-- Decirle al componente *picker view* que se repinte recargando los datos
++- Declara en `NuevaNotaView` una propiedad `libretas` con `@FetchRequest` que obtenga todas las libretas ordenadas alfabéticamente por nombre.
++- Añade una variable de estado para la libreta seleccionada. Es opcional, porque una nota puede no tener libreta:
+ 
+ ```swift
+-//de nuevo, "picker" es el outlet del "picker view". CÁMBIALO POR EL TUYO
+-self.picker.reloadAllComponents()
++@State private var libretaSeleccionada: Libreta?
+ ```
+ 
+-## Asociar una libreta a la nota actual (0.15 puntos)
+-
+-Falta que cuando se guarde la nota, se le asocie la libreta que aparece seleccionada en el *picker view*. Igual que asignas el "texto" y la "fecha" de la nota, **asígnale también el objeto libreta usando la relación "a uno" entre `Nota` y `Libreta`**. Para saber qué número de opción está seleccionado actualmente en un *picker* puedes usar su método `selectedRow`:
++- Añade el `Picker` junto al botón "Nueva libreta". Por ejemplo, en un `HStack`:
+ 
+ ```swift
+-//de nuevo, "picker" es el outlet del "picker view". CÁMBIALO POR EL TUYO
+-let numLibreta = self.picker.selectedRow(inComponent: 0)
++HStack {
++    Picker("Libreta", selection: $libretaSeleccionada) {
++        Text("Sin libreta").tag(nil as Libreta?)
++        ForEach(libretas) { libreta in
++            Text(libreta.nombre ?? "").tag(libreta as Libreta?)
++        }
++    }
++    Spacer()
++    //...aquí el botón "Nueva libreta" con su .alert
++}
+ ```
+ 
+-El objeto `Libreta` en esa posición será la misma posición del array `libretas` del `self.miGestorPicker`.
++Fíjate en el `as Libreta?` de los `.tag`: como la selección es de tipo `Libreta?`, los valores de las opciones tienen que serlo también.
++
++Comprueba que al crear una libreta nueva aparece inmediatamente en el selector. No has tenido que hacer nada para ello: como `libretas` es una `@FetchRequest`, la vista se actualiza sola cuando se crea una libreta en el contexto.
++
++## Asociar una libreta a la nota actual (0.15 puntos)
+ 
+-> Si todavía no hay ninguna libreta creada, `selectedRow` devuelve `-1` y acceder al array con ese índice hará que la app se cierre. Comprueba que `numLibreta >= 0` antes de usarlo (y en caso contrario guarda la nota sin libreta).
++Falta que cuando se guarde la nota, se le asocie la libreta que aparece seleccionada en el *picker*. Igual que asignas el "texto" y la "fecha" de la nota, **asígnale también la libreta seleccionada usando la relación "a uno" entre `Nota` y `Libreta`**. Si está seleccionada la opción "Sin libreta", la nota quedará sin libreta.
+ 
+ ## Nombres de libreta únicos (0.2 puntos)
+ 
+-No debe poder haber dos libretas con el mismo nombre. Si el usuario intenta crear una libreta con un nombre que ya existe, la app debe mostrarle un aviso y no crearla.
++No debe poder haber dos libretas con el mismo nombre. Si el usuario intenta crear una libreta con un nombre que ya existe, la app debe mostrarle un aviso en el `mensaje` de la pantalla y no crearla.
+ 
+ - Añade al modelo la restricción necesaria.
+ - Elige la *merge policy* adecuada para conseguir el comportamiento pedido.
+-- Trata el posible error al guardar la libreta. Para mostrar el aviso puedes usar este método en el `ViewController`:
+-
+-```swift
+-func mostrarAviso(_ mensaje: String) {
+-    let aviso = UIAlertController(title: "Error", message: mensaje, preferredStyle: .alert)
+-    aviso.addAction(UIAlertAction(title: "OK", style: .default))
+-    self.present(aviso, animated: true)
+-}
+-```
++- Trata el posible error al guardar la libreta.
+ 
+-Para comprobar que funciona correctamente, prueba esta secuencia: crea una libreta "Trabajo", intenta crear otra "Trabajo" (debe aparecer el aviso y no debe aparecer una segunda "Trabajo" en el *picker*), y a continuación crea una libreta "Casa" y guarda una nota. **Las dos últimas operaciones tienen que funcionar con normalidad.** Si no es así, repasa en la sección de CRUD qué ocurre con los objetos que han provocado un error al guardar.
++Para comprobar que funciona correctamente, prueba esta secuencia: crea una libreta "Trabajo", intenta crear otra "Trabajo" (debe aparecer el aviso y **no debe aparecer una segunda "Trabajo" en el selector**), y a continuación crea una libreta "Casa" y guarda una nota. **Las dos últimas operaciones tienen que funcionar con normalidad.** Si no es así, repasa en la sección de CRUD qué ocurre con los objetos que han provocado un error al guardar.
+ 
+ ## Validar el nombre de la libreta (0.2 puntos)
+ 
+ El nombre de una libreta no puede estar vacío ni estar formado solo por espacios. Si no es válido, igual que en el apartado anterior, la app mostrará un aviso (con un mensaje que explique el problema) y no creará la libreta.
+ 
+-- La validación debe hacerse **en el modelo de Core Data**, no comprobando el texto en el `ViewController` antes de crear la libreta. Así se cumplirá desde cualquier parte de la aplicación que cree o modifique libretas.
++- La validación debe hacerse **en el modelo de Core Data**, no comprobando el texto en la vista antes de crear la libreta. Así se cumplirá desde cualquier parte de la aplicación que cree o modifique libretas.
+ - Una parte de la condición se puede expresar con las reglas del `Data Model Inspector`, pero otra no: piensa cuál necesita una validación propia.
+ 
+ > Pista: para saber si una cadena está formada solo por espacios puedes quitárselos con `trimmingCharacters(in: .whitespaces)` y ver si el resultado está vacío.
+@@ -177,6 +134,18 @@
+ 
+ ## Mostrar la libreta al listar las notas (opcional, sin puntuación)
+ 
+-Puedes mostrar el nombre de la libreta en la parte del texto de detalle de la celda (es la propiedad `detailTextLabel` de la celda). Primero tendrás que cambiar el tipo de celda de `Basic` a `Left Detail` o `Right Detail`, según donde quieras que aparezca el nombre.
++En `ListaNotasView`, muestra debajo del texto de cada nota el nombre de su libreta, en letra más pequeña y en color secundario (o "Sin libreta" si no tiene).
++
++Para practicar, extrae la fila a una subvista `FilaNota`, que reciba la nota como propiedad.
++
++!!! note "Nuevo en SwiftUI: `@ObservedObject`"
++    Cuando una subvista recibe un objeto de Core Data, conviene declararlo con `@ObservedObject`:
++
++    ```swift
++    struct FilaNota: View {
++        @ObservedObject var nota: Nota
++        //...
++    }
++    ```
+ 
+-> Si en la sesión anterior usaste `defaultContentConfiguration()` en lugar de `textLabel`, el equivalente a `detailTextLabel` es la propiedad `secondaryText` de la configuración.
++    Así, si el objeto cambia (por ejemplo, si se modifica el texto de la nota), la subvista se redibuja. Sin `@ObservedObject` la subvista mostraría el texto antiguo hasta que algo más provocara que se redibujara. Los objetos de Core Data son `ObservableObject`, un tipo de objeto que avisa a las vistas que lo observan cuando cambia alguna de sus propiedades.

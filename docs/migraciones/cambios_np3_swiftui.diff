@@ -1,0 +1,117 @@
+--- uikit/3_probar_migraciones.md
++++ swiftui/3_probar_migraciones.md
+@@ -62,26 +62,32 @@
+ }
+ ```
+ 
+-Y en el `AppDelegate`, al crear el `persistentContainer`, añadimos estas líneas **justo antes** de `loadPersistentStores`, que es cuando la base de datos todavía no está abierta:
++Y en el inicializador del `PersistenceController` (archivo `Persistence.swift`) añadimos estas líneas **justo antes** de `loadPersistentStores`, que es cuando la base de datos todavía no está abierta:
+ 
+ ```swift
+-lazy var persistentContainer: NSPersistentContainer = {
+-    let container = NSPersistentContainer(name: "Mensajeria")
++init(inMemory: Bool = false) {
++    container = NSPersistentContainer(name: "Mensajeria")
++    if inMemory {
++        container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
++    }
+     //AÑADIDO: punto de restauración, solo en las versiones de desarrollo
++    //y nunca con la base de datos en memoria de las previews
+     #if DEBUG
+-    let argumentos = ProcessInfo.processInfo.arguments
+-    if argumentos.contains("-guardarPunto") {
+-        try? PuntoRestauracion.guardar()
+-    }
+-    if argumentos.contains("-restaurarPunto") {
+-        try? PuntoRestauracion.restaurar()
++    if !inMemory {
++        let argumentos = ProcessInfo.processInfo.arguments
++        if argumentos.contains("-guardarPunto") {
++            try? PuntoRestauracion.guardar()
++        }
++        if argumentos.contains("-restaurarPunto") {
++            try? PuntoRestauracion.restaurar()
++        }
+     }
+     #endif
+     container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+         //...código generado por Xcode
+     })
+-    return container
+-}()
++    container.viewContext.automaticallyMergesChangesFromParent = true
++}
+ ```
+ 
+ > El `#if DEBUG` hace que este código solo se compile en las versiones de desarrollo, y nunca llegue a una versión publicada en la App Store.
+--- uikit/4_migraciones_ligeras.md
++++ swiftui/4_migraciones_ligeras.md
+@@ -41,7 +41,7 @@
+ Al renombrar un atributo, las clases generadas por Xcode cambian, así que el código que usaba `titulo` dejará de compilar. Los errores del compilador nos indicarán dónde tenemos que cambiarlo.
+ 
+ !!! warning "Los nombres en cadenas no los detecta el compilador"
+-    Hay sitios donde el nombre del atributo aparece dentro de una cadena: predicados (`"titulo CONTAINS[cd] %@"`), *sort descriptors* (`NSSortDescriptor(key: "titulo", ...)`), el `sectionNameKeyPath` de un *fetched results controller*... El compilador no los revisa, así que la app compilará sin errores pero **se cerrará en tiempo de ejecución** al usarlos. Hay que buscarlos a mano en todo el proyecto (`Find > Find in Project...`, o `Shift+Cmd+F`). Este es un buen motivo para usar `#keyPath` y los *key paths* de Swift, que vimos en la sesión de consultas: con ellos, el compilador sí detectaría el cambio.
++    Hay sitios donde el nombre del atributo aparece dentro de una cadena: predicados (`"titulo CONTAINS[cd] %@"`), *sort descriptors* creados con una cadena (`NSSortDescriptor(key: "titulo", ...)`)... El compilador no los revisa, así que la app compilará sin errores pero **se cerrará en tiempo de ejecución** al usarlos. Hay que buscarlos a mano en todo el proyecto (`Find > Find in Project...`, o `Shift+Cmd+F`). Este es un buen motivo para usar siempre que se pueda `#keyPath` y los *key paths* de Swift (como en `NSSortDescriptor(keyPath: \Conversacion.titulo, ascending: true)` o en el `sectionIdentifier` de `@SectionedFetchRequest`): con ellos, el compilador sí detecta el cambio.
+ 
+ ## ¿Qué pasa si la migración ligera no es posible?
+ 
+--- uikit/5_migraciones_pesadas.md
++++ swiftui/5_migraciones_pesadas.md
+@@ -93,9 +93,9 @@
+ 
+ ## 4. Ejecutar la migración
+ 
+-Y ya está: no hay que cambiar el código del `AppDelegate`. Al arrancar, Core Data detectará que la base de datos se creó con una versión anterior del modelo, buscará en la app un *mapping model* para pasar de esa versión a la actual y, si lo encuentra, lo usará. Solo si no encuentra ninguno intentará hacer una migración ligera.
++Y ya está: no hay que cambiar el código del `PersistenceController`. Al arrancar, Core Data detectará que la base de datos se creó con una versión anterior del modelo, buscará en la app un *mapping model* para pasar de esa versión a la actual y, si lo encuentra, lo usará. Solo si no encuentra ninguno intentará hacer una migración ligera.
+ 
+-> Si queremos asegurarnos de que se usa nuestro *mapping model* y no una migración ligera (por ejemplo, porque hemos modificado el modelo de destino y el *mapping model* ha dejado de ser válido sin que nos demos cuenta), podemos desactivar temporalmente la inferencia automática en el `AppDelegate`, antes de `loadPersistentStores`:
++> Si queremos asegurarnos de que se usa nuestro *mapping model* y no una migración ligera (por ejemplo, porque hemos modificado el modelo de destino y el *mapping model* ha dejado de ser válido sin que nos demos cuenta), podemos desactivar temporalmente la inferencia automática en el inicializador del `PersistenceController`, antes de `loadPersistentStores`:
+ >
+ > ```swift
+ > container.persistentStoreDescriptions.first?.shouldInferMappingModelAutomatically = false
+--- uikit/6_ejercicios.md
++++ swiftui/6_ejercicios.md
+@@ -3,13 +3,13 @@
+ 
+ Vamos a hacer dos migraciones sobre el modelo de datos de (¡cómo no!) la aplicación de notas: primero una ligera y después una manual.
+ 
+-> Antes de empezar, haz un `commit` del proyecto, como en sesiones anteriores, para poder volver al estado actual del código si lo necesitas.
++> Antes de empezar, haz un `commit` con el mensaje `terminada presencial 2`, para poder volver al estado actual del código si lo necesitas.
+ 
+ ## Preparar el punto de restauración (0.1 puntos)
+ 
+-- Añade al proyecto el archivo `PuntoRestauracion.swift` y el código del `AppDelegate` de la sección de probar migraciones, cambiando el nombre de la base de datos por el de tu proyecto.
++- Añade al proyecto el archivo `PuntoRestauracion.swift` y el código del `PersistenceController` de la sección de probar migraciones, cambiando el nombre de la base de datos por el de tu proyecto.
+ - Añade en el esquema de ejecución los argumentos de lanzamiento `-guardarPunto` y `-restaurarPunto`, ambos desactivados.
+-- Ejecuta la app (sin argumentos) y asegúrate de tener datos de prueba variados: varias libretas, notas en distintas libretas, alguna nota sin libreta, notas de **varias líneas** y alguna nota con el texto **vacío**. Los necesitarás para comprobar bien las migraciones.
++- Ejecuta la app (sin argumentos) y asegúrate de tener datos de prueba variados: varias libretas, notas en distintas libretas, alguna nota sin libreta, notas de **varias líneas** y alguna nota con el texto **vacío**. Los necesitarás para comprobar bien las migraciones. Las 10.000 notas que importaste en la sesión de concurrencia ya incluyen notas de varias líneas y algunas vacías; si no las tienes, impórtalas ahora.
+ - Ejecuta la app una vez con `-guardarPunto` activado y comprueba en la consola que se ha guardado el punto de restauración. Desactiva el argumento.
+ 
+ ## Migración ligera (0.15 puntos)
+@@ -22,7 +22,7 @@
+ Para ello:
+ 
+ 1. Crea una nueva versión del modelo, hazla la versión actual y haz en ella los dos cambios. **No pongas todavía el *Renaming ID*.**
+-2. Actualiza el código para que compile. No olvides los sitios donde el nombre del atributo aparece en una cadena.
++2. Actualiza el código para que compile: los errores del compilador te indicarán dónde. No olvides los sitios donde el nombre del atributo aparece en una cadena, como el predicado de la búsqueda, que el compilador no detecta.
+ 3. Ejecuta con `-restaurarPunto` activado. ¿Qué ha pasado con el contenido de las notas?
+ 4. Ahora pon el *Renaming ID* que corresponda y vuelve a ejecutar, también con `-restaurarPunto`. Comprueba que esta vez las notas conservan su contenido, siguen en sus libretas, y que la búsqueda funciona.
+ 5. Cuando todo funcione, desactiva `-restaurarPunto`.
+@@ -39,7 +39,7 @@
+ 
+ - Añadir a `Nota` un atributo `titulo` de tipo `String`.
+ - Al migrar, el título de cada nota existente debe ser la primera línea no vacía de su contenido, sin espacios al principio ni al final. Si el contenido está vacío, el título será "Sin título".
+-- Las notas nuevas que se creen en la app después de la migración también deben tener su título, calculado con el mismo criterio. Procura no repetir el código que lo calcula (por ejemplo, puedes escribirlo como una función en una extensión de `String`, que puedes usar tanto desde la *migration policy* como desde el resto de la app).
++- Las notas nuevas que se creen en la app después de la migración (tanto desde la pantalla de nueva nota como al importarlas) también deben tener su título, calculado con el mismo criterio. Procura no repetir el código que lo calcula (por ejemplo, puedes escribirlo como una función en una extensión de `String`, que puedes usar tanto desde la *migration policy* como desde el resto de la app).
+ - En la lista de notas debe aparecer el título de cada nota.
+ 
+ Para ello:
+@@ -47,7 +47,7 @@
+ 1. Como vas a hacer un nuevo cambio en el modelo, **guarda un nuevo punto de restauración** con los datos ya migrados a la versión anterior.
+ 2. Crea una nueva versión del modelo con el nuevo atributo y hazla la versión actual.
+ 3. Crea un *mapping model* de la versión anterior a la nueva, y una *migration policy* que calcule el título. Recuerda configurar en el *mapping model* la *custom policy*.
+-4. Prueba la migración con `-restaurarPunto` tantas veces como necesites hasta que funcione correctamente.
++4. Prueba la migración con `-restaurarPunto` tantas veces como necesites hasta que funcione correctamente. Con miles de notas, la migración manual tardará unos segundos en arrancar la app: es normal, y es una buena forma de comprobar que estas migraciones son mucho más costosas que las ligeras.
+ 
+ Comprueba que tras la migración:
+ 

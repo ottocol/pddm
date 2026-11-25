@@ -1,0 +1,225 @@
+--- uikit/1_predicados.md
++++ swiftui/1_predicados.md
+@@ -3,7 +3,7 @@
+ 
+ Seguiremos usando como ejemplo el modelo de la aplicación de mensajería de la sesión anterior (`Usuario`, `Mensaje` y `Conversacion`).
+ 
+-> En todos los ejemplos suponemos que `miContexto` es el contexto de persistencia (`persistentContainer.viewContext`), obtenido como en sesiones anteriores.
++> En los ejemplos de las dos primeras secciones ejecutaremos las *fetch requests* con el método `fetch` del contexto, para centrarnos en cómo se escriben las consultas. Suponemos que `miContexto` es el contexto de persistencia (el `viewContext`, que en una vista obtenemos del entorno con `@Environment(\.managedObjectContext)`). En la tercera sección veremos cómo usar todo esto en las vistas, con `@FetchRequest`.
+ 
+ ## Un primer ejemplo
+ 
+@@ -163,7 +163,7 @@
+ Para ejecutar una *fetch request* predefinida en el editor, la recuperamos por nombre del modelo de datos, pasándole un diccionario con el valor de cada variable. Por ejemplo, para una *template* llamada `textoContiene` con el predicado `texto CONTAINS[cd] $cadena`:
+ 
+ ```swift
+-let miModelo = miDelegate.persistentContainer.managedObjectModel
++let miModelo = PersistenceController.shared.container.managedObjectModel
+ if let request = miModelo.fetchRequestFromTemplate(withName: "textoContiene",
+                                                    substitutionVariables: ["cadena": "iOS"]) {
+     let resultados = try miContexto.fetch(request) as! [Mensaje]
+--- uikit/2_ordenacion.md
++++ swiftui/2_ordenacion.md
+@@ -11,7 +11,7 @@
+ let usuarios = try miContexto.fetch(request)
+ ```
+ 
+-Cada `NSSortDescriptor` indica el atributo por el que ordenar y si el orden es ascendente o descendente. Para usarlos, asignamos un array de ellos a la propiedad `sortDescriptors` de la *fetch request*. El orden en el array especifica la prioridad: primero se ordena por el primer criterio, y solo se usa el segundo para "desempatar".
++Cada `NSSortDescriptor` indica el atributo por el que ordenar y si el orden es ascendente o descendente. Para usarlos, asignamos un array de ellos a la propiedad `sortDescriptors` de la *fetch request*. Son los mismos que le pasamos a `@FetchRequest` en el parámetro `sortDescriptors`, como hicimos en la lista de notas. El orden en el array especifica la prioridad: primero se ordena por el primer criterio, y solo se usa el segundo para "desempatar".
+ 
+ Como en los predicados, el nombre del atributo es una cadena y si nos equivocamos al escribirlo no nos enteraremos hasta ejecutar la consulta. Para evitarlo podemos usar un *key path* de Swift, que comprueba el compilador:
+ 
+--- uikit/3_ejercicios.md
++++ swiftui/4_ejercicios.md
+@@ -1,133 +1,98 @@
+ 
+-Vamos a implementar una búsqueda por texto en la aplicación de notas sobre la que estáis trabajando en estas sesiones.
++Vamos a mejorar la lista de la aplicación de notas: añadiremos una búsqueda por texto, la posibilidad de borrar notas y secciones por libreta.
+ 
+-> Antes de ponerte a hacer las modificaciones de esta sesión asegúrate de que has hecho un `commit` con el mensaje `terminada sesión 2`. También puedes hacer un `.zip` con el proyecto, llamarlo `notas_sesion_2.zip` y adjuntarlo en las entregas de la asignatura. Así cuando se evalúe el ejercicio el profesor podrá consultar el estado que tenía la aplicación antes de estos ejercicios.
++> Antes de ponerte a hacer las modificaciones de esta sesión asegúrate de que has hecho un `commit` con el mensaje `terminada presencial 1`. Así cuando se evalúe el ejercicio el profesor podrá consultar el estado que tenía la aplicación antes de estos ejercicios.
+ 
+-## Preparación de la interfaz (0.2 puntos)
++## Búsqueda por texto (0.3 puntos)
+ 
+-Necesitamos una barra de búsqueda para poder introducir la cadena de texto a buscar. Usaremos un `UISearchController`, un componente que incluye la barra de búsqueda (*search bar*) y gestiona su comportamiento.
++Vamos a añadir a la lista de notas un campo de búsqueda.
+ 
+-En `ListaNotasController`:
++!!! note "Nuevo en SwiftUI: `.searchable` y `.onChange`"
++    El modificador `.searchable` añade un campo de búsqueda a la barra de navegación, y lo conecta mediante un *binding* a una variable de estado con el texto buscado. Como el campo va en la barra de navegación, la vista tiene que estar dentro de un `NavigationStack`.
+ 
+-1. Define una propiedad que será el `UISearchController`
++    El modificador `.onChange(of:)` ejecuta un código cada vez que cambia un valor, por ejemplo una variable de estado.
+ 
+-```swift
+-//esto debe ser una propiedad de ListaNotasController
+-let searchController = UISearchController(searchResultsController: nil)
+-```
+-
+-2. En el `viewDidLoad` introduce el siguiente código, que configura e inicializa el `UISearchController`
+-
+-```swift
+-//ListaNotasController recibirá lo que se está escribiendo en la barra de búsqueda 
+-searchController.searchResultsUpdater = self
+-//Configuramos el search controller
+-searchController.obscuresBackgroundDuringPresentation = false
+-searchController.searchBar.placeholder = "Buscar texto"
+-//Lo añadimos a la tabla
+-searchController.searchBar.sizeToFit()
+-self.tableView.tableHeaderView = searchController.searchBar
+-//Para que la barra de búsqueda no se quede "flotando" al cambiar de pestaña
+-self.definesPresentationContext = true
+-```
+-
+-3. La propiedad `searchResultsUpdater` indica quién es el *delegate* del `UISearchController`, en este caso el propio `ListaNotasController`. El *delegate* debe ser conforme al protocolo `UISearchResultsUpdating`, que requiere que se implemente un método llamado `updateSearchResults(for:)`.
+-
+-Cambia la cabecera de `ListaNotasController` para declarar que es conforme al protocolo `UISearchResultsUpdating`:
+-
+-```swift
+-class ListaNotasController: UITableViewController, UISearchResultsUpdating {
+-  ...
+-}  
+-```
+-
+-Define en la clase el método `updateSearchResults(for:)`
+-
+-```swift
+-func updateSearchResults(for searchController: UISearchController) {
+-    let texto = searchController.searchBar.text ?? ""
+-    print("Buscando \(texto)")
+-}
+-```
+-
+-**Prueba la aplicación** para comprobar que todo está correcto: cada vez que se escribe en la barra de búsqueda se debería llamar a este método e imprimir en la consola la cadena buscada.
+-
+-## Implementación de la búsqueda (0.3 puntos)
++    ```swift
++    NavigationStack {
++        List { ... }
++            .navigationTitle("Notas")
++            .searchable(text: $textoBusqueda)
++            .onChange(of: textoBusqueda) {
++                //esto se ejecuta cada vez que cambia el texto buscado
++            }
++    }
++    ```
+ 
+-En el método `updateSearchResults` **debes crear una *fetch request* que busque las notas cuyo texto contenga el texto escrito** en la barra de búsqueda, sin distinguir mayúsculas/minúsculas ni caracteres diacríticos, y mostrar los resultados en la tabla. Recuerda que para que se actualicen los datos visibles debes llamar a `tableView.reloadData()`.
++En `ListaNotasView`:
+ 
+-Además:
++1. Mete la lista en un `NavigationStack`, con el título "Notas".
++2. Añade una variable de estado `textoBusqueda`, de tipo `String`, y conéctala con `.searchable`.
++3. Escribe una función `actualizarBusqueda()` que cambie el predicado de la `@FetchRequest` de las notas para que solo muestre las notas cuyo texto contenga el texto buscado, sin distinguir mayúsculas/minúsculas ni caracteres diacríticos. Si el texto de búsqueda está vacío deben mostrarse **todas** las notas.
++4. Llama a `actualizarBusqueda()` con `.onChange` cada vez que cambie el texto buscado.
+ 
+-- Si el texto de búsqueda está vacío deben mostrarse **todas** las notas.
+-- Las notas deben aparecer **en orden inverso por fecha**, de más reciente a más antigua, tanto al buscar como al mostrar todas.
+-- Fíjate en que ahora hay dos sitios donde se cargan las notas: el `viewWillAppear` y el `updateSearchResults`. Para no repetir código, crea un método en `ListaNotasController` que reciba el texto a buscar y cargue las notas correspondientes, y llámalo desde los dos sitios. En el `viewWillAppear` pásale el texto que haya en ese momento en la barra de búsqueda, así si el usuario cambia de pestaña y vuelve, la lista seguirá filtrada.
++Las notas deben seguir apareciendo en orden inverso por fecha, de más reciente a más antigua.
+ 
+ Para comprobar que funciona correctamente prueba al menos estas búsquedas:
+ 
+ - Una palabra con acento escrita sin él (por ejemplo, si tienes una nota con "canción", busca "CANCION").
+ - Un texto con una comilla, por ejemplo `l'Alcúdia`. **La app no debe cerrarse.** Si se cierra, repasa la sección de predicados.
+-- Borrar el texto de la barra de búsqueda: deben volver a aparecer todas las notas.
++- Borrar el texto del buscador: deben volver a aparecer todas las notas.
++- Con una búsqueda activa, cambia a la pestaña "Nueva", crea una nota que cumpla la búsqueda y vuelve a la lista: debe aparecer.
+ 
+-## Buscar también por libreta (0.25 puntos)
++## Buscar también por libreta (0.2 puntos)
+ 
+ Amplía la búsqueda para que encuentre las notas cuyo texto contenga el texto buscado **o** que estén en una libreta cuyo nombre lo contenga. Por ejemplo, si buscamos "trabajo", deben aparecer las notas que contengan esa palabra y también todas las notas de la libreta "Trabajo", aunque su texto no la contenga.
+ 
+ Las notas que no tienen libreta deben seguir funcionando con normalidad: se encontrarán (o no) solo por su texto.
+ 
+-## Retardar las búsquedas (0.25 puntos)
++## Borrar notas (0.15 puntos)
+ 
+-Ahora mismo, `updateSearchResults` lanza una nueva *fetch request* por cada carácter que se teclea. Con pocas notas no se nota, pero con muchos datos, o si la búsqueda fuera costosa (por ejemplo, una petición a un servidor), estaríamos haciendo mucho trabajo inútil: si el usuario escribe "reunión" rápidamente, se buscarían "r", "re", "reu"... y no le daría tiempo ni a ver esos resultados intermedios.
++Haz que se puedan borrar notas de la lista con el gesto de deslizar hacia la izquierda.
+ 
+-Hay dos técnicas habituales para limitar la frecuencia con la que se ejecuta una operación:
++Comprueba que al borrar una nota desaparece de la lista con animación, que sigue borrada al detener la app y volver a ejecutarla, y que también se pueden borrar notas mientras hay una búsqueda activa.
+ 
+-- ***Throttling***: la operación se ejecuta como mucho una vez cada cierto intervalo de tiempo, aunque se solicite más veces.
+-- ***Debouncing***: la operación se ejecuta solo cuando ha pasado un cierto tiempo **sin** que se vuelva a solicitar. Es decir, cada nueva solicitud "reinicia el reloj".
++## Secciones por libreta (0.2 puntos)
+ 
+-Para una búsqueda mientras se escribe, lo más adecuado es el *debouncing*: buscaremos cuando el usuario haga una pausa al escribir. iOS no incluye ninguna clase que haga esto directamente en UIKit, pero es fácil de implementar. Crea un nuevo archivo Swift en tu proyecto con esta clase:
++Haz que la lista tenga una sección por cada libreta, con el nombre de la libreta como título, y que dentro de cada sección las notas sigan ordenadas por fecha, de más reciente a más antigua.
+ 
+-```swift
+-import Foundation
++- Las notas que no tienen libreta deben aparecer en una sección titulada "Sin libreta".
++- La búsqueda y el borrado deben seguir funcionando con las secciones.
+ 
+-class Debouncer {
+-    private let retardo: TimeInterval
+-    private var tareaPendiente: DispatchWorkItem?
++Para comprobar que funciona correctamente:
+ 
+-    init(retardo: TimeInterval) {
+-        self.retardo = retardo
+-    }
++- Crea una nota en una libreta que todavía no tenga ninguna: al volver a la lista debe aparecer la nueva sección.
++- Borra la única nota de una libreta: su sección debe desaparecer.
++- Haz una búsqueda: solo deben aparecer las secciones que tengan alguna nota que la cumpla.
+ 
+-    //ejecuta "bloque" pasados "retardo" segundos,
+-    //salvo que antes se vuelva a llamar a este método
+-    func ejecutar(_ bloque: @escaping () -> Void) {
+-        //cancelamos la tarea anterior, si todavía no se ha ejecutado
+-        tareaPendiente?.cancel()
+-        //programamos la nueva para dentro de "retardo" segundos
+-        let tarea = DispatchWorkItem(block: bloque)
+-        tareaPendiente = tarea
+-        DispatchQueue.main.asyncAfter(deadline: .now() + retardo, execute: tarea)
+-    }
+-}
+-```
++## Retardar las búsquedas (0.15 puntos)
+ 
+-Para usarlo en `ListaNotasController`:
++Ahora mismo, cada vez que se teclea un carácter en el buscador se lanza una nueva consulta. Con pocas notas no se nota, pero con muchos datos, o si la búsqueda fuera costosa (por ejemplo, una petición a un servidor), estaríamos haciendo mucho trabajo inútil: si el usuario escribe "reunión" rápidamente, se buscarían "r", "re", "reu"... y no le daría tiempo ni a ver esos resultados intermedios.
+ 
+-1. Define una propiedad de tipo `Debouncer` con el retardo deseado, por ejemplo medio segundo
++Hay dos técnicas habituales para limitar la frecuencia con la que se ejecuta una operación:
+ 
+-```swift
+-let debouncer = Debouncer(retardo: 0.5)
+-```
++- ***Throttling***: la operación se ejecuta como mucho una vez cada cierto intervalo de tiempo, aunque se solicite más veces.
++- ***Debouncing***: la operación se ejecuta solo cuando ha pasado un cierto tiempo **sin** que se vuelva a solicitar. Es decir, cada nueva solicitud "reinicia el reloj".
+ 
+-2. En el `updateSearchResults` "envuelve" la llamada a tu código de búsqueda en el `ejecutar` del *debouncer*:
++Para una búsqueda mientras se escribe, lo más adecuado es el *debouncing*: buscaremos cuando el usuario haga una pausa al escribir. En SwiftUI se puede conseguir de forma muy sencilla con el modificador `.task(id:)`. **Sustituye el `.onChange` por el siguiente código**:
+ 
+ ```swift
+-func updateSearchResults(for searchController: UISearchController) {
+-    let texto = searchController.searchBar.text ?? ""
+-    debouncer.ejecutar {
+-        //aquí iría la llamada a tu código de búsqueda
++.task(id: textoBusqueda) {
++    do {
++        try await Task.sleep(for: .milliseconds(500))
++        actualizarBusqueda()
++    } catch {
++        //la espera se ha cancelado porque el texto ha vuelto a cambiar:
++        //no hacemos nada
+     }
+ }
+ ```
+ 
+-Para comprobar que funciona, pon un `print` en tu método de búsqueda y escribe una palabra rápidamente en la barra de búsqueda: el `print` debería aparecer **una sola vez**, medio segundo después de dejar de escribir.
++El modificador `.task(id:)` ejecuta su código al aparecer la vista y cada vez que cambia el valor indicado en `id`. Además, si el valor cambia mientras el código anterior todavía se está ejecutando, lo cancela. Así:
++
++1. Cada vez que el usuario teclea un carácter, cambia `textoBusqueda` y empieza una espera de medio segundo.
++2. Si antes de que termine se teclea otro carácter, la espera se cancela (`Task.sleep` lanza un error, y no se busca nada) y empieza otra.
++3. Solo cuando pasa medio segundo sin teclear se llega a ejecutar `actualizarBusqueda()`.
++
++> El `await` y el `Task` tienen que ver con la concurrencia en Swift, que veremos en la próxima sesión presencial. Por ahora basta con entender el efecto que tiene este código.
+ 
+-> Como el bloque se ejecuta en la cola principal (`DispatchQueue.main`), podemos usar en él el `viewContext` de Core Data y actualizar la interfaz sin problemas.
++Para comprobar que funciona, pon un `print` en `actualizarBusqueda()` y escribe una palabra rápidamente en el buscador: el `print` debería aparecer **una sola vez**, medio segundo después de dejar de escribir.

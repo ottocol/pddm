@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 470" width="760" height="470" font-family="-apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="13">
+  <title>Modelo de datos de la aplicación de mensajería</title>
+  <defs>
+    <!-- punta simple: relación "a uno" -->
+    <marker id="uno" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse" markerUnits="userSpaceOnUse">
+      <path d="M1,1 L11,6 L1,11" fill="none" stroke="#333" stroke-width="1.6"/>
+    </marker>
+    <!-- punta doble: relación "a muchos" -->
+    <marker id="muchos" viewBox="0 0 20 12" refX="19" refY="6" markerWidth="20" markerHeight="12" orient="auto-start-reverse" markerUnits="userSpaceOnUse">
+      <path d="M1,1 L11,6 L1,11 M9,1 L19,6 L9,11" fill="none" stroke="#333" stroke-width="1.6"/>
+    </marker>
+  </defs>
+
+  <rect width="760" height="470" fill="#ffffff"/>
+
+  <!-- Relaciones -->
+  <!-- Usuario <<-->> Conversacion (muchos a muchos) -->
+  <line x1="240" y1="95" x2="520" y2="95" stroke="#333" stroke-width="1.6" marker-start="url(#muchos)" marker-end="url(#muchos)"/>
+  <text x="258" y="86" text-anchor="start" fill="#333">participantes</text>
+  <text x="502" y="86" text-anchor="end" fill="#333">conversaciones</text>
+
+  <!-- Usuario <-->> Mensaje (uno a muchos) -->
+  <line x1="140" y1="160" x2="280" y2="345" stroke="#333" stroke-width="1.6" marker-start="url(#uno)" marker-end="url(#muchos)"/>
+  <text x="150" y="202" text-anchor="end" fill="#333">usuario</text>
+  <text x="250" y="324" text-anchor="end" fill="#333">mensajes</text>
+
+  <!-- Conversacion <-->> Mensaje (uno a muchos, ordenada) -->
+  <line x1="620" y1="160" x2="480" y2="345" stroke="#333" stroke-width="1.6" marker-start="url(#uno)" marker-end="url(#muchos)"/>
+  <text x="612" y="202" text-anchor="start" fill="#333">conversacion</text>
+  <text x="510" y="324" text-anchor="start" fill="#333">mensajes (ordered)</text>
+
+  <!-- Entidad Usuario -->
+  <g>
+    <rect x="40" y="30" width="200" height="130" rx="8" fill="#f7f7f9" stroke="#333" stroke-width="1.6"/>
+    <path d="M40,38 a8,8 0 0 1 8,-8 h184 a8,8 0 0 1 8,8 v24 h-200 z" fill="#4a6fa5"/>
+    <text x="140" y="51" text-anchor="middle" fill="#ffffff" font-weight="bold" font-size="15">Usuario</text>
+    <text x="54" y="88" fill="#222">login: String</text>
+    <text x="54" y="112" fill="#222">creditos: Integer 16</text>
+    <text x="54" y="136" fill="#222">fechaAlta: Date</text>
+  </g>
+
+  <!-- Entidad Conversacion -->
+  <g>
+    <rect x="520" y="30" width="200" height="130" rx="8" fill="#f7f7f9" stroke="#333" stroke-width="1.6"/>
+    <path d="M520,38 a8,8 0 0 1 8,-8 h184 a8,8 0 0 1 8,8 v24 h-200 z" fill="#4a6fa5"/>
+    <text x="620" y="51" text-anchor="middle" fill="#ffffff" font-weight="bold" font-size="15">Conversacion</text>
+    <text x="534" y="88" fill="#222">titulo: String</text>
+    <text x="534" y="112" fill="#222">comienzo: Date</text>
+  </g>
+
+  <!-- Entidad Mensaje -->
+  <g>
+    <rect x="280" y="290" width="200" height="110" rx="8" fill="#f7f7f9" stroke="#333" stroke-width="1.6"/>
+    <path d="M280,298 a8,8 0 0 1 8,-8 h184 a8,8 0 0 1 8,8 v24 h-200 z" fill="#4a6fa5"/>
+    <text x="380" y="311" text-anchor="middle" fill="#ffffff" font-weight="bold" font-size="15">Mensaje</text>
+    <text x="294" y="348" fill="#222">texto: String</text>
+    <text x="294" y="372" fill="#222">fecha: Date</text>
+  </g>
+
+  <!-- Leyenda -->
+  <g font-size="12" fill="#555">
+    <line x1="40" y1="425" x2="80" y2="425" stroke="#333" stroke-width="1.6" marker-end="url(#uno)"/>
+    <text x="88" y="429">relación "a uno"</text>
+    <line x1="210" y1="425" x2="250" y2="425" stroke="#333" stroke-width="1.6" marker-end="url(#muchos)"/>
+    <text x="258" y="429">relación "a muchos"</text>
+    <text x="40" y="455">El nombre de cada relación aparece junto a su entidad destino</text>
+  </g>
+</svg>

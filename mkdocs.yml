@@ -19,13 +19,8 @@ nav:
     - Modelar las entidades en código Swift: 'cap4/4.2_clases_propias.md'
     - CRUD en Core Data: 'cap4/4.3_CRUD.md'
     - Validaciones: 'cap4/4.4_validaciones.md'
-    - Otros tipos de datos: 'cap4/4.5_otros_tipos.md'
+    - Material de ampliación: 'cap4/4.5_ampliacion.md'
     - Ejercicios de modelos de datos: 'cap4/4.6_ejercicios.md'
-  # - Persistencia como servicio: 
-  #   - Backend as a Service: 'cap11/1_introduccion_BAAS.md'
-  #   - Gestión de usuarios en Firebase: 'cap11/2_gestion_usuarios.md'
-  #   - Persistencia en Firebase: 'cap11/3_persistencia.md'
-  #   - Ejercicios: 'cap11/4_ejercicios.md'   
   - Búsquedas en Core Data: 
     - Predicados: 'cap6/1_predicados.md'
     - Ordenación: 'cap6/2_ordenacion.md'

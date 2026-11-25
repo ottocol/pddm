@@ -1,0 +1,5 @@
+Lo que más conviene probar en Xcode 15
+
+Que la importación en el hilo principal congele de forma visible. Si 10.000 notas se importan demasiado rápido en tu Mac, regenera con 20.000 o 30.000.
+La lista durante la importación en segundo plano. Cada lote provoca que @FetchRequest se actualice, con 10.000 filas y secciones. Debería ir bien, pero si la lista da tirones, se puede subir el tamaño del lote.
+El error del apartado 4: con ConcurrencyDebug activo puede saltar el aviso de concurrencia antes que el de “relationship between objects in different contexts”. Cualquiera de los dos vale para el ejercicio, pero conviene que sepas cuál verán.
